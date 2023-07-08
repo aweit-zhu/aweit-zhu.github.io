@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="weizhi.zhu" /><link rel="canonical" href="https://aweit-zhu.github.io/drone/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Drone - My Docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Drone";
+        var mkdocs_page_input_path = "drone.md";
+        var mkdocs_page_url = "/drone/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">About</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../microk8s/">Microk8s</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Drone</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-ngrokip-localhost8082">1.透過 ngrok，建立公開IP，綁定 localhost:8082  (重啟、重開機就沒了)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2github">2.綁定github</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-docker-compose-drone-server">3.透過 Docker Compose 建立 drone server</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sonarqube/">SonarQube</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../practicek8s/">Kubernetes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../docker/">Docker</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../dapr/">Dapr</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../traefic.md">Treafic</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Drone</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="drone">Drone 筆記</h1>
+<h3 id="1-ngrokip-localhost8082">1.透過 ngrok，建立公開IP，綁定 localhost:8082  (重啟、重開機就沒了)</h3>
+<p><img alt="Alt text" src="/assets/image-51.png" /></p>
+<p><img alt="Alt text" src="/assets/image-52.png" /></p>
+<h3 id="2github">2.綁定github</h3>
+<ul>
+<li>
+<p>前往 settings -&gt; Developer Settings
+<img alt="Alt text" src="/assets/image-53.png" /></p>
+</li>
+<li>
+<p>建立一個 OAuth APP
+Homepage URL：填剛剛用 ngrok 提共的 公開 IP  <a href="https://b5c9-58-115-111-122.ngrok-free.app">https://b5c9-58-115-111-122.ngrok-free.app</a>
+<img alt="Alt text" src="/assets/image-54.png" /></p>
+</li>
+<li>
+<p>產生 Client ID 與 Client Secret</p>
+</li>
+</ul>
+<p><img alt="Alt text" src="/assets/image-55.png" /></p>
+<p>Client ID： 3ab12bcea99814fd59df
+Client Secret： 2ae999f7e3e8bc29c1c5fec1918d1d1ba13a2067</p>
+<h3 id="3-docker-compose-drone-server">3.透過 Docker Compose 建立 drone server</h3>
+<ul>
+<li>
+<p>開啟 CMD，輸入 WSL。</p>
+<p><img alt="Alt text" src="/assets/image-49.png" /></p>
+</li>
+<li>
+<p>切到 home 路徑。</p>
+<pre><code>cd ~
+</code></pre>
+</li>
+<li>
+<p>建立 drone-server 資料夾</p>
+<pre><code>mkdir drone-server
+cd drone-server
+</code></pre>
+</li>
+<li>
+<p>建立 docker-compose.github.yml</p>
+<pre><code>nano docker-compose.github.yml
+</code></pre>
+</li>
+</ul>
+<p>貼上以下</p>
+<pre><code>version: '2'
+services:
+drone-server:
+    /assets/image: drone/drone:1
+    ports:
+    - 8082:80
+    volumes:
+    - ./:/data
+    restart: always
+    environment:
+    - DRONE_SERVER_HOST=${DRONE_SERVER_HOST}
+    - DRONE_SERVER_PROTO=${DRONE_SERVER_PROTO}
+    - DRONE_RPC_SECRET=${DRONE_RPC_SECRET}
+    - DRONE_GITHUB_SERVER=&lt;https://github.com&gt;
+    - DRONE_GITHUB_CLIENT_ID=${DRONE_GITHUB_CLIENT_ID}
+    - DRONE_GITHUB_CLIENT_SECRET=${DRONE_GITHUB_CLIENT_SECRET}
+    - DRONE_LOGS_PRETTY=true
+    - DRONE_LOGS_COLOR=true
+    - DRONE_USER_CREATE=username:aweit-zhu,admin:true
+</code></pre>
+<h1 id="runner-for-docker-version">runner for docker version</h1>
+<pre><code>drone-runner:
+    /assets/image: drone/drone-runner-docker:1
+    restart: always
+    depends_on:
+    - drone-server
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+    - DRONE_RPC_HOST=${DRONE_RPC_HOST}
+    - DRONE_RPC_PROTO=${DRONE_RPC_PROTO}
+    - DRONE_RPC_SECRET=${DRONE_RPC_SECRET}
+    - DRONE_RUNNER_CAPACITY=3
+</code></pre>
+<ul>
+<li>建立 .env<pre><code>nano .env
+</code></pre>
+</li>
+</ul>
+<p>貼上以下</p>
+<pre><code>我們目前有的資訊為：
+公開 IP  &lt;https://b5c9-58-115-111-122.ngrok-free.app&gt;
+Client ID： 3ab12bcea99814fd59df
+Client Secret： 2ae999f7e3e8bc29c1c5fec1918d1d1ba13a2067
+
+DRONE_SERVER_HOST=&lt;https://b5c9-58-115-111-122.ngrok-free.app&gt;
+DRONE_SERVER_PROTO=https
+DRONE_RPC_SECRET=123
+DRONE_RPC_HOST=drone-server
+DRONE_RPC_PROTO=http
+DRONE_GITHUB_CLIENT_ID=3ab12bcea99814fd59df
+DRONE_GITHUB_CLIENT_SECRET=2ae999f7e3e8bc29c1c5fec1918d1d1ba13a2067
+</code></pre>
+<p><img alt="Alt text" src="/assets/image-56.png" /></p>
+<ul>
+<li>
+<p>啟動容器</p>
+<p>docker-compose -f docker-compose.github.yml up -d</p>
+</li>
+</ul>
+<p><img alt="Alt text" src="/assets/image-57.png" /></p>
+<p><img alt="Alt text" src="/assets/image-58.png" /></p>
+<ul>
+<li>打開 <a href="https://b5c9-58-115-111-122.ngrok-free.app">https://b5c9-58-115-111-122.ngrok-free.app</a></li>
+</ul>
+<p>點選 Visit Site</p>
+<p><img alt="Alt text" src="/assets/image-59.png" /></p>
+<p>點選 Authorize aweit-zhu</p>
+<p><img alt="Alt text" src="/assets/image-60.png" /></p>
+<ul>
+<li>Drone Server 的操作</li>
+</ul>
+<p>選擇 aweit-zhu/docker-demo 進行 Activate
+選擇 Trusted
+點選 Save
+<img alt="Alt text" src="/assets/image-61.png" /></p>
+<ul>
+<li>回到 github 做設定</li>
+</ul>
+<p>將 Payload URL 修改為
+修改為 <a href="https://b5c9-58-115-111-122.ngrok-free.app">https://b5c9-58-115-111-122.ngrok-free.app</a> /hook</p>
+<p><img alt="Alt text" src="/assets/image-62.png" /></p>
+<h3 id="4-droneyml">4. 撰寫 .drone.yml 檔</h3>
+<ul>
+<li>建立 ssh_password_master secret</li>
+</ul>
+<p><img alt="Alt text" src="/assets/image-63.png" /></p>
+<ul>
+<li>建立 ssh_password secret</li>
+</ul>
+<p><img alt="Alt text" src="/assets/image-64.png" /></p>
+<ul>
+<li>
+<p>解析 .drone.yml (略)</p>
+<pre><code>kind: pipeline
+type: docker
+name: docker-demo-drone
+steps:
+
+- name: test
+    /assets/image: maven:3-jdk-8
+    volumes:
+- name: maven-cache
+        path: /root/.m2
+- name: maven-build
+        path: /app/build
+    commands:
+- mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+- mvn test -B
+
+- name: package
+    /assets/image: maven:3-jdk-8
+    volumes:
+- name: maven-cache
+        path: /root/.m2
+- name: maven-build
+        path: /app/build
+    commands:
+- mvn clean package
+- cp target/docker-demo.jar /app/build/docker-demo.jar
+- cp Dockerfile /app/build/Dockerfile
+- cp docker-k8s-demo-deployment.yaml /app/build/docker-k8s-demo-deployment.yaml
+- cp deploymentservice.yaml /app/build/deploymentservice.yaml
+- cp run.sh /app/build/run.sh
+
+- name: scp files
+    /assets/image: appleboy/drone-scp
+    settings:
+    host: 192.168.0.17
+    username: root
+    password:
+        from_secret: ssh_password_master
+    port: 22
+    command_timeout: 2m
+    target: /mydata/maven/build
+    source: ./*
+
+- name: build-start01
+    /assets/image: appleboy/drone-ssh
+    settings:
+    host: 172.31.93.122
+    username: root
+    password:
+        from_secret: ssh_password
+    port: 2222
+    command_timeout: 5m
+    script:
+        - cd /mydata/maven/build
+        - chmod +x run.sh
+        - ./run.sh
+
+- name: build-start02
+    /assets/image: appleboy/drone-ssh
+    settings:
+    host: 192.168.0.17
+    username: vboxuser
+    password:
+        from_secret: ssh_password_master
+    port: 22
+    command_timeout: 5m
+    script:
+        - cd /mydata/maven/build
+        - microk8s.kubectl delete deploy docker-k8s-demo-deployment
+        - microk8s.kubectl apply -f ./docker-k8s-demo-deployment.yaml
+
+volumes:
+
+- name: maven-build
+    host:
+    path: /mydata/maven/build
+- name: maven-cache
+    host:
+    path: /mydata/maven/cache
+</code></pre>
+</li>
+<li>
+<p>只要 push 到遠端，就會觸發 drone 執行。</p>
+</li>
+</ul>
+<p><img alt="Alt text" src="/assets/image-65.png" /></p>
+<p><img alt="Alt text" src="/assets/image-66.png" /></p>
+<ul>
+<li>驗證</li>
+</ul>
+<p><img alt="Alt text" src="/assets/image-67.png" /></p>
+<p>打開瀏覽器，輸入URL：<a href="http://192.168.0.17:60000/">http://192.168.0.17:60000/</a></p>
+<p><img alt="Alt text" src="/assets/image-68.png" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../microk8s/" class="btn btn-neutral float-left" title="Microk8s"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../sonarqube/" class="btn btn-neutral float-right" title="SonarQube">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../microk8s/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../sonarqube/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="weizhi.zhu" /><link rel="canonical" href="https://aweit-zhu.github.io/practicek8s/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Kubernetes - My Docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Kubernetes";
+        var mkdocs_page_input_path = "practicek8s.md";
+        var mkdocs_page_url = "/practicek8s/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">About</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../microk8s/">Microk8s</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../drone/">Drone</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sonarqube/">SonarQube</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Kubernetes</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">錯誤</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">知識</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#volume">Volume</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../docker/">Docker</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../dapr/">Dapr</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../traefic.md">Treafic</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Kubernetes</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="kubernetes">Kubernetes 補充</h2>
+<h3 id="_1">錯誤</h3>
+<ul>
+<li>Failed to allocate IP: No available IPs</li>
+</ul>
+<p>因為當初在開啟 microk8s enable metallb:192.168.0.17-192.168.0.17
+  太少了。像是例子為只有開一個。
+  此時，可以先關掉 metallb，再重新開啟，並且將IP數字變多。</p>
+<pre><code>    microk8s disable metallb
+
+    microk8s enable metallb:192.168.0.17-192.168.0.100
+</code></pre>
+<p>參考網址：<a href="https://discuss.kubernetes.io/t/addon-metallb/11790">https://discuss.kubernetes.io/t/addon-metallb/11790</a></p>
+<h3 id="_2">知識</h3>
+<ul>
+<li>透過 MicroK8s 認識 Kubernetes 的 Service Account (服務帳戶)</li>
+</ul>
+<p>參考網址：<a href="https://blog.miniasp.com/post/2022/08/24/Understanding-Service-Account-in-Kubernetes-through-MicroK8s">https://blog.miniasp.com/post/2022/08/24/Understanding-Service-Account-in-Kubernetes-through-MicroK8s</a></p>
+<ul>
+<li>
+<p>建立別名：讓 microk8s.kubectl = kubectl</p>
+<pre><code>sudo snap alias microk8s.kubectl kubectl
+</code></pre>
+<p><img alt="Alt text" src="/assets/image-72.png" /></p>
+</li>
+<li>
+<p>如何取得 Pod 的資訊，並以 yaml 呈現。</p>
+<pre><code>kubectl get pod microbot -n dev -o yaml
+</code></pre>
+<p><img alt="Alt text" src="/assets/image-73.png" /></p>
+</li>
+<li>
+<p>進入Pod的console</p>
+<pre><code>kubectl exec microbot -it -n dev -- sh
+</code></pre>
+</li>
+<li>
+<p>RBAC</p>
+<p>k8s 在 1.8 版之後，引用了 Role-Base Access Control (RBAC，基於角色的訪問控制，好像有點繞舌) 做為授權 (Authorization) 的基礎，也就是一種管制訪問 k8s API 的機制。管理者可以透過 rbac.authorization.k8s.io 這個 API 群組來進行動態的管理配置。引用 <a href="https://ithelp.ithome.com.tw/articles/10195944">https://ithelp.ithome.com.tw/articles/10195944</a></p>
+<p>kubectl create namespace dev
+  kubectl label namespace dev name=dev
+  kubectl run microbot --/assets/image=dontrebootme/microbot:v1 -n dev</p>
+<p>kubectl create serviceaccount monitor -n dev
+  kubectl create clusterrole aweit --verb='<em>' --resource='</em>'
+  kubectl create clusterrolebinding aweit --clusterrole=aweit --serviceaccount='dev:monitor' </p>
+<p>microk8s kubectl create token monitor</p>
+<p>範例<a href="https://blog.miniasp.com/post/2022/08/24/Understanding-Service-Account-in-Kubernetes-through-MicroK8s">https://blog.miniasp.com/post/2022/08/24/Understanding-Service-Account-in-Kubernetes-through-MicroK8s</a></p>
+</li>
+<li>
+<p>Dashboard 與 Kubeconfig</p>
+</li>
+<li>
+<p>開啟 Dashboard</p>
+<pre><code>microk8s enable dashboard
+</code></pre>
+</li>
+<li>
+<p>登入頁面</p>
+<p><img alt="Alt text" src="/assets/image-75.png" /></p>
+</li>
+<li>
+<p>如何產生 .kueconfig</p>
+<pre><code>mircok8s config
+</code></pre>
+<p><img alt="Alt text" src="/assets/image-74.png" /></p>
+<pre><code>在本機建立 .kubeconfig 檔案，將上圖的文字貼上去。
+</code></pre>
+</li>
+<li>
+<p>重新上傳 .kubeconfig 檔案即可。</p>
+</li>
+<li>
+<p>Token</p>
+<pre><code>microk8s kubectl create token [service account]
+microk8s kubectl create token default
+</code></pre>
+</li>
+</ul>
+<h3 id="volume">Volume</h3>
+<ul>
+<li>Type： emptyDir、hostPath、local、nfs、persistentVolumeClaim</li>
+</ul>
+<p><code>apiVersion: v1
+  kind: Pod
+  metadata:
+    name: test-pd
+  spec:
+    containers:
+    - image: registry.k8s.io/test-webserver
+      name: test-container
+      volumeMounts:
+      - mountPath: /test-pd
+        name: test-volume
+    volumes:
+    - name: test-volume
+      hostPath:
+        # 宿主上目录位置
+        path: /data
+        # 此字段为可选
+        type: DirectoryOrCreate</code></p>
+<ul>
+<li>
+<p>nfs</p>
+</li>
+<li>
+<p>[Ubuntu NFS 安裝教學] <a href="https://blog.devcloud.com.tw/ubuntu-nfs-install/">https://blog.devcloud.com.tw/ubuntu-nfs-install/</a></p>
+</li>
+<li>
+<p>使用說明 <a href="https://www.hwchiu.com/kubernetes-storage-ii.html">https://www.hwchiu.com/kubernetes-storage-ii.html</a></p>
+</li>
+</ul>
+<p>NFS Server
+  IP： 192.168.0.17</p>
+<pre><code>  showmount -e 192.168.0.17
+</code></pre>
+<p><img alt="Alt text" src="../image-20.png" /></p>
+<p>如果要新增掛載目錄</p>
+<pre><code>  # 建立共享資料夾
+  sudo mkdir /opt/nfsshare
+
+  # 編輯 NFS Server 的 Expose 設定
+  sudo nano /etc/exports
+  ...
+  /opt/nfsshare  192.168.0.0/24(rw,sync,no_subtree_check,no_root_squash)
+
+  # 重啟
+  sudo systemctl restart nfs-kernel-server.service
+
+  # 顯示 Mount 資訊
+  showmount -e 192.168.0.17
+</code></pre>
+<ul>
+<li>PV/PVC/Pod</li>
+</ul>
+<p>```
+  apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    name: nfs
+  spec:
+    capacity:
+      storage: 1Mi
+    accessModes:
+      - ReadWriteMany
+    nfs:
+      server: 192.168.0.17
+      path: "/opt/nfsshare"</p>
+<hr />
+<p>apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    name: nfs
+  spec:
+    accessModes:
+      - ReadOnlyMany
+    storageClassName: ""
+    resources:
+      requests:
+        storage: 1Mi</p>
+<hr />
+<p>apiVersion: v1
+  kind: Pod
+  metadata:
+    name: hwchiu
+    labels:
+      app: hwchiu
+  spec:
+    containers:
+    - name: busybox
+      image: hwchiu/netutils:latest
+      volumeMounts:
+        - name: nfs-volume
+          mountPath: /nfs
+    volumes:
+      - name: nfs-volume
+        persistentVolumeClaim:
+          claimName: nfs
+  ```</p>
+<p>### Tomcat &amp; Volume</p>
+<pre><code># PV: 先有 nfs server，並且建立好對應的資料夾，例如：/opt/nfsshare/demo/webapps
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-demo-tomcat
+spec:
+  capacity:
+    storage: 1Mi
+  accessModes:
+    - ReadOnlyMany
+  nfs:
+    server: 192.168.0.17
+    path: &quot;/opt/nfsshare/demo/webapps&quot;
+
+---
+# PVC: 建立 PV 請求
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-demo-tomcat
+spec:
+  accessModes:
+    - ReadOnlyMany
+  storageClassName: &quot;&quot;
+  resources:
+    requests:
+      storage: 1Mi
+---
+# Deployment: tomcat 鏡像，綁定 nfs 共用資料夾。
+# 因為 tomcat 8 以後，會多一個 webapps.dir 資料夾，所以要執行 cp -r webapps.dist/.  webapps/ 才能將資料夾與檔案全部搬移過去。
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  tomcat-deployment-nautilus
+  labels:
+    name: webdep
+    app: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: webpod
+      app: demo
+  template:
+    metadata:
+      name: webpod
+      labels:
+        name: webpod
+        app: demo
+    spec:
+      containers:
+        - name: tomcat-container-nautilus
+          image: tomcat
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: nfs-volume
+              mountPath: /usr/local/tomcat/webapps
+      volumes:
+        - name: nfs-volume
+          persistentVolumeClaim:
+            claimName: nfs-demo-tomcat
+
+---
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: tomcat-service-nautilus
+spec:
+  selector:
+    name: webpod
+    app: demo
+  ports:
+    - port: 80
+      targetPort: 8080
+
+
+---
+# IngressRoute
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: tomcat-ingress-route
+  namespace: default
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`localhost.mic.com.tw`) &amp;&amp; PathPrefix(`/tomcat`)
+      middlewares:
+        - name: test-stripprefix
+        - name: test-errors
+      services:
+        - name: tomcat-service-nautilus
+          port: 80
+  tls:
+    secretName: mic-tls
+</code></pre>
+<p>把 webapps.dist 目錄下的所有檔案，複製到 webapps 底下</p>
+<pre><code>cp -r webapps.dist/.  webapps/
+</code></pre>
+<p>traefik: 把 /tomcat 去掉</p>
+<pre><code># Middleware
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: test-stripprefix
+spec:
+  stripPrefix:
+    prefixes:
+      - /tomcat
+</code></pre>
+<p>https://localhost.mic.com.tw/tomcat/</p>
+<p><img alt="Alt text" src="../image-21.png" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../sonarqube/" class="btn btn-neutral float-left" title="SonarQube"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../docker/" class="btn btn-neutral float-right" title="Docker">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../sonarqube/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../docker/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
