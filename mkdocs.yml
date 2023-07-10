@@ -1,0 +1,21 @@
+site_name: My Docs
+site_url: https://aweit-zhu.github.io
+site_author: weizhi.zhu
+site_description: a short description of your website
+
+nav:
+  - About: index.md
+  - Microk8s: microk8s.md
+  - Drone: drone.md
+  - SonarQube: sonarqube.md
+  - Kubernetes: practicek8s.md
+  - Docker: docker.md
+  - Dapr: dapr.md
+  - Treafik: traefik.md
+  - Velero: velero.md
+
+theme:
+  name: readthedocs
+  highlightjs: true
+  hljs_languages:
+    - yaml
