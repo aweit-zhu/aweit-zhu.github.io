@@ -5,7 +5,7 @@
 - 官網 <https://velero.io/docs/v1.11/how-velero-works/>
 - 使用 Velero 備份還原 Kubernetes 集羣 <https://www.readfog.com/a/1647215683490123776>
 - Quick start evaluation install with Minio <https://velero.io/docs/main/contributions/minio>
-
+- k8s1.24 使用Velero 備份還原Rancher Longhorn上volume資料 https://www.itnotetk.com/2022/11/28/k8s1-24-velero-%e5%82%99%e4%bb%bd%e9%82%84%e5%8e%9f-rancher-longhorn%e4%b8%8avolume%e8%b3%87%e6%96%99/
 ### 運作方式
 
 ![Alt text](image-23.png)
@@ -148,6 +148,8 @@ spec:
 
 ```
 
+kubectl apply -f examples/minio/00-minio-deployment.yaml
+
 開啟 kubrnetes dashboard 看 velero minio 是哪個 Port，並開啟瀏覽器
 
 ![Alt text](image-25.png)
@@ -180,6 +182,7 @@ velero install \
 --provider aws \
 --bucket velero \
 --plugins velero/velero-plugin-for-aws:latest \
+--plugins openebs/velero-plugin:ci \
 --secret-file ./credentials-velero \
 --use-volume-snapshots=false \
 --backup-location-config region=minio,s3ForcePathStyle="true",s3Url=http://192.168.0.17:31883
@@ -201,7 +204,8 @@ http://192.168.0.17:30050/
 ### Back up
 
 先建立一個 Namespace / Development / Service
-
+    
+    cd ~/velero-v1.11.0-linux-amd64
     kubectl apply -f examples/nginx-app/base.yaml
 
 Create a backup for any object that matches the app=nginx label selector:
@@ -248,3 +252,14 @@ nginx-example 就回來了~
 velero backup delete BACKUP_NAME
 
 velero uninstall --> 全部移除
+
+## With PV
+
+    cd ~/velero-v1.11.0-linux-amd64
+    kubectl apply -f examples/nginx-app/with-pv.yaml
+
+    kubectl -n nginx-example annotate pod/nginx-deployment-78964c9995-cx4qs backup.velero.io/backup-volumes=nginx-logs
+
+    velero backup create nginx-backup --include-namespaces nginx-example --default-volumes-to-fs-backup --snapshot-volumes --ttl 180h
+
+    velero backup create nginx-backup --include-namespaces nginx-example --default-volumes-to-fs-backup

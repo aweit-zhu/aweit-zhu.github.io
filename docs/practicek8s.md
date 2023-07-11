@@ -177,8 +177,8 @@
       - name: nfs-volume
         persistentVolumeClaim:
           claimName: nfs
-  ```
 
+  ```
   ### Tomcat & Volume
 
 ```
@@ -304,3 +304,24 @@ spec:
 https://localhost.mic.com.tw/tomcat/
 
 ![Alt text](image-21.png)
+
+
+### Namespace 狀態為 Terminal 時，如何刪掉？
+```
+
+kubectl delete namespace  longhorn-system
+
+kubectl get ns/longhorn-system -o json > longhorn-system.json
+nano longhorn-system.json -> 清除
+"spec": {
+        "finalizers": [
+            "kubernetes"
+        ]
+    }
+->
+"spec": {
+        "finalizers": []
+    }	
+kubectl replace --raw "/api/v1/namespaces/longhorn-system/finalize" -f ./longhorn-system.json
+
+```
