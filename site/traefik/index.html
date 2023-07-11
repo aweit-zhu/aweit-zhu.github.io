@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="weizhi.zhu" /><link rel="canonical" href="https://aweit-zhu.github.io/traefik/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Treafik - Aweit Docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Treafik";
+        var mkdocs_page_input_path = "traefik.md";
+        var mkdocs_page_url = "/traefik/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Aweit Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">About</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../microk8s/">Microk8s</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../drone/">Drone</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sonarqube/">SonarQube</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../practicek8s/">Kubernetes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../docker/">Docker</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../dapr/">Dapr</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Treafik</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#with-k8s-crd-custom-resource-definitions">With K8S + CRD (Custom Resource Definitions)</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../velero/">Velero</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Aweit Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Treafik</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="traefik">Traefik</h2>
+<h4 id="with-k8s-crd-custom-resource-definitions">With K8S + CRD (Custom Resource Definitions)</h4>
+<ul>
+<li>
+<p>IngressRoute Definition</p>
+<pre><code># Install Traefik Resource Definitions:
+kubectl apply -f https://raw.githubusercontent.com/traefik/traefik/v2.10/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml
+
+# Install RBAC for Traefik:
+kubectl apply -f https://raw.githubusercontent.com/traefik/traefik/v2.10/docs/content/reference/dynamic-configuration/kubernetes-crd-rbac.yml
+</code></pre>
+</li>
+<li>
+<p>Services</p>
+<pre><code>kubectl apply -f https://raw.githubusercontent.com/traefik/traefik/v2.10/docs/content/user-guides/crd-acme/02-services.yml
+</code></pre>
+</li>
+<li>
+<p>修改 traefik</p>
+<p><code>apiVersion: v1
+kind: Service
+metadata:
+name: traefik
+spec:
+type: LoadBalancer # 多加這一行，暴露街口
+ports:
+    - protocol: TCP
+    name: web # web 入口
+    port: 8000
+    - protocol: TCP
+    name: admin # dashboard 入口
+    port: 8080
+    - protocol: TCP
+    name: websecure # web https 入口
+    port: 4443
+selector:
+    app: traefik</code>
+- Deployments</p>
+<pre><code>kubectl apply -f https://raw.githubusercontent.com/traefik/traefik/v2.10/docs/content/user-guides/crd-acme/03-deployments.yml
+</code></pre>
+</li>
+<li>
+<p>Traefik Routers
+    ```
+    apiVersion: traefik.io/v1alpha1
+    kind: IngressRoute
+    metadata:
+    name: simpleingressroute
+    namespace: default
+    spec:
+    entryPoints:
+        - web
+    routes:</p>
+<ul>
+<li>match: Host(<code>192.168.0.17</code>) &amp;&amp; PathPrefix(<code>/notls</code>)
+  kind: Rule
+  services:<ul>
+<li>name: whoami
+  port: 80
+```</li>
+</ul>
+</li>
+</ul>
+<p><code>apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+name: docker-demo
+namespace: default
+spec:
+entryPoints:
+    - web
+routes:
+- match: PathPrefix(`/docker-demo`)
+  kind: Rule
+  services:
+    - name: myapp
+  port: 80</code></p>
+</li>
+<li>
+<p>Dashboard</p>
+</li>
+</ul>
+<p><a href="http://192.168.0.23:8080/dashboard/#/">http://192.168.0.23:8080/dashboard/#/</a></p>
+<p><img alt="Alt text" src="../image-7.png" /></p>
+<ul>
+<li>測試 URL： http://192.168.0.23:8000/notls</li>
+</ul>
+<p><img alt="Alt text" src="../image-8.png" /></p>
+<ul>
+<li>
+<p>Middlewares</p>
+</li>
+<li>
+<p>概念</p>
+</li>
+</ul>
+<p><img alt="Alt text" src="../image-9.png" /></p>
+<ul>
+<li>修改 IngressRoute
+    <code>apiVersion: traefik.io/v1alpha1
+    kind: IngressRoute
+    metadata:
+    name: simpleingressroute
+    namespace: default
+    spec:
+    entryPoints:
+        - web
+    routes:
+        - match: Host(`192.168.0.23`) &amp;&amp; PathPrefix(`/notls`)
+        kind: Rule
+        middlewares:
+            - name: test-auth
+        services:
+            - name: whoami
+            port: 80</code></li>
+<li>
+<p>建立 Middleware
+    ```
+    apiVersion: traefik.io/v1alpha1
+    kind: Middleware
+    metadata:
+    name: test-auth
+    spec:
+    basicAuth:
+        secret: authsecret</p>
+<h1 id="note-in-a-kubernetes-secret-the-string-eg-generated-by-htpasswd-must-be-base64-encoded-first">Note: in a kubernetes secret the string (e.g. generated by htpasswd) must be base64-encoded first.</h1>
+<h1 id="to-create-an-encoded-userpassword-pair-the-following-command-can-be-used">To create an encoded user:password pair, the following command can be used:</h1>
+<h1 id="htpasswd-nb-user-password-openssl-base64">htpasswd -nb user password | openssl base64</h1>
+<p>apiVersion: v1
+kind: Secret
+metadata:
+name: authsecret
+namespace: default
+data:
+users: dXNlcjokYXByMSRicC5FV295eCRXTWttUktBLzdjQWcycXNIL09XbXIxCgo=</p>
+<p>```</p>
+<pre><code>htpasswd -nb user password | openssl base64
+</code></pre>
+<p><img alt="Alt text" src="../image-10.png" /></p>
+<p>去看 Traefik Dashboard，會看到多一個 Middlewares</p>
+<p><img alt="Alt text" src="../image-11.png" /></p>
+<p>打開瀏覽器，輸入 http://192.168.0.23:8000/notls</p>
+<p><img alt="Alt text" src="../image-12.png" /></p>
+<p>輸入：user/password 後，就可以登入成功，並取得資訊</p>
+<p><img alt="Alt text" src="../image-13.png" /></p>
+</li>
+</ul>
+<h3 id="middleware-error">Middleware - Error</h3>
+<p><img alt="Alt text" src="../image-14.png" /></p>
+<p>建立一個 Service</p>
+<pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: traefikerror
+spec:
+  type: LoadBalancer
+  ports:
+  - name: http
+    targetPort: 80
+    port: 80
+  selector:
+    app: traefikerror
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: traefikerror
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: traefikerror
+  template:
+    metadata:
+      labels:
+        app: traefikerror
+    spec:
+      containers:
+      - name: traefikerror
+        image: guillaumebriday/traefik-custom-error-pages
+        ports:
+        - containerPort: 80
+</code></pre>
+<p>建立 Middleware</p>
+<pre><code>apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: test-errors
+spec:
+  errors:
+    status:
+      - &quot;400-599&quot;
+    query: /{status}.html
+    service:
+      name: traefikerror
+      port: 80
+</code></pre>
+<p>加入 Middleware</p>
+<pre><code>apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: simpleingressroute
+  namespace: default
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`192.168.0.23`) &amp;&amp; PathPrefix(`/notls`)
+      kind: Rule
+      middlewares:
+        - name: test-auth
+        - name: test-errors
+      services:
+        - name: whoami
+          port: 80
+
+</code></pre>
+<h4 id="https">暴露 HTTPS 服務</h4>
+<p>先把 STAR_mic.com.tw.crt 和 STAR_mic.com.tw.key 兩個檔案放到執行目錄下</p>
+<pre><code>![Alt text](image-15.png)
+</code></pre>
+<p>執行指令</p>
+<pre><code>kubectl create secret tls mic-tls --cert=STAR_mic.com.tw.crt --key=STAR_mic.com.tw.key
+</code></pre>
+<p><img alt="Alt text" src="../image-16.png" /></p>
+<p><img alt="Alt text" src="../image-17.png" /></p>
+<p>在 IngressRoute 中加入</p>
+<pre><code>apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingressroutetls
+  namespace: default
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`localhost.mic.com.tw`) &amp;&amp; PathPrefix(`/tls`)
+      services:
+        - name: whoami
+          port: 80
+  tls:
+    secretName: mic-tls
+</code></pre>
+<p>ps: 在本機的hosts檔俺中加入 192.168.0.23 localhost.mic.com.tw 
+(192.168.0.2 是存取 Traefik 的暴露IP)</p>
+<p>https://localhost.mic.com.tw/tls</p>
+<p><img alt="Alt text" src="../image-18.png" /></p>
+<p>參考網頁：<a href="https://www.readfog.com/a/1665375657830486016">https://www.readfog.com/a/1665375657830486016</a></p>
+<p><img alt="Alt text" src="../image-19.png" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../dapr/" class="btn btn-neutral float-left" title="Dapr"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../velero/" class="btn btn-neutral float-right" title="Velero">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../dapr/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../velero/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
