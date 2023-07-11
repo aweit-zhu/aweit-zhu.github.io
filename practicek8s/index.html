@@ -66,6 +66,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#volume">Volume</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tomcat-volume">Tomcat &amp; Volume</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#namespace-terminal">Namespace 狀態為 Terminal 時，如何刪掉？</a>
     </li>
     </ul>
@@ -244,8 +246,7 @@ microk8s kubectl create token default
 <ul>
 <li>PV/PVC/Pod</li>
 </ul>
-<p>```
-  apiVersion: v1
+<pre><code>  apiVersion: v1
   kind: PersistentVolume
   metadata:
     name: nfs
@@ -256,21 +257,22 @@ microk8s kubectl create token default
       - ReadWriteMany
     nfs:
       server: 192.168.0.17
-      path: "/opt/nfsshare"</p>
-<hr />
-<p>apiVersion: v1
+      path: &quot;/opt/nfsshare&quot;
+
+  ---
+  apiVersion: v1
   kind: PersistentVolumeClaim
   metadata:
     name: nfs
   spec:
     accessModes:
       - ReadOnlyMany
-    storageClassName: ""
+    storageClassName: &quot;&quot;
     resources:
       requests:
-        storage: 1Mi</p>
-<hr />
-<p>apiVersion: v1
+        storage: 1Mi
+  ---
+  apiVersion: v1
   kind: Pod
   metadata:
     name: hwchiu
@@ -286,9 +288,10 @@ microk8s kubectl create token default
     volumes:
       - name: nfs-volume
         persistentVolumeClaim:
-          claimName: nfs</p>
-<p>```</p>
-<p>### Tomcat &amp; Volume</p>
+          claimName: nfs
+
+</code></pre>
+<h3 id="tomcat-volume">Tomcat &amp; Volume</h3>
 <pre><code># PV: 先有 nfs server，並且建立好對應的資料夾，例如：/opt/nfsshare/demo/webapps
 apiVersion: v1
 kind: PersistentVolume
