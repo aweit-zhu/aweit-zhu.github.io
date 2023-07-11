@@ -246,49 +246,49 @@ microk8s kubectl create token default
 <ul>
 <li>PV/PVC/Pod</li>
 </ul>
-<pre><code>  apiVersion: v1
-  kind: PersistentVolume
-  metadata:
-    name: nfs
-  spec:
-    capacity:
-      storage: 1Mi
-    accessModes:
-      - ReadWriteMany
-    nfs:
-      server: 192.168.0.17
-      path: &quot;/opt/nfsshare&quot;
+<pre><code>apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs
+spec:
+  capacity:
+    storage: 1Mi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.0.17
+    path: &quot;/opt/nfsshare&quot;
 
-  ---
-  apiVersion: v1
-  kind: PersistentVolumeClaim
-  metadata:
-    name: nfs
-  spec:
-    accessModes:
-      - ReadOnlyMany
-    storageClassName: &quot;&quot;
-    resources:
-      requests:
-        storage: 1Mi
-  ---
-  apiVersion: v1
-  kind: Pod
-  metadata:
-    name: hwchiu
-    labels:
-      app: hwchiu
-  spec:
-    containers:
-    - name: busybox
-      image: hwchiu/netutils:latest
-      volumeMounts:
-        - name: nfs-volume
-          mountPath: /nfs
-    volumes:
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs
+spec:
+  accessModes:
+    - ReadOnlyMany
+  storageClassName: &quot;&quot;
+  resources:
+    requests:
+      storage: 1Mi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hwchiu
+  labels:
+    app: hwchiu
+spec:
+  containers:
+  - name: busybox
+    image: hwchiu/netutils:latest
+    volumeMounts:
       - name: nfs-volume
-        persistentVolumeClaim:
-          claimName: nfs
+        mountPath: /nfs
+  volumes:
+    - name: nfs-volume
+      persistentVolumeClaim:
+        claimName: nfs
 
 </code></pre>
 <h3 id="tomcat-volume">Tomcat &amp; Volume</h3>
