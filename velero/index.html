@@ -107,7 +107,8 @@
 - Velero 初探與實踐 <a href="https://kaichu.io/posts/velero-research-practice/">https://kaichu.io/posts/velero-research-practice/</a>
 - 官網 <a href="https://velero.io/docs/v1.11/how-velero-works/">https://velero.io/docs/v1.11/how-velero-works/</a>
 - 使用 Velero 備份還原 Kubernetes 集羣 <a href="https://www.readfog.com/a/1647215683490123776">https://www.readfog.com/a/1647215683490123776</a>
-- Quick start evaluation install with Minio <a href="https://velero.io/docs/main/contributions/minio">https://velero.io/docs/main/contributions/minio</a></p>
+- Quick start evaluation install with Minio <a href="https://velero.io/docs/main/contributions/minio">https://velero.io/docs/main/contributions/minio</a>
+- k8s1.24 使用Velero 備份還原Rancher Longhorn上volume資料 https://www.itnotetk.com/2022/11/28/k8s1-24-velero-%e5%82%99%e4%bb%bd%e9%82%84%e5%8e%9f-rancher-longhorn%e4%b8%8avolume%e8%b3%87%e6%96%99/</p>
 <h3 id="_1">運作方式</h3>
 <p><img alt="Alt text" src="../image-23.png" /></p>
 <ol>
@@ -244,6 +245,7 @@ spec:
           mountPath: &quot;/config&quot;
 
 </code></pre>
+<p>kubectl apply -f examples/minio/00-minio-deployment.yaml</p>
 <p>開啟 kubrnetes dashboard 看 velero minio 是哪個 Port，並開啟瀏覽器</p>
 <p><img alt="Alt text" src="../image-25.png" /></p>
 <p>http://192.168.0.17:32729/browser</p>
@@ -264,6 +266,7 @@ aws_secret_access_key = minio123
 --provider aws \
 --bucket velero \
 --plugins velero/velero-plugin-for-aws:latest \
+--plugins openebs/velero-plugin:ci \
 --secret-file ./credentials-velero \
 --use-volume-snapshots=false \
 --backup-location-config region=minio,s3ForcePathStyle=&quot;true&quot;,s3Url=http://192.168.0.17:31883
@@ -276,7 +279,8 @@ aws_secret_access_key = minio123
 <p><img alt="Alt text" src="../image-27.png" /></p>
 <h3 id="back-up">Back up</h3>
 <p>先建立一個 Namespace / Development / Service</p>
-<pre><code>kubectl apply -f examples/nginx-app/base.yaml
+<pre><code>cd ~/velero-v1.11.0-linux-amd64
+kubectl apply -f examples/nginx-app/base.yaml
 </code></pre>
 <p>Create a backup for any object that matches the app=nginx label selector:</p>
 <pre><code>velero backup create nginx-backup --selector app=nginx
@@ -306,6 +310,16 @@ velero restore get
 <h3 id="clean-up">Clean up</h3>
 <p>velero backup delete BACKUP_NAME</p>
 <p>velero uninstall --&gt; 全部移除</p>
+<h2 id="with-pv">With PV</h2>
+<pre><code>cd ~/velero-v1.11.0-linux-amd64
+kubectl apply -f examples/nginx-app/with-pv.yaml
+
+kubectl -n nginx-example annotate pod/nginx-deployment-78964c9995-cx4qs backup.velero.io/backup-volumes=nginx-logs
+
+velero backup create nginx-backup --include-namespaces nginx-example --default-volumes-to-fs-backup --snapshot-volumes --ttl 180h
+
+velero backup create nginx-backup --include-namespaces nginx-example --default-volumes-to-fs-backup
+</code></pre>
               
             </div>
           </div><footer>

@@ -66,6 +66,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#volume">Volume</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#namespace-terminal">Namespace 狀態為 Terminal 時，如何刪掉？</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -284,9 +286,9 @@ microk8s kubectl create token default
     volumes:
       - name: nfs-volume
         persistentVolumeClaim:
-          claimName: nfs
-  ```</p>
-<p>### Tomcat &amp; Volume</p>
+          claimName: nfs</p>
+<p>```
+  ### Tomcat &amp; Volume</p>
 <pre><code># PV: 先有 nfs server，並且建立好對應的資料夾，例如：/opt/nfsshare/demo/webapps
 apiVersion: v1
 kind: PersistentVolume
@@ -403,6 +405,24 @@ spec:
 </code></pre>
 <p>https://localhost.mic.com.tw/tomcat/</p>
 <p><img alt="Alt text" src="../image-21.png" /></p>
+<h3 id="namespace-terminal">Namespace 狀態為 Terminal 時，如何刪掉？</h3>
+<pre><code>
+kubectl delete namespace  longhorn-system
+
+kubectl get ns/longhorn-system -o json &gt; longhorn-system.json
+nano longhorn-system.json -&gt; 清除
+&quot;spec&quot;: {
+        &quot;finalizers&quot;: [
+            &quot;kubernetes&quot;
+        ]
+    }
+-&gt;
+&quot;spec&quot;: {
+        &quot;finalizers&quot;: []
+    }   
+kubectl replace --raw &quot;/api/v1/namespaces/longhorn-system/finalize&quot; -f ./longhorn-system.json
+
+</code></pre>
               
             </div>
           </div><footer>
