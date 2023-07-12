@@ -273,7 +273,7 @@ aws_secret_access_key = minio123
 --plugins openebs/velero-plugin:ci \
 --secret-file ./credentials-velero \
 --use-volume-snapshots=false \
---backup-location-config region=minio,s3ForcePathStyle=&quot;true&quot;,s3Url=http://192.168.0.17:31883
+--backup-location-config region=minio,s3ForcePathStyle=&quot;true&quot;,s3Url=http://minio.velero.svc.cluster.local:9000
 </code></pre>
 <p>PS：s3Url=http://192.168.0.17:31883 PROT 從哪裡取得？</p>
 <p>minio.velero:30050 TCP  --&gt; MiniO 的 URL</p>
