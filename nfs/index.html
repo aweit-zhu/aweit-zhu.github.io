@@ -84,6 +84,12 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#1-1-nfs-client">1-1. NFS Client (可選，作為測試用)</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2install-the-csi-driver-for-nfs">2.Install the CSI driver for NFS</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3create-a-storageclass-for-nfs-create-a-new-pvc">3.Create a StorageClass for NFS &amp; Create a new PVC</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-pod">4. 測試 Pod</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -171,6 +177,72 @@ ls
 ls
 </code></pre>
 <p><img alt="Alt text" src="../image-36.png" /></p>
+<h3 id="2install-the-csi-driver-for-nfs">2.Install the CSI driver for NFS</h3>
+<h3 id="3create-a-storageclass-for-nfs-create-a-new-pvc">3.Create a StorageClass for NFS &amp; Create a new PVC</h3>
+<pre><code># sc-nfs.yaml
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-csi
+provisioner: nfs.csi.k8s.io
+parameters:
+  server: 192.168.0.16
+  share: /srv/nfs
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+mountOptions:
+  - hard
+  - nfsvers=4.1
+
+microk8s kubectl apply -f - &lt; sc-nfs.yaml
+</code></pre>
+<pre><code># pvc-nfs.yaml
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-pvc
+spec:
+  storageClassName: nfs-csi
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: 5Gi
+
+microk8s kubectl apply -f - &lt; pvc-nfs.yaml
+</code></pre>
+<p>microk8s kubectl describe pvc my-pvc</p>
+<h3 id="4-pod">4. 測試 Pod</h3>
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: hwchiu
+  labels:
+    app: hwchiu
+spec:
+  containers:
+  - name: busybox
+    image: hwchiu/netutils:latest
+    volumeMounts:
+      - name: nfs-volume
+        mountPath: /nfs
+  volumes:
+    - name: nfs-volume
+      persistentVolumeClaim:
+        claimName: my-pvc
+</code></pre>
+<p>進入Pod</p>
+<pre><code>kubectl exec -it hwchiu -n nfs-demo -- /bin/bash
+ls  # 看看有沒有剛剛建立的 456.txt
+</code></pre>
+<p><img alt="Alt text" src="../image-37.png" /></p>
+<p>以下是這個 Pod 的 Volume 完整資訊</p>
+<p><img alt="Alt text" src="../image-38.png" /></p>
+<p>pvc 資訊
+<img alt="Alt text" src="../image-39.png" /></p>
+<p>pv 資訊
+<img alt="Alt text" src="../image-40.png" /></p>
               
             </div>
           </div><footer>
