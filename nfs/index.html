@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="weizhi.zhu" /><link rel="canonical" href="https://aweit-zhu.github.io/docker/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="weizhi.zhu" /><link rel="canonical" href="https://aweit-zhu.github.io/nfs/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Docker - Aweit Docs</title>
+    <title>NFS - Aweit Docs</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Docker";
-        var mkdocs_page_input_path = "docker.md";
-        var mkdocs_page_url = "/docker/";
+        var mkdocs_page_name = "NFS";
+        var mkdocs_page_input_path = "nfs.md";
+        var mkdocs_page_url = "/nfs/";
       </script>
     
     <script src="../js/jquery-3.6.0.min.js" defer></script>
@@ -61,10 +61,8 @@
                 <li class="toctree-l1"><a class="reference internal" href="../practicek8s/">Kubernetes</a>
                 </li>
               </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Docker</a>
-    <ul class="current">
-    </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../docker/">Docker</a>
                 </li>
               </ul>
               <ul>
@@ -79,8 +77,14 @@
                 <li class="toctree-l1"><a class="reference internal" href="../velero/">Velero</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../nfs/">NFS</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">NFS</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-setup-an-nfs-server">1. Setup an NFS server</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1-1-nfs-client">1-1. NFS Client (可選，作為測試用)</a>
+    </li>
+    </ul>
                 </li>
               </ul>
       </div>
@@ -97,7 +101,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-      <li>Docker</li>
+      <li>NFS</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -106,65 +110,72 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="docker-volume-war">使用 Docker 的 Volume 來部署 war 檔</h2>
-<ol>
-<li>
-<p>Dockerfile</p>
-<pre><code>FROM openjdk:8
-
-RUN apt-get update &amp;&amp; apt-get install -y wget
-
-RUN cd /
-
-RUN wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.10/bin/apache-tomcat-10.1.10.tar.gz
-RUN tar zxvf apache-tomcat-10.1.10.tar.gz
-
-VOLUME ["/apache-tomcat-10.1.10/webapps"]
-
-CMD ["/apache-tomcat-10.1.10/bin/catalina.sh", "run"]
-</code></pre>
-</li>
-<li>
-<p>透過 VSCode 執行 docker build</p>
-</li>
-<li>
-<p>執行</p>
-<pre><code>docker run -d --name tomcat -p 8080:8080 tomcatserver
-</code></pre>
-</li>
-<li>
-<p>卷宗有兩種掛載方式，一種卷宗掛載、一種繫結掛載。</p>
-<pre><code>docker inspect -f '{{.Mounts}}' tomcat
-
-[{volume 64c8c0866ae8f36f7471359d1d0c564b6fc3088fec5137a5f21b51c0d145cbb2 /var/lib/docker/volumes/64c8c0866ae8f36f7471359d1d0c564b6fc3088fec5137a5f21b51c0d145cbb2/_data /apache-tomcat-10.1.10/webapps local  true }]
-</code></pre>
-</li>
-<li>
-<p>卷宗掛載：(這次例子適用)</p>
-</li>
-</ol>
-<p><img alt="Alt text" src="../image.png" /></p>
+                <h2 id="use-nfs-for-persistent-volumes">Use NFS for Persistent Volumes</h2>
 <ul>
-<li>
-<p>繫結掛載：(一般推薦用這種)</p>
-</li>
-<li>
-<p>比較兩者不同：</p>
-</li>
+<li>https://microk8s.io/docs/nfs</li>
 </ul>
-<p><img alt="Alt text" src="../image-1.png" /></p>
-<ul>
-<li>Volume 存放在主機檔案系統中由 Docker 管理的地方，在 Linux 作業系統是 /var/lib/docker/volumes/ 此路徑。非 Docker 的行程不應該修改檔案系統中的這一部分。要在 Docker 中留存資料，volumes 是最好的方法。</li>
-<li>Bind mount 可存放在主機檔案系統中的任何地方，非 Docker 行程或 Docker 容器可隨時修改。</li>
-<li>tmpfs mount 只存放在主機的記憶體中，不會寫入主機的檔案系統。</li>
-</ul>
-<p><a href="https://ithelp.ithome.com.tw/articles/10207973">https://ithelp.ithome.com.tw/articles/10207973</a></p>
+<h3 id="1-setup-an-nfs-server">1. Setup an NFS server</h3>
+<p>假設在 192.168.0.16 架設 NFS server</p>
+<pre><code>sudo apt update
+sudo apt-get install nfs-kernel-server
+</code></pre>
+<p>Create a directory to be used for NFS:</p>
+<pre><code>sudo mkdir -p /srv/nfs
+sudo chown nobody:nogroup /srv/nfs
+sudo chmod 0777 /srv/nfs
+</code></pre>
+<p>Edit the /etc/exports file. Make sure that the IP addresses of all your MicroK8s nodes are able to mount this share. For example, to allow all IP addresses in the 10.0.0.0/24 subnet</p>
+<pre><code>sudo mv /etc/exports /etc/exports.bak
+echo '/srv/nfs 192.168.0.0/24(rw,sync,no_subtree_check)' | sudo tee /etc/exports
+</code></pre>
+<p>重啟</p>
+<pre><code>sudo systemctl restart nfs-kernel-server.service
+</code></pre>
+<p>確認 NFS Server是否正常啟動</p>
+<pre><code>sudo systemctl status nfs-kernel-server.service
+</code></pre>
+<p><img alt="Alt text" src="../image-33.png" /></p>
+<p>或是可以使用 showmount 命令來檢查 NFS Server 開出來的目錄
+<code>showmount -e 192.168.0.16</code></p>
+<p><img alt="Alt text" src="../image-34.png" /></p>
+<h3 id="1-1-nfs-client">1-1. NFS Client (可選，作為測試用)</h3>
+<p>使用 apt 命令進行安裝 NFS Client</p>
+<pre><code>sudo apt update
+sudo apt install nfs-common
+</code></pre>
+<p>使用 showmount 命令檢查 NFS Server 可連線的目錄</p>
+<pre><code>showmount -e 192.168.0.16
+---output---
+Export list for 192.168.0.16:
+/srv/nfs 192.168.0.0/24
+</code></pre>
+<p>如果出現堵塞現象(Stuck)，可能原因為 NFS Server 的防火牆導致，只要關掉防火牆即可(<code>sudo ufw disable</code>)。</p>
+<p>建立掛載用目錄，並將 NFS Server 的目錄掛載至本機目錄</p>
+<pre><code>sudo mkdir /srv/nfs
+sudo mount 192.168.0.16:/srv/nfs /srv/nfs
+</code></pre>
+<p>如果出現 <code>mount.nfs: access denied by server while mounting 192.168.0.16:/srv/nfs</code> 問題，可以先透過
+<code>sudo mount -t nfs -vvvv 192.168.0.16:/srv/nfs /srv/nfs</code> 
+查看詳細資訊。
+<img alt="Alt text" src="../image-35.png" /></p>
+<p>測試：</p>
+<p>登入 ssh vboxuser@192.168.17  # NFS Client
+登入 ssh vboxuser@192.168.16  # NFS Server
+因為 NFS Client 將本機的 /srv/nfs 資料夾，綁定在  NFS Server 的 /srv/nfs 資料夾 資料夾中，所以兩者資料夾會同步。</p>
+<p>先在 NFS Client 執行以下命令</p>
+<pre><code>touch /srv/nfs/123.txt
+ls
+</code></pre>
+<p>再去 NFS Server 執行以下命令，就會看到 123.txt 檔案了</p>
+<pre><code>cd /srv/nfs
+ls
+</code></pre>
+<p><img alt="Alt text" src="../image-36.png" /></p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../practicek8s/" class="btn btn-neutral float-left" title="Kubernetes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../dapr/" class="btn btn-neutral float-right" title="Dapr">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../velero/" class="btn btn-neutral float-left" title="Velero"><span class="icon icon-circle-arrow-left"></span> Previous</a>
     </div>
 
   <hr/>
@@ -187,10 +198,8 @@ CMD ["/apache-tomcat-10.1.10/bin/catalina.sh", "run"]
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../practicek8s/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../velero/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
-    
-      <span><a href="../dapr/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
