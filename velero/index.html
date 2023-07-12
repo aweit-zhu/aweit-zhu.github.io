@@ -324,6 +324,75 @@ velero backup create nginx-backup --include-namespaces nginx-example --default-v
 
 velero backup create nginx-backup --include-namespaces nginx-example --default-volumes-to-fs-backup
 </code></pre>
+<h4 id="mysql">Mysql</h4>
+<p>PV、PVC</p>
+<pre><code>apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-pv
+  labels:
+    pv: mysql-pv
+spec:
+  capacity:
+    storage: 15Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: /srv/nfs/mysql-pv
+    server: 192.168.0.16
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+spec:
+  storageClassName: &quot;&quot;
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  selector:
+    matchLabels: 
+      pv: mysql-pv
+</code></pre>
+<p>Deployment</p>
+<pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  replicas: 
+  template:
+    metadata:
+      labels:
+        name: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:5.6
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3306
+              name: mysql
+          env:
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-pass
+                key: password
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: bystart-mysql-data
+      volumes:
+        - name: bystart-mysql-data
+          persistentVolumeClaim:
+            claimName: mysql-pvc
+  selector:
+    matchLabels:
+      name: mysql
+</code></pre>
               
             </div>
           </div><footer>
