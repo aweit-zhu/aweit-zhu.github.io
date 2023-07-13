@@ -278,10 +278,12 @@ spec:
   resources:
     requests:
       storage: 10Gi
-#  selector:
-#    matchLabels: 
-#      pv: mysql-pv
+  selector:
+    matchLabels: 
+      pv: mysql-pv
 </code></pre>
+<p><img alt="Alt text" src="../image-44.png" />
+<img alt="Alt text" src="../image-45.png" /></p>
 <p>Deployment</p>
 <pre><code>apiVersion: v1
 kind: Service
@@ -313,15 +315,16 @@ spec:
       labels:
         app: mysql
     spec:
+      nodeName: node
       containers:
       - name: mysql-test
         image: mysql:5.7
         env:
-        - name: MYSQL_ROOT_PASSWORD
-        valueFrom:
-            secretKeyRef:
-            name: mysql-pass
-            key: password
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+               name: mysql-pass
+               key: password
         ports:
         - containerPort: 3306
         volumeMounts:
@@ -332,41 +335,20 @@ spec:
         persistentVolumeClaim:
           claimName: mysql-pvc
 </code></pre>
-<pre><code>apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: mysql
-spec:
-  replicas: 
-  template:
-    metadata:
-      labels:
-        name: mysql
-    spec:
-      containers:
-        - name: mysql
-          image: mysql:5.6
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 3306
-              name: mysql
-          env:
-          - name: MYSQL_ROOT_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: mysql-pass
-                key: password
-          volumeMounts:
-            - mountPath: /var/lib/mysql
-              name: mysql-data
-      volumes:
-        - name: mysql-data
-          persistentVolumeClaim:
-            claimName: mysql-pvc
-  selector:
-    matchLabels:
-      name: mysql
+<p><img alt="Alt text" src="../image-43.png" /></p>
+<p>P.S：
+如果一直 Pending ，甚至出現 CrashLoopBackOff 的訊息，可以執行
+<code>kubectl logs mysql-848b44f4c5-kgdzc -n kube-demo</code>
+看看哪裡出錯。</p>
+<p><img alt="Alt text" src="../image-41.png" /></p>
+<p>可參考 <a href="https://blog.csdn.net/m0_46090675/article/details/122276216">https://blog.csdn.net/m0_46090675/article/details/122276216</a> 解決此問題。</p>
+<p>最後就會成功了~~~</p>
+<p>首先檢查 NFS Server 的檔案中是否有 mysql 的相關資料</p>
+<p><img alt="Alt text" src="../image-42.png" /></p>
+<p>進入 Pod 的命令列中，查看 Mysql 相關資訊</p>
+<pre><code>kubectl exec -it mysql-5b46fb64b4-t2m4c -n kube-demo -- /bin/bash
 </code></pre>
+<p><img alt="Alt text" src="../image-46.png" /></p>
               
             </div>
           </div><footer>
