@@ -90,6 +90,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#4-pod">4. 測試 Pod</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5-mysql-nfs">5. MySQL + NFS</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -132,7 +134,7 @@ sudo chmod 0777 /srv/nfs
 </code></pre>
 <p>Edit the /etc/exports file. Make sure that the IP addresses of all your MicroK8s nodes are able to mount this share. For example, to allow all IP addresses in the 10.0.0.0/24 subnet</p>
 <pre><code>sudo mv /etc/exports /etc/exports.bak
-echo '/srv/nfs 192.168.0.0/24(rw,sync,no_subtree_check)' | sudo tee /etc/exports
+echo '/srv/nfs 192.168.0.0/24(rw,sync,no_subtree_check,no_root_squash)' | sudo tee /etc/exports
 </code></pre>
 <p>重啟</p>
 <pre><code>sudo systemctl restart nfs-kernel-server.service
@@ -243,6 +245,128 @@ ls  # 看看有沒有剛剛建立的 456.txt
 <img alt="Alt text" src="../image-39.png" /></p>
 <p>pv 資訊
 <img alt="Alt text" src="../image-40.png" /></p>
+<h3 id="5-mysql-nfs">5. MySQL + NFS</h3>
+<pre><code>kubectl create namespace kube-demo
+kubectl create secret generic mysql-pass --from-literal=password=password321 -n kube-demo
+</code></pre>
+<p>PV、PVC</p>
+<pre><code>apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-pv
+  labels:
+    pv: mysql-pv
+spec:
+  storageClassName: nfs-csi
+  capacity:
+    storage: 15Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: /srv/nfs/mysql-pv
+    server: 192.168.0.16
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+spec:
+  storageClassName: &quot;nfs-csi&quot;
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+#  selector:
+#    matchLabels: 
+#      pv: mysql-pv
+</code></pre>
+<p>Deployment</p>
+<pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  selector:
+    app: mysql
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+      nodePort: 31306
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  labels:
+    app: mysql-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql-test
+        image: mysql:5.7
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+        valueFrom:
+            secretKeyRef:
+            name: mysql-pass
+            key: password
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+        - mountPath: &quot;/var/lib/mysql&quot;
+          name: mysql-data
+      volumes:
+      - name: mysql-data
+        persistentVolumeClaim:
+          claimName: mysql-pvc
+</code></pre>
+<pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  replicas: 
+  template:
+    metadata:
+      labels:
+        name: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:5.6
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3306
+              name: mysql
+          env:
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-pass
+                key: password
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: mysql-data
+      volumes:
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: mysql-pvc
+  selector:
+    matchLabels:
+      name: mysql
+</code></pre>
               
             </div>
           </div><footer>

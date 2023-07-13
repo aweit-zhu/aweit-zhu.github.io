@@ -2,52 +2,52 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://aweit-zhu.github.io/</loc>
-         <lastmod>2023-07-12</lastmod>
+         <lastmod>2023-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://aweit-zhu.github.io/dapr/</loc>
-         <lastmod>2023-07-12</lastmod>
+         <lastmod>2023-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://aweit-zhu.github.io/docker/</loc>
-         <lastmod>2023-07-12</lastmod>
+         <lastmod>2023-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://aweit-zhu.github.io/drone/</loc>
-         <lastmod>2023-07-12</lastmod>
+         <lastmod>2023-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://aweit-zhu.github.io/microk8s/</loc>
-         <lastmod>2023-07-12</lastmod>
+         <lastmod>2023-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://aweit-zhu.github.io/nfs/</loc>
-         <lastmod>2023-07-12</lastmod>
+         <lastmod>2023-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://aweit-zhu.github.io/practicek8s/</loc>
-         <lastmod>2023-07-12</lastmod>
+         <lastmod>2023-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://aweit-zhu.github.io/sonarqube/</loc>
-         <lastmod>2023-07-12</lastmod>
+         <lastmod>2023-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://aweit-zhu.github.io/traefik/</loc>
-         <lastmod>2023-07-12</lastmod>
+         <lastmod>2023-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://aweit-zhu.github.io/velero/</loc>
-         <lastmod>2023-07-12</lastmod>
+         <lastmod>2023-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
