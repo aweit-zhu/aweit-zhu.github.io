@@ -315,15 +315,41 @@ velero restore get
 <p>velero backup delete BACKUP_NAME</p>
 <p>velero uninstall --&gt; 全部移除</p>
 <h2 id="with-pv">With PV</h2>
-<pre><code>cd ~/velero-v1.11.0-linux-amd64
-kubectl apply -f examples/nginx-app/with-pv.yaml
-
-kubectl -n nginx-example annotate pod/nginx-deployment-78964c9995-cx4qs backup.velero.io/backup-volumes=nginx-logs
+<p>範例1
+    cd ~/velero-v1.11.0-linux-amd64
+    kubectl apply -f examples/nginx-app/with-pv.yaml</p>
+<pre><code>kubectl -n nginx-example annotate pod/nginx-deployment-78964c9995-cx4qs backup.velero.io/backup-volumes=nginx-logs
 
 velero backup create nginx-backup --include-namespaces nginx-example --default-volumes-to-fs-backup --snapshot-volumes --ttl 180h
 
 velero backup create nginx-backup --include-namespaces nginx-example --default-volumes-to-fs-backup
 </code></pre>
+<p>範例2</p>
+<p>請參考 nfs 的 MySQL + NFS 建立相關環境與pod</p>
+<pre><code>kubectl exec -it mysql-5b46fb64b4-t2m4c -n kube-demo -- /bin/bash
+</code></pre>
+<p>並且建立一個新的資料庫，作為測試用
+  <img alt="Alt text" src="../image-47.png" /></p>
+<p>備份</p>
+<pre><code>velero backup create mysql-backup --include-namespaces kube-demo --default-volumes-to-restic
+
+velero backup describe mysql-backup
+
+minio 會有備份資料
+![Alt text](image-49.png)
+</code></pre>
+<p><img alt="Alt text" src="../image-48.png" /></p>
+<p>模擬災難</p>
+<pre><code>kubectl delete namespace kube-demo
+</code></pre>
+<p>復原</p>
+<pre><code>velero restore create --from-backup mysql-backup
+
+velero restore get
+</code></pre>
+<p>檢查資料有否還原
+    kubectl exec -it mysql-5b46fb64b4-zj7n2 -n kube-demo -- /bin/bash
+  <img alt="Alt text" src="../image-50.png" /></p>
               
             </div>
           </div><footer>
