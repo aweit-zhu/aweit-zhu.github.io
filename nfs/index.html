@@ -262,7 +262,7 @@ spec:
     storage: 15Gi
   accessModes:
     - ReadWriteMany
-  persistentVolumeReclaimPolicy: Retain
+  persistentVolumeReclaimPolicy: Recycle
   nfs:
     path: /srv/nfs/mysql-pv
     server: 192.168.0.16
