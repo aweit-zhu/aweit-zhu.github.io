@@ -325,6 +325,40 @@ class MyApp extends StatelessWidget {
   }
 }
 </code></pre>
+<ol>
+<li>畫面</li>
+</ol>
+<p><img alt="Alt text" src="../image-70.png" /></p>
+<p><img alt="Alt text" src="../image-71.png" /></p>
+<p><img alt="Alt text" src="../image-72.png" /></p>
+<ol>
+<li>如果用 Web 會無法做出效果，出現以下錯誤訊息：</li>
+</ol>
+<p><code>ClientID not set. Either set it on a &lt;meta name=\"google-signin-client_id\" content=\"CLIENT_ID\" /&gt; tag, or pass clientId when initializing GoogleSignIn</code></p>
+<p>(1) 去找 Clitne id : 8073574655-9c9sa7onebk99ju1mf2i5e1kfi5m4hk0.apps.googleusercontent.com</p>
+<p><img alt="Alt text" src="../image-74.png" />
+<img alt="Alt text" src="../image-73.png" /></p>
+<p>(2) 修改代碼</p>
+<p>home.dart</p>
+<pre><code>原本
+final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+後來
+final GoogleSignIn _googleSignIn = GoogleSignIn(clientId: '8073574655-saga5315djjgbcgsgag5qfmgusl6tqpu.apps.googleusercontent.com');
+</code></pre>
+<p>(3) 出現以下訊息，則直接點選，照著步驟做即可。</p>
+<blockquote>
+<p>PlatformException(idpiframe_initialization_failed, Not a valid origin for the client: http://localhost:13529 has not been registered for client ID 8073574655-9c9sa7onebk99ju1mf2i5e1kfi5m4hk0.apps.googleusercontent.com. Please go to https://console.developers.google.com/ and register this origin for your project's client ID., https://developers.google.com/identity/sign-in/web/reference#error_codes, null)</p>
+</blockquote>
+<p><img alt="Alt text" src="../image-75.png" /></p>
+<p>已授權的 JavaScript 來源，要把這個Port加上去
+<img alt="Alt text" src="../image-77.png" /></p>
+<p>(4) Flutter run 時，指定 PORT = 12621 參數。--web-port=12621</p>
+<p><img alt="Alt text" src="../image-78.png" /></p>
+<p>(5) 再次打開瀏覽器，並且清除快取和瀏覽資料。就可以了。</p>
+<p><img alt="Alt text" src="../image-79.png" /></p>
+<p><img alt="Alt text" src="../image-80.png" /></p>
+<p><img alt="Alt text" src="../image-81.png" /></p>
 <h4 id="try-out-an-example-app-with-analytics">Try out an example app with Analytics</h4>
 <ol>
 <li><code>flutter pub add firebase_analytics</code></li>
