@@ -6,6 +6,8 @@
 - 使用 Velero 備份還原 Kubernetes 集羣 <https://www.readfog.com/a/1647215683490123776>
 - Quick start evaluation install with Minio <https://velero.io/docs/main/contributions/minio>
 - k8s1.24 使用Velero 備份還原Rancher Longhorn上volume資料 https://www.itnotetk.com/2022/11/28/k8s1-24-velero-%e5%82%99%e4%bb%bd%e9%82%84%e5%8e%9f-rancher-longhorn%e4%b8%8avolume%e8%b3%87%e6%96%99/
+
+
 ### 運作方式
 
 ![Alt text](image-23.png)
@@ -185,7 +187,7 @@ velero install \
 --plugins openebs/velero-plugin:ci \
 --secret-file ./credentials-velero \
 --use-volume-snapshots=false \
---backup-location-config region=minio,s3ForcePathStyle="true",s3Url=http://192.168.0.17:31883
+--backup-location-config region=minio,s3ForcePathStyle="true",s3Url=http://minio.velero.svc.cluster.local:9000
 ```
 
 PS：s3Url=http://192.168.0.17:31883 PROT 從哪裡取得？
@@ -255,6 +257,7 @@ velero uninstall --> 全部移除
 
 ## With PV
 
+範例1
     cd ~/velero-v1.11.0-linux-amd64
     kubectl apply -f examples/nginx-app/with-pv.yaml
 
@@ -263,3 +266,38 @@ velero uninstall --> 全部移除
     velero backup create nginx-backup --include-namespaces nginx-example --default-volumes-to-fs-backup --snapshot-volumes --ttl 180h
 
     velero backup create nginx-backup --include-namespaces nginx-example --default-volumes-to-fs-backup
+
+範例2
+
+  請參考 nfs 的 MySQL + NFS 建立相關環境與pod
+
+    kubectl exec -it mysql-5b46fb64b4-t2m4c -n kube-demo -- /bin/bash
+
+
+  並且建立一個新的資料庫，作為測試用
+  ![Alt text](image-47.png)
+
+  備份
+
+    velero backup create mysql-backup --include-namespaces kube-demo --default-volumes-to-restic
+
+    velero backup describe mysql-backup
+
+    minio 會有備份資料
+    ![Alt text](image-49.png)
+  
+  ![Alt text](image-48.png)
+
+  模擬災難
+
+    kubectl delete namespace kube-demo
+
+  復原
+
+    velero restore create --from-backup mysql-backup
+
+    velero restore get
+
+  檢查資料有否還原
+    kubectl exec -it mysql-5b46fb64b4-zj7n2 -n kube-demo -- /bin/bash
+  ![Alt text](image-50.png)

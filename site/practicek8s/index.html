@@ -66,6 +66,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#volume">Volume</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tomcat-volume">Tomcat &amp; Volume</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#namespace-terminal">Namespace 狀態為 Terminal 時，如何刪掉？</a>
     </li>
     </ul>
@@ -85,6 +87,18 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../velero/">Velero</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../nfs/">NFS</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../flutter/">FlutterFire</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-security/">(實作)JWT Authentication and Authorization with Spring Boot 3 and Spring Security 6</a>
                 </li>
               </ul>
       </div>
@@ -244,51 +258,52 @@ microk8s kubectl create token default
 <ul>
 <li>PV/PVC/Pod</li>
 </ul>
-<p>```
-  apiVersion: v1
-  kind: PersistentVolume
-  metadata:
-    name: nfs
-  spec:
-    capacity:
+<pre><code>apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs
+spec:
+  capacity:
+    storage: 1Mi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.0.17
+    path: &quot;/opt/nfsshare&quot;
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs
+spec:
+  accessModes:
+    - ReadOnlyMany
+  storageClassName: &quot;&quot;
+  resources:
+    requests:
       storage: 1Mi
-    accessModes:
-      - ReadWriteMany
-    nfs:
-      server: 192.168.0.17
-      path: "/opt/nfsshare"</p>
-<hr />
-<p>apiVersion: v1
-  kind: PersistentVolumeClaim
-  metadata:
-    name: nfs
-  spec:
-    accessModes:
-      - ReadOnlyMany
-    storageClassName: ""
-    resources:
-      requests:
-        storage: 1Mi</p>
-<hr />
-<p>apiVersion: v1
-  kind: Pod
-  metadata:
-    name: hwchiu
-    labels:
-      app: hwchiu
-  spec:
-    containers:
-    - name: busybox
-      image: hwchiu/netutils:latest
-      volumeMounts:
-        - name: nfs-volume
-          mountPath: /nfs
-    volumes:
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hwchiu
+  labels:
+    app: hwchiu
+spec:
+  containers:
+  - name: busybox
+    image: hwchiu/netutils:latest
+    volumeMounts:
       - name: nfs-volume
-        persistentVolumeClaim:
-          claimName: nfs</p>
-<p>```
-  ### Tomcat &amp; Volume</p>
+        mountPath: /nfs
+  volumes:
+    - name: nfs-volume
+      persistentVolumeClaim:
+        claimName: nfs
+
+</code></pre>
+<h3 id="tomcat-volume">Tomcat &amp; Volume</h3>
 <pre><code># PV: 先有 nfs server，並且建立好對應的資料夾，例如：/opt/nfsshare/demo/webapps
 apiVersion: v1
 kind: PersistentVolume

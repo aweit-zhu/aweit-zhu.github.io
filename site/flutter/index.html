@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="weizhi.zhu" /><link rel="canonical" href="https://aweit-zhu.github.io/flutter/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>FlutterFire - Aweit Docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "FlutterFire";
+        var mkdocs_page_input_path = "flutter.md";
+        var mkdocs_page_url = "/flutter/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Aweit Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">About</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../microk8s/">Microk8s</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../drone/">Drone</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sonarqube/">SonarQube</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../practicek8s/">Kubernetes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../docker/">Docker</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../dapr/">Dapr</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../traefik/">Treafik</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../velero/">Velero</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../nfs/">NFS</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">FlutterFire</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#step0-create-a-new-flutter-app">Step0. create a new Flutter app</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step1-install-the-required-command-line-tools">Step1.  Install the required command line tools</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-2-configure-your-apps-to-use-firebase">Step 2: Configure your apps to use Firebase</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-3-initialize-firebase-in-your-app">Step 3: Initialize Firebase in your app</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-4-add-firebase-plugins">Step 4: Add Firebase plugins</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#get-started-with-firebase-authentication-on-flutter">Get Started with Firebase Authentication on Flutter</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#try-out-an-example-app-with-analytics">Try out an example app with Analytics</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-security/">(實作)JWT Authentication and Authorization with Spring Boot 3 and Spring Security 6</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Aweit Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>FlutterFire</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h3 id="flutterfire">FlutterFire</h3>
+<p><img alt="Alt text" src="../image-51.png" /></p>
+<h4 id="step0-create-a-new-flutter-app">Step0. create a new Flutter app</h4>
+<pre><code> flutter create example
+</code></pre>
+<p><img alt="Alt text" src="../image-52.png" /></p>
+<h4 id="step1-install-the-required-command-line-tools">Step1.  Install the required command line tools</h4>
+<ol>
+<li>install the Firebase CLI <code>npm install -g firebase-tools</code></li>
+<li>登入 Firebase. <code>firebase login</code></li>
+</ol>
+<p>如果已登入，會顯示 <code>Already logged in as aa4192696@gmail.com</code>
+   如果未登入，則會跳出登入視窗，讓您透過 Google 帳號登入。</p>
+<p>(<a href="https://console.firebase.google.com/">https://console.firebase.google.com/</a>)
+3. 安裝 FlutterFire CLI.(全域)  <code>dart pub global activate flutterfire_cli</code></p>
+<h4 id="step-2-configure-your-apps-to-use-firebase">Step 2: Configure your apps to use Firebase</h4>
+<ol>
+<li>
+<p>進入到 Flutter 專案根目錄，執行以下指令</p>
+<p><code>flutterfire configure</code></p>
+<p>(1) 這邊以建立新的 firebase 專案為例，名字取：<code>aweit-example</code></p>
+<p><img alt="Alt text" src="../image-54.png" /></p>
+<p>(2) 全部就對了，這樣會在 Firebase 專案中，建立四個應用程式。</p>
+<p><img alt="Alt text" src="../image-55.png" /></p>
+<p>(3) 都成功後，會顯示以下資訊。</p>
+<p><img alt="Alt text" src="../image-56.png" /></p>
+</li>
+</ol>
+<h4 id="step-3-initialize-firebase-in-your-app">Step 3: Initialize Firebase in your app</h4>
+<ol>
+<li>
+<p>安裝 firebase_core</p>
+<p><code>flutter pub add firebase_core</code></p>
+</li>
+<li>
+<p>再次執行 <code>flutterfire configure</code>，以確認 Flrebase 設定是最新的。</p>
+</li>
+<li>
+<p>打開 lib/main.dart，插入以下代碼</p>
+<p>原本
+```
+import 'package:flutter/material.dart';</p>
+<p>void main() {
+    runApp(const MyApp());
+}
+```</p>
+<p>變更為
+```
+import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';</p>
+<p>Future<void> main() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+    );
+    runApp(const MyApp());
+}
+```
+4. flutter run</p>
+</li>
+<li>
+<p>相關錯誤訊息處理方式</p>
+<p>(1) 若出現 <code>If ServicesBinding is a custom binding mixin, there must also be a custom binding class, like WidgetsFlutterBinding, but that mixes in the selected binding, and that is the class that must be constructed before using the "instance" getter</code></p>
+<p>要新增一行程式碼在 lib/main.dart 的 main 方法中的第一行。<br />
+<code>WidgetsFlutterBinding.ensureInitialized();</code></p>
+</li>
+</ol>
+<h4 id="step-4-add-firebase-plugins">Step 4: Add Firebase plugins</h4>
+<blockquote>
+<p>You access Firebase in your Flutter app through the various Firebase Flutter plugins, one for each Firebase product (for example: Cloud Firestore, Authentication, Analytics, etc.).</p>
+<p>Since Flutter is a multi-platform framework, each Firebase plugin is applicable for Apple, Android, and web platforms. So, if you add any Firebase plugin to your Flutter app, it will be used by the Apple, Android, and web versions of your app.</p>
+</blockquote>
+<pre><code>flutter pub add {PLUGIN_NAME}
+flutterfire configure
+flutter run
+</code></pre>
+<p><img alt="Alt text" src="../image-58.png" /></p>
+<h4 id="get-started-with-firebase-authentication-on-flutter">Get Started with Firebase Authentication on Flutter</h4>
+<ol>
+<li>Google Enable</li>
+</ol>
+<p><img alt="Alt text" src="../image-68.png" /></p>
+<ol>
+<li>Android - SHA Key</li>
+</ol>
+<pre><code>keytool -list -v -alias androiddebugkey -keystore .\.android\debug.keystore
+
+password: android
+</code></pre>
+<blockquote>
+<p>SHA1: 29:C4:07:39:3C:33:37:25:06:73:34:D4:DC:11:D2:7B:6C:34:F8:B4
+SHA256: &gt;56:F3:29:12:BB:90:C9:D9:95:0F:16:80:F1:19:EE:D2:99:CB:6B:95:4D:30:5D:16:F6:43:FB:72:31:97:54:36</p>
+</blockquote>
+<p><img alt="Alt text" src="../image-66.png" /></p>
+<p><img alt="Alt text" src="../image-67.png" /></p>
+<ol>
+<li>Flutter Project 相關設定</li>
+</ol>
+<p>安裝套件、設定 Firebase</p>
+<pre><code>flutter pub add firebase_auth
+flutter pub add google_sign_in
+flutterfire configure
+</code></pre>
+<p>修改設定值
+android\app\build.gradle</p>
+<pre><code>defaultConfig {
+    multiDexEnabled true
+    minSdkVersion 19
+}
+</code></pre>
+<p><img alt="Alt text" src="../image-69.png" /></p>
+<p>Demo 程式</p>
+<p>home.dart</p>
+<pre><code>import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() =&gt; _HomePageState();
+}
+
+class _HomePageState extends State&lt;HomePage&gt; {
+  bool _isLoggedIn = false;
+  late GoogleSignInAccount _userObj;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(&quot;Codesundar&quot;)),
+      body: Container(
+        child: _isLoggedIn
+            ? Column(
+                children: [
+                  Image.network(_userObj.photoUrl!),
+                  Text(_userObj.displayName!),
+                  Text(_userObj.email),
+                  TextButton(
+                      onPressed: () {
+                        _googleSignIn.signOut().then((value) {
+                          setState(() {
+                            _isLoggedIn = false;
+                          });
+                        }).catchError((e) {});
+                      },
+                      child: Text(&quot;Logout&quot;))
+                ],
+              )
+            : Center(
+                child: ElevatedButton(
+                  child: Text(&quot;Login with Google&quot;),
+                  onPressed: () {
+                    _googleSignIn.signIn().then((userData) {
+                      setState(() {
+                        _isLoggedIn = true;
+                        _userObj = userData!;
+                      });
+                    }).catchError((e) {
+                      print(e);
+                    });
+                  },
+                ),
+              ),
+      ),
+    );
+  }
+}
+
+</code></pre>
+<p>main.dart</p>
+<pre><code>import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'firebase_options.dart';
+import 'home.dart';
+
+Future&lt;void&gt; main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Google Authencation Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: HomePage(),
+    );
+  }
+}
+</code></pre>
+<ol>
+<li>畫面</li>
+</ol>
+<p><img alt="Alt text" src="../image-70.png" /></p>
+<p><img alt="Alt text" src="../image-71.png" /></p>
+<p><img alt="Alt text" src="../image-72.png" /></p>
+<ol>
+<li>如果用 Web 會無法做出效果，出現以下錯誤訊息：</li>
+</ol>
+<p><code>ClientID not set. Either set it on a &lt;meta name=\"google-signin-client_id\" content=\"CLIENT_ID\" /&gt; tag, or pass clientId when initializing GoogleSignIn</code></p>
+<p>(1) 去找 Clitne id : 8073574655-9c9sa7onebk99ju1mf2i5e1kfi5m4hk0.apps.googleusercontent.com</p>
+<p><img alt="Alt text" src="../image-74.png" />
+<img alt="Alt text" src="../image-73.png" /></p>
+<p>(2) 修改代碼</p>
+<p>home.dart</p>
+<pre><code>原本
+final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+後來
+final GoogleSignIn _googleSignIn = GoogleSignIn(clientId: '8073574655-saga5315djjgbcgsgag5qfmgusl6tqpu.apps.googleusercontent.com');
+</code></pre>
+<p>(3) 出現以下訊息，則直接點選，照著步驟做即可。</p>
+<blockquote>
+<p>PlatformException(idpiframe_initialization_failed, Not a valid origin for the client: http://localhost:13529 has not been registered for client ID 8073574655-9c9sa7onebk99ju1mf2i5e1kfi5m4hk0.apps.googleusercontent.com. Please go to https://console.developers.google.com/ and register this origin for your project's client ID., https://developers.google.com/identity/sign-in/web/reference#error_codes, null)</p>
+</blockquote>
+<p><img alt="Alt text" src="../image-75.png" /></p>
+<p>已授權的 JavaScript 來源，要把這個Port加上去
+<img alt="Alt text" src="../image-77.png" /></p>
+<p>(4) Flutter run 時，指定 PORT = 12621 參數。--web-port=12621</p>
+<p><img alt="Alt text" src="../image-78.png" /></p>
+<p>(5) 再次打開瀏覽器，並且清除快取和瀏覽資料。就可以了。</p>
+<p><img alt="Alt text" src="../image-79.png" /></p>
+<p><img alt="Alt text" src="../image-80.png" /></p>
+<p><img alt="Alt text" src="../image-81.png" /></p>
+<h4 id="try-out-an-example-app-with-analytics">Try out an example app with Analytics</h4>
+<ol>
+<li><code>flutter pub add firebase_analytics</code></li>
+<li><code>flutterfire configure</code></li>
+<li>Access the lib directory of the app, then delete the existing main.dart file.</li>
+<li>
+<p>將以下兩個檔案，複製貼上到專案中 lib/</p>
+<p><a href="https://github.com/firebase/flutterfire/blob/master/packages/firebase_analytics/firebase_analytics/example/lib/main.dart">https://github.com/firebase/flutterfire/blob/master/packages/firebase_analytics/firebase_analytics/example/lib/main.dart</a></p>
+<p><a href="https://github.com/firebase/flutterfire/blob/master/packages/firebase_analytics/firebase_analytics/example/lib/tabs_page.dart">https://github.com/firebase/flutterfire/blob/master/packages/firebase_analytics/firebase_analytics/example/lib/tabs_page.dart</a></p>
+</li>
+<li>
+<p>執行 flutter run</p>
+</li>
+<li>
+<p>錯誤訊息</p>
+</li>
+<li>
+<p>錯誤1
+  <img alt="Alt text" src="../image-59.png" /></p>
+</li>
+</ol>
+<p><img alt="Alt text" src="../image-60.png" /></p>
+<ul>
+<li>錯誤2</li>
+</ul>
+<p>如果出現 <code>Missing google_app_id. Firebase Analytics disabled</code> 錯誤訊息</p>
+<p>代表有兩個地方需要修改：</p>
+<pre><code>- android\build.gradle
+
+```
+classpath 'com.google.gms:google-services:4.3.15'
+```
+![Alt text](image-61.png)
+
+- android\app\build.gradle
+
+```
+apply plugin: 'com.google.gms.google-services'
+```
+
+![Alt text](image-62.png)
+</code></pre>
+<ol>
+<li>成果</li>
+</ol>
+<p><img alt="Alt text" src="../image-63.png" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../nfs/" class="btn btn-neutral float-left" title="NFS"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../spring-security/" class="btn btn-neutral float-right" title="(實作)JWT Authentication and Authorization with Spring Boot 3 and Spring Security 6">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../nfs/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../spring-security/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

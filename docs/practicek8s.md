@@ -133,53 +133,54 @@
 
   - PV/PVC/Pod
 
-  ```
-  apiVersion: v1
-  kind: PersistentVolume
-  metadata:
-    name: nfs
-  spec:
-    capacity:
+```
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs
+spec:
+  capacity:
+    storage: 1Mi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.0.17
+    path: "/opt/nfsshare"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs
+spec:
+  accessModes:
+    - ReadOnlyMany
+  storageClassName: ""
+  resources:
+    requests:
       storage: 1Mi
-    accessModes:
-      - ReadWriteMany
-    nfs:
-      server: 192.168.0.17
-      path: "/opt/nfsshare"
-
-  ---
-  apiVersion: v1
-  kind: PersistentVolumeClaim
-  metadata:
-    name: nfs
-  spec:
-    accessModes:
-      - ReadOnlyMany
-    storageClassName: ""
-    resources:
-      requests:
-        storage: 1Mi
-  ---
-  apiVersion: v1
-  kind: Pod
-  metadata:
-    name: hwchiu
-    labels:
-      app: hwchiu
-  spec:
-    containers:
-    - name: busybox
-      image: hwchiu/netutils:latest
-      volumeMounts:
-        - name: nfs-volume
-          mountPath: /nfs
-    volumes:
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hwchiu
+  labels:
+    app: hwchiu
+spec:
+  containers:
+  - name: busybox
+    image: hwchiu/netutils:latest
+    volumeMounts:
       - name: nfs-volume
-        persistentVolumeClaim:
-          claimName: nfs
+        mountPath: /nfs
+  volumes:
+    - name: nfs-volume
+      persistentVolumeClaim:
+        claimName: nfs
 
-  ```
-  ### Tomcat & Volume
+```
+
+### Tomcat & Volume
 
 ```
 # PV: 先有 nfs server，並且建立好對應的資料夾，例如：/opt/nfsshare/demo/webapps
