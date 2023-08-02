@@ -7,6 +7,8 @@ Bezkoder:
 Truong Bui:
 <https://medium.com/@truongbui95/jwt-authentication-and-authorization-with-spring-boot-3-and-spring-security-6-2f90f9337421>
 
+Aweit GitHub:
+<https://github.com/aweit-zhu/DemoService>
 
 #### New Project
 
@@ -128,3 +130,21 @@ bezkoder:
 
 DemoService
 <https://github.com/aweit-zhu/DemoService>
+
+
+#### 觀念
+
+![Alt text](image-91.png)
+(<https://www.bezkoder.com/spring-boot-security-jwt/>)
+![Alt text](image-90.png)
+(<https://www.bezkoder.com/spring-boot-security-jwt/>)
+
+![Alt text](image-92.png)
+(<https://www.bezkoder.com/spring-boot-security-jwt/>)
+
+#### Postman 測試
+
+請將 Spring Security.postman_collection.json 檔案，匯入至 Postman。
+
+![Alt text](image-93.png)
+
