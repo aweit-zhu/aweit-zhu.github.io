@@ -139,8 +139,8 @@
             <div class="section" itemprop="articleBody">
               
                 <h2 id="securing-spring-boot-310-applications-with-spring-security-and-keycloak-21">實作 Securing Spring Boot 3.1.0 Applications with Spring Security and Keycloak 21</h2>
-<p>參考資料：https://medium.com/@rickors560/securing-spring-boot-3-1-0-applications-with-spring-security-and-keycloak-21-e694c6f5617d</p>
-<p>參考資料：https://hennge.com/tw/blog/what-is-openid-connect.html</p>
+<p>參考資料：<a href="https://medium.com/@rickors560/securing-spring-boot-3-1-0-applications-with-spring-security-and-keycloak-21-e694c6f5617d">https://medium.com/@rickors560/securing-spring-boot-3-1-0-applications-with-spring-security-and-keycloak-21-e694c6f5617d</a></p>
+<p>參考資料：<a href="https://hennge.com/tw/blog/what-is-openid-connect.html">https://hennge.com/tw/blog/what-is-openid-connect.html</a></p>
 <p>環境準備：
 1. Spring Boot / Spring Security 3.1.2
 2. JDK 17
@@ -346,15 +346,15 @@ spring:
 <p><img alt="Alt text" src="../image-104.png" /></p>
 <h4 id="postman">Postman 測試</h4>
 <p>透過 OpenID Connect 取得 Token
-http://localhost:9090/realms/MyAppRealm/protocol/openid-connect/token
+<a href="http://localhost:9090/realms/MyAppRealm/protocol/openid-connect/token">http://localhost:9090/realms/MyAppRealm/protocol/openid-connect/token</a>
 <img alt="Alt text" src="../image-105.png" /></p>
 <p>利用剛剛取得的Token，存取 Web API 資訊
-http://localhost:8080/secured/get-data
+<a href="http://localhost:8080/secured/get-data">http://localhost:8080/secured/get-data</a>
 <img alt="Alt text" src="../image-106.png" /></p>
 <p>如果要登出某一用戶的所有 Session</p>
-<p>http://localhost:9090/realms/master/protocol/openid-connect/token
+<p><a href="http://localhost:9090/realms/master/protocol/openid-connect/token">http://localhost:9090/realms/master/protocol/openid-connect/token</a>
 <img alt="Alt text" src="../image-107.png" /></p>
-<p>http://localhost:9090/admin/realms/MyAppRealm/users/3a9574f5-01ae-4caf-839c-f6d5ddb9321c/logout
+<p><a href="http://localhost:9090/admin/realms/MyAppRealm/users/3a9574f5-01ae-4caf-839c-f6d5ddb9321c/logout">http://localhost:9090/admin/realms/MyAppRealm/users/3a9574f5-01ae-4caf-839c-f6d5ddb9321c/logout</a>
 <img alt="Alt text" src="../image-108.png" /></p>
 <h3 id="hub">參考 Hub</h3>
 <p><a href="https://github.com/aweit-zhu/HelloSpringBoo2">https://github.com/aweit-zhu/HelloSpringBoo2</a></p>
