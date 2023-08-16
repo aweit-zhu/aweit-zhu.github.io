@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="weizhi.zhu" /><link rel="canonical" href="https://aweit-zhu.github.io/spring-cloud-config/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Spring Cloud - Config Server - Aweit Docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Spring Cloud - Config Server";
+        var mkdocs_page_input_path = "spring-cloud-config.md";
+        var mkdocs_page_url = "/spring-cloud-config/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Aweit Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">About</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../microk8s/">Microk8s</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../drone/">Drone</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sonarqube/">SonarQube</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../practicek8s/">Kubernetes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../docker/">Docker</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../dapr/">Dapr</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../traefik/">Treafik</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../velero/">Velero</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../nfs/">NFS</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../flutter/">FlutterFire</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-security/">Spring Boot 3 and Spring Security 6 (JWT Authentication and Authorization)</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-data-jpa/">Spring Data JPA</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-keycloak/">Spring Boot 3 and Keycloak</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-ldap/">Spring Security & LDAP</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-cloud-eureka/">Spring Cloud - Eureka Server</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Spring Cloud - Config Server</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#config-server">Config Server</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#config-server-code">Config Server code</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#config-client-code">Config Client Code</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#test">Test</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Aweit Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Spring Cloud - Config Server</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h3 id="spring-cloud-config-server">Spring Cloud Config Server</h3>
+<p>程式碼：</p>
+<ol>
+<li>Config Server：<a href="https://github.com/aweit-zhu/SpringCloudConfigServer">https://github.com/aweit-zhu/SpringCloudConfigServer</a></li>
+<li>Eureka Client：<a href="https://github.com/aweit-zhu/SpringCloudEurekaClient">https://github.com/aweit-zhu/SpringCloudEurekaClient</a></li>
+</ol>
+<h4 id="config-server">Config Server</h4>
+<p><img alt="Alt text" src="../image-134.png" /></p>
+<blockquote>
+<ol>
+<li>Centralized Configuration: The Config Server acts as a central repository for storing and managing configuration properties for multiple services or applications. Instead of having configuration properties hardcoded in each application, they can be stored in a version-controlled repository (such as Git) and accessed by the Config Server.</li>
+<li>Dynamic Configuration Refresh: The Config Server supports dynamic configuration updates without requiring a restart of the application. When a configuration property is modified in the repository, the Config Server notifies the subscribed applications, and they can fetch and apply the updated configuration without downtime.</li>
+<li>Configuration Profiles: The Config Server supports multiple configuration profiles, allowing you to define different sets of configuration properties for different environments (e.g., development, staging, production). Applications can retrieve the configuration specific to their active profile by specifying it in the request to the Config Server.</li>
+<li>Secure Configuration Access: The Config Server can be configured to enforce security measures to protect sensitive configuration properties. It can integrate with authentication and authorization mechanisms, such as Spring Security or OAuth, to ensure that only authorized applications can access specific configurations.</li>
+<li>Integration with Spring Cloud: The Config Server seamlessly integrates with other components of the Spring Cloud ecosystem. It can be used in conjunction with service discovery tools like Eureka Server and load balancing tools like Ribbon to provide dynamic and scalable configuration management for microservices.</li>
+<li>Externalized Configuration: By using the Config Server, you can externalize your application's configuration, separating it from the codebase. This approach promotes the Twelve-Factor App methodology, making your application more portable, configurable, and easier to manage across different environments.</li>
+</ol>
+</blockquote>
+<h4 id="config-server-code">Config Server code</h4>
+<ol>
+<li>pom.xml</li>
+</ol>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    &lt;parent&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+        &lt;version&gt;2.7.14&lt;/version&gt;
+        &lt;relativePath /&gt; &lt;!-- lookup parent from repository --&gt;
+    &lt;/parent&gt;
+    &lt;groupId&gt;com.example&lt;/groupId&gt;
+    &lt;artifactId&gt;config-server&lt;/artifactId&gt;
+    &lt;version&gt;1.0.0&lt;/version&gt;
+    &lt;name&gt;SpringCloudConfigServer&lt;/name&gt;
+    &lt;description&gt;Config Server using Spring Boot&lt;/description&gt;
+    &lt;properties&gt;
+        &lt;java.version&gt;11&lt;/java.version&gt;
+        &lt;spring-cloud.version&gt;2021.0.8&lt;/spring-cloud.version&gt;
+    &lt;/properties&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-cloud-config-server&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;
+            &lt;scope&gt;runtime&lt;/scope&gt;
+            &lt;optional&gt;true&lt;/optional&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+            &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+            &lt;optional&gt;true&lt;/optional&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+    &lt;dependencyManagement&gt;
+        &lt;dependencies&gt;
+            &lt;dependency&gt;
+                &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;
+                &lt;version&gt;${spring-cloud.version}&lt;/version&gt;
+                &lt;type&gt;pom&lt;/type&gt;
+                &lt;scope&gt;import&lt;/scope&gt;
+            &lt;/dependency&gt;
+        &lt;/dependencies&gt;
+    &lt;/dependencyManagement&gt;
+
+    &lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+                &lt;configuration&gt;
+                    &lt;excludes&gt;
+                        &lt;exclude&gt;
+                            &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+                            &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+                        &lt;/exclude&gt;
+                    &lt;/excludes&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+
+&lt;/project&gt;
+
+</code></pre>
+<ol>
+<li>application.properties</li>
+</ol>
+<pre><code>spring.application.name=config-server
+server.port=8889
+spring.cloud.config.server.git.uri=https://github.com/aweit-zhu/SpringCloudConfigServer.git
+</code></pre>
+<ol>
+<li>Application：@EnableConfigServer</li>
+</ol>
+<pre><code>import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.config.server.EnableConfigServer;
+
+@SpringBootApplication
+@EnableConfigServer
+public class SpringCloudConfigServerApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(SpringCloudConfigServerApplication.class, args);
+    }
+
+}
+
+</code></pre>
+<ol>
+<li>建立設定檔案，因為 client 的 application name 為 eureka-client-demo，所以檔名為eureka-client-demo.yaml / eureka-client-demo.properties。路徑：根目錄。</li>
+</ol>
+<p><img alt="Alt text" src="../image-130.png" /></p>
+<h4 id="config-client-code">Config Client Code</h4>
+<p>要實現自動更新注入屬性</p>
+<ol>
+<li>pom.xml：新增這兩個依賴</li>
+</ol>
+<pre><code>        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-cloud-config-client&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+</code></pre>
+<ol>
+<li>application.properties</li>
+</ol>
+<pre><code>server.port=8888
+spring.application.name=eureka-client-demo
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka
+management.endpoints.web.exposure.include=*
+spring.config.import=configserver:http://localhost:8889
+</code></pre>
+<ol>
+<li>Application</li>
+</ol>
+<p>@EnableScheduling：代表會有排程。
+RefreshEndpoint：代表會從 GitHub 的設定檔中取得最新數據。</p>
+<pre><code>import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.endpoint.RefreshEndpoint;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
+
+@SpringBootApplication
+@EnableDiscoveryClient
+@EnableScheduling
+public class SpringCloudEurekaClientApplication {
+
+    @Autowired
+    private RefreshEndpoint refreshEndpoint;
+
+    public static void main(String[] args) {
+        SpringApplication.run(SpringCloudEurekaClientApplication.class, args);
+    }
+
+    @Scheduled(fixedDelay = 5000) // Refresh every 5 seconds
+    public void scheduleConfigRefresh() {
+        refreshEndpoint.refresh();
+    }
+
+}
+</code></pre>
+<ol>
+<li>Contorller</li>
+</ol>
+<p>@RefreshScope：自動更新的範圍</p>
+<pre><code>import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RefreshScope
+@RestController
+public class MyController {
+
+    @Value(&quot;${message:Default Hello}&quot;)
+    private String message; 
+
+    @GetMapping(&quot;/message&quot;)
+    public String message() {
+        return message;
+    }
+}
+</code></pre>
+<p>5.(可選) 如果要更新Config 屬性(標有@RefreshScope)，可以用 postmane 觸發</p>
+<p>http://localhost:8888/actuator/refresh</p>
+<p><img alt="Alt text" src="../image-131.png" /></p>
+<h4 id="test">Test</h4>
+<p>http://localhost:8888/message</p>
+<p><img alt="Alt text" src="../image-132.png" /></p>
+<p><img alt="Alt text" src="../image-133.png" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../spring-cloud-eureka/" class="btn btn-neutral float-left" title="Spring Cloud - Eureka Server"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../spring-cloud-eureka/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
