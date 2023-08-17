@@ -377,6 +377,19 @@ eureka.client.service-url.defaultZone=http://localhost:8761/eureka
 management.endpoints.web.exposure.include=*
 </code></pre>
 <ol>
+<li>Application</li>
+</ol>
+<pre><code>@SpringBootApplication
+@EnableDiscoveryClient
+public class SpringCloudEurekaClientApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(SpringCloudEurekaClientApplication.class, args);
+    }
+
+}
+</code></pre>
+<ol>
 <li>RestTemplateConfig.java</li>
 </ol>
 <pre><code>import org.springframework.context.annotation.Bean;
