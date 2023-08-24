@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="weizhi.zhu" /><link rel="canonical" href="https://aweit-zhu.github.io/ssh/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>SSH (Struts2 + Spring5 + Hibernate4) - Aweit Docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "SSH (Struts2 + Spring5 + Hibernate4)";
+        var mkdocs_page_input_path = "ssh.md";
+        var mkdocs_page_url = "/ssh/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Aweit Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">SSH (Struts2 + Spring5 + Hibernate4)</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#ssh">SSH 說明</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#github-httpsgithubcomaweit-zhustruts2beginner">GitHub 完整代碼：https://github.com/aweit-zhu/Struts2Beginner</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_1">使用環境</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pomxml">pom.xml</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mysql">配置 MySQL</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">三個配置檔</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#spirng-secutiry">配置 Spirng Secutiry</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#action-service">Action + Service</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#struts-dao">Struts 整合 DAO</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#hibernateutil">HibernateUtil</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#post">Post</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#comment">Comment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#postdao">PostDao</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#commentdao">CommentDao</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#postaction">PostAction</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#jsp">相關JSP</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#test">Test</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-cloud-feign/">Spring Cloud - OpenFeign Client</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-cloud-config/">Spring Cloud - Config Server</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-cloud-eureka/">Spring Cloud - Eureka Server</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-ldap/">Spring Security & LDAP</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-keycloak/">Spring Boot 3 and Keycloak</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-data-jpa/">Spring Data JPA</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-security/">Spring Boot 3 and Spring Security 6 (JWT Authentication and Authorization)</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../flutter/">FlutterFire</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../nfs/">NFS</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../velero/">Velero</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../traefik/">Treafik</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../dapr/">Dapr</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../docker/">Docker</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../practicek8s/">Kubernetes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sonarqube/">SonarQube</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../drone/">Drone</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../microk8s/">Microk8s</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">About</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Aweit Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>SSH (Struts2 + Spring5 + Hibernate4)</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h3 id="ssh-struts2-spring5-hibernate4">SSH (Struts2 + Spring5 + Hibernate4)</h3>
+<h4 id="ssh">SSH 說明</h4>
+<p>這些是一組框架的組合，也是目前最為流行的 Java Web 開發架構。每個框架都各司其職，也都有其主要目的。而資通的 Java 相關案子也都是採用這樣的架構做開發。</p>
+<p>Struts 主要在是作為 MVC（Model-Viewer-Controller）的實現，將頁面的呈現及流程與商業邏輯切分。然而，與其說切分不如解釋為降低每個環節的藕合性。同時做了開發分工，網頁設計著重在 UI／UX 的設計，商業邏輯交給後端 Business Layer 去負責，在降低每個環節的藕合性的同時，也將每一階層都做了很完整的定義。前端使用 HTML 或 Tag 與相對也減低的前端頁面暴露在外的資安問題諸如 SQL injection、Cross-site Script，由工程師設計出來的頁面也不會每次都被使用者嫌棄美感不足了。</p>
+<p>Spring 延續了 MVC 架構中的 Model 部分，幾個主要特色，依賴注入（DI）、反轉控制（IoC）和 AOP（Aspect Oriented Programming）。IoC 這裡的基礎概念是 BeanFactory，它提供對 Factory 模式的經典實現來消除對程序性單例模式（Singleton）的需要，並真正地允許你從程序邏輯中分離出依賴關係和配置。當然若能配合其他 Design Pattern 使用更可看出架構的完整性，AOP 中應用到的是資料庫的 Transaction 控管，它讓開發者可以完全不需要去寫到 Transaction 相關的 code，只要定義好哪些 code 需要加上 Transaction 的控制即可。</p>
+<p>Hibernate ORM （Oriented-Relational Mapping）提供了常用的「對象／關係」映射 APIs 的集成層。 其中包括 JPA、JDO、iBatis 和 Hibernate 。利用 ORM package，可以混合使用所有 Spring 提供的特性進行「對象／關係」映射。</p>
+<p>(參考來源：<a href="https://marketing.ares.com.tw/newsletter/2015-08-outsourcing/ssh">https://marketing.ares.com.tw/newsletter/2015-08-outsourcing/ssh</a>)</p>
+<p>反轉控制（IoC）</p>
+<p><img alt="Alt text" src="../image-140.png" /></p>
+<p>(參考資料：)</p>
+<p>AOP（Aspect Oriented Programming）：剖面導向程式設計</p>
+<p><img alt="Alt text" src="../image-141.png" />
+(參考資料：<a href="https://ithelp.ithome.com.tw/articles/10229664">https://ithelp.ithome.com.tw/articles/10229664</a>)</p>
+<h4 id="github-httpsgithubcomaweit-zhustruts2beginner">GitHub 完整代碼：<a href="https://github.com/aweit-zhu/Struts2Beginner">https://github.com/aweit-zhu/Struts2Beginner</a></h4>
+<h5 id="_1">使用環境</h5>
+<ul>
+<li>Struts 2.3.8</li>
+<li>Struts JSON Plugin 2.3.8</li>
+<li>Struts Convention Plugin 2.3.8</li>
+<li>Struts Spring Plugin 2.3.8</li>
+<li>Spring Core 5.3.29</li>
+<li>Spring Context 5.3.29</li>
+<li>Spring Web MVC 5.3.29</li>
+<li>Spring Web 5.3.29</li>
+<li>Spring Beans 5.3.29</li>
+<li>Spring Context Support 5.1.5.RELEASE</li>
+<li>Spring Security Core 5.1.4.RELEASE</li>
+<li>Spring Security Taglibs 5.1.4.RELEASE</li>
+<li>Spring Security Web 5.1.4.RELEASE</li>
+<li>Spring Security Config 5.1.4.RELEASE</li>
+<li>Hibernate Core 5.4.32.Final</li>
+<li>MySQL Connector/J 8.0.25</li>
+</ul>
+<h5 id="pomxml">pom.xml</h5>
+<pre><code>&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    &lt;groupId&gt;Struts2Beginner&lt;/groupId&gt;
+    &lt;artifactId&gt;Struts2Beginner&lt;/artifactId&gt;
+    &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+    &lt;packaging&gt;war&lt;/packaging&gt;
+    &lt;dependencies&gt;
+
+        &lt;!-- lombok --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+            &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+            &lt;version&gt;1.18.20&lt;/version&gt;
+            &lt;scope&gt;provided&lt;/scope&gt;
+        &lt;/dependency&gt;
+
+        &lt;!-- Servlet --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+            &lt;artifactId&gt;jstl&lt;/artifactId&gt;
+            &lt;version&gt;1.2&lt;/version&gt;
+        &lt;/dependency&gt;
+
+        &lt;!-- Struts 2 --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.struts&lt;/groupId&gt;
+            &lt;artifactId&gt;struts2-core&lt;/artifactId&gt;
+            &lt;version&gt;2.3.8&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.struts&lt;/groupId&gt;
+            &lt;artifactId&gt;struts2-json-plugin&lt;/artifactId&gt;
+            &lt;version&gt;2.3.8&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.struts&lt;/groupId&gt;
+            &lt;artifactId&gt;struts2-convention-plugin&lt;/artifactId&gt;
+            &lt;version&gt;2.3.8&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.struts&lt;/groupId&gt;
+            &lt;artifactId&gt;struts2-convention-plugin&lt;/artifactId&gt;
+            &lt;version&gt;2.3.8&lt;/version&gt;
+            &lt;exclusions&gt;
+                &lt;exclusion&gt;
+                    &lt;groupId&gt;org.apache.struts&lt;/groupId&gt;
+                    &lt;artifactId&gt;struts2-core&lt;/artifactId&gt;
+                &lt;/exclusion&gt;
+            &lt;/exclusions&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.struts&lt;/groupId&gt;
+            &lt;artifactId&gt;struts2-spring-plugin&lt;/artifactId&gt;
+            &lt;version&gt;2.3.8&lt;/version&gt;
+        &lt;/dependency&gt;
+
+        &lt;!-- Spring dependencies --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-core&lt;/artifactId&gt;
+            &lt;version&gt;5.3.29&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+            &lt;version&gt;5.3.29&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
+            &lt;version&gt;5.3.29&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-web&lt;/artifactId&gt;
+            &lt;version&gt;5.3.29&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-beans&lt;/artifactId&gt;
+            &lt;version&gt;5.3.29&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-context-support&lt;/artifactId&gt;
+            &lt;version&gt;5.1.5.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-security-core&lt;/artifactId&gt;
+            &lt;version&gt;5.1.4.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-security-taglibs&lt;/artifactId&gt;
+            &lt;version&gt;5.1.4.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-security-web&lt;/artifactId&gt;
+            &lt;version&gt;5.1.4.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-security-config&lt;/artifactId&gt;
+            &lt;version&gt;5.1.4.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- Hibernate --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+            &lt;artifactId&gt;hibernate-core&lt;/artifactId&gt;
+            &lt;version&gt;5.4.32.Final&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;mysql&lt;/groupId&gt;
+            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+            &lt;version&gt;8.0.25&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+    &lt;build&gt;
+        &lt;resources&gt;
+            &lt;resource&gt;
+                &lt;directory&gt;src/main/&lt;/directory&gt;
+                &lt;excludes&gt;
+                    &lt;exclude&gt;**/*.java&lt;/exclude&gt;
+                &lt;/excludes&gt;
+            &lt;/resource&gt;
+        &lt;/resources&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+                &lt;version&gt;3.8.1&lt;/version&gt;
+                &lt;configuration&gt;
+                    &lt;release&gt;17&lt;/release&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+            &lt;plugin&gt;
+                &lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;
+                &lt;version&gt;3.2.3&lt;/version&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+        &lt;finalName&gt;Struts2Beginner&lt;/finalName&gt;
+    &lt;/build&gt;
+&lt;/project&gt;
+
+</code></pre>
+<h5 id="mysql">配置 MySQL</h5>
+<pre><code>version: '3.8'
+
+services:
+  mysql:
+    image: mysql:5
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: cookbook
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: password
+    ports:
+      - 3306:3306
+    volumes:
+      - ./data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - 8989:80
+    depends_on:
+      - mysql
+</code></pre>
+<h5 id="_2">三個配置檔</h5>
+<p><img alt="Alt text" src="../image-142.png" /></p>
+<ol>
+<li>struts.xml</li>
+</ol>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE struts PUBLIC
+    &quot;-//Apache Software Foundation//DTD Struts Configuration 2.0//EN&quot;
+    &quot;http://struts.apache.org/dtds/struts-2.0.dtd&quot;&gt;
+
+&lt;struts&gt;
+    &lt;constant name=&quot;struts.action.excludePattern&quot;
+        value=&quot;/spring/.*&quot; /&gt;
+
+    &lt;constant name=&quot;struts.objectFactory&quot; value=&quot;spring&quot; /&gt;
+
+    &lt;constant name=&quot;struts.objectFactory.spring.autoWireAlways&quot;
+        value=&quot;true&quot; /&gt;
+
+    &lt;constant name=&quot;struts.objectFactory.spring.autoWire&quot;
+        value=&quot;name&quot; /&gt;
+
+    &lt;constant name=&quot;struts.objectFactory.spring.useClassCache&quot;
+        value=&quot;true&quot; /&gt;
+
+    &lt;package name=&quot;Struts2Beginner&quot; namespace=&quot;/admin&quot;
+        extends=&quot;struts-default&quot;&gt;
+        &lt;action name=&quot;index&quot;&gt;
+            &lt;result&gt;/WEB-INF/jsp/calculate/input.jsp&lt;/result&gt;
+        &lt;/action&gt;
+    &lt;/package&gt;
+&lt;/struts&gt;
+</code></pre>
+<p>(1) struts.action.excludePattern：哪些路由不要透過 Struts。如果有些路由要走 Spring Controller 則可以利用這個方式設定。</p>
+<p>(2) struts.objectFactory：如果為 Spirng，代表可以使用 Spring 的 DI 和 IoC的功能。</p>
+<p>(3) struts.objectFactory.spring.autoWire：如果 Bean 定義的 Name 為 abc，則有要注入的其他Bean的 property 的名稱也要為 abc，則會自動注入。</p>
+<ol>
+<li>applicationContext.xml</li>
+</ol>
+<pre><code>&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
+
+
+    &lt;bean id=&quot;springController&quot; class=&quot;com.example.spring.controller.SpringController&quot;&gt;
+       &lt;property name=&quot;helloService&quot; ref=&quot;helloService&quot; /&gt;
+    &lt;/bean&gt;
+
+
+    &lt;bean id=&quot;helloService&quot; class=&quot;com.example.spring.service.HelloService&quot;/&gt;
+
+&lt;/beans&gt;
+</code></pre>
+<p>In the context of the provided XML code, the "applicationContext.xml" file is not explicitly mentioned. However, based on the configuration settings in the Struts XML file, it is likely that the Spring object factory is being used to manage objects and dependencies in the Struts application.</p>
+<p>In a typical setup, the "applicationContext.xml" file would be responsible for defining the Spring beans, specifying their dependencies, and configuring other aspects of the Spring application context. It might include components such as data sources, transaction managers, service beans, and more.</p>
+<ol>
+<li>hibernate.cfg.xml</li>
+</ol>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE hibernate-configuration PUBLIC
+        &quot;-//Hibernate/Hibernate Configuration DTD 3.0//EN&quot;
+        &quot;http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd&quot;&gt;
+&lt;hibernate-configuration&gt;
+    &lt;session-factory&gt;
+        &lt;property name=&quot;hibernate.dialect&quot;&gt;org.hibernate.dialect.MySQL8Dialect&lt;/property&gt;
+        &lt;property name=&quot;hibernate.connection.driver_class&quot;&gt;com.mysql.cj.jdbc.Driver&lt;/property&gt;
+        &lt;property name=&quot;hibernate.connection.url&quot;&gt;jdbc:mysql://localhost:3306/cookbook&lt;/property&gt;
+        &lt;property name=&quot;hibernate.connection.username&quot;&gt;admin&lt;/property&gt;
+        &lt;property name=&quot;hibernate.connection.password&quot;&gt;password&lt;/property&gt;
+        &lt;property name=&quot;hibernate.show_sql&quot;&gt;true&lt;/property&gt;
+        &lt;property name=&quot;hibernate.hbm2ddl.auto&quot;&gt;update&lt;/property&gt;
+        &lt;mapping class = &quot;com.example.hibernate.entity.Post&quot; /&gt;
+        &lt;mapping class = &quot;com.example.hibernate.entity.Comment&quot; /&gt;
+    &lt;/session-factory&gt;
+&lt;/hibernate-configuration&gt;
+</code></pre>
+<p>(1) property：設定連線資訊</p>
+<p>(2) mapping：只要有一個物件需要與表格做關聯，都要在這邊定義。</p>
+<h5 id="spirng-secutiry">配置 Spirng Secutiry</h5>
+<pre><code>import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+@Configuration
+@ComponentScan(&quot;com.example&quot;)
+@EnableTransactionManagement
+@EnableWebSecurity
+public class AppConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+
+        httpSecurity.cors().and().csrf().disable();
+
+        httpSecurity.authorizeRequests()
+                    .antMatchers(&quot;/superadmin/**&quot;).access(&quot;hasRole('ROLE_SUPER_ADMIN')&quot;)
+                    .antMatchers(&quot;/admin/**&quot;).access(&quot;hasRole('ROLE_SUPER_ADMIN') or hasRole('ROLE_ADMIN')&quot;)
+                    .antMatchers(&quot;/employee/**&quot;).access(&quot;hasRole('ROLE_SUPER_ADMIN') or hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')&quot;)
+                    .antMatchers(&quot;/spring/**&quot;).access(&quot;hasRole('ROLE_SUPER_ADMIN') or hasRole('ROLE_ADMIN')&quot;)
+                    .and()
+                    .httpBasic()
+                    .and()
+                    .logout()
+                    .and()
+                    .exceptionHandling();
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration(&quot;/**&quot;, new CorsConfiguration().applyPermitDefaultValues());
+        return source;
+    }
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+            .withUser(&quot;superadmin&quot;).password(passwordEncoder().encode(&quot;123456&quot;)).authorities(&quot;ROLE_SUPER_ADMIN&quot;, &quot;ROLE_ADMIN&quot;, &quot;ROLE_EMPLOYEE&quot;)
+            .and()
+            .withUser(&quot;admin&quot;).password(passwordEncoder().encode(&quot;123456&quot;)).authorities(&quot;ROLE_ADMIN&quot;, &quot;ROLE_EMPLOYEE&quot;)
+            .and()
+            .withUser(&quot;employee&quot;).password(passwordEncoder().encode(&quot;123456&quot;)).authorities(&quot;ROLE_EMPLOYEE&quot;);
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+}
+</code></pre>
+<h5 id="action-service">Action + Service</h5>
+<p>HelloAction</p>
+<pre><code>import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Namespace;
+import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.Results;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.spring.service.HelloService;
+import com.opensymphony.xwork2.ActionSupport;
+
+@Namespace(&quot;/&quot;)
+@Results(value = { 
+    @Result(name = &quot;hello&quot;, location = &quot;/WEB-INF/jsp/hello.jsp&quot;) ,
+    @Result(name = &quot;goodbye&quot;, location = &quot;/WEB-INF/jsp/goodbye.jsp&quot;) 
+})
+public class HelloAction extends ActionSupport {
+
+    @Autowired
+    HelloService helloService;
+
+    @Action(value = &quot;hello&quot;)
+    public String hello() {
+        System.out.println(helloService.getHello());
+        return &quot;hello&quot;;
+    }
+
+    @Action(value = &quot;goodbye&quot;)
+    public String goodbye() {
+        return &quot;goodbye&quot;;
+    }
+}
+</code></pre>
+<p>HelloService</p>
+<pre><code>import org.springframework.stereotype.Service;
+
+@Service
+public class HelloService {
+
+    public String getHello() {
+        return &quot;service, hello&quot;;
+    }
+
+}
+</code></pre>
+<p>hello.jsp</p>
+<pre><code>&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;
+    pageEncoding=&quot;UTF-8&quot;%&gt;
+&lt;%@ taglib prefix=&quot;s&quot; uri=&quot;/struts-tags&quot;%&gt;
+Hello
+</code></pre>
+<p>goobye.jsp</p>
+<pre><code>&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;
+    pageEncoding=&quot;UTF-8&quot;%&gt;
+&lt;%@ taglib prefix=&quot;s&quot; uri=&quot;/struts-tags&quot;%&gt;
+GoodBye
+</code></pre>
+<h4 id="struts-dao">Struts 整合 DAO</h4>
+<h5 id="hibernateutil">HibernateUtil</h5>
+<pre><code>import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class HibernateUtil {
+
+    private static final SessionFactory sessionFactory;
+
+    static {
+        try {
+            sessionFactory = new Configuration().configure().buildSessionFactory();
+        } catch (Throwable ex) {
+            System.err.println(&quot;Initial SessionFactory creation failed.&quot; + ex);
+            throw new ExceptionInInitializerError(ex);
+        }
+    }
+
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+}
+</code></pre>
+<h5 id="post">Post</h5>
+<pre><code>import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import lombok.Data;
+import lombok.ToString;
+
+@Entity
+@Table(name = &quot;posts&quot;)
+@Data
+@ToString(exclude = &quot;comments&quot;)
+public class Post {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column
+    private String title;
+
+    @Column
+    private String content;
+
+    @OneToMany(mappedBy = &quot;post&quot;, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List&lt;Comment&gt; comments = new ArrayList&lt;&gt;();
+
+}
+</code></pre>
+<h5 id="comment">Comment</h5>
+<pre><code>import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import lombok.Data;
+import lombok.ToString;
+
+@Entity
+@Table(name = &quot;comments&quot;)
+@Data
+@ToString(exclude = &quot;post&quot;)
+public class Comment {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String content;
+
+    @ManyToOne
+    @JoinColumn(name = &quot;post_id&quot;)
+    private Post post;
+}
+</code></pre>
+<h5 id="postdao">PostDao</h5>
+<pre><code>import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.springframework.stereotype.Service;
+
+import com.example.hibernate.HibernateUtil;
+import com.example.hibernate.entity.Post;
+
+@Service
+public class PostDao {
+
+    public void save(Post post) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            session.save(post);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void update(Post post) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            session.update(post);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void delete(Post post) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            session.delete(post);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Post getById(int id) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.get(Post.class, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List&lt;Post&gt; getAll() {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery(&quot;FROM Post&quot;, Post.class).getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+}
+
+</code></pre>
+<h5 id="commentdao">CommentDao</h5>
+<pre><code>import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+import org.springframework.stereotype.Service;
+
+import com.example.hibernate.HibernateUtil;
+import com.example.hibernate.entity.Comment;
+import com.example.hibernate.entity.Post;
+
+@Service
+public class CommentDao {
+
+    public void saveComment(Comment comment) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            session.save(comment);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Comment getCommentById(Long commentId) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.get(Comment.class, commentId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List&lt;Comment&gt; getCommentsByPost(Post post) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query&lt;Comment&gt; query = session.createQuery(&quot;FROM Comment WHERE post = :post&quot;, Comment.class);
+            query.setParameter(&quot;post&quot;, post);
+            return query.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public void updateComment(Comment comment) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            session.update(comment);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteComment(Comment comment) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            session.delete(comment);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+<h5 id="postaction">PostAction</h5>
+<pre><code>import java.util.List;
+
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Namespace;
+import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.Results;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.hibernate.dao.CommentDao;
+import com.example.hibernate.dao.PostDao;
+import com.example.hibernate.entity.Comment;
+import com.example.hibernate.entity.Post;
+import com.opensymphony.xwork2.ActionSupport;
+
+import lombok.Data;
+
+@Namespace(&quot;/admin&quot;)
+@Results({
+    @Result(name = &quot;success&quot;, location = &quot;/list-posts.jsp&quot;),
+    @Result(name = &quot;error&quot;, location = &quot;/error.jsp&quot;)
+})
+@Data
+public class PostAction extends ActionSupport {
+
+    @Autowired
+    PostDao postDao;
+
+    @Autowired
+    CommentDao commentDao;
+
+    private int id;
+
+    private String title;
+
+    private String content;
+
+    private List&lt;Post&gt; posts;
+
+    @Action(value = &quot;/create-post&quot;, results = {
+        @Result(name = &quot;success&quot;, location = &quot;/list-posts&quot;, type = &quot;redirect&quot;)
+    })
+    public String create() {
+        Post post = new Post();
+        post.setTitle(title);
+        post.setContent(content);
+        postDao.save(post);
+
+        Comment comment = new Comment();
+        comment.setContent(&quot;Test Comment&quot;);
+
+        addCommentToPost(post.getId(),comment);
+
+        return SUCCESS;
+    }
+
+    public void addCommentToPost(int postId, Comment comment) {
+        Post post = postDao.getById(postId);
+        if (post != null) {
+            comment.setPost(post);
+            commentDao.saveComment(comment);
+        }
+    }
+
+
+    @Action(value = &quot;/update-post&quot;, results = {
+        @Result(name = &quot;success&quot;, location = &quot;/list-posts&quot;, type = &quot;redirect&quot;)
+    })
+    public String update() {
+        Post post = postDao.getById(id);
+
+        if (post != null) {
+            post.setTitle(title);
+            post.setContent(content);
+            postDao.update(post);
+        } else {
+            return ERROR;
+        }
+
+        return SUCCESS;
+    }
+
+    @Action(value = &quot;/delete-post&quot;, results = {
+        @Result(name = &quot;success&quot;, location = &quot;/list-posts&quot;, type = &quot;redirect&quot;)
+    })
+    public String delete() {
+        Post post = postDao.getById(id);
+
+        if (post != null) {
+            postDao.delete(post);
+        } else {
+            return ERROR;
+        }
+
+        return SUCCESS;
+    }
+
+    @Action(value = &quot;/view-post&quot;, results = {
+        @Result(name = &quot;success&quot;, location = &quot;/view-post.jsp&quot;)
+    })
+    public String view() {
+        Post post = postDao.getById(id);
+
+        if (post != null) {
+            title = post.getTitle();
+            content = post.getContent();
+
+            List&lt;Comment&gt; comments = commentDao.getCommentsByPost(post);
+            System.out.println(comments);
+
+        } else {
+            return ERROR;
+        }
+
+        return SUCCESS;
+    }
+
+    @Action(value = &quot;/list-posts&quot;, results = {
+        @Result(name = &quot;success&quot;, location = &quot;/list-posts.jsp&quot;)
+    })
+    public String list() {
+        posts = postDao.getAll();
+        return SUCCESS;
+    }
+}
+</code></pre>
+<h5 id="jsp">相關JSP</h5>
+<p>list-post.jsp</p>
+<pre><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;%@ taglib prefix=&quot;s&quot; uri=&quot;/struts-tags&quot; %&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;List of Posts&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;List of Posts&lt;/h1&gt;
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;th&gt;ID&lt;/th&gt;
+            &lt;th&gt;Title&lt;/th&gt;
+            &lt;th&gt;Content&lt;/th&gt;
+            &lt;th&gt;Action&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;s:iterator value=&quot;posts&quot;&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;s:property value=&quot;id&quot; /&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;s:property value=&quot;title&quot; /&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;s:property value=&quot;content&quot; /&gt;&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;a href=&quot;&lt;s:url action='view-post'&gt;&lt;s:param name='id' value='%{id}' /&gt;&lt;/s:url&gt;&quot;&gt;View&lt;/a&gt;
+                    &lt;a href=&quot;&lt;s:url action='delete-post'&gt;&lt;s:param name='id' value='%{id}' /&gt;&lt;/s:url&gt;&quot;&gt;Delete&lt;/a&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/s:iterator&gt;
+    &lt;/table&gt;
+    &lt;h2&gt;Create New Post&lt;/h2&gt;
+    &lt;form action=&quot;&lt;s:url action='create-post' /&gt;&quot; method=&quot;POST&quot;&gt;
+        &lt;label for=&quot;title&quot;&gt;Title:&lt;/label&gt;
+        &lt;input type=&quot;text&quot; name=&quot;title&quot; id=&quot;title&quot; required /&gt;&lt;br&gt;
+        &lt;label for=&quot;content&quot;&gt;Content:&lt;/label&gt;
+        &lt;textarea name=&quot;content&quot; id=&quot;content&quot; required&gt;&lt;/textarea&gt;&lt;br&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;Create&quot; /&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>view-posts.jsp</p>
+<pre><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;%@ taglib prefix=&quot;s&quot; uri=&quot;/struts-tags&quot; %&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;View Post&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;View Post&lt;/h1&gt;
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;th&gt;ID&lt;/th&gt;
+            &lt;th&gt;Title&lt;/th&gt;
+            &lt;th&gt;Content&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;s:property value=&quot;id&quot; /&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;s:property value=&quot;title&quot; /&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;s:property value=&quot;content&quot; /&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+    &lt;h2&gt;Edit Post&lt;/h2&gt;
+    &lt;form action=&quot;&lt;s:url action='update-post' /&gt;&quot; method=&quot;POST&quot;&gt;
+        &lt;input type=&quot;hidden&quot; name=&quot;id&quot; value=&quot;&lt;s:property value='id' /&gt;&quot; /&gt;
+        &lt;label for=&quot;title&quot;&gt;Title:&lt;/label&gt;
+        &lt;input type=&quot;text&quot; name=&quot;title&quot; id=&quot;title&quot; value=&quot;&lt;s:property value='title' /&gt;&quot; required /&gt;&lt;br&gt;
+        &lt;label for=&quot;content&quot;&gt;Content:&lt;/label&gt;
+        &lt;textarea name=&quot;content&quot; id=&quot;content&quot; required&gt;&lt;s:property value='content' /&gt;&lt;/textarea&gt;&lt;br&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;Update&quot; /&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h5 id="test">Test</h5>
+<ol>
+<li>
+<p>打開瀏覽器：http://localhost:8080/Struts2Beginner/admin/list-posts</p>
+</li>
+<li>
+<p>彈出登入視窗，表示Spring Security 是正確的。</p>
+</li>
+</ol>
+<p><img alt="Alt text" src="../image-143.png" /></p>
+<ol>
+<li>輸入正確帳密後(admin/123456)，就可以看到畫面。</li>
+</ol>
+<p><img alt="Alt text" src="../image-144.png" /></p>
+<ol>
+<li>對照一下資料庫的資料，比對是否一致。</li>
+</ol>
+<p><img alt="Alt text" src="../image-145.png" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../spring-cloud-feign/" class="btn btn-neutral float-right" title="Spring Cloud - OpenFeign Client">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="../spring-cloud-feign/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
