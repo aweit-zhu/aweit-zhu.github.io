@@ -53,22 +53,24 @@
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#_1">範例</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#github-httpsgithubcomaweit-zhustruts2beginner">Github 程式碼：https://github.com/aweit-zhu/Struts2Beginner</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#github-httpsgithubcomaweit-zhustruts2beginner">Github 程式碼：https://github.com/aweit-zhu/Struts2Beginner</a>
+    <li class="toctree-l3"><a class="reference internal" href="#pomxml">pom.xml</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#pomxml">pom.xml</a>
+    <li class="toctree-l3"><a class="reference internal" href="#webxml">web.xml</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#webxml">web.xml</a>
+    <li class="toctree-l3"><a class="reference internal" href="#tilesxml">tiles.xml</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#tilesxml">tiles.xml</a>
+    <li class="toctree-l3"><a class="reference internal" href="#baselayoutjsp">baseLayout.jsp</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#baselayoutjsp">baseLayout.jsp</a>
+    <li class="toctree-l3"><a class="reference internal" href="#headerjsp">header.jsp</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#headerjsp">header.jsp</a>
+    <li class="toctree-l3"><a class="reference internal" href="#footerjsp">footer.jsp</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#footerjsp">footer.jsp</a>
+    <li class="toctree-l3"><a class="reference internal" href="#dynamic-body">Dynamic Body</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#dynamic-body">Dynamic Body</a>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#test">Test</a>
     </li>
@@ -180,8 +182,8 @@
 <h6 id="2-tiles-httpswwwviralpatelnetstruts-2-tiles-plugin-tutorial-with-example-in-eclipse">2. Tiles: <a href="https://www.viralpatel.net/struts-2-tiles-plugin-tutorial-with-example-in-eclipse/">https://www.viralpatel.net/struts-2-tiles-plugin-tutorial-with-example-in-eclipse/</a></h6>
 <p><img alt="Alt text" src="../image-147.png" /></p>
 <h5 id="_1">範例</h5>
-<h5 id="github-httpsgithubcomaweit-zhustruts2beginner">Github 程式碼：<a href="https://github.com/aweit-zhu/Struts2Beginner">https://github.com/aweit-zhu/Struts2Beginner</a></h5>
-<h5 id="pomxml">pom.xml</h5>
+<h6 id="github-httpsgithubcomaweit-zhustruts2beginner">Github 程式碼：<a href="https://github.com/aweit-zhu/Struts2Beginner">https://github.com/aweit-zhu/Struts2Beginner</a></h6>
+<h6 id="pomxml">pom.xml</h6>
 <pre><code>&lt;!-- Tiles2 --&gt;
 &lt;dependency&gt;
     &lt;groupId&gt;org.apache.struts&lt;/groupId&gt;
@@ -189,7 +191,7 @@
     &lt;version&gt;2.3.8&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
-<h5 id="webxml">web.xml</h5>
+<h6 id="webxml">web.xml</h6>
 <pre><code>&lt;!-- Tiles2 --&gt;
 &lt;listener&gt;
     &lt;listener-class&gt;org.apache.struts2.tiles.StrutsTilesListener&lt;/listener-class&gt;
@@ -199,7 +201,7 @@
     &lt;param-value&gt;/WEB-INF/tiles.xml&lt;/param-value&gt;
 &lt;/context-param&gt;
 </code></pre>
-<h5 id="tilesxml">tiles.xml</h5>
+<h6 id="tilesxml">tiles.xml</h6>
 <pre><code>&lt;!DOCTYPE tiles-definitions PUBLIC
     &quot;-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN&quot;
     &quot;http://tiles.apache.org/dtds/tiles-config_2_0.dtd&quot;&gt;
@@ -213,7 +215,7 @@
     &lt;/definition&gt;
 &lt;/tiles-definitions&gt;
 </code></pre>
-<h5 id="baselayoutjsp">baseLayout.jsp</h5>
+<h6 id="baselayoutjsp">baseLayout.jsp</h6>
 <pre><code>&lt;%@ taglib prefix=&quot;tiles&quot; uri=&quot;http://tiles.apache.org/tags-tiles&quot;%&gt;
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -243,7 +245,7 @@
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-<h5 id="headerjsp">header.jsp</h5>
+<h6 id="headerjsp">header.jsp</h6>
 <pre><code>&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;
     pageEncoding=&quot;UTF-8&quot;%&gt;
 
@@ -269,7 +271,7 @@
     &lt;/nav&gt;
 &lt;/header&gt;
 </code></pre>
-<h5 id="footerjsp">footer.jsp</h5>
+<h6 id="footerjsp">footer.jsp</h6>
 <pre><code>&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;
     pageEncoding=&quot;UTF-8&quot;%&gt;
 
@@ -387,7 +389,7 @@
 &lt;/footer&gt;
 &lt;!-- Footer --&gt;
 </code></pre>
-<h5 id="dynamic-body">Dynamic Body</h5>
+<h6 id="dynamic-body">Dynamic Body</h6>
 <pre><code>&lt;%@taglib prefix=&quot;tiles&quot; uri=&quot;http://tiles.apache.org/tags-tiles&quot;%&gt;
 &lt;%@ taglib prefix=&quot;s&quot; uri=&quot;/struts-tags&quot;%&gt;
 &lt;tiles:insertDefinition name=&quot;baseLayout&quot;&gt;
