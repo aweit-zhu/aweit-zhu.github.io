@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="weizhi.zhu" /><link rel="canonical" href="https://aweit-zhu.github.io/tiles/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Struts + Tiles2 - Aweit Docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Struts + Tiles2";
+        var mkdocs_page_input_path = "tiles.md";
+        var mkdocs_page_url = "/tiles/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Aweit Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Struts + Tiles2</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#ui">UI 框架</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-mdb-httpsmdbootstrapcom">1. MDB: https://mdbootstrap.com/</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-tiles-httpswwwviralpatelnetstruts-2-tiles-plugin-tutorial-with-example-in-eclipse">2. Tiles: https://www.viralpatel.net/struts-2-tiles-plugin-tutorial-with-example-in-eclipse/</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pomxml">pom.xml</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#webxml">web.xml</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tilesxml">tiles.xml</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#baselayoutjsp">baseLayout.jsp</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#headerjsp">header.jsp</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#footerjsp">footer.jsp</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dynamic-body">Dynamic Body</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#test">Test</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssh/">SSH (Struts2 + Spring5 + Hibernate4)</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-cloud-feign/">Spring Cloud - OpenFeign Client</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-cloud-config/">Spring Cloud - Config Server</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-cloud-eureka/">Spring Cloud - Eureka Server</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-ldap/">Spring Security & LDAP</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-keycloak/">Spring Boot 3 and Keycloak</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-data-jpa/">Spring Data JPA</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-security/">Spring Boot 3 and Spring Security 6 (JWT Authentication and Authorization)</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../flutter/">FlutterFire</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../nfs/">NFS</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../velero/">Velero</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../traefik/">Treafik</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../dapr/">Dapr</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../docker/">Docker</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../practicek8s/">Kubernetes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sonarqube/">SonarQube</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../drone/">Drone</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../microk8s/">Microk8s</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">About</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Aweit Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Struts + Tiles2</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h4 id="struts2-tiles2-mdb">Struts2 + Tiles2 + MDB</h4>
+<h5 id="ui">UI 框架</h5>
+<h6 id="1-mdb-httpsmdbootstrapcom">1. MDB: <a href="https://mdbootstrap.com/">https://mdbootstrap.com/</a></h6>
+<h6 id="2-tiles-httpswwwviralpatelnetstruts-2-tiles-plugin-tutorial-with-example-in-eclipse">2. Tiles: <a href="https://www.viralpatel.net/struts-2-tiles-plugin-tutorial-with-example-in-eclipse/">https://www.viralpatel.net/struts-2-tiles-plugin-tutorial-with-example-in-eclipse/</a></h6>
+<p><img alt="Alt text" src="../image-147.png" /></p>
+<h5 id="pomxml">pom.xml</h5>
+<pre><code>&lt;!-- Tiles2 --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.struts&lt;/groupId&gt;
+    &lt;artifactId&gt;struts2-tiles-plugin&lt;/artifactId&gt;
+    &lt;version&gt;2.3.8&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h5 id="webxml">web.xml</h5>
+<pre><code>&lt;!-- Tiles2 --&gt;
+&lt;listener&gt;
+    &lt;listener-class&gt;org.apache.struts2.tiles.StrutsTilesListener&lt;/listener-class&gt;
+&lt;/listener&gt;
+&lt;context-param&gt;
+    &lt;param-name&gt;tilesDefinitions&lt;/param-name&gt;
+    &lt;param-value&gt;/WEB-INF/tiles.xml&lt;/param-value&gt;
+&lt;/context-param&gt;
+</code></pre>
+<h5 id="tilesxml">tiles.xml</h5>
+<pre><code>&lt;!DOCTYPE tiles-definitions PUBLIC
+    &quot;-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN&quot;
+    &quot;http://tiles.apache.org/dtds/tiles-config_2_0.dtd&quot;&gt;
+
+&lt;tiles-definitions&gt;
+    &lt;definition name=&quot;baseLayout&quot; template=&quot;/WEB-INF/layouts/baseLayout.jsp&quot;&gt;
+        &lt;put-attribute name=&quot;title&quot; value=&quot;My Application&quot; /&gt;
+        &lt;put-attribute name=&quot;header&quot; value=&quot;/WEB-INF/layouts/header.jsp&quot; /&gt;
+        &lt;put-attribute name=&quot;body&quot; value=&quot;&quot; /&gt;
+        &lt;put-attribute name=&quot;footer&quot; value=&quot;/WEB-INF/layouts/footer.jsp&quot; /&gt;
+    &lt;/definition&gt;
+&lt;/tiles-definitions&gt;
+</code></pre>
+<h5 id="baselayoutjsp">baseLayout.jsp</h5>
+<pre><code>&lt;%@ taglib prefix=&quot;tiles&quot; uri=&quot;http://tiles.apache.org/tags-tiles&quot;%&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;&lt;tiles:getAsString name=&quot;title&quot; /&gt;&lt;/title&gt;
+    &lt;!-- Font Awesome --&gt;
+    &lt;link href=&quot;https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css&quot; rel=&quot;stylesheet&quot; /&gt;
+    &lt;!-- Google Fonts --&gt;
+    &lt;link href=&quot;https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap&quot; rel=&quot;stylesheet&quot; /&gt;
+    &lt;!-- MDB --&gt;
+    &lt;link href=&quot;${pageContext.request.contextPath}/css/mdb.min.css&quot; rel=&quot;stylesheet&quot; /&gt;
+    &lt;!-- MDB --&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;${pageContext.request.contextPath}/js/mdb.min.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;tiles:insertAttribute name=&quot;header&quot; /&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;tiles:insertAttribute name=&quot;body&quot; /&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        &lt;tiles:insertAttribute name=&quot;footer&quot; /&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h5 id="headerjsp">header.jsp</h5>
+<pre><code>&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;
+    pageEncoding=&quot;UTF-8&quot;%&gt;
+
+&lt;header&gt;
+    &lt;!-- Navbar --&gt;
+    &lt;nav class=&quot;navbar navbar-expand-lg navbar-light bg-white fixed-top&quot;&gt;
+        &lt;div class=&quot;container-fluid&quot;&gt;
+            &lt;button class=&quot;navbar-toggler&quot; type=&quot;button&quot;
+                data-mdb-toggle=&quot;collapse&quot; data-mdb-target=&quot;#navbarExample01&quot;
+                aria-controls=&quot;navbarExample01&quot; aria-expanded=&quot;false&quot;
+                aria-label=&quot;Toggle navigation&quot;&gt;
+                &lt;i class=&quot;fas fa-bars&quot;&gt;&lt;/i&gt;
+            &lt;/button&gt;
+            &lt;div class=&quot;collapse navbar-collapse&quot; id=&quot;navbarExample01&quot;&gt;
+                &lt;ul class=&quot;navbar-nav me-auto mb-2 mb-lg-0&quot;&gt;
+                    &lt;li class=&quot;nav-item active&quot;&gt;&lt;a class=&quot;nav-link&quot; aria-current=&quot;page&quot; href=&quot;${pageContext.request.contextPath}/hello&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+                    &lt;li class=&quot;nav-item&quot;&gt;&lt;a class=&quot;nav-link&quot; href=&quot;${pageContext.request.contextPath}/admin/index&quot;&gt;Caculate&lt;/a&gt;&lt;/li&gt;
+                    &lt;li class=&quot;nav-item&quot;&gt;&lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Pricing&lt;/a&gt;&lt;/li&gt;
+                    &lt;li class=&quot;nav-item&quot;&gt;&lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;
+</code></pre>
+<h5 id="footerjsp">footer.jsp</h5>
+<pre><code>&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;
+    pageEncoding=&quot;UTF-8&quot;%&gt;
+
+&lt;!-- Footer --&gt;
+&lt;footer class=&quot;text-center text-lg-start bg-light text-muted&quot;&gt;
+    &lt;!-- Section: Social media --&gt;
+    &lt;section
+        class=&quot;d-flex justify-content-center justify-content-lg-between p-4 border-bottom&quot;&gt;
+        &lt;!-- Left --&gt;
+        &lt;div class=&quot;me-5 d-none d-lg-block&quot;&gt;
+            &lt;span&gt;Get connected with us on social networks:&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;!-- Left --&gt;
+
+        &lt;!-- Right --&gt;
+        &lt;div&gt;
+            &lt;a href=&quot;&quot; class=&quot;me-4 text-reset&quot;&gt; &lt;i class=&quot;fab fa-facebook-f&quot;&gt;&lt;/i&gt;
+            &lt;/a&gt; &lt;a href=&quot;&quot; class=&quot;me-4 text-reset&quot;&gt; &lt;i class=&quot;fab fa-twitter&quot;&gt;&lt;/i&gt;
+            &lt;/a&gt; &lt;a href=&quot;&quot; class=&quot;me-4 text-reset&quot;&gt; &lt;i class=&quot;fab fa-google&quot;&gt;&lt;/i&gt;
+            &lt;/a&gt; &lt;a href=&quot;&quot; class=&quot;me-4 text-reset&quot;&gt; &lt;i class=&quot;fab fa-instagram&quot;&gt;&lt;/i&gt;
+            &lt;/a&gt; &lt;a href=&quot;&quot; class=&quot;me-4 text-reset&quot;&gt; &lt;i class=&quot;fab fa-linkedin&quot;&gt;&lt;/i&gt;
+            &lt;/a&gt; &lt;a href=&quot;&quot; class=&quot;me-4 text-reset&quot;&gt; &lt;i class=&quot;fab fa-github&quot;&gt;&lt;/i&gt;
+            &lt;/a&gt;
+        &lt;/div&gt;
+        &lt;!-- Right --&gt;
+    &lt;/section&gt;
+    &lt;!-- Section: Social media --&gt;
+
+    &lt;!-- Section: Links  --&gt;
+    &lt;section class=&quot;&quot;&gt;
+        &lt;div class=&quot;container text-center text-md-start mt-5&quot;&gt;
+            &lt;!-- Grid row --&gt;
+            &lt;div class=&quot;row mt-3&quot;&gt;
+                &lt;!-- Grid column --&gt;
+                &lt;div class=&quot;col-md-3 col-lg-4 col-xl-3 mx-auto mb-4&quot;&gt;
+                    &lt;!-- Content --&gt;
+                    &lt;h6 class=&quot;text-uppercase fw-bold mb-4&quot;&gt;
+                        &lt;i class=&quot;fas fa-gem me-3&quot;&gt;&lt;/i&gt;Company name
+                    &lt;/h6&gt;
+                    &lt;p&gt;Here you can use rows and columns to organize your footer
+                        content. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    &lt;/p&gt;
+                &lt;/div&gt;
+                &lt;!-- Grid column --&gt;
+
+                &lt;!-- Grid column --&gt;
+                &lt;div class=&quot;col-md-2 col-lg-2 col-xl-2 mx-auto mb-4&quot;&gt;
+                    &lt;!-- Links --&gt;
+                    &lt;h6 class=&quot;text-uppercase fw-bold mb-4&quot;&gt;Products&lt;/h6&gt;
+                    &lt;p&gt;
+                        &lt;a href=&quot;#!&quot; class=&quot;text-reset&quot;&gt;Angular&lt;/a&gt;
+                    &lt;/p&gt;
+                    &lt;p&gt;
+                        &lt;a href=&quot;#!&quot; class=&quot;text-reset&quot;&gt;React&lt;/a&gt;
+                    &lt;/p&gt;
+                    &lt;p&gt;
+                        &lt;a href=&quot;#!&quot; class=&quot;text-reset&quot;&gt;Vue&lt;/a&gt;
+                    &lt;/p&gt;
+                    &lt;p&gt;
+                        &lt;a href=&quot;#!&quot; class=&quot;text-reset&quot;&gt;Laravel&lt;/a&gt;
+                    &lt;/p&gt;
+                &lt;/div&gt;
+                &lt;!-- Grid column --&gt;
+
+                &lt;!-- Grid column --&gt;
+                &lt;div class=&quot;col-md-3 col-lg-2 col-xl-2 mx-auto mb-4&quot;&gt;
+                    &lt;!-- Links --&gt;
+                    &lt;h6 class=&quot;text-uppercase fw-bold mb-4&quot;&gt;Useful links&lt;/h6&gt;
+                    &lt;p&gt;
+                        &lt;a href=&quot;#!&quot; class=&quot;text-reset&quot;&gt;Pricing&lt;/a&gt;
+                    &lt;/p&gt;
+                    &lt;p&gt;
+                        &lt;a href=&quot;#!&quot; class=&quot;text-reset&quot;&gt;Settings&lt;/a&gt;
+                    &lt;/p&gt;
+                    &lt;p&gt;
+                        &lt;a href=&quot;#!&quot; class=&quot;text-reset&quot;&gt;Orders&lt;/a&gt;
+                    &lt;/p&gt;
+                    &lt;p&gt;
+                        &lt;a href=&quot;#!&quot; class=&quot;text-reset&quot;&gt;Help&lt;/a&gt;
+                    &lt;/p&gt;
+                &lt;/div&gt;
+                &lt;!-- Grid column --&gt;
+
+                &lt;!-- Grid column --&gt;
+                &lt;div class=&quot;col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4&quot;&gt;
+                    &lt;!-- Links --&gt;
+                    &lt;h6 class=&quot;text-uppercase fw-bold mb-4&quot;&gt;Contact&lt;/h6&gt;
+                    &lt;p&gt;
+                        &lt;i class=&quot;fas fa-home me-3&quot;&gt;&lt;/i&gt; New York, NY 10012, US
+                    &lt;/p&gt;
+                    &lt;p&gt;
+                        &lt;i class=&quot;fas fa-envelope me-3&quot;&gt;&lt;/i&gt; info@example.com
+                    &lt;/p&gt;
+                    &lt;p&gt;
+                        &lt;i class=&quot;fas fa-phone me-3&quot;&gt;&lt;/i&gt; + 01 234 567 88
+                    &lt;/p&gt;
+                    &lt;p&gt;
+                        &lt;i class=&quot;fas fa-print me-3&quot;&gt;&lt;/i&gt; + 01 234 567 89
+                    &lt;/p&gt;
+                &lt;/div&gt;
+                &lt;!-- Grid column --&gt;
+            &lt;/div&gt;
+            &lt;!-- Grid row --&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+    &lt;!-- Section: Links  --&gt;
+
+    &lt;!-- Copyright --&gt;
+    &lt;div class=&quot;text-center p-4&quot;
+        style=&quot;background-color: rgba(0, 0, 0, 0.05);&quot;&gt;
+        © 2021 Copyright: &lt;a class=&quot;text-reset fw-bold&quot;
+            href=&quot;https://mdbootstrap.com/&quot;&gt;MDBootstrap.com&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;!-- Copyright --&gt;
+&lt;/footer&gt;
+&lt;!-- Footer --&gt;
+</code></pre>
+<h5 id="dynamic-body">Dynamic Body</h5>
+<pre><code>&lt;%@taglib prefix=&quot;tiles&quot; uri=&quot;http://tiles.apache.org/tags-tiles&quot;%&gt;
+&lt;%@ taglib prefix=&quot;s&quot; uri=&quot;/struts-tags&quot;%&gt;
+&lt;tiles:insertDefinition name=&quot;baseLayout&quot;&gt;
+    &lt;tiles:putAttribute name=&quot;body&quot;&gt;
+        &lt;div class=&quot;p-5 text-center bg-light&quot; style=&quot;margin-top: 58px;&quot;&gt;
+            &lt;center&gt;
+                &lt;h2&gt;Calculate sum of two numbers&lt;/h2&gt;
+                &lt;s:form action=&quot;/admin/calculateSumAction&quot; method=&quot;post&quot;&gt;
+                    &lt;s:textfield name=&quot;x&quot; size=&quot;10&quot; label=&quot;Enter X&quot; /&gt;
+                    &lt;s:textfield name=&quot;y&quot; size=&quot;10&quot; label=&quot;Enter Y&quot; /&gt;
+                    &lt;s:submit value=&quot;Calculate&quot; /&gt;
+                &lt;/s:form&gt;
+            &lt;/center&gt;
+        &lt;/div&gt;
+    &lt;/tiles:putAttribute&gt;
+&lt;/tiles:insertDefinition&gt;
+</code></pre>
+<h5 id="test">Test</h5>
+<p><a href="http://localhost:8080/Struts2Beginner/admin/index">http://localhost:8080/Struts2Beginner/admin/index</a></p>
+<p><img alt="Alt text" src="../image-146.png" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../ssh/" class="btn btn-neutral float-right" title="SSH (Struts2 + Spring5 + Hibernate4)">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="../ssh/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
