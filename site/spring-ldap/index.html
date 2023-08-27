@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="weizhi.zhu" /><link rel="canonical" href="https://aweit-zhu.github.io/spring-ldap/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Spring Security & LDAP - Aweit Docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Spring Security \u0026 LDAP";
+        var mkdocs_page_input_path = "spring-ldap.md";
+        var mkdocs_page_url = "/spring-ldap/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Aweit Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tiles/">Struts2 + Apache Tiles</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssh/">SSH (Struts2 + Spring5 + Hibernate4)</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-cloud-feign/">Spring Cloud - OpenFeign Client</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-cloud-config/">Spring Cloud - Config Server</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-cloud-eureka/">Spring Cloud - Eureka Server</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Spring Security & LDAP</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#ldap">LDAP</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#spring-security-and-ldap">Spring Security and LDAP</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">測試</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#-403">補充-客製403錯誤頁面</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-keycloak/">Spring Boot 3 and Keycloak</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-data-jpa/">Spring Data JPA</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-security/">Spring Boot 3 and Spring Security 6 (JWT Authentication and Authorization)</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../flutter/">FlutterFire</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../nfs/">NFS</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../velero/">Velero</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../traefik/">Treafik</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../dapr/">Dapr</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../docker/">Docker</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../practicek8s/">Kubernetes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sonarqube/">SonarQube</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../drone/">Drone</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../microk8s/">Microk8s</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">About</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Aweit Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Spring Security & LDAP</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="spring-security-ldap">Spring Security &amp; LDAP</h1>
+<p>完整程式碼：<a href="https://github.com/aweit-zhu/SpringSecurityLdap">https://github.com/aweit-zhu/SpringSecurityLdap</a></p>
+<h3 id="ldap">LDAP</h3>
+<blockquote>
+<p>LDAP (Lightweight Directory Access Protocol, 輕型目錄存取協定)，除了有 Windows 的 AD(Active Directory)外，還有開源的 OpenLDAP。</p>
+<p>OpenLDAP 可以透過瀏覽器直接管理 (phpLDAPadmin )。</p>
+</blockquote>
+<p>1.docker-compose.yaml</p>
+<pre><code>services:
+  openldap:
+    image: osixia/openldap
+    environment:
+      - LDAP_ORGANISATION=Example Inc.
+      - LDAP_DOMAIN=example.com
+      - LDAP_ADMIN_PASSWORD=admin
+    ports:
+      - 389:389
+    volumes:
+      - ./data/ldap:/var/lib/ldap
+      - ./data/slapd:/etc/ldap/slapd.d
+
+  phpldapadmin:
+    image: osixia/phpldapadmin
+    environment:
+      - PHPLDAPADMIN_LDAP_HOSTS=openldap
+      - PHPLDAPADMIN_HTTPS=false
+    ports:
+      - 8080:80
+    depends_on:
+      - openldap
+</code></pre>
+<p><img alt="Alt text" src="../image-110.png" /></p>
+<p>網址：http://localhost:8080/
+帳號：cn=admin,dc=example,dc=com
+密碼：admin
+<img alt="Alt text" src="../image-111.png" /></p>
+<ol>
+<li>建立 OU (Organisational Unit)：groups、users。</li>
+</ol>
+<p>點選 Organisational Unit
+<img alt="Alt text" src="../image-112.png" /></p>
+<p>輸入 users
+<img alt="Alt text" src="../image-113.png" /></p>
+<p>接著重複動作，建立 users。</p>
+<ol>
+<li>建立 Generic: Posix Group：admin、user</li>
+</ol>
+<p><img alt="Alt text" src="../image-114.png" /></p>
+<ol>
+<li>在 ou=groups上，建立兩個角色：admin、user
+<img alt="Alt text" src="../image-115.png" /></li>
+</ol>
+<p><img alt="Alt text" src="../image-116.png" /></p>
+<ol>
+<li>在 ou-users上，建立 Generic: User Account：weizhi</li>
+</ol>
+<p><img alt="Alt text" src="../image-117.png" /></p>
+<p>GID Number = Group ID 號碼，就是剛剛建立的 admin 和 user
+<img alt="Alt text" src="../image-118.png" /></p>
+<ol>
+<li>綁定 User Account 至 Posix Group 中，要用 DN 新增。</li>
+</ol>
+<p><img alt="Alt text" src="../image-119.png" /></p>
+<h3 id="spring-security-and-ldap">Spring Security and LDAP</h3>
+<blockquote>
+<p>建立具有認證與授權的Controller，其中 /admin 的路徑需要有 ADMIN 權限、/user 的路徑需要有 USER 權限。</p>
+<p>使用 Spring Security 的機制，但 User 的整合(帳號、密碼、授權) 需要由 LDAP提供。</p>
+</blockquote>
+<p><img alt="Alt text" src="../image-120.png" /></p>
+<ol>
+<li>pom.xml</li>
+</ol>
+<pre><code>&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    &lt;parent&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+        &lt;version&gt;2.6.15&lt;/version&gt;
+        &lt;relativePath /&gt; &lt;!-- lookup parent from repository --&gt;
+    &lt;/parent&gt;
+    &lt;groupId&gt;com.example&lt;/groupId&gt;
+    &lt;artifactId&gt;SpringSecurityLdap&lt;/artifactId&gt;
+    &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+    &lt;name&gt;SpringSecurityLdap&lt;/name&gt;
+    &lt;description&gt;Demo project for Spring Boot&lt;/description&gt;
+    &lt;properties&gt;
+        &lt;java.version&gt;17&lt;/java.version&gt;
+    &lt;/properties&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;!-- Spring Security --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+
+        &lt;!-- Spring LDAP --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-data-ldap&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-security-ldap&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;
+            &lt;scope&gt;runtime&lt;/scope&gt;
+            &lt;optional&gt;true&lt;/optional&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+            &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+            &lt;optional&gt;true&lt;/optional&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-security-test&lt;/artifactId&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+
+    &lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+                &lt;configuration&gt;
+                    &lt;excludes&gt;
+                        &lt;exclude&gt;
+                            &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+                            &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+                        &lt;/exclude&gt;
+                    &lt;/excludes&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+
+&lt;/project&gt;
+
+</code></pre>
+<ol>
+<li>application.properties</li>
+</ol>
+<pre><code>ldap.url=ldap://localhost:389
+ldap.username=cn=admin,dc=example,dc=com
+ldap.password=admin
+ldap.baseDn=dc=example,dc=com
+server.port=8091
+</code></pre>
+<ol>
+<li>LdapConfig.java</li>
+</ol>
+<pre><code>import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.ldap.core.LdapTemplate;
+import org.springframework.ldap.core.support.LdapContextSource;
+
+@Configuration
+public class LdapConfig {
+
+    @Value(&quot;${ldap.url}&quot;)
+    private String ldapUrl;
+
+    @Value(&quot;${ldap.username}&quot;)
+    private String ldapUsername;
+
+    @Value(&quot;${ldap.password}&quot;)
+    private String ldapPassword;
+
+    @Bean
+    public LdapContextSource ldapContextSource() {
+        LdapContextSource ldapContextSource = new LdapContextSource();
+        ldapContextSource.setUrl(ldapUrl);
+        ldapContextSource.setUserDn(ldapUsername);
+        ldapContextSource.setPassword(ldapPassword);
+        return ldapContextSource;
+    }
+
+    @Bean
+    public LdapTemplate ldapTemplate() {
+        return new LdapTemplate(ldapContextSource());
+    }
+}
+
+</code></pre>
+<ol>
+<li>SecurityConfig.java</li>
+</ol>
+<pre><code>import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.ldap.core.LdapTemplate;
+import org.springframework.ldap.core.support.LdapContextSource;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.ldap.authentication.BindAuthenticator;
+import org.springframework.security.ldap.authentication.LdapAuthenticationProvider;
+import org.springframework.security.ldap.authentication.LdapAuthenticator;
+import org.springframework.security.ldap.search.FilterBasedLdapUserSearch;
+import org.springframework.security.ldap.search.LdapUserSearch;
+import org.springframework.security.ldap.userdetails.DefaultLdapAuthoritiesPopulator;
+import org.springframework.security.ldap.userdetails.LdapAuthoritiesPopulator;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+
+import com.example.filter.LdapAuthoritiesFilter;
+import com.example.mapper.LdapUserDetailsMapper;
+
+@Configuration
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    LdapContextSource ldapContextSource;
+
+    @Autowired
+    LdapTemplate ldapTemplate;
+
+    @Autowired
+    LdapAuthoritiesFilter ldapAuthoriesFilter;
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(ldapAuthenticationProvider());
+    }
+
+    @Bean
+    public AuthenticationProvider ldapAuthenticationProvider() {
+        LdapAuthenticationProvider ldapAuthenticationProvider = new LdapAuthenticationProvider(ldapBindAuthenticator(),
+                ldapAuthoritiesPopulator());
+        ldapAuthenticationProvider.setUserDetailsContextMapper(new LdapUserDetailsMapper());
+        return ldapAuthenticationProvider;
+    }
+
+    @Bean
+    public LdapAuthenticator ldapBindAuthenticator() {
+        BindAuthenticator bindAuthenticator = new BindAuthenticator(ldapContextSource);
+        bindAuthenticator.setUserSearch(ldapUserSearch());
+        return bindAuthenticator;
+    }
+
+    @Bean
+    public LdapAuthoritiesPopulator ldapAuthoritiesPopulator() {
+        DefaultLdapAuthoritiesPopulator authoritiesPopulator = new DefaultLdapAuthoritiesPopulator(ldapContextSource,
+                &quot;ou=groups,dc=example,dc=com&quot;);
+        authoritiesPopulator.setGroupSearchFilter(&quot;memberUid={0}&quot;);
+        return authoritiesPopulator;
+    }
+
+    @Bean
+    public LdapUserSearch ldapUserSearch() {
+        return new FilterBasedLdapUserSearch(&quot;ou=users,dc=example,dc=com&quot;, &quot;(uid={0})&quot;, ldapContextSource);
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.
+        addFilterBefore(ldapAuthoriesFilter,BasicAuthenticationFilter.class).authorizeRequests()
+          .antMatchers(&quot;/admin/**&quot;).hasAnyRole(&quot;ADMIN&quot;) 
+          .antMatchers(&quot;/user/**&quot;).hasAnyRole(&quot;ADMIN&quot;, &quot;USER&quot;)
+          .anyRequest().authenticated()
+        .and()
+          .csrf().ignoringAntMatchers(&quot;/admin/user&quot;)
+        .and()
+          .formLogin()
+        .and()
+          .logout();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+}
+}
+</code></pre>
+<p>4.LdapUserDetailsMapper.java</p>
+<pre><code>import java.nio.charset.StandardCharsets;
+import java.util.Collection;
+
+import org.springframework.ldap.core.DirContextAdapter;
+import org.springframework.ldap.core.DirContextOperations;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.ldap.userdetails.UserDetailsContextMapper;
+
+public class LdapUserDetailsMapper implements UserDetailsContextMapper {
+
+    @Override
+    public UserDetails mapUserFromContext(DirContextOperations ctx, String username, Collection&lt;? extends GrantedAuthority&gt; authorities) {
+        String ldapUsername = ctx.getStringAttribute(&quot;uid&quot;);
+        byte[] binaryData = (byte[]) ctx.getObjectAttribute(&quot;userPassword&quot;);
+        String ldapPassword = new String(binaryData, StandardCharsets.UTF_8);        
+        return User.builder()
+                .username(ldapUsername)
+                .password(ldapPassword)
+                .authorities(authorities)
+                .build();
+    }
+
+    @Override
+    public void mapUserToContext(UserDetails user, DirContextAdapter ctx) {
+        // Not implemented as this is not needed for authentication
+    }
+}
+</code></pre>
+<p>5.LdapAuthoritiesFilter.java </p>
+<pre><code>import java.io.IOException;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.naming.NamingException;
+import javax.naming.directory.Attributes;
+import javax.naming.directory.SearchControls;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ldap.core.ContextMapper;
+import org.springframework.ldap.core.DirContextOperations;
+import org.springframework.ldap.core.LdapTemplate;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+@Component
+public class LdapAuthoritiesFilter extends OncePerRequestFilter {
+
+    @Autowired
+    LdapTemplate ldapTemplate;
+
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication != null &amp;&amp; authentication.isAuthenticated()
+                &amp;&amp; authentication instanceof UsernamePasswordAuthenticationToken) {
+            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = (UsernamePasswordAuthenticationToken) authentication;
+            if (usernamePasswordAuthenticationToken.getPrincipal() instanceof User) {
+                User ldapUserDetails = (User) usernamePasswordAuthenticationToken.getPrincipal();
+                UsernamePasswordAuthenticationToken updatedAuthentication = new UsernamePasswordAuthenticationToken(
+                        ldapUserDetails, ldapUserDetails.getPassword(),
+                        retrieveLdapAuthorities(ldapUserDetails.getUsername()));
+                updatedAuthentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                SecurityContextHolder.getContext().setAuthentication(updatedAuthentication);
+            }
+        }
+
+        // Proceed with the filter chain
+        filterChain.doFilter(request, response);
+    }
+
+    private Collection&lt;? extends GrantedAuthority&gt; retrieveLdapAuthorities(String username) {
+
+        // Define the LDAP search filter to retrieve the authorities for the user
+        String filter = &quot;(memberUid=cn=&quot; + username + &quot;,ou=users,dc=example,dc=com)&quot;;
+
+        // Set the search controls to limit the attributes returned
+        SearchControls searchControls = new SearchControls();
+        searchControls.setSearchScope(SearchControls.SUBTREE_SCOPE);
+        searchControls.setReturningAttributes(new String[] { &quot;cn&quot; });
+
+        // Perform the LDAP search and retrieve the authorities
+        Set&lt;GrantedAuthority&gt; authorities = new HashSet&lt;&gt;();
+        ldapTemplate.search(&quot;ou=groups,dc=example,dc=com&quot;, filter, searchControls, (ContextMapper&lt;Void&gt;) ctx -&gt; {
+            Attributes attributes = ((DirContextOperations) ctx).getAttributes();
+            try {
+                javax.naming.directory.Attribute memberOfAttribute = attributes.get(&quot;cn&quot;);
+                if (memberOfAttribute != null) {
+                    for (int i = 0; i &lt; memberOfAttribute.size(); i++) {
+                        String authority = (String) memberOfAttribute.get(i);
+                        authorities.add(new SimpleGrantedAuthority(&quot;ROLE_&quot; + authority.toUpperCase()));
+                    }
+                }
+            } catch (NamingException e) {
+                e.printStackTrace();
+            }
+            return null;
+        });
+        return authorities;
+    }
+}
+</code></pre>
+<ol>
+<li>建立 Controller：Admin、Controller</li>
+</ol>
+<pre><code>import java.security.NoSuchAlgorithmException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.model.LdapUser;
+import com.example.service.LdapUserService;
+
+@RestController
+@RequestMapping(&quot;/admin&quot;)
+public class AdminController {
+
+    @Autowired
+    LdapUserService ldapUserService;
+
+    @GetMapping(&quot;&quot;)
+    public String admin() {
+        return &quot;admin is here&quot;;
+    }
+
+    @PostMapping(&quot;/user&quot;)
+    public void createUser(@RequestBody LdapUser user) throws NoSuchAlgorithmException {
+        ldapUserService.createUser(user);
+    }
+}
+</code></pre>
+<pre><code>import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping(&quot;/user&quot;)
+public class UserController {
+
+    @GetMapping(&quot;&quot;)
+    public String index() {
+        return &quot;Welcome to the User page!&quot;;
+    }
+
+}
+</code></pre>
+<ol>
+<li>建立 Service</li>
+</ol>
+<pre><code>import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
+
+import javax.naming.Name;
+import javax.naming.directory.Attributes;
+import javax.naming.directory.Attribute;
+import javax.naming.directory.BasicAttribute;
+import javax.naming.directory.BasicAttributes;
+import javax.naming.directory.DirContext;
+import javax.naming.directory.ModificationItem;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ldap.core.LdapTemplate;
+import org.springframework.ldap.support.LdapUtils;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.example.model.LdapUser;
+
+@Service
+public class LdapUserService {
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @Autowired
+    LdapTemplate ldapTemplate;
+
+    final Base64.Encoder encoder = Base64.getEncoder();
+
+    public void createUser(LdapUser user) throws NoSuchAlgorithmException {
+
+        // Create user
+        Attribute objectClass = new BasicAttribute(&quot;objectClass&quot;);
+        objectClass.add(&quot;top&quot;);
+        objectClass.add(&quot;person&quot;);
+        objectClass.add(&quot;organizationalPerson&quot;);
+        objectClass.add(&quot;inetOrgPerson&quot;);
+
+        Attributes attributes = new BasicAttributes();
+        attributes.put(objectClass);
+        attributes.put(&quot;cn&quot;, user.getUsername());
+        attributes.put(&quot;sn&quot;, user.getUsername());
+        attributes.put(&quot;userid&quot;, user.getUsername());
+        attributes.put(&quot;userPassword&quot;, &quot;{md5}&quot; + encodePassword(user.getPassword()));
+
+        String dnStr = &quot;cn=&quot; + user.getUsername() + &quot;,ou=users,dc=example,dc=com&quot;;
+        Name dn = LdapUtils.newLdapName(dnStr);
+        ldapTemplate.bind(dn, null, attributes);
+
+        // Add role list to 'cn=users,ou=groups,dc=example,dc=com'
+        Attribute memberUid = new BasicAttribute(&quot;memberUid&quot;, dnStr);
+        ModificationItem[] modificationItems = new ModificationItem[1];
+        modificationItems[0] = new ModificationItem(DirContext.ADD_ATTRIBUTE, memberUid);
+
+        Name groupDn = LdapUtils.newLdapName(&quot;cn=user,ou=groups,dc=example,dc=com&quot;);
+        ldapTemplate.modifyAttributes(groupDn, modificationItems);
+
+    }
+
+    private String encodePassword(String password) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance(&quot;MD5&quot;);
+        md.update(password.getBytes());
+        byte[] digest = md.digest();
+        String base64str = encoder.encodeToString(digest);
+        return base64str;
+    }
+
+}
+</code></pre>
+<ol>
+<li>建立 Model：LdapUser、ErrorResponse</li>
+</ol>
+<pre><code>import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@Builder
+@ToString
+public class LdapUser {
+    private String username;
+    private String password;
+}
+</code></pre>
+<pre><code>import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@Builder
+public class ErrorResponse {
+    private String message;
+    private int status;
+    private long timestamp;
+}
+</code></pre>
+<ol>
+<li>建立全域捕捉例外</li>
+</ol>
+<pre><code>import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import com.example.model.ErrorResponse;
+
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ErrorResponse handleCustomException(Exception ex) {
+        return ErrorResponse.builder()
+                .message(ex.getMessage())
+                .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .timestamp(System.currentTimeMillis())
+                .build();
+    }
+}
+
+</code></pre>
+<h3 id="_1">測試</h3>
+<ol>
+<li>建立 User (要先取得Token，並且將 Token 複製到 Postman 中)</li>
+</ol>
+<p><img alt="Alt text" src="../image-121.png" /></p>
+<p><img alt="Alt text" src="../image-122.png" /></p>
+<ol>
+<li>預設帳號只有 User 功能，所以用 yushu.wu 測試。</li>
+</ol>
+<p>輸入 http://localhost:8090/user 會轉址到登入頁面(輸入yushu.wu/123)</p>
+<p><img alt="Alt text" src="../image-123.png" /></p>
+<p>成功後即會看到正確訊息
+<img alt="Alt text" src="../image-124.png" /></p>
+<p>3.若接著輸入 http://localhost:8090/admin，則會因為權限問題回傳403錯誤。</p>
+<p><img alt="Alt text" src="../image-125.png" /></p>
+<h3 id="-403">補充-客製403錯誤頁面</h3>
+<p><img alt="Alt text" src="../image-126.png" /></p>
+<ol>
+<li>SecurityConfig.java</li>
+</ol>
+<pre><code>import org.springframework.security.web.access.AccessDeniedHandler;
+import com.example.exception.CustomAccessDeniedHandler;
+...
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+        .addFilterBefore(ldapAuthoriesFilter,BasicAuthenticationFilter.class).authorizeRequests()
+          .antMatchers(&quot;/admin/**&quot;).hasAnyRole(&quot;ADMIN&quot;) 
+          .antMatchers(&quot;/user/**&quot;).hasAnyRole(&quot;ADMIN&quot;, &quot;USER&quot;)
+          .anyRequest().authenticated()
+        .and()
+          .csrf().ignoringAntMatchers(&quot;/admin/user&quot;)
+        .and()
+          .formLogin()
+        .and()
+          .exceptionHandling().accessDeniedHandler(accessDeniedHandler())
+        .and()
+          .logout();
+    }
+
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler() {
+        return new CustomAccessDeniedHandler();
+    }
+...
+</code></pre>
+<p>CustomAccessDeniedHandler.java</p>
+<pre><code>import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.stereotype.Component;
+
+@Component
+public class CustomAccessDeniedHandler implements AccessDeniedHandler {
+
+    @Override
+    public void handle(HttpServletRequest request, HttpServletResponse response, 
+                       AccessDeniedException accessDeniedException) throws IOException, ServletException {
+        response.sendRedirect(&quot;/error-403&quot;); // Redirect to the custom error page
+    }
+}
+</code></pre>
+<p>HomeController.java</p>
+<pre><code>import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class HomeController {
+
+    @RequestMapping(&quot;/error-403&quot;)
+    public String accessDenied() {
+        return &quot;error/error-403&quot;;
+    }
+}
+</code></pre>
+<p>error-403.html (路徑： src/main/resources/application.properties )</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;403 Error - Access Denied&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;h1&gt;403 Error - Access Denied&lt;/h1&gt;
+        &lt;p&gt;You are not authorized to access this page.&lt;/p&gt;
+        &lt;p&gt;Please contact the administrator for assistance or go back to the &lt;a href=&quot;/&quot;&gt;home page&lt;/a&gt;.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../spring-cloud-eureka/" class="btn btn-neutral float-left" title="Spring Cloud - Eureka Server"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../spring-keycloak/" class="btn btn-neutral float-right" title="Spring Boot 3 and Keycloak">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../spring-cloud-eureka/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../spring-keycloak/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

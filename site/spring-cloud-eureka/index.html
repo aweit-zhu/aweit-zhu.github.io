@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="weizhi.zhu" /><link rel="canonical" href="https://aweit-zhu.github.io/spring-cloud-eureka/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Spring Cloud - Eureka Server - Aweit Docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Spring Cloud - Eureka Server";
+        var mkdocs_page_input_path = "spring-cloud-eureka.md";
+        var mkdocs_page_url = "/spring-cloud-eureka/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Aweit Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tiles/">Struts2 + Apache Tiles</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssh/">SSH (Struts2 + Spring5 + Hibernate4)</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-cloud-feign/">Spring Cloud - OpenFeign Client</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-cloud-config/">Spring Cloud - Config Server</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Spring Cloud - Eureka Server</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#eureka-server">Eureka Server</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#eureka-server-code">Eureka Server - Code</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#eureka-client-code">Eureka Client - Code</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#test">Test</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-ldap/">Spring Security & LDAP</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-keycloak/">Spring Boot 3 and Keycloak</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-data-jpa/">Spring Data JPA</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-security/">Spring Boot 3 and Spring Security 6 (JWT Authentication and Authorization)</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../flutter/">FlutterFire</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../nfs/">NFS</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../velero/">Velero</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../traefik/">Treafik</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../dapr/">Dapr</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../docker/">Docker</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../practicek8s/">Kubernetes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sonarqube/">SonarQube</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../drone/">Drone</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../microk8s/">Microk8s</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">About</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Aweit Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Spring Cloud - Eureka Server</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h3 id="spring-cloud-eureka-server">Spring Cloud Eureka Server</h3>
+<p>程式碼：</p>
+<ol>
+<li>Eureka Server：<a href="https://github.com/aweit-zhu/SpringCloudEurekaServer">https://github.com/aweit-zhu/SpringCloudEurekaServer</a></li>
+<li>Eureka Client：<a href="https://github.com/aweit-zhu/SpringCloudEurekaClient">https://github.com/aweit-zhu/SpringCloudEurekaClient</a></li>
+</ol>
+<h4 id="eureka-server">Eureka Server</h4>
+<p><img alt="Alt text" src="../image-127.png" /></p>
+<blockquote>
+<ol>
+<li>Service Registration: Microservices that want to be discovered by other services register themselves with the Eureka Server. Each microservice instance is identified by a unique application name and instance ID.</li>
+<li>Service Discovery: Services that need to communicate with other services can query the Eureka Server to obtain the network location (host and port) of the desired service instance. Eureka Server maintains a registry of available service instances and provides this information to the clients.</li>
+<li>Heartbeat Monitoring: Eureka Server continuously checks the health of registered service instances by sending periodic heartbeat requests. If a service instance fails to respond to the heartbeat requests within a certain time period, it is considered offline and removed from the registry.</li>
+<li>Load Balancing: Eureka Server can also act as a load balancer by providing a list of available service instances for a particular service. Clients can use this information to implement load balancing strategies, such as round-robin or random selection, when making requests to the service.</li>
+<li>High Availability: Multiple instances of the Eureka Server can be deployed in a cluster to ensure high availability and fault tolerance. Each Eureka Server instance in the cluster keeps its own local registry, and they replicate and synchronize the registration information among themselves.</li>
+<li>Integration with Spring Cloud: Spring Cloud provides integration with Eureka Server through the <code>spring-cloud-starter-netflix-eureka-server</code> dependency. It simplifies the setup and configuration of Eureka Server in a Spring Boot application.</li>
+</ol>
+</blockquote>
+<h4 id="eureka-server-code">Eureka Server - Code</h4>
+<ol>
+<li>pom.xml</li>
+</ol>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    &lt;parent&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+        &lt;version&gt;2.7.14&lt;/version&gt;
+        &lt;relativePath /&gt; &lt;!-- lookup parent from repository --&gt;
+    &lt;/parent&gt;
+    &lt;groupId&gt;com.example&lt;/groupId&gt;
+    &lt;artifactId&gt;eureka-server&lt;/artifactId&gt;
+    &lt;version&gt;1.0.0&lt;/version&gt;
+    &lt;name&gt;SpringCloudEurekaServer&lt;/name&gt;
+    &lt;description&gt;Eureka Server using Spring Boot&lt;/description&gt;
+    &lt;properties&gt;
+        &lt;java.version&gt;11&lt;/java.version&gt;
+        &lt;spring-cloud.version&gt;2021.0.8&lt;/spring-cloud.version&gt;
+    &lt;/properties&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;
+            &lt;scope&gt;runtime&lt;/scope&gt;
+            &lt;optional&gt;true&lt;/optional&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+            &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+            &lt;optional&gt;true&lt;/optional&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+    &lt;dependencyManagement&gt;
+        &lt;dependencies&gt;
+            &lt;dependency&gt;
+                &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;
+                &lt;version&gt;${spring-cloud.version}&lt;/version&gt;
+                &lt;type&gt;pom&lt;/type&gt;
+                &lt;scope&gt;import&lt;/scope&gt;
+            &lt;/dependency&gt;
+        &lt;/dependencies&gt;
+    &lt;/dependencyManagement&gt;
+
+    &lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+                &lt;configuration&gt;
+                    &lt;excludes&gt;
+                        &lt;exclude&gt;
+                            &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+                            &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+                        &lt;/exclude&gt;
+                    &lt;/excludes&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+
+&lt;/project&gt;
+
+</code></pre>
+<ol>
+<li>application.yaml</li>
+</ol>
+<pre><code>server:
+  port: 8761
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+</code></pre>
+<ol>
+<li>Application.java：新增 @EnableEurekaServer</li>
+</ol>
+<pre><code>import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+
+@SpringBootApplication
+@EnableEurekaServer
+public class SpringCloudEurekaServerApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(SpringCloudEurekaServerApplication.class, args);
+    }
+
+}
+
+</code></pre>
+<ol>
+<li>啟動，並開啟瀏覽器，輸入：http://localhost:8761/</li>
+</ol>
+<p><img alt="Alt text" src="../image-128.png" /></p>
+<h4 id="eureka-client-code">Eureka Client - Code</h4>
+<ol>
+<li>pom.xml</li>
+</ol>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    &lt;parent&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+        &lt;version&gt;2.7.14&lt;/version&gt;
+        &lt;relativePath /&gt; &lt;!-- lookup parent from repository --&gt;
+    &lt;/parent&gt;
+    &lt;groupId&gt;com.example&lt;/groupId&gt;
+    &lt;artifactId&gt;eureka-client&lt;/artifactId&gt;
+    &lt;version&gt;1.0.0&lt;/version&gt;
+    &lt;name&gt;SpringCloudEurekaClient&lt;/name&gt;
+    &lt;description&gt;Eureka Client using Spring Boot&lt;/description&gt;
+    &lt;properties&gt;
+        &lt;java.version&gt;11&lt;/java.version&gt;
+        &lt;spring-cloud.version&gt;2021.0.8&lt;/spring-cloud.version&gt;
+    &lt;/properties&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;
+            &lt;scope&gt;runtime&lt;/scope&gt;
+            &lt;optional&gt;true&lt;/optional&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+            &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+            &lt;optional&gt;true&lt;/optional&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+        &lt;!-- Spring Cloud Config Client --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-cloud-config-client&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+    &lt;dependencyManagement&gt;
+        &lt;dependencies&gt;
+            &lt;dependency&gt;
+                &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;
+                &lt;version&gt;${spring-cloud.version}&lt;/version&gt;
+                &lt;type&gt;pom&lt;/type&gt;
+                &lt;scope&gt;import&lt;/scope&gt;
+            &lt;/dependency&gt;
+        &lt;/dependencies&gt;
+    &lt;/dependencyManagement&gt;
+
+    &lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+                &lt;configuration&gt;
+                    &lt;excludes&gt;
+                        &lt;exclude&gt;
+                            &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+                            &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+                        &lt;/exclude&gt;
+                    &lt;/excludes&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+
+&lt;/project&gt;
+
+</code></pre>
+<ol>
+<li>application.properties</li>
+</ol>
+<pre><code>server.port=8888
+spring.application.name=eureka-client-demo
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka
+management.endpoints.web.exposure.include=*
+</code></pre>
+<ol>
+<li>Application</li>
+</ol>
+<pre><code>@SpringBootApplication
+@EnableDiscoveryClient
+public class SpringCloudEurekaClientApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(SpringCloudEurekaClientApplication.class, args);
+    }
+
+}
+</code></pre>
+<ol>
+<li>RestTemplateConfig.java</li>
+</ol>
+<pre><code>import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
+
+@Configuration
+public class RestTemplateConfig {
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+}
+</code></pre>
+<ol>
+<li>EurekaClientDemoClient.java：eureka-client-demo 為服務註冊的名字。</li>
+</ol>
+<pre><code>import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.stereotype.Component;
+
+@Component
+public class EurekaClientDemoClient {
+
+    @Autowired
+    private DiscoveryClient discoveryClient;
+
+    public String getServiceUrl() {
+
+        // Retrieve the instances of the service by application name
+        List&lt;ServiceInstance&gt; instances = discoveryClient.getInstances(&quot;eureka-client-demo&quot;);
+
+        // Choose one of the instances (e.g., the first one)
+        ServiceInstance instance = instances.get(0);
+
+        // Get the URL of the service instance
+        String serviceUrl = instance.getUri().toString();
+
+        return serviceUrl;
+    }
+}
+</code></pre>
+<ol>
+<li>HelloController.java</li>
+</ol>
+<p>@GetMapping("/hello")、@GetMapping("/hello-from-eureka") 皆為註冊到 Eureka 的方式，和原本的寫法一模一樣。</p>
+<p>@GetMapping("/hello-from-eureka") 是為了要測試是否可以成功呼叫到Eureka 上的服務。serviceUrl就是 Eureka 的服務。</p>
+<pre><code>import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.example.service.EurekaClientDemoClient;
+
+@RestController
+public class HelloController {
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @Autowired
+    private EurekaClientDemoClient client;
+
+    @GetMapping(&quot;/hello&quot;)
+    public String hello() {
+        return &quot;Hello from Eureka Client!&quot;;
+    }
+
+    @GetMapping(&quot;/hello-from-eureka&quot;)
+    public String hello2() {
+        String serviceUrl = client.getServiceUrl();
+        String helloUrl = serviceUrl + &quot;/hello&quot;;
+        String response = restTemplate.getForObject(helloUrl, String.class);
+        return response;
+    }
+}
+</code></pre>
+<h4 id="test">Test</h4>
+<p><a href="http://localhost:8888/hello-from-eureka">http://localhost:8888/hello-from-eureka</a></p>
+<p><img alt="Alt text" src="../image-129.png" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../spring-cloud-config/" class="btn btn-neutral float-left" title="Spring Cloud - Config Server"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../spring-ldap/" class="btn btn-neutral float-right" title="Spring Security & LDAP">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../spring-cloud-config/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../spring-ldap/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

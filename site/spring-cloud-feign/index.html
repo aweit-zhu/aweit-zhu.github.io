@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="weizhi.zhu" /><link rel="canonical" href="https://aweit-zhu.github.io/spring-cloud-feign/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Spring Cloud - OpenFeign Client - Aweit Docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Spring Cloud - OpenFeign Client";
+        var mkdocs_page_input_path = "spring-cloud-feign.md";
+        var mkdocs_page_url = "/spring-cloud-feign/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Aweit Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tiles/">Struts2 + Apache Tiles</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssh/">SSH (Struts2 + Spring5 + Hibernate4)</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Spring Cloud - OpenFeign Client</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">情境</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">程式碼：</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#openfiegn">OpenFiegn</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#openfiegn-with-spring-security">OpenFiegn with spring security</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#eureka-client-with-spring-security">Eureka Client with spring security</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#test">Test</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-cloud-config/">Spring Cloud - Config Server</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-cloud-eureka/">Spring Cloud - Eureka Server</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-ldap/">Spring Security & LDAP</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-keycloak/">Spring Boot 3 and Keycloak</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-data-jpa/">Spring Data JPA</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-security/">Spring Boot 3 and Spring Security 6 (JWT Authentication and Authorization)</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../flutter/">FlutterFire</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../nfs/">NFS</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../velero/">Velero</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../traefik/">Treafik</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../dapr/">Dapr</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../docker/">Docker</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../practicek8s/">Kubernetes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sonarqube/">SonarQube</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../drone/">Drone</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../microk8s/">Microk8s</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">About</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Aweit Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Spring Cloud - OpenFeign Client</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h3 id="spring-cloud-with-openfiegn-client">Spring Cloud with OpenFiegn Client</h3>
+<h4 id="_1">情境</h4>
+<ol>
+<li>
+<p>Eureka Client：建立Controller，並將 /api/** 的 Controller 透過 Spring Security 來保護，這邊使用簡單的 In memory authencate. 所以註冊上去的服務也需要透過 http base 來登入。</p>
+</li>
+<li>
+<p>透過 OpenFiegn 的 Client 呼叫註冊在 Eureka Server 上的服務，也需要將每一請求加上 authorization token。也需要實作 Spring security。</p>
+</li>
+<li>
+<p>雙方的 Spring Security 的 User 來源皆要同源，才有辦法直接登
+入。(user/password 作為簡單的帳密認證)</p>
+</li>
+</ol>
+<h4 id="_2">程式碼：</h4>
+<ol>
+<li>
+<p>FeignClient：<a href="https://github.com/aweit-zhu/SpringCloudFeignClient">https://github.com/aweit-zhu/SpringCloudFeignClient</a></p>
+</li>
+<li>
+<p>Eureka Client：<a href="https://github.com/aweit-zhu/SpringCloudEurekaClient">https://github.com/aweit-zhu/SpringCloudEurekaClient</a></p>
+</li>
+</ol>
+<h4 id="openfiegn">OpenFiegn</h4>
+<p>它封裝了呼叫遠端服務的套件，讓您可以透過定義服務接口，免去了實作 @RestTemplete (不用去理會 Http Request 和 Http Response)。</p>
+<p><img alt="Alt text" src="../image-135.png" />
+圖片來源：<a href="https://www.javaguides.net/2022/10/spring-boot-microservices-communication-using-spring-cloud-open-feign.html">https://www.javaguides.net/2022/10/spring-boot-microservices-communication-using-spring-cloud-open-feign.html</a></p>
+<p><img alt="Alt text" src="../image-136.png" /></p>
+<p>我們可以透過上述代碼，看看 ChatGPT 如何解釋？</p>
+<p>Certainly! Let's go through your code step by step:</p>
+<pre><code>java
+@FeignClient(name = &quot;eureka-client-demo&quot;)
+public interface RemoteServiceClient {
+
+    @GetMapping(&quot;/api/hello&quot;)
+    String getHelloMessage();
+
+    @PostMapping(&quot;/api/post&quot;)
+    String getPostMessage();
+}
+</code></pre>
+<ol>
+<li>
+<p><code>@FeignClient(name = "eureka-client-demo")</code>: This annotation is used to indicate that this interface is a Feign client and specifies the name of the Eureka client that you want to communicate with. In this case, the Eureka client is named "eureka-client-demo".</p>
+</li>
+<li>
+<p><code>@GetMapping("/api/hello")</code>: This annotation is used to map the <code>getHelloMessage()</code> method to the HTTP GET request with the endpoint path "/api/hello". It indicates that this method will be used to retrieve a hello message from the specified endpoint.</p>
+</li>
+<li>
+<p><code>String getHelloMessage()</code>: This method signature defines the contract for the Feign client. It specifies that the method will return a String, which represents the hello message retrieved from the endpoint.</p>
+</li>
+<li>
+<p><code>@PostMapping("/api/post")</code>: This annotation is used to map the <code>getPostMessage()</code> method to the HTTP POST request with the endpoint path "/api/post". It indicates that this method will be used to send a post message to the specified endpoint.</p>
+</li>
+<li>
+<p><code>String getPostMessage()</code>: This method signature defines the contract for the Feign client. It specifies that the method will return a String, which represents the response message received from the endpoint after sending the post request.</p>
+</li>
+</ol>
+<p>Overall, this code defines a Feign client interface <code>RemoteServiceClient</code> that communicates with the "eureka-client-demo" Eureka client. It provides two methods, <code>getHelloMessage()</code> and <code>getPostMessage()</code>, which correspond to GET and POST requests, respectively, and are mapped to specific endpoint paths ("/api/hello" and "/api/post").</p>
+<h4 id="openfiegn-with-spring-security">OpenFiegn with spring security</h4>
+<ol>
+<li>pom.xml</li>
+</ol>
+<pre><code>&lt;dependencies&gt;
+    &lt;!-- Spring Cloud OpenFeign --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+    &lt;!-- Spring Cloud Starter Netflix Eureka Client (if using service
+    discovery) --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+    &lt;!-- Spring Boot Starter Web --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+    &lt;!-- Spring Boot DevTools (optional) --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;
+        &lt;scope&gt;runtime&lt;/scope&gt;
+        &lt;optional&gt;true&lt;/optional&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+        &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+        &lt;optional&gt;true&lt;/optional&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre>
+<ol>
+<li>Application：@EnableDiscoveryClient、@EnableFeignClients</li>
+</ol>
+<pre><code>@SpringBootApplication
+@EnableDiscoveryClient
+@EnableFeignClients
+public class SpringCloudFeignClientApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(SpringCloudFeignClientApplication.class, args);
+    }
+
+}
+</code></pre>
+<ol>
+<li>Feign Service </li>
+</ol>
+<pre><code>@FeignClient(name = &quot;eureka-client-demo&quot;)
+public interface RemoteServiceClient {
+
+    @GetMapping(&quot;/api/hello&quot;)
+    String getHelloMessage();
+
+    @PostMapping(&quot;/api/post&quot;)
+    String getPostMessage();
+}
+</code></pre>
+<ol>
+<li>Controller</li>
+</ol>
+<pre><code>@RestController
+public class HelloController {
+
+    @Autowired
+    RemoteServiceClient remoteServiceClient;
+
+    @GetMapping(&quot;/api/hello&quot;)
+    public String getHelloMessageFromRemoteService() {
+        return remoteServiceClient.getHelloMessage();
+    }
+
+    @GetMapping(&quot;/api/post&quot;)
+    public String getPostMessageFromRemoteService() {
+        return remoteServiceClient.getPostMessage();
+    }
+}
+</code></pre>
+<ol>
+<li>Security Config</li>
+</ol>
+<pre><code>@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+            .withUser(&quot;user&quot;)
+            .password(passwordEncoder().encode(&quot;password&quot;))
+            .roles(&quot;USER&quot;);
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+            .antMatchers(&quot;/api/**&quot;).authenticated()
+            .anyRequest().permitAll()
+            .and()
+            .httpBasic()
+            .and()
+            .csrf().disable();
+    }
+}
+</code></pre>
+<ol>
+<li>Interceptor </li>
+</ol>
+<p>FeignConfiguration</p>
+<pre><code>@Configuration
+public class FeignConfiguration {
+
+    @Bean
+    public FeignClientInterceptor feignClientInterceptor() {
+        return new FeignClientInterceptor();
+    }
+
+}
+</code></pre>
+<p>FeignClientInterceptor</p>
+<pre><code>public class FeignClientInterceptor implements RequestInterceptor {
+
+    @Autowired
+    private HttpServletRequest request;
+
+    @Override
+    public void apply(RequestTemplate requestTemplate) {
+        String reqAuthInput= request.getHeader(&quot;authorization&quot;);
+        if (reqAuthInput!= null) {
+            requestTemplate.header(&quot;authorization&quot;,reqAuthInput);
+        }
+    }
+
+}
+</code></pre>
+<ol>
+<li>application.properties</li>
+</ol>
+<pre><code>server.port=8890
+spring.application.name=eureka-client-2
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka
+</code></pre>
+<h4 id="eureka-client-with-spring-security">Eureka Client with spring security</h4>
+<ol>
+<li>pom.xml</li>
+</ol>
+<pre><code>&lt;!-- Spring Security --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+<ol>
+<li>Security Config</li>
+</ol>
+<pre><code>@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+            .withUser(&quot;user&quot;)
+            .password(passwordEncoder().encode(&quot;password&quot;))
+            .roles(&quot;USER&quot;);
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+            .antMatchers(&quot;/api/**&quot;).authenticated()
+            .anyRequest().permitAll()
+            .and()
+            .httpBasic()
+            .and()
+            .csrf().disable();
+    }
+}
+</code></pre>
+<ol>
+<li>Controller</li>
+</ol>
+<pre><code>@RestController
+public class HelloController {
+    @GetMapping(&quot;/api/hello&quot;)
+    public String hello() {
+        return &quot;Hello from Eureka Client!&quot;;
+    }
+
+    @PostMapping(&quot;/api/post&quot;)
+    public String post() {
+        return &quot;Post Method Successful&quot;;
+    }
+}
+</code></pre>
+<h4 id="test">Test</h4>
+<ol>
+<li>
+<p>Feign Client Web API (POST)：<a href="http://localhost:8890/api/post">http://localhost:8890/api/post</a>
+<img alt="Alt text" src="../image-137.png" /></p>
+</li>
+<li>
+<p>Feign Client Web API (GET)：<a href="http://localhost:8890/api/hello">http://localhost:8890/api/hello</a>
+<img alt="Alt text" src="../image-138.png" /></p>
+</li>
+<li>
+<p>Eureka Server：<a href="http://localhost:8761/">http://localhost:8761/</a> 可以看到 兩個服務被註冊。</p>
+</li>
+</ol>
+<p><img alt="Alt text" src="../image-139.png" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../ssh/" class="btn btn-neutral float-left" title="SSH (Struts2 + Spring5 + Hibernate4)"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../spring-cloud-config/" class="btn btn-neutral float-right" title="Spring Cloud - Config Server">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../ssh/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../spring-cloud-config/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
