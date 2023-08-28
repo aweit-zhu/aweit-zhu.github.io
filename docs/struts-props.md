@@ -35,6 +35,16 @@
 
 ![Alt text](image-149.png)
 
+
+##### 在執行應用的指令中加入環境變數，以下以 Eclipse 為例
+
+加入以下指令(以dev為例)：
+```
+-Denv=dev
+```
+
+![Alt text](image-152.png)
+
 ##### 如何讀取設定檔值？
 
 ```

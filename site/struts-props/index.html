@@ -50,6 +50,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#srcmainresources-properties">於 src/main/resources 新增 Properties 檔案</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#eclipse">在執行應用的指令中加入環境變數，以下以 Eclipse 為例</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#_2">如何讀取設定檔值？</a>
     </li>
     </ul>
@@ -193,6 +195,11 @@
 <h5 id="srcmainresources-properties">於 src/main/resources 新增 Properties 檔案</h5>
 <p><img alt="Alt text" src="../image-148.png" /></p>
 <p><img alt="Alt text" src="../image-149.png" /></p>
+<h5 id="eclipse">在執行應用的指令中加入環境變數，以下以 Eclipse 為例</h5>
+<p>加入以下指令(以dev為例)：</p>
+<pre><code>-Denv=dev
+</code></pre>
+<p><img alt="Alt text" src="../image-152.png" /></p>
 <h5 id="_2">如何讀取設定檔值？</h5>
 <pre><code> // 寫在 JS 中
  var apiUrl = '&lt;s:property value=&quot;%{getText('API_URL')}&quot; /&gt;';
