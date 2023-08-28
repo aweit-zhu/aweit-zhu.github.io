@@ -4,6 +4,7 @@ site_author: weizhi.zhu
 site_description: a short description of your website
 
 nav:
+  - Struts2 Properties Config: struts-props.md
   - Struts2 + Apache Tiles: tiles.md
   - SSH (Struts2 + Spring5 + Hibernate4): ssh.md
   - Spring Cloud - OpenFeign Client: spring-cloud-feign.md
