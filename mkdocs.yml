@@ -4,6 +4,7 @@ site_author: weizhi.zhu
 site_description: a short description of your website
 
 nav:
+  - Struts2 + ValueStack + Form Validate: struts-valuestack.md
   - Struts2 Properties Config: struts-props.md
   - Struts2 + Apache Tiles: tiles.md
   - SSH (Struts2 + Spring5 + Hibernate4): ssh.md
@@ -26,7 +27,9 @@ nav:
   - Microk8s: microk8s.md
   - About: index.md
 theme:
-  name: readthedocs
+  features:
+    - content.code.copy
+  name: material
   highlightjs: true
   hljs_languages:
     - yaml

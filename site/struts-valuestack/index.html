@@ -1,0 +1,916 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="a short description of your website">
+      
+      
+        <meta name="author" content="weizhi.zhu">
+      
+      
+        <link rel="canonical" href="https://aweit-zhu.github.io/struts-valuestack/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.0.0b4">
+    
+    
+      
+        <title>Struts2 + ValueStack + Form Validate - Aweit Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.91872f81.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="None" data-md-color-accent="None">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#struts2-valuestack-form-validate" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Aweit Docs" class="md-header__button md-logo" aria-label="Aweit Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Aweit Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Struts2 + ValueStack + Form Validate
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Aweit Docs" class="md-nav__button md-logo" aria-label="Aweit Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Aweit Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Struts2 + ValueStack + Form Validate
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Struts2 + ValueStack + Form Validate
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#struts2-valuestack-form-validate" class="md-nav__link">
+    Struts2 + ValueStack + Form Validate
+  </a>
+  
+    <nav class="md-nav" aria-label="Struts2 + ValueStack + Form Validate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#valuestack" class="md-nav__link">
+    ValueStack
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    請求參數
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate-form" class="md-nav__link">
+    Validate Form
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../struts-props/" class="md-nav__link">
+        Struts2 Properties Config
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tiles/" class="md-nav__link">
+        Struts2 + Apache Tiles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssh/" class="md-nav__link">
+        SSH (Struts2 + Spring5 + Hibernate4)
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spring-cloud-feign/" class="md-nav__link">
+        Spring Cloud - OpenFeign Client
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spring-cloud-config/" class="md-nav__link">
+        Spring Cloud - Config Server
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spring-cloud-eureka/" class="md-nav__link">
+        Spring Cloud - Eureka Server
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spring-ldap/" class="md-nav__link">
+        Spring Security & LDAP
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spring-keycloak/" class="md-nav__link">
+        Spring Boot 3 and Keycloak
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spring-data-jpa/" class="md-nav__link">
+        Spring Data JPA
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spring-security/" class="md-nav__link">
+        Spring Boot 3 and Spring Security 6 (JWT Authentication and Authorization)
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flutter/" class="md-nav__link">
+        FlutterFire
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nfs/" class="md-nav__link">
+        NFS
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../velero/" class="md-nav__link">
+        Velero
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../traefik/" class="md-nav__link">
+        Treafik
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dapr/" class="md-nav__link">
+        Dapr
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        Docker
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practicek8s/" class="md-nav__link">
+        Kubernetes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sonarqube/" class="md-nav__link">
+        SonarQube
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../drone/" class="md-nav__link">
+        Drone
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../microk8s/" class="md-nav__link">
+        Microk8s
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#struts2-valuestack-form-validate" class="md-nav__link">
+    Struts2 + ValueStack + Form Validate
+  </a>
+  
+    <nav class="md-nav" aria-label="Struts2 + ValueStack + Form Validate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#valuestack" class="md-nav__link">
+    ValueStack
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    請求參數
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate-form" class="md-nav__link">
+    Validate Form
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Struts2 + ValueStack + Form Validate</h1>
+
+<h3 id="struts2-valuestack-form-validate">Struts2 + ValueStack + Form Validate</h3>
+<h4 id="valuestack">ValueStack</h4>
+<ol>
+<li>觀念：</li>
+</ol>
+<p><img alt="Alt text" src="../image-155.png" /></p>
+<p>參考資料：<a href="https://blog.csdn.net/qq_44757034/article/details/106838688">https://blog.csdn.net/qq_44757034/article/details/106838688</a></p>
+<ol>
+<li>範例：</li>
+</ol>
+<p>Action</p>
+<pre><code>@Namespace(&quot;/&quot;)
+@Results(value = { 
+    @Result(name = &quot;hello&quot;, location = &quot;/WEB-INF/jsp/hello.jsp&quot;) ,
+    @Result(name = &quot;goodbye&quot;, location = &quot;/WEB-INF/jsp/goodbye.jsp&quot;) 
+})
+@Data
+public class HelloAction extends ActionSupport {
+
+    private String paramName;
+
+    @Action(value = &quot;hello&quot;)
+    public String hello() {
+
+        // Root
+        ActionContext.getContext().getValueStack().set(&quot;name&quot;, &quot;root-ABC&quot;);
+
+        // Request
+        ServletActionContext.getRequest().setAttribute(&quot;name&quot;, &quot;request-ABC&quot;);
+
+        // Request Session
+        ServletActionContext.getRequest().getSession().setAttribute(&quot;name&quot;, &quot;session-ABC&quot;);
+
+        // Servlet Context
+        ServletActionContext.getServletContext().setAttribute(&quot;name&quot;, &quot;servlet context-ABC&quot;);
+
+        return &quot;hello&quot;;
+    }
+}
+</code></pre>
+<p>JSP</p>
+<pre><code>&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;
+    pageEncoding=&quot;UTF-8&quot;%&gt;
+&lt;%@ taglib prefix=&quot;s&quot; uri=&quot;/struts-tags&quot;%&gt;
+Action 屬性：&lt;s:property value=&quot;paramName&quot; /&gt;
+&lt;br&gt;
+請求參數：&lt;s:property value=&quot;#parameters.paramName&quot; /&gt;
+&lt;br&gt;
+請求屬性：&lt;s:property value=&quot;#request.name&quot; /&gt;
+&lt;br&gt;
+請求屬性：&lt;s:property value=&quot;#attr.name&quot; /&gt;
+&lt;br&gt;
+請求會話屬性：&lt;s:property value=&quot;#session.name&quot; /&gt;
+&lt;br&gt;
+上下文屬性：&lt;s:property value=&quot;#application.name&quot; /&gt;
+</code></pre>
+<p><img alt="Alt text" src="../image-154.png" /></p>
+<h4 id="_1">請求參數</h4>
+<ol>
+<li>Action：只要有 @Data 標註，S2 會自動依照請求參數的名稱，對應到 Action 屬性名稱相符的屬性。</li>
+</ol>
+<pre><code>@Namespace(&quot;/&quot;)
+@Results(value = { 
+    @Result(name = &quot;hello&quot;, location = &quot;/WEB-INF/jsp/hello.jsp&quot;) ,
+    @Result(name = &quot;goodbye&quot;, location = &quot;/WEB-INF/jsp/goodbye.jsp&quot;) 
+})
+@Data
+public class HelloAction extends ActionSupport {
+
+    private String paramName;
+
+    @Action(value = &quot;hello&quot;)
+    public String hello() {
+        System.out.println(paramName);
+        return &quot;hello&quot;;
+    }
+}
+</code></pre>
+<ol>
+<li>JSP：</li>
+</ol>
+<pre><code>&lt;%@ taglib prefix=&quot;s&quot; uri=&quot;/struts-tags&quot;%&gt;
+&lt;s:property value=&quot;paramName&quot; /&gt;
+</code></pre>
+<ol>
+<li>Test： <a href="http://localhost:8080/Struts2Beginner/hello?paramName=ABC">http://localhost:8080/Struts2Beginner/hello?paramName=ABC</a></li>
+</ol>
+<p><img alt="Alt text" src="../image-153.png" /></p>
+<h4 id="validate-form">Validate Form</h4>
+<p>只要在 Action 中 新增一個 validate 方法，把要驗證的邏輯寫進去。這樣每一次 Action 的請求，都會先經過 validate 方法，如果有錯誤，則將訊息透過 addFieldError 這種紀錄下來。如果沒有錯誤，則會接著呼叫 execute 方法，進而來到 View 的 JSP。</p>
+<p>1、Action</p>
+<pre><code>import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.validator.routines.EmailValidator;
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Namespace;
+import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.Results;
+
+import com.example.struts.model.Person;
+import com.opensymphony.xwork2.ActionSupport;
+
+import lombok.Data;
+
+@Data
+@Namespace(&quot;/&quot;)
+@Action(value = &quot;register&quot;)
+@Results(value = { 
+        @Result(name = &quot;success&quot;, location = &quot;/thankyou.jsp&quot;),
+        @Result(name = &quot;input&quot;, location = &quot;/register.jsp&quot;),}
+)
+public class RegisterAction extends ActionSupport {
+
+    private Person person;
+
+    public String execute() throws Exception {
+        return SUCCESS;
+    }
+
+    public void validate() {
+
+        if (person == null || person.getFirstName().length() == 0) {
+            addFieldError(&quot;person.firstName&quot;, &quot;First name is required.&quot;);
+        }
+
+        if (person == null || person.getEmail().length() == 0) {
+            addFieldError(&quot;person.email&quot;, &quot;Email is required.&quot;);
+        }
+
+        if (person != null &amp;&amp; !StringUtils.isEmpty(person.getEmail())) {
+            boolean isValid = EmailValidator.getInstance().isValid(person.getEmail());
+            if(!isValid) {
+                addFieldError(&quot;person.email&quot;, &quot;Email is invalided.&quot;);
+            }
+        }
+
+        if (person == null || person.getAge() &lt; 18) {
+            addFieldError(&quot;person.age&quot;, &quot;Age is required and must be 18 or older&quot;);
+        }
+    }
+}
+
+</code></pre>
+<ol>
+<li>JSP：<s:form>、<s:textfield>、<s:fielderror></li>
+</ol>
+<p>(不加入MDB)</p>
+<pre><code>&lt;%@ taglib prefix=&quot;s&quot; uri=&quot;/struts-tags&quot;%&gt;
+&lt;h1&gt;Registration Form&lt;/h1&gt;
+&lt;s:form action=&quot;register&quot;&gt;
+    &lt;s:textfield name=&quot;person.firstName&quot; label=&quot;First Name&quot; /&gt;
+    &lt;s:textfield name=&quot;person.lastName&quot; label=&quot;Last Name&quot; /&gt;
+    &lt;s:textfield name=&quot;person.email&quot; label=&quot;Email&quot; /&gt;
+    &lt;s:textfield name=&quot;person.age&quot; label=&quot;Age&quot; type=&quot;number&quot; /&gt;
+    &lt;s:submit value=&quot;Register&quot; /&gt;
+&lt;/s:form&gt;
+&lt;s:fielderror fieldName=&quot;person.firstName&quot; cssClass=&quot;error&quot; /&gt;
+&lt;s:fielderror fieldName=&quot;person.lastName&quot; cssClass=&quot;error&quot; /&gt;
+&lt;s:fielderror fieldName=&quot;person.email&quot; cssClass=&quot;error&quot; /&gt;
+&lt;s:fielderror fieldName=&quot;person.age&quot; cssClass=&quot;error&quot; /&gt;
+</code></pre>
+<p>(加入 MDB)</p>
+<pre><code>&lt;%@ taglib prefix=&quot;s&quot; uri=&quot;/struts-tags&quot;%&gt;
+&lt;div class=&quot;d-flex justify-content-center&quot;&gt;
+    &lt;div style=&quot;width: 300px;&quot;&gt;
+        &lt;h2&gt;Registration Form&lt;/h2&gt;
+        &lt;s:form action=&quot;register&quot; theme=&quot;simple&quot;&gt;
+            &lt;s:fielderror fieldName=&quot;person.firstName&quot; cssClass=&quot;error small-red-text&quot;/&gt;
+            &lt;div class=&quot;form-outline my-2&quot;&gt;
+                &lt;s:textfield name=&quot;person.firstName&quot; cssClass=&quot;form-control&quot; id=&quot;firstName&quot; required=&quot;true&quot;/&gt;
+                &lt;label class=&quot;form-label&quot; for=&quot;firstName&quot; style=&quot;&quot;&gt;First Name&lt;/label&gt;
+            &lt;/div&gt;
+
+            &lt;s:fielderror fieldName=&quot;person.lastName&quot; cssClass=&quot;error small-red-text&quot;/&gt;
+            &lt;div class=&quot;form-outline my-2&quot;&gt;
+                &lt;s:textfield name=&quot;person.lastName&quot; cssClass=&quot;form-control&quot; id=&quot;lastName&quot; required=&quot;true&quot;/&gt;
+                &lt;label class=&quot;form-label&quot;  for=&quot;lastName&quot; style=&quot;&quot;&gt;Last Name&lt;/label&gt;
+            &lt;/div&gt;
+
+            &lt;s:fielderror fieldName=&quot;person.email&quot; cssClass=&quot;error small-red-text&quot;/&gt;
+            &lt;div class=&quot;form-outline my-2&quot;&gt;
+                &lt;s:textfield name=&quot;person.email&quot; cssClass=&quot;form-control&quot; id=&quot;email&quot; type=&quot;email&quot;/&gt;
+                &lt;label class=&quot;form-label&quot; for=&quot;email&quot; style=&quot;&quot;&gt;Email&lt;/label&gt;
+            &lt;/div&gt;
+
+            &lt;s:fielderror fieldName=&quot;person.age&quot; cssClass=&quot;error small-red-text&quot;/&gt;
+            &lt;div class=&quot;form-outline my-2&quot;&gt;
+                &lt;s:textfield name=&quot;person.age&quot; cssClass=&quot;form-control&quot; id=&quot;age&quot; type=&quot;number&quot; /&gt;
+                &lt;label class=&quot;form-label&quot; for=&quot;age&quot; style=&quot;&quot;&gt;Age&lt;/label&gt;
+            &lt;/div&gt;
+            &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary btn-block my-2&quot;&gt;Register&lt;/button&gt;
+        &lt;/s:form&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>CSS</p>
+<pre><code>.error {
+    color: red;
+}
+
+.small-red-text {
+    font-size: 11px;
+    text-align: left;
+    margin-left: 10px !important;
+}
+
+ul.error {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0%;
+
+}
+</code></pre>
+<ol>
+<li>Test：</li>
+</ol>
+<p>(1) 第一次不用顯示錯誤訊息，所以直接存取該JSP</p>
+<p><a href="http://localhost:8080/Struts2Beginner/register.jsp">http://localhost:8080/Struts2Beginner/register.jsp</a></p>
+<p><img alt="Alt text" src="../image-156.png" /></p>
+<p>(2) 直接按下提交，畫面會顯示錯誤訊息。</p>
+<p><img alt="Alt text" src="../image-157.png" /></p>
+<p>(3) 欄位接輸入後，且通過檢查後，才會顯示正確頁面。</p>
+<p><img alt="Alt text" src="../image-158.png" /></p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.3de43c86.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ce0331ff.min.js"></script>
+      
+    
+    
+  </body>
+</html>
