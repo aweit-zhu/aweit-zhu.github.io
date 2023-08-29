@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="weizhi.zhu" /><link rel="canonical" href="https://aweit-zhu.github.io/struts-valuestack/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Struts2 + ValueStack + Form Validate - Aweit Docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Struts2 + ValueStack + Form Validate";
+        var mkdocs_page_input_path = "struts-valuestack.md";
+        var mkdocs_page_url = "/struts-valuestack/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Aweit Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Struts2 + ValueStack + Form Validate</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#valuestack">ValueStack</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">請求參數</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#validate-form">Validate Form</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../struts-props/">Struts2 Properties Config</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tiles/">Struts2 + Apache Tiles</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssh/">SSH (Struts2 + Spring5 + Hibernate4)</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-cloud-feign/">Spring Cloud - OpenFeign Client</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-cloud-config/">Spring Cloud - Config Server</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-cloud-eureka/">Spring Cloud - Eureka Server</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-ldap/">Spring Security & LDAP</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-keycloak/">Spring Boot 3 and Keycloak</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-data-jpa/">Spring Data JPA</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../spring-security/">Spring Boot 3 and Spring Security 6 (JWT Authentication and Authorization)</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../flutter/">FlutterFire</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../nfs/">NFS</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../velero/">Velero</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../traefik/">Treafik</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../dapr/">Dapr</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../docker/">Docker</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../practicek8s/">Kubernetes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sonarqube/">SonarQube</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../drone/">Drone</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../microk8s/">Microk8s</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">About</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Aweit Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Struts2 + ValueStack + Form Validate</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h3 id="struts2-valuestack-form-validate">Struts2 + ValueStack + Form Validate</h3>
+<h4 id="valuestack">ValueStack</h4>
+<ol>
+<li>觀念：</li>
+</ol>
+<p><img alt="Alt text" src="../image-155.png" /></p>
+<p>參考資料：<a href="https://blog.csdn.net/qq_44757034/article/details/106838688">https://blog.csdn.net/qq_44757034/article/details/106838688</a></p>
+<ol>
+<li>範例：</li>
+</ol>
+<p>Action</p>
+<pre><code>@Namespace(&quot;/&quot;)
+@Results(value = { 
+    @Result(name = &quot;hello&quot;, location = &quot;/WEB-INF/jsp/hello.jsp&quot;) ,
+    @Result(name = &quot;goodbye&quot;, location = &quot;/WEB-INF/jsp/goodbye.jsp&quot;) 
+})
+@Data
+public class HelloAction extends ActionSupport {
+
+    private String paramName;
+
+    @Action(value = &quot;hello&quot;)
+    public String hello() {
+
+        // Root
+        ActionContext.getContext().getValueStack().set(&quot;name&quot;, &quot;root-ABC&quot;);
+
+        // Request
+        ServletActionContext.getRequest().setAttribute(&quot;name&quot;, &quot;request-ABC&quot;);
+
+        // Request Session
+        ServletActionContext.getRequest().getSession().setAttribute(&quot;name&quot;, &quot;session-ABC&quot;);
+
+        // Servlet Context
+        ServletActionContext.getServletContext().setAttribute(&quot;name&quot;, &quot;servlet context-ABC&quot;);
+
+        return &quot;hello&quot;;
+    }
+}
+</code></pre>
+<p>JSP</p>
+<pre><code>&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;
+    pageEncoding=&quot;UTF-8&quot;%&gt;
+&lt;%@ taglib prefix=&quot;s&quot; uri=&quot;/struts-tags&quot;%&gt;
+Action 屬性：&lt;s:property value=&quot;paramName&quot; /&gt;
+&lt;br&gt;
+請求參數：&lt;s:property value=&quot;#parameters.paramName&quot; /&gt;
+&lt;br&gt;
+請求屬性：&lt;s:property value=&quot;#request.name&quot; /&gt;
+&lt;br&gt;
+請求屬性：&lt;s:property value=&quot;#attr.name&quot; /&gt;
+&lt;br&gt;
+請求會話屬性：&lt;s:property value=&quot;#session.name&quot; /&gt;
+&lt;br&gt;
+上下文屬性：&lt;s:property value=&quot;#application.name&quot; /&gt;
+</code></pre>
+<p><img alt="Alt text" src="../image-154.png" /></p>
+<h4 id="_1">請求參數</h4>
+<ol>
+<li>Action：只要有 @Data 標註，S2 會自動依照請求參數的名稱，對應到 Action 屬性名稱相符的屬性。</li>
+</ol>
+<pre><code>@Namespace(&quot;/&quot;)
+@Results(value = { 
+    @Result(name = &quot;hello&quot;, location = &quot;/WEB-INF/jsp/hello.jsp&quot;) ,
+    @Result(name = &quot;goodbye&quot;, location = &quot;/WEB-INF/jsp/goodbye.jsp&quot;) 
+})
+@Data
+public class HelloAction extends ActionSupport {
+
+    private String paramName;
+
+    @Action(value = &quot;hello&quot;)
+    public String hello() {
+        System.out.println(paramName);
+        return &quot;hello&quot;;
+    }
+}
+</code></pre>
+<ol>
+<li>JSP：</li>
+</ol>
+<pre><code>&lt;%@ taglib prefix=&quot;s&quot; uri=&quot;/struts-tags&quot;%&gt;
+&lt;s:property value=&quot;paramName&quot; /&gt;
+</code></pre>
+<ol>
+<li>Test： <a href="http://localhost:8080/Struts2Beginner/hello?paramName=ABC">http://localhost:8080/Struts2Beginner/hello?paramName=ABC</a></li>
+</ol>
+<p><img alt="Alt text" src="../image-153.png" /></p>
+<h4 id="validate-form">Validate Form</h4>
+<p>只要在 Action 中 新增一個 validate 方法，把要驗證的邏輯寫進去。這樣每一次 Action 的請求，都會先經過 validate 方法，如果有錯誤，則將訊息透過 addFieldError 這種紀錄下來。如果沒有錯誤，則會接著呼叫 execute 方法，進而來到 View 的 JSP。</p>
+<p>1、Action</p>
+<pre><code>import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.validator.routines.EmailValidator;
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Namespace;
+import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.Results;
+
+import com.example.struts.model.Person;
+import com.opensymphony.xwork2.ActionSupport;
+
+import lombok.Data;
+
+@Data
+@Namespace(&quot;/&quot;)
+@Action(value = &quot;register&quot;)
+@Results(value = { 
+        @Result(name = &quot;success&quot;, location = &quot;/thankyou.jsp&quot;),
+        @Result(name = &quot;input&quot;, location = &quot;/register.jsp&quot;),}
+)
+public class RegisterAction extends ActionSupport {
+
+    private Person person;
+
+    public String execute() throws Exception {
+        return SUCCESS;
+    }
+
+    public void validate() {
+
+        if (person == null || person.getFirstName().length() == 0) {
+            addFieldError(&quot;person.firstName&quot;, &quot;First name is required.&quot;);
+        }
+
+        if (person == null || person.getEmail().length() == 0) {
+            addFieldError(&quot;person.email&quot;, &quot;Email is required.&quot;);
+        }
+
+        if (person != null &amp;&amp; !StringUtils.isEmpty(person.getEmail())) {
+            boolean isValid = EmailValidator.getInstance().isValid(person.getEmail());
+            if(!isValid) {
+                addFieldError(&quot;person.email&quot;, &quot;Email is invalided.&quot;);
+            }
+        }
+
+        if (person == null || person.getAge() &lt; 18) {
+            addFieldError(&quot;person.age&quot;, &quot;Age is required and must be 18 or older&quot;);
+        }
+    }
+}
+
+</code></pre>
+<ol>
+<li>JSP：<s:form>、<s:textfield>、<s:fielderror></li>
+</ol>
+<p>(不加入MDB)</p>
+<pre><code>&lt;%@ taglib prefix=&quot;s&quot; uri=&quot;/struts-tags&quot;%&gt;
+&lt;h1&gt;Registration Form&lt;/h1&gt;
+&lt;s:form action=&quot;register&quot;&gt;
+    &lt;s:textfield name=&quot;person.firstName&quot; label=&quot;First Name&quot; /&gt;
+    &lt;s:textfield name=&quot;person.lastName&quot; label=&quot;Last Name&quot; /&gt;
+    &lt;s:textfield name=&quot;person.email&quot; label=&quot;Email&quot; /&gt;
+    &lt;s:textfield name=&quot;person.age&quot; label=&quot;Age&quot; type=&quot;number&quot; /&gt;
+    &lt;s:submit value=&quot;Register&quot; /&gt;
+&lt;/s:form&gt;
+&lt;s:fielderror fieldName=&quot;person.firstName&quot; cssClass=&quot;error&quot; /&gt;
+&lt;s:fielderror fieldName=&quot;person.lastName&quot; cssClass=&quot;error&quot; /&gt;
+&lt;s:fielderror fieldName=&quot;person.email&quot; cssClass=&quot;error&quot; /&gt;
+&lt;s:fielderror fieldName=&quot;person.age&quot; cssClass=&quot;error&quot; /&gt;
+</code></pre>
+<p>(加入 MDB)</p>
+<pre><code>&lt;%@ taglib prefix=&quot;s&quot; uri=&quot;/struts-tags&quot;%&gt;
+&lt;div class=&quot;d-flex justify-content-center&quot;&gt;
+    &lt;div style=&quot;width: 300px;&quot;&gt;
+        &lt;h2&gt;Registration Form&lt;/h2&gt;
+        &lt;s:form action=&quot;register&quot; theme=&quot;simple&quot;&gt;
+            &lt;s:fielderror fieldName=&quot;person.firstName&quot; cssClass=&quot;error small-red-text&quot;/&gt;
+            &lt;div class=&quot;form-outline my-2&quot;&gt;
+                &lt;s:textfield name=&quot;person.firstName&quot; cssClass=&quot;form-control&quot; id=&quot;firstName&quot; required=&quot;true&quot;/&gt;
+                &lt;label class=&quot;form-label&quot; for=&quot;firstName&quot; style=&quot;&quot;&gt;First Name&lt;/label&gt;
+            &lt;/div&gt;
+
+            &lt;s:fielderror fieldName=&quot;person.lastName&quot; cssClass=&quot;error small-red-text&quot;/&gt;
+            &lt;div class=&quot;form-outline my-2&quot;&gt;
+                &lt;s:textfield name=&quot;person.lastName&quot; cssClass=&quot;form-control&quot; id=&quot;lastName&quot; required=&quot;true&quot;/&gt;
+                &lt;label class=&quot;form-label&quot;  for=&quot;lastName&quot; style=&quot;&quot;&gt;Last Name&lt;/label&gt;
+            &lt;/div&gt;
+
+            &lt;s:fielderror fieldName=&quot;person.email&quot; cssClass=&quot;error small-red-text&quot;/&gt;
+            &lt;div class=&quot;form-outline my-2&quot;&gt;
+                &lt;s:textfield name=&quot;person.email&quot; cssClass=&quot;form-control&quot; id=&quot;email&quot; type=&quot;email&quot;/&gt;
+                &lt;label class=&quot;form-label&quot; for=&quot;email&quot; style=&quot;&quot;&gt;Email&lt;/label&gt;
+            &lt;/div&gt;
+
+            &lt;s:fielderror fieldName=&quot;person.age&quot; cssClass=&quot;error small-red-text&quot;/&gt;
+            &lt;div class=&quot;form-outline my-2&quot;&gt;
+                &lt;s:textfield name=&quot;person.age&quot; cssClass=&quot;form-control&quot; id=&quot;age&quot; type=&quot;number&quot; /&gt;
+                &lt;label class=&quot;form-label&quot; for=&quot;age&quot; style=&quot;&quot;&gt;Age&lt;/label&gt;
+            &lt;/div&gt;
+            &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary btn-block my-2&quot;&gt;Register&lt;/button&gt;
+        &lt;/s:form&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>CSS</p>
+<pre><code>.error {
+    color: red;
+}
+
+.small-red-text {
+    font-size: 11px;
+    text-align: left;
+    margin-left: 10px !important;
+}
+
+ul.error {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0%;
+
+}
+</code></pre>
+<ol>
+<li>Test：</li>
+</ol>
+<p>(1) 第一次不用顯示錯誤訊息，所以直接存取該JSP</p>
+<p><a href="http://localhost:8080/Struts2Beginner/register.jsp">http://localhost:8080/Struts2Beginner/register.jsp</a></p>
+<p><img alt="Alt text" src="../image-156.png" /></p>
+<p>(2) 直接按下提交，畫面會顯示錯誤訊息。</p>
+<p><img alt="Alt text" src="../image-157.png" /></p>
+<p>(3) 欄位接輸入後，且通過檢查後，才會顯示正確頁面。</p>
+<p><img alt="Alt text" src="../image-158.png" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../struts-props/" class="btn btn-neutral float-right" title="Struts2 Properties Config">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="../struts-props/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
