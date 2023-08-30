@@ -272,3 +272,54 @@ public class HelloAction extends ActionSupport {
 // 屬性方式
 <s:property value="message" />
 ```
+
+##### - if
+
+JSP
+```
+<s:if test="%{person.admin}">
+    <div>Admin</div>
+</s:if>
+<s:elseif test="%{!person.admin}">
+    <div>User</div>
+</s:elseif>
+<s:else>
+    <div>Non User</div>
+</s:else>
+```
+
+`%{}`: The `%{}` syntax is used to evaluate an expression in Struts tags. It allows you to access properties, invoke methods, and perform other operations on objects.
+
+
+Action
+
+```
+@Namespace("/")
+@Results(value = { @Result(name = "hello", location = "/WEB-INF/jsp/hello.jsp")})
+@Data
+public class HelloAction extends ActionSupport {
+
+	Person person;
+
+	@Action(value = "hello")
+	public String hello() {
+		person = new Person("aweit", "zhu", "a4192696@yahoo.com.tw", 33, true);
+		return "hello";
+	}
+}
+```
+
+Person
+
+```
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Person {
+	private String firstName;
+	private String lastName;
+	private String email;
+	private int age;
+	private boolean admin;
+}
+```
