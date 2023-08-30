@@ -333,6 +333,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#-if" class="md-nav__link">
+    - if
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -824,6 +831,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#-if" class="md-nav__link">
+    - if
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1051,6 +1065,46 @@ public class HelloAction extends ActionSupport {
 
 // 屬性方式
 &lt;s:property value=&quot;message&quot; /&gt;
+</code></pre>
+<h5 id="-if">- if</h5>
+<p>JSP</p>
+<pre><code>&lt;s:if test=&quot;%{person.admin}&quot;&gt;
+    &lt;div&gt;Admin&lt;/div&gt;
+&lt;/s:if&gt;
+&lt;s:elseif test=&quot;%{!person.admin}&quot;&gt;
+    &lt;div&gt;User&lt;/div&gt;
+&lt;/s:elseif&gt;
+&lt;s:else&gt;
+    &lt;div&gt;Non User&lt;/div&gt;
+&lt;/s:else&gt;
+</code></pre>
+<p><code>%{}</code>: The <code>%{}</code> syntax is used to evaluate an expression in Struts tags. It allows you to access properties, invoke methods, and perform other operations on objects.</p>
+<p>Action</p>
+<pre><code>@Namespace(&quot;/&quot;)
+@Results(value = { @Result(name = &quot;hello&quot;, location = &quot;/WEB-INF/jsp/hello.jsp&quot;)})
+@Data
+public class HelloAction extends ActionSupport {
+
+    Person person;
+
+    @Action(value = &quot;hello&quot;)
+    public String hello() {
+        person = new Person(&quot;aweit&quot;, &quot;zhu&quot;, &quot;a4192696@yahoo.com.tw&quot;, 33, true);
+        return &quot;hello&quot;;
+    }
+}
+</code></pre>
+<p>Person</p>
+<pre><code>@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Person {
+    private String firstName;
+    private String lastName;
+    private String email;
+    private int age;
+    private boolean admin;
+}
 </code></pre>
 
 
