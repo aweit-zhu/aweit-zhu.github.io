@@ -12,14 +12,14 @@
         <meta name="author" content="weizhi.zhu">
       
       
-        <link rel="canonical" href="https://aweit-zhu.github.io/spring-keycloak/">
+        <link rel="canonical" href="https://aweit-zhu.github.io/spring-batch/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.0.0b4">
     
     
       
-        <title>Spring Boot 3 and Keycloak - Aweit Docs</title>
+        <title>Spring Batch - Aweit Docs</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#securing-spring-boot-310-applications-with-spring-security-and-keycloak-21" class="md-skip">
+        <a href="#spring-3-spring-batch-5" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Spring Boot 3 and Keycloak
+              Spring Batch
             
           </span>
         </div>
@@ -183,11 +183,164 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../spring-batch/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Spring Batch
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Spring Batch
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#spring-3-spring-batch-5" class="md-nav__link">
+    Spring 3 + Spring Batch 5
+  </a>
+  
+    <nav class="md-nav" aria-label="Spring 3 + Spring Batch 5">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    overview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#demo" class="md-nav__link">
+    Demo
+  </a>
+  
+    <nav class="md-nav" aria-label="Demo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    情境說明
+  </a>
+  
+    <nav class="md-nav" aria-label="情境說明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#csv-mysql-db" class="md-nav__link">
+    有一個 CSV 檔案，內容記錄著人員的姓名與電子信箱，需要將資料同步到自己的 MySQL DB中。
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    Project Structure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-composeyml" class="md-nav__link">
+    docker-compose.yml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pomxml" class="md-nav__link">
+    pom.xml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datacsv-srcmainresources" class="md-nav__link">
+    建立 data.csv 於 src/main/resources 資料夾中
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#applicationyaml" class="md-nav__link">
+    application.yaml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model" class="md-nav__link">
+    建立 Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reposity" class="md-nav__link">
+    建立 Reposity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-config" class="md-nav__link">
+    建立 Batch Config
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller" class="md-nav__link">
+    建立 Controller
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#httplocalhost8080jobsimport" class="md-nav__link">
+    測試：http://localhost:8080/jobs/import
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -333,110 +486,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Spring Boot 3 and Keycloak
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../spring-keycloak/" class="md-nav__link">
         Spring Boot 3 and Keycloak
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#securing-spring-boot-310-applications-with-spring-security-and-keycloak-21" class="md-nav__link">
-    實作 Securing Spring Boot 3.1.0 Applications with Spring Security and Keycloak 21
-  </a>
-  
-    <nav class="md-nav" aria-label="實作 Securing Spring Boot 3.1.0 Applications with Spring Security and Keycloak 21">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pomxml" class="md-nav__link">
-    pom.xml
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#composeyaml" class="md-nav__link">
-    compose.yaml
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#spring-security-config" class="md-nav__link">
-    Spring Security Config
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#controller" class="md-nav__link">
-    Controller
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#applicationyaml" class="md-nav__link">
-    application.yaml
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#keycloak-docker-keycloak" class="md-nav__link">
-    Keycloak 在 Docker 與 設定 Keycloak
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#postman" class="md-nav__link">
-    Postman 測試
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#hub" class="md-nav__link">
-    參考 Hub
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -661,12 +715,61 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#securing-spring-boot-310-applications-with-spring-security-and-keycloak-21" class="md-nav__link">
-    實作 Securing Spring Boot 3.1.0 Applications with Spring Security and Keycloak 21
+  <a href="#spring-3-spring-batch-5" class="md-nav__link">
+    Spring 3 + Spring Batch 5
   </a>
   
-    <nav class="md-nav" aria-label="實作 Securing Spring Boot 3.1.0 Applications with Spring Security and Keycloak 21">
+    <nav class="md-nav" aria-label="Spring 3 + Spring Batch 5">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    overview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#demo" class="md-nav__link">
+    Demo
+  </a>
+  
+    <nav class="md-nav" aria-label="Demo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    情境說明
+  </a>
+  
+    <nav class="md-nav" aria-label="情境說明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#csv-mysql-db" class="md-nav__link">
+    有一個 CSV 檔案，內容記錄著人員的姓名與電子信箱，需要將資料同步到自己的 MySQL DB中。
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    Project Structure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-composeyml" class="md-nav__link">
+    docker-compose.yml
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#pomxml" class="md-nav__link">
@@ -676,22 +779,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#composeyaml" class="md-nav__link">
-    compose.yaml
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#spring-security-config" class="md-nav__link">
-    Spring Security Config
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#controller" class="md-nav__link">
-    Controller
+  <a href="#datacsv-srcmainresources" class="md-nav__link">
+    建立 data.csv 於 src/main/resources 資料夾中
   </a>
   
 </li>
@@ -704,23 +793,42 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#keycloak-docker-keycloak" class="md-nav__link">
-    Keycloak 在 Docker 與 設定 Keycloak
+  <a href="#model" class="md-nav__link">
+    建立 Model
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#postman" class="md-nav__link">
-    Postman 測試
+  <a href="#reposity" class="md-nav__link">
+    建立 Reposity
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#hub" class="md-nav__link">
-    參考 Hub
+  <a href="#batch-config" class="md-nav__link">
+    建立 Batch Config
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller" class="md-nav__link">
+    建立 Controller
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#httplocalhost8080jobsimport" class="md-nav__link">
+    測試：http://localhost:8080/jobs/import
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -744,18 +852,71 @@
                   
 
 
-  <h1>Spring Boot 3 and Keycloak</h1>
+  <h1>Spring Batch</h1>
 
-<h2 id="securing-spring-boot-310-applications-with-spring-security-and-keycloak-21">實作 Securing Spring Boot 3.1.0 Applications with Spring Security and Keycloak 21</h2>
-<p>參考資料：<a href="https://medium.com/@rickors560/securing-spring-boot-3-1-0-applications-with-spring-security-and-keycloak-21-e694c6f5617d">https://medium.com/@rickors560/securing-spring-boot-3-1-0-applications-with-spring-security-and-keycloak-21-e694c6f5617d</a></p>
-<p>參考資料：<a href="https://hennge.com/tw/blog/what-is-openid-connect.html">https://hennge.com/tw/blog/what-is-openid-connect.html</a></p>
-<p><img alt="Alt text" src="../image-109.png" /></p>
-<p>環境準備：
-1. Spring Boot / Spring Security 3.1.2
-2. JDK 17
-3. Spring Boot Docker Compose
-4. Docker (進而安裝 keycloak 22、MySQL)</p>
-<h4 id="pomxml">pom.xml</h4>
+<h3 id="spring-3-spring-batch-5">Spring 3 + Spring Batch 5</h3>
+<h4 id="overview">overview</h4>
+<p><img alt="Alt text" src="../image-166.png" />
+圖片複製於：<a href="https://docs.spring.io/spring-batch/docs/current/reference/html/index-single.html#business-scenarios">https://docs.spring.io/spring-batch/docs/current/reference/html/index-single.html#business-scenarios</a></p>
+<ol>
+<li>
+<p>Batch: A batch refers to a collection of related tasks or operations that are executed together. It typically involves processing a large amount of data in a systematic and efficient manner.</p>
+</li>
+<li>
+<p>Job: In Spring Batch, a job represents a single batch processing unit. It consists of one or more steps that are executed sequentially. A job encapsulates the entire batch processing logic and provides a way to manage and monitor the execution of the batch.</p>
+</li>
+<li>
+<p>Step: A step is a single unit of work within a job. It represents a specific task or operation that needs to be performed during the batch processing. Each step typically consists of an <code>ItemReader</code>, <code>ItemProcessor</code>, and <code>ItemWriter</code> component, which collectively handle the input, processing, and output of data for that step.</p>
+</li>
+<li>
+<p>ItemReader: An <code>ItemReader</code> is responsible for reading data from a data source. It provides a way to retrieve data in chunks or one item at a time. The <code>ItemReader</code> interface defines the <code>read()</code> method, which returns the next item from the data source or <code>null</code> if there is no more data.</p>
+</li>
+<li>
+<p>ItemWriter: An <code>ItemWriter</code> is responsible for writing the processed data to a desired destination, such as a database, file, or API. It receives data in chunks or one item at a time from the <code>ItemProcessor</code> and performs the necessary actions to persist or transmit the data.</p>
+</li>
+<li>
+<p>ItemProcessor: An <code>ItemProcessor</code> is an optional component that performs any necessary processing on the input data before it is written by the <code>ItemWriter</code>. It allows you to transform or filter the data based on your business logic. The <code>ItemProcessor</code> interface defines the <code>process()</code> method, which takes an input item and returns a processed item or <code>null</code> to indicate that the item should be skipped.</p>
+</li>
+<li>
+<p>JobLauncher: The <code>JobLauncher</code> is responsible for starting the execution of a job. It receives a job instance and launches it, triggering the execution of all the steps within the job. The <code>JobLauncher</code> interface defines the <code>run()</code> method, which takes a job instance and returns a <code>JobExecution</code> object representing the status and result of the job execution.</p>
+</li>
+</ol>
+<h4 id="demo">Demo</h4>
+<h5 id="_1">情境說明</h5>
+<h6 id="csv-mysql-db"><code>有一個 CSV 檔案，內容記錄著人員的姓名與電子信箱，需要將資料同步到自己的 MySQL DB中。</code></h6>
+<h5 id="project-structure">Project Structure</h5>
+<p>完整代碼 <a href="https://github.com/aweit-zhu/SpringBatchDemo">https://github.com/aweit-zhu/SpringBatchDemo</a></p>
+<p><img alt="Alt text" src="../image-167.png" /></p>
+<h5 id="docker-composeyml">docker-compose.yml</h5>
+<pre><code>services:
+  mysql:
+    image: mysql:5
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: cookbook
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: password
+    ports:
+      - 3306:3306
+    volumes:
+      - ./data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - 8989:80
+    depends_on:
+      - mysql
+</code></pre>
+<h5 id="pomxml">pom.xml</h5>
 <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
     xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
@@ -764,35 +925,30 @@
     &lt;parent&gt;
         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
         &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
-        &lt;version&gt;3.1.2&lt;/version&gt;
+        &lt;version&gt;3.1.3&lt;/version&gt;
         &lt;relativePath /&gt; &lt;!-- lookup parent from repository --&gt;
     &lt;/parent&gt;
     &lt;groupId&gt;com.example&lt;/groupId&gt;
-    &lt;artifactId&gt;HelloSpringBoo2&lt;/artifactId&gt;
-    &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
-    &lt;name&gt;HelloSpringBoo2&lt;/name&gt;
-    &lt;description&gt;Demo project for Spring Boot&lt;/description&gt;
+    &lt;artifactId&gt;spring-batch-demo&lt;/artifactId&gt;
+    &lt;version&gt;1.0.0&lt;/version&gt;
+    &lt;name&gt;SpringBatchDemo&lt;/name&gt;
+    &lt;description&gt;spring-batch-demo&lt;/description&gt;
     &lt;properties&gt;
         &lt;java.version&gt;17&lt;/java.version&gt;
     &lt;/properties&gt;
     &lt;dependencies&gt;
         &lt;dependency&gt;
             &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-boot-starter-oauth2-resource-server&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-security-oauth2-jose&lt;/artifactId&gt;
+            &lt;artifactId&gt;spring-boot-starter-batch&lt;/artifactId&gt;
         &lt;/dependency&gt;
         &lt;dependency&gt;
             &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;
+            &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;
         &lt;/dependency&gt;
         &lt;dependency&gt;
             &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
             &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
         &lt;/dependency&gt;
-
         &lt;dependency&gt;
             &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
             &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;
@@ -800,10 +956,9 @@
             &lt;optional&gt;true&lt;/optional&gt;
         &lt;/dependency&gt;
         &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-boot-docker-compose&lt;/artifactId&gt;
+            &lt;groupId&gt;com.mysql&lt;/groupId&gt;
+            &lt;artifactId&gt;mysql-connector-j&lt;/artifactId&gt;
             &lt;scope&gt;runtime&lt;/scope&gt;
-            &lt;optional&gt;true&lt;/optional&gt;
         &lt;/dependency&gt;
         &lt;dependency&gt;
             &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
@@ -816,9 +971,20 @@
             &lt;scope&gt;test&lt;/scope&gt;
         &lt;/dependency&gt;
         &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-security-test&lt;/artifactId&gt;
+            &lt;groupId&gt;org.springframework.batch&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-batch-test&lt;/artifactId&gt;
             &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+        &lt;!-- Other dependencies --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.fasterxml.jackson.datatype&lt;/groupId&gt;
+            &lt;artifactId&gt;jackson-datatype-joda&lt;/artifactId&gt;
+            &lt;version&gt;2.9.4&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.jadira.usertype&lt;/groupId&gt;
+            &lt;artifactId&gt;usertype.core&lt;/artifactId&gt;
+            &lt;version&gt;6.0.1.GA&lt;/version&gt;
         &lt;/dependency&gt;
     &lt;/dependencies&gt;
 
@@ -841,132 +1007,178 @@
 
 &lt;/project&gt;
 </code></pre>
-<h4 id="composeyaml">compose.yaml</h4>
-<pre><code>volumes:
-  mysql_data:
-      driver: local
-
-services:
-  mysql:
-      image: mysql
-      volumes:
-        - mysql_data:/var/lib/mysql
-      environment:
-        MYSQL_ROOT_PASSWORD: root
-        MYSQL_DATABASE: keycloak
-        MYSQL_USER: keycloak
-        MYSQL_PASSWORD: password
-      ports:
-        - 3306:3306
-  keycloak:
-    image: quay.io/keycloak/keycloak:22.0.1
-    container_name: keycloak
-    environment:
-      - KEYCLOAK_ADMIN=admin
-      - KEYCLOAK_ADMIN_PASSWORD=password
-      - KC_DB=mysql
-      - KC_DB_URL_HOST=mysql
-      - KC_DB_URL_DATABASE=keycloak
-      - KC_DB_USERNAME=keycloak
-      - KC_DB_PASSWORD=password
-      - KC_HEALTH_ENABLED=true
-    ports:
-      - &quot;9090:8080&quot;
-    command: start-dev
-    depends_on:
-      - mysql
-#    healthcheck:
-#      test: &quot;curl -f http://localhost:9090/health/ready || exit 1&quot;
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8081:8080
+<h5 id="datacsv-srcmainresources">建立 data.csv 於 src/main/resources 資料夾中</h5>
+<pre><code>name,email
+Aweit,aweit@example.com
 </code></pre>
-<h4 id="spring-security-config">Spring Security Config</h4>
-<pre><code>@Configuration
-@EnableWebSecurity
-@EnableMethodSecurity
-public class WebSecurityConfig {
+<h5 id="applicationyaml">application.yaml</h5>
+<pre><code>spring:
+  batch:
+    jdbc:
+      initialize-schema: always
+    job:
+      enabled: false
+  datasource:
+    url: jdbc:mysql://localhost:3306/spring-batch
+    username: admin
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+</code></pre>
+<h5 id="model">建立 Model</h5>
+<pre><code>@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@Builder
+@Entity
+@Table
+public class Person {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column
+    private String name;
+
+    @Column
+    private String email;
+
+}
+</code></pre>
+<h5 id="reposity">建立 Reposity</h5>
+<pre><code>public interface PersonRepository extends JpaRepository&lt;Person, Long&gt;{
+
+}
+</code></pre>
+<h5 id="batch-config">建立 Batch Config</h5>
+<pre><code>package com.example.config;
+
+import javax.sql.DataSource;
+
+import org.springframework.batch.core.Job;
+import org.springframework.batch.core.Step;
+import org.springframework.batch.core.job.builder.JobBuilder;
+import org.springframework.batch.core.launch.support.RunIdIncrementer;
+import org.springframework.batch.core.repository.JobRepository;
+import org.springframework.batch.core.step.builder.StepBuilder;
+import org.springframework.batch.item.ItemProcessor;
+import org.springframework.batch.item.ItemReader;
+import org.springframework.batch.item.ItemWriter;
+import org.springframework.batch.item.data.RepositoryItemWriter;
+import org.springframework.batch.item.file.FlatFileItemReader;
+import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
+import org.springframework.batch.item.file.mapping.DefaultLineMapper;
+import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.transaction.PlatformTransactionManager;
+
+import com.example.model.Person;
+import com.example.resposity.PersonRepository;
+
+@Configuration
+public class BatchConfig {
+
+    @Autowired
+    PersonRepository personRepository;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeHttpRequests(registry -&gt; registry
-                // .requestMatchers(&quot;/secured/**&quot;).hasRole(&quot;SYS_ADMIN&quot;)
-                // .requestMatchers(&quot;/secured/**&quot;).permitAll()
-                .anyRequest().authenticated())
-                .oauth2ResourceServer(oauth2Configurer -&gt; oauth2Configurer
-                        .jwt(jwtConfigurer -&gt; jwtConfigurer.jwtAuthenticationConverter(jwt -&gt; {
-                            Map&lt;String, Collection&lt;String&gt;&gt; realmAccess = jwt.getClaim(&quot;realm_access&quot;);
-                            Collection&lt;String&gt; roles = realmAccess.get(&quot;roles&quot;);
-                            var grantedAuthorities = roles.stream()
-                                    .map(role -&gt; new SimpleGrantedAuthority(&quot;ROLE_&quot; + role)).toList();
-                            return new JwtAuthenticationToken(jwt, grantedAuthorities);
-                        })));
-
-        return httpSecurity.build();
-    }
-}
-</code></pre>
-<h4 id="controller">Controller</h4>
-<blockquote>
-<p>可以在 Controller 層中加入 @PreAuthorize，代表需要擁有 SYS_ADMIN 角色的用戶，才能夠存取這一個Controller 的資源。</p>
-<p>@PreAuthorize 也可以放到 Controller 層中的每一個 Method 中。以做更細顆粒度的授權。</p>
-</blockquote>
-<pre><code>@RequestMapping(&quot;/secured&quot;)
-@RestController
-@PreAuthorize(&quot;hasRole('SYS_ADMIN')&quot;)
-public class MySuperSecuredController {
-
-    @GetMapping(&quot;/get-data&quot;)
-    public String get(){
-        return &quot;SUPER SECURED DATA&quot;; 
+    public ItemReader&lt;Person&gt; csvReader() {
+        FlatFileItemReader&lt;Person&gt; reader = new FlatFileItemReader&lt;&gt;();
+        reader.setResource(new ClassPathResource(&quot;data.csv&quot;));
+        reader.setLinesToSkip(1);
+        reader.setLineMapper(new DefaultLineMapper&lt;Person&gt;() {
+            {
+                setLineTokenizer(new DelimitedLineTokenizer() {
+                    {
+                        setNames(&quot;name&quot;, &quot;email&quot;);
+                    }
+                });
+                setFieldSetMapper(new BeanWrapperFieldSetMapper&lt;Person&gt;() {
+                    {
+                        setTargetType(Person.class);
+                    }
+                });
+            }
+        });
+        return reader;
     }
 
+    @Bean
+    public ItemProcessor&lt;Person, Person&gt; personProcessor() {
+        return person -&gt; {
+            person.setName(person.getName().toUpperCase());
+            return person;
+        };
+    }
+
+    @Bean
+    public ItemWriter&lt;Person&gt; dbWriter(DataSource dataSource) {
+        RepositoryItemWriter&lt;Person&gt; writer = new RepositoryItemWriter&lt;&gt;();
+        writer.setRepository(personRepository);
+        writer.setMethodName(&quot;save&quot;);
+        return writer;
+    }
+
+    @Bean
+    public Step step(ItemReader&lt;Person&gt; reader, ItemProcessor&lt;Person, Person&gt; processor, ItemWriter&lt;Person&gt; writer,
+            JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+        return new StepBuilder(&quot;myStep&quot;, jobRepository)
+                .&lt;Person, Person&gt;chunk(10, transactionManager)
+                .reader(reader)
+                .processor(processor)
+                .writer(writer)
+                .build();
+    }
+
+    @Bean
+    public Job job(Step step, JobRepository jobRepository) {
+        return new JobBuilder(&quot;myJob&quot;, jobRepository)
+                .incrementer(new RunIdIncrementer())
+                .flow(step)
+                .end()
+                .build();
+    }
+
 }
 </code></pre>
-<h4 id="applicationyaml">application.yaml</h4>
-<pre><code>server:
-  port: 8080
+<h5 id="controller">建立 Controller</h5>
+<pre><code>@RestController
+@RequestMapping(&quot;/jobs&quot;)
+public class JobController {
 
-spring:
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://localhost:9090/realms/MyAppRealm
-          jwk-set-uri: http://localhost:9090/realms/MyAppRealm/protocol/openid-connect/certs
+    @Autowired
+    private JobLauncher jobLauncher;
+
+    @Autowired
+    private Job job;
+
+    @GetMapping(&quot;/import&quot;)
+    public void importCsvToDBJob() {
+        JobParameters jobParameters = new JobParametersBuilder()
+                .addLong(&quot;startAt&quot;, System.currentTimeMillis()).toJobParameters();
+        try {
+            jobLauncher.run(job, jobParameters);
+        } catch (JobExecutionAlreadyRunningException | JobRestartException | JobInstanceAlreadyCompleteException | JobParametersInvalidException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
 </code></pre>
-<p>MyAppRealm：需要在Keycloak中新增此Realm。相關設定如下。</p>
-<h4 id="keycloak-docker-keycloak">Keycloak 在 Docker 與 設定 Keycloak</h4>
-<p><img alt="Alt text" src="../image-95.png" /></p>
-<p>打開瀏覽器，開啟 Keycloak 登入頁面 (http://localhost:9090)
-<img alt="Alt text" src="../image-96.png" /></p>
-<p>Realm
-輸入 Realm name：MyAppRealm
-<img alt="Alt text" src="../image-97.png" /></p>
-<p>Client</p>
-<p><img alt="Alt text" src="../image-100.png" /></p>
-<p><img alt="Alt text" src="../image-101.png" /></p>
-<p>Role：SYS_ADMIN</p>
-<p><img alt="Alt text" src="../image-102.png" /></p>
-<p>User：建立一個 User，並且將角色綁定進去。</p>
-<p><img alt="Alt text" src="../image-103.png" /></p>
-<p><img alt="Alt text" src="../image-104.png" /></p>
-<h4 id="postman">Postman 測試</h4>
-<p>透過 OpenID Connect 取得 Token
-<a href="http://localhost:9090/realms/MyAppRealm/protocol/openid-connect/token">http://localhost:9090/realms/MyAppRealm/protocol/openid-connect/token</a>
-<img alt="Alt text" src="../image-105.png" /></p>
-<p>利用剛剛取得的Token，存取 Web API 資訊
-<a href="http://localhost:8080/secured/get-data">http://localhost:8080/secured/get-data</a>
-<img alt="Alt text" src="../image-106.png" /></p>
-<p>如果要登出某一用戶的所有 Session</p>
-<p><a href="http://localhost:9090/realms/master/protocol/openid-connect/token">http://localhost:9090/realms/master/protocol/openid-connect/token</a>
-<img alt="Alt text" src="../image-107.png" /></p>
-<p><a href="http://localhost:9090/admin/realms/MyAppRealm/users/3a9574f5-01ae-4caf-839c-f6d5ddb9321c/logout">http://localhost:9090/admin/realms/MyAppRealm/users/3a9574f5-01ae-4caf-839c-f6d5ddb9321c/logout</a>
-<img alt="Alt text" src="../image-108.png" /></p>
-<h3 id="hub">參考 Hub</h3>
-<p><a href="https://github.com/aweit-zhu/HelloSpringBoo2">https://github.com/aweit-zhu/HelloSpringBoo2</a></p>
+<h5 id="httplocalhost8080jobsimport">測試：http://localhost:8080/jobs/import</h5>
+<p><img alt="Alt text" src="../image-168.png" /></p>
 
 
 
