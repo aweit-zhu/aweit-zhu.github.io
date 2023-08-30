@@ -46,6 +46,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://aweit-zhu.github.io/spring-batch/</loc>
+         <lastmod>2023-08-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://aweit-zhu.github.io/spring-cloud-config/</loc>
          <lastmod>2023-08-30</lastmod>
          <changefreq>daily</changefreq>

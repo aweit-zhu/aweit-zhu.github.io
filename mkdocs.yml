@@ -4,6 +4,7 @@ site_author: weizhi.zhu
 site_description: a short description of your website
 
 nav:
+  - Spring Batch: spring-batch.md
   - Struts2 + struts-tags: struts-tags.md
   - Struts2 + ValueStack + Form Validate: struts-valuestack.md
   - Struts2 Properties Config: struts-props.md

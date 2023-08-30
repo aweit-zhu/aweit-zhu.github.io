@@ -284,10 +284,10 @@ public class HelloAction extends ActionSupport {
 
 JSP
 ```
-<s:if test="%{person.admin}">
+<s:if test="person.admin">
     <div>Admin</div>
 </s:if>
-<s:elseif test="%{!person.admin}">
+<s:elseif test="!person.admin">
     <div>User</div>
 </s:elseif>
 <s:else>

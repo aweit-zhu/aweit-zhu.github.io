@@ -183,6 +183,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../spring-batch/" class="md-nav__link">
+        Spring Batch
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -1072,10 +1087,10 @@ public class HelloAction extends ActionSupport {
 </code></pre>
 <h5 id="-if">- if</h5>
 <p>JSP</p>
-<pre><code>&lt;s:if test=&quot;%{person.admin}&quot;&gt;
+<pre><code>&lt;s:if test=&quot;person.admin&quot;&gt;
     &lt;div&gt;Admin&lt;/div&gt;
 &lt;/s:if&gt;
-&lt;s:elseif test=&quot;%{!person.admin}&quot;&gt;
+&lt;s:elseif test=&quot;!person.admin&quot;&gt;
     &lt;div&gt;User&lt;/div&gt;
 &lt;/s:elseif&gt;
 &lt;s:else&gt;
