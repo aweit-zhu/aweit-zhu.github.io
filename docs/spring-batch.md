@@ -1,8 +1,9 @@
-### Spring 3 + Spring Batch 5
+### Spring Boot 3 + Spring Batch 5
 
 #### overview
 
 ![Alt text](image-166.png)
+
 圖片複製於：<https://docs.spring.io/spring-batch/docs/current/reference/html/index-single.html#business-scenarios>
 
 
@@ -351,3 +352,189 @@ public class JobController {
 ##### 測試：http://localhost:8080/jobs/import
 
 ![Alt text](image-168.png)
+
+
+
+#### Spring Batch + SFTP Server
+
+##### 情境
+
+1. 本來是讀取 ClassPath Resources 的檔案，現在要改為讀取 SFTP Server 上的 /upload 資料夾，作為檔案來源。
+
+
+##### docker-compose.ayml
+
+```
+services:
+  sftp-server:
+    image: atmoz/sftp
+    volumes:
+      - ./sftp:/home/user/upload
+    ports:
+      - "172.22.103.117:2222:22"
+    environment:
+      - SFTP_USERS=user:password:1001
+```
+
+##### pom.xml
+
+```
+  <!--SFTP-->
+  <dependency>
+    <groupId>com.jcraft</groupId>
+    <artifactId>jsch</artifactId>
+    <version>0.1.55</version>
+  </dependency>
+```
+
+##### appication.yaml
+
+```
+sftp:
+  host: 172.22.103.117
+  port: 2222
+  username: user
+  password: password
+```
+
+##### SftpUtil.java
+
+```
+package com.example.util;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+
+import com.jcraft.jsch.ChannelSftp;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
+import com.jcraft.jsch.SftpException;
+
+public class SftpUtil {
+
+	public static Resource[] getResources(ChannelSftp channelSftp, String remoteFolderPath) throws IOException {
+		List<Resource> resourceList = new ArrayList<>();
+		try {
+			channelSftp.cd(remoteFolderPath);
+			@SuppressWarnings("unchecked")
+			List<ChannelSftp.LsEntry> lsEntries = channelSftp.ls(".");
+			for (ChannelSftp.LsEntry entry : lsEntries) {
+				if (!entry.getAttrs().isDir()) {
+					InputStream inputStream = channelSftp.get(entry.getFilename());
+					Resource resource = new InputStreamResource(inputStream);
+					resourceList.add(resource);
+				}
+			}
+		} catch (SftpException e) {
+			throw new IOException("Failed to retrieve resources from the SFTP server", e);
+		}
+		return resourceList.toArray(new Resource[0]);
+	}
+
+}
+```
+
+##### SftpCOnfig.java
+
+```
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.jcraft.jsch.ChannelSftp;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
+
+@Configuration
+public class SftpConfig {
+	
+	@Value("${sftp.host}")
+    private String sftpHost;
+
+    @Value("${sftp.port}")
+    private int sftpPort;
+
+    @Value("${sftp.username}")
+    private String sftpUsername;
+
+    @Value("${sftp.password}")
+    private String sftpPassword;
+
+
+    @Bean 
+    public ChannelSftp channelSftp() throws JSchException {
+    	JSch jsch = new JSch();
+		Session session = jsch.getSession(sftpUsername, sftpHost, sftpPort);
+		session.setPassword(sftpPassword);
+		session.setConfig("StrictHostKeyChecking", "no");
+		session.connect();
+
+		ChannelSftp channel = (ChannelSftp) session.openChannel("sftp");
+		channel.connect();
+		return channel;
+    }
+
+}
+```
+
+##### BatchConfig
+
+```
+@Configuration
+public class BatchConfig {
+
+  ...
+
+  @Autowired
+	ChannelSftp channelSftp;
+
+  @Bean
+  public ItemReader<Person> csvReader() throws JSchException, IOException, SftpException{
+
+      Resource[] resources = SftpUtil.getResources(channelSftp, "/upload");
+
+      FlatFileItemReader<Person> fReader = new FlatFileItemReader<>();
+      fReader.setLinesToSkip(1);
+      fReader.setLineMapper(new DefaultLineMapper<Person>() {
+        {
+          setLineTokenizer(new DelimitedLineTokenizer() {
+            {
+              setNames("name", "email");
+            }
+          });
+          setFieldSetMapper(new BeanWrapperFieldSetMapper<Person>() {
+            {
+              setTargetType(Person.class);
+            }
+          });
+        }
+      });
+
+      MultiResourceItemReader<Person> reader = new MultiResourceItemReader<>();
+      reader.setResources(resources);
+      reader.setDelegate(fReader);
+
+      return reader;
+    }
+  }
+
+  ...
+```
+
+##### Test
+
+Docker 啟動的 SFTP
+![Alt text](image-171.png)
+
+SFTP 上傳的檔案
+![Alt text](image-169.png)
+
+DB資料
+![Alt text](image-170.png)
