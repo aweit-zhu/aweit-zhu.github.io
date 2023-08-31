@@ -332,6 +332,75 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#spring-batch-sftp-server" class="md-nav__link">
+    Spring Batch + SFTP Server
+  </a>
+  
+    <nav class="md-nav" aria-label="Spring Batch + SFTP Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    情境
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-composeayml" class="md-nav__link">
+    docker-compose.ayml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pomxml_1" class="md-nav__link">
+    pom.xml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appicationyaml" class="md-nav__link">
+    appication.yaml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sftputiljava" class="md-nav__link">
+    SftpUtil.java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sftpconfigjava" class="md-nav__link">
+    SftpCOnfig.java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batchconfig" class="md-nav__link">
+    BatchConfig
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test" class="md-nav__link">
+    Test
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -832,6 +901,75 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#spring-batch-sftp-server" class="md-nav__link">
+    Spring Batch + SFTP Server
+  </a>
+  
+    <nav class="md-nav" aria-label="Spring Batch + SFTP Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    情境
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-composeayml" class="md-nav__link">
+    docker-compose.ayml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pomxml_1" class="md-nav__link">
+    pom.xml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appicationyaml" class="md-nav__link">
+    appication.yaml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sftputiljava" class="md-nav__link">
+    SftpUtil.java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sftpconfigjava" class="md-nav__link">
+    SftpCOnfig.java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batchconfig" class="md-nav__link">
+    BatchConfig
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test" class="md-nav__link">
+    Test
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1179,6 +1317,166 @@ public class JobController {
 </code></pre>
 <h5 id="httplocalhost8080jobsimport">測試：http://localhost:8080/jobs/import</h5>
 <p><img alt="Alt text" src="../image-168.png" /></p>
+<h4 id="spring-batch-sftp-server">Spring Batch + SFTP Server</h4>
+<h5 id="_2">情境</h5>
+<ol>
+<li>本來是讀取 ClassPath Resources 的檔案，現在要改為讀取 SFTP Server 上的 /upload 資料夾，作為檔案來源。</li>
+</ol>
+<h5 id="docker-composeayml">docker-compose.ayml</h5>
+<pre><code>services:
+  sftp-server:
+    image: atmoz/sftp
+    volumes:
+      - ./sftp:/home/user/upload
+    ports:
+      - &quot;172.22.103.117:2222:22&quot;
+    environment:
+      - SFTP_USERS=user:password:1001
+</code></pre>
+<h5 id="pomxml_1">pom.xml</h5>
+<pre><code>  &lt;!--SFTP--&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;com.jcraft&lt;/groupId&gt;
+    &lt;artifactId&gt;jsch&lt;/artifactId&gt;
+    &lt;version&gt;0.1.55&lt;/version&gt;
+  &lt;/dependency&gt;
+</code></pre>
+<h5 id="appicationyaml">appication.yaml</h5>
+<pre><code>sftp:
+  host: 172.22.103.117
+  port: 2222
+  username: user
+  password: password
+</code></pre>
+<h5 id="sftputiljava">SftpUtil.java</h5>
+<pre><code>package com.example.util;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+
+import com.jcraft.jsch.ChannelSftp;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
+import com.jcraft.jsch.SftpException;
+
+public class SftpUtil {
+
+    public static Resource[] getResources(ChannelSftp channelSftp, String remoteFolderPath) throws IOException {
+        List&lt;Resource&gt; resourceList = new ArrayList&lt;&gt;();
+        try {
+            channelSftp.cd(remoteFolderPath);
+            @SuppressWarnings(&quot;unchecked&quot;)
+            List&lt;ChannelSftp.LsEntry&gt; lsEntries = channelSftp.ls(&quot;.&quot;);
+            for (ChannelSftp.LsEntry entry : lsEntries) {
+                if (!entry.getAttrs().isDir()) {
+                    InputStream inputStream = channelSftp.get(entry.getFilename());
+                    Resource resource = new InputStreamResource(inputStream);
+                    resourceList.add(resource);
+                }
+            }
+        } catch (SftpException e) {
+            throw new IOException(&quot;Failed to retrieve resources from the SFTP server&quot;, e);
+        }
+        return resourceList.toArray(new Resource[0]);
+    }
+
+}
+</code></pre>
+<h5 id="sftpconfigjava">SftpCOnfig.java</h5>
+<pre><code>import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.jcraft.jsch.ChannelSftp;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
+
+@Configuration
+public class SftpConfig {
+
+    @Value(&quot;${sftp.host}&quot;)
+    private String sftpHost;
+
+    @Value(&quot;${sftp.port}&quot;)
+    private int sftpPort;
+
+    @Value(&quot;${sftp.username}&quot;)
+    private String sftpUsername;
+
+    @Value(&quot;${sftp.password}&quot;)
+    private String sftpPassword;
+
+
+    @Bean 
+    public ChannelSftp channelSftp() throws JSchException {
+        JSch jsch = new JSch();
+        Session session = jsch.getSession(sftpUsername, sftpHost, sftpPort);
+        session.setPassword(sftpPassword);
+        session.setConfig(&quot;StrictHostKeyChecking&quot;, &quot;no&quot;);
+        session.connect();
+
+        ChannelSftp channel = (ChannelSftp) session.openChannel(&quot;sftp&quot;);
+        channel.connect();
+        return channel;
+    }
+
+}
+</code></pre>
+<h5 id="batchconfig">BatchConfig</h5>
+<pre><code>@Configuration
+public class BatchConfig {
+
+  ...
+
+  @Autowired
+    ChannelSftp channelSftp;
+
+  @Bean
+  public ItemReader&lt;Person&gt; csvReader() throws JSchException, IOException, SftpException{
+
+      Resource[] resources = SftpUtil.getResources(channelSftp, &quot;/upload&quot;);
+
+      FlatFileItemReader&lt;Person&gt; fReader = new FlatFileItemReader&lt;&gt;();
+      fReader.setLinesToSkip(1);
+      fReader.setLineMapper(new DefaultLineMapper&lt;Person&gt;() {
+        {
+          setLineTokenizer(new DelimitedLineTokenizer() {
+            {
+              setNames(&quot;name&quot;, &quot;email&quot;);
+            }
+          });
+          setFieldSetMapper(new BeanWrapperFieldSetMapper&lt;Person&gt;() {
+            {
+              setTargetType(Person.class);
+            }
+          });
+        }
+      });
+
+      MultiResourceItemReader&lt;Person&gt; reader = new MultiResourceItemReader&lt;&gt;();
+      reader.setResources(resources);
+      reader.setDelegate(fReader);
+
+      return reader;
+    }
+  }
+
+  ...
+</code></pre>
+<h5 id="test">Test</h5>
+<p>Docker 啟動的 SFTP
+<img alt="Alt text" src="../image-171.png" /></p>
+<p>SFTP 上傳的檔案
+<img alt="Alt text" src="../image-169.png" /></p>
+<p>DB資料
+<img alt="Alt text" src="../image-170.png" /></p>
 
 
 
