@@ -223,6 +223,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    參考資料：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#1cpuprocess" class="md-nav__link">
     1CPU與多個Process
   </a>
@@ -245,14 +252,14 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     執行緒
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     物件
   </a>
   
@@ -264,7 +271,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     例子說明，可參考：
   </a>
   
@@ -683,6 +690,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    參考資料：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#1cpuprocess" class="md-nav__link">
     1CPU與多個Process
   </a>
@@ -705,14 +719,14 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     執行緒
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     物件
   </a>
   
@@ -724,7 +738,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     例子說明，可參考：
   </a>
   
@@ -760,7 +774,7 @@
   <h1>Java Thread & Thread Pool</h1>
 
 <h3 id="thread">Thread</h3>
-<p>參考資料：</p>
+<h4 id="_1">參考資料：</h4>
 <ol>
 <li>
 <p><a href="https://rickbsr.medium.com/%E6%B7%BA%E8%AB%87-java-%E5%9F%B7%E8%A1%8C%E7%B7%92%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F%E8%88%87%E7%8B%80%E6%85%8B-cfc4f1e10c77">https://rickbsr.medium.com/%E6%B7%BA%E8%AB%87-java-%E5%9F%B7%E8%A1%8C%E7%B7%92%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F%E8%88%87%E7%8B%80%E6%85%8B-cfc4f1e10c77</a></p>
@@ -809,7 +823,7 @@
 </code></pre>
 <h4 id="thread_1">執行緒(Thread)相關概念</h4>
 <p><img alt="Alt text" src="../image-172.png" /></p>
-<h5 id="_1">執行緒</h5>
+<h5 id="_2">執行緒</h5>
 <ol>
 <li>
 <p>start: 將執行緒物件，放入 Runnable，等待 Java 程序安排執行。</p>
@@ -824,7 +838,7 @@
 <p>yield：當執行緒物件呼叫 yield() 方法時，表示要讓自身的執行緒進入 Runnable 狀態，等待著 Java 程序進行分配。</p>
 </li>
 </ol>
-<h5 id="_2">物件</h5>
+<h5 id="_3">物件</h5>
 <ol>
 <li>synchronized ： 分成同步方法或同步區塊。表示同一時間，只能有一個執行緒使用此方法或物件。需要等到一個執行緒執行完畢後，才能讓另一個執行緒操作此物件或方法。</li>
 </ol>
@@ -1009,7 +1023,7 @@ public class Account {
 <ol>
 <li>wait、notify、notifyAll：如果有執行緒執行到具有 synchronized 地方時，若因為某種條件被該物件呼叫了 wait() 方法，則該執行緒就會被放置 Blocked 區塊中。直到該物件呼叫了 notify()、notifyAll() 方法後，才會重新進行該執行緒。</li>
 </ol>
-<h4 id="_3">例子說明，可參考：</h4>
+<h4 id="_4">例子說明，可參考：</h4>
 <ol>
 <li>Java Gossip: wait()、notify()
 <a href="https://openhome.cc/Gossip/JavaGossip-V2/WaitNotify.htm">https://openhome.cc/Gossip/JavaGossip-V2/WaitNotify.htm</a></li>
