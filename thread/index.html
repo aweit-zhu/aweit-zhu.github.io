@@ -12,14 +12,14 @@
         <meta name="author" content="weizhi.zhu">
       
       
-        <link rel="canonical" href="https://aweit-zhu.github.io/velero/">
+        <link rel="canonical" href="https://aweit-zhu.github.io/thread/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.0.0b4">
     
     
       
-        <title>Velero - Aweit Docs</title>
+        <title>Java Thread - Aweit Docs</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#thread" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Velero
+              Java Thread
             
           </span>
         </div>
@@ -183,11 +183,102 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../thread/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Java Thread
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Java Thread
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#thread" class="md-nav__link">
+    Thread
+  </a>
+  
+    <nav class="md-nav" aria-label="Thread">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1cpuprocess" class="md-nav__link">
+    1CPU與多個Process
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#java" class="md-nav__link">
+    如何在Java定義執行緒並啟動
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#thread_1" class="md-nav__link">
+    執行緒(Thread)相關概念
+  </a>
+  
+    <nav class="md-nav" aria-label="執行緒(Thread)相關概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    執行緒
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    物件
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    例子說明，可參考：
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -423,97 +514,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Velero
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../velero/" class="md-nav__link">
         Velero
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    運作方式
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    安裝
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#minio" class="md-nav__link">
-    安裝MINIO
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#velero" class="md-nav__link">
-    安裝 velero 服務端
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#back-up" class="md-nav__link">
-    Back up
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#restore" class="md-nav__link">
-    Restore
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#clean-up" class="md-nav__link">
-    Clean up
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#with-pv" class="md-nav__link">
-    With PV
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -663,58 +668,63 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#thread" class="md-nav__link">
+    Thread
+  </a>
+  
+    <nav class="md-nav" aria-label="Thread">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1cpuprocess" class="md-nav__link">
+    1CPU與多個Process
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#java" class="md-nav__link">
+    如何在Java定義執行緒並啟動
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#thread_1" class="md-nav__link">
+    執行緒(Thread)相關概念
+  </a>
+  
+    <nav class="md-nav" aria-label="執行緒(Thread)相關概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    運作方式
+    執行緒
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    安裝
+    物件
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#minio" class="md-nav__link">
-    安裝MINIO
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    例子說明，可參考：
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#velero" class="md-nav__link">
-    安裝 velero 服務端
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#back-up" class="md-nav__link">
-    Back up
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#restore" class="md-nav__link">
-    Restore
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#clean-up" class="md-nav__link">
-    Clean up
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#with-pv" class="md-nav__link">
-    With PV
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -733,252 +743,96 @@
                   
 
 
-  <h1>Velero</h1>
+  <h1>Java Thread</h1>
 
-<p><img src="../image-22.png" alt="drawing" width="200"/></p>
-<p>參考資料：
-- Velero 初探與實踐 <a href="https://kaichu.io/posts/velero-research-practice/">https://kaichu.io/posts/velero-research-practice/</a>
-- 官網 <a href="https://velero.io/docs/v1.11/how-velero-works/">https://velero.io/docs/v1.11/how-velero-works/</a>
-- 使用 Velero 備份還原 Kubernetes 集羣 <a href="https://www.readfog.com/a/1647215683490123776">https://www.readfog.com/a/1647215683490123776</a>
-- Quick start evaluation install with Minio <a href="https://velero.io/docs/main/contributions/minio">https://velero.io/docs/main/contributions/minio</a>
-- k8s1.24 使用Velero 備份還原Rancher Longhorn上volume資料 https://www.itnotetk.com/2022/11/28/k8s1-24-velero-%e5%82%99%e4%bb%bd%e9%82%84%e5%8e%9f-rancher-longhorn%e4%b8%8avolume%e8%b3%87%e6%96%99/</p>
-<h3 id="_1">運作方式</h3>
-<p><img alt="Alt text" src="../image-23.png" /></p>
+<h3 id="thread">Thread</h3>
+<p>參考資料：</p>
 <ol>
-<li>Velero 的基本操作就是 CLI 會去操作 Kubernetes API 建立 Backup 物件</li>
-<li>BackupController 偵測到新的 Backup 物件並檢查</li>
-<li>檢查通過後就會操作 Kubernetes API Server 進行資料的備份</li>
-<li>BackupController 就會透過 Plugin 會操作對應用 Object Storage Service 上傳檔案</li>
-<li>如果 Provider 支援原生的快照操作, Plugin 就可以透過 API 備分永久磁碟區</li>
+<li>
+<p>https://rickbsr.medium.com/%E6%B7%BA%E8%AB%87-java-%E5%9F%B7%E8%A1%8C%E7%B7%92%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F%E8%88%87%E7%8B%80%E6%85%8B-cfc4f1e10c77</p>
+</li>
+<li>
+<p>https://litotom.com/java-thread-priority-synchronized/</p>
+</li>
+<li>
+<p>https://openhome.cc/Gossip/JavaGossip-V2/WaitNotify.htm </p>
+</li>
 </ol>
-<h3 id="_2">安裝</h3>
-<p>下載及解壓縮</p>
-<pre><code>
-wget https://github.com/vmware-tanzu/velero/releases/download/v1.11.0/velero-v1.11.0-linux-amd64.tar.gz
+<h4 id="1cpuprocess">1CPU與多個Process</h4>
+<p><img alt="Alt text" src="../image-173.png" /></p>
+<blockquote>
+<p>一個應用程式或行程（Process）可以向作業系統取得多個執行緒（threads），多個執行緒可以模擬出平行處理的效果。一個具備單一（此處的CPU僅考慮單核心）的系統，事實上同一時間只能執行一件事，但如果將一個 CPU 的執行時間切割為很小的單位，將這些單位分給多個行程去使用，就可以模擬出多工（multi-task）的效果</p>
+</blockquote>
+<p>即：1 個 Process 也可以對應到多個 Thread (執行緒) (main 方法底下，可以模擬出不同多執行緒的方式)。</p>
+<h4 id="java">如何在Java定義執行緒並啟動</h4>
+<p>用 implements Runnable 比較好，因為如果用 extends Thread 的話，會受到 Java 物件只能繼成一個類別的限制。</p>
+<pre><code>public class DemoRunner implements Runnable {
 
-tar -zxvf velero-v1.11.0-linux-amd64.tar.gz &amp;&amp; cd velero-v1.11.0-linux-amd64
+    @Override
+    public void run() {
+        int h = 0;
+        for (int i = 0; i &lt; 5000; i++) {
+            h++;
+            System.out.println(h);
+        }
+    }
 
+}
 </code></pre>
-<h3 id="minio">安裝MINIO</h3>
-<p>要將 examples/minio/00-minio-deployment.yaml 修改成以下</p>
-<pre><code># Copyright 2017 the Velero contributors.
-#
-# Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+<p>執行一個 Runner</p>
+<pre><code>public class DemoExecute {
 
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: velero
+    public static void main(String[] args) {
 
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  namespace: velero
-  name: minio
-  labels:
-    component: minio
-spec:
-  strategy:
-    type: Recreate
-  selector:
-    matchLabels:
-      component: minio
-  template:
-    metadata:
-      labels:
-        component: minio
-    spec:
-      volumes:
-      - name: storage
-        emptyDir: {}
-      - name: config
-        emptyDir: {}
-      containers:
-      - name: minio
-        image: minio/minio:latest
-        imagePullPolicy: IfNotPresent
-        args:
-        - server
-        - /storage
-        - --config-dir=/config
-        - --console-address=:9001
-        env:
-        - name: MINIO_ACCESS_KEY
-          value: &quot;minio&quot;
-        - name: MINIO_SECRET_KEY
-          value: &quot;minio123&quot;
-        ports:
-        - containerPort: 9000
-        - containerPort: 9001
-        volumeMounts:
-        - name: storage
-          mountPath: &quot;/storage&quot;
-        - name: config
-          mountPath: &quot;/config&quot;
+        DemoRunner runner = new DemoRunner();
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  namespace: velero
-  name: minio
-  labels:
-    component: minio
-spec:
-  type: NodePort
-  ports:
-    - name: api
-      port: 9000
-      targetPort: 9000
-    - name: console
-      port: 9001
-      targetPort: 9001
-  selector:
-    component: minio
+        Thread thread = new Thread(runner);
 
----
-apiVersion: batch/v1
-kind: Job
-metadata:
-  namespace: velero
-  name: minio-setup
-  labels:
-    component: minio
-spec:
-  template:
-    metadata:
-      name: minio-setup
-    spec:
-      restartPolicy: OnFailure
-      volumes:
-      - name: config
-        emptyDir: {}
-      containers:
-      - name: mc
-        image: minio/mc:latest
-        imagePullPolicy: IfNotPresent
-        command:
-        - /bin/sh
-        - -c
-        - &quot;mc --config-dir=/config config host add velero http://minio:9000 minio minio123 &amp;&amp; mc --config-dir=/config mb -p velero/velero&quot;
-        volumeMounts:
-        - name: config
-          mountPath: &quot;/config&quot;
+        thread.start();
 
+    }
+}
 </code></pre>
-<p>kubectl apply -f examples/minio/00-minio-deployment.yaml</p>
-<p>開啟 kubrnetes dashboard 看 velero minio 是哪個 Port，並開啟瀏覽器</p>
-<p><img alt="Alt text" src="../image-25.png" /></p>
-<p>http://192.168.0.17:32729/browser</p>
-<p>帳號/密碼：minio/minio123</p>
-<p><img alt="Alt text" src="../image-24.png" /></p>
-<p>P.S.：</p>
-<p>當然如果需要在不同 Kubernetes 和存儲池集羣備份與恢復數據，需要將 minio 服務端安裝在 Kubernetes 集羣外，保證在集羣發生災難性故障時，不會對備份數據產生影響，可以通過二進制的方式進行安裝。</p>
-<p>(略) 請參考 <a href="https://www.readfog.com/a/1647215683490123776">https://www.readfog.com/a/1647215683490123776</a> 安裝 MINIO</p>
-<h3 id="velero">安裝 velero 服務端</h3>
-<p>nano credentials-velero</p>
-<pre><code># 秘钥文件credentials-velero
-[default]
-aws_access_key_id = minio
-aws_secret_access_key = minio123
-</code></pre>
-<p>velero install</p>
-<pre><code>velero install \
---provider aws \
---bucket velero \
---plugins velero/velero-plugin-for-aws:latest \
---plugins openebs/velero-plugin:ci \
---secret-file ./credentials-velero \
---use-volume-snapshots=false \
---backup-location-config region=minio,s3ForcePathStyle=&quot;true&quot;,s3Url=http://minio.velero.svc.cluster.local:9000
-</code></pre>
-<p>PS：s3Url=http://192.168.0.17:31883 PROT 從哪裡取得？</p>
-<p>minio.velero:30050 TCP  --&gt; MiniO 的 URL</p>
-<p><img alt="Alt text" src="../image-26.png" /></p>
-<p>minio.velero:31883 TCP  --&gt; MiniO 的 Dashboard URL</p>
-<p>http://192.168.0.17:30050/</p>
-<p><img alt="Alt text" src="../image-27.png" /></p>
-<h3 id="back-up">Back up</h3>
-<p>先建立一個 Namespace / Development / Service</p>
-<pre><code>cd ~/velero-v1.11.0-linux-amd64
-kubectl apply -f examples/nginx-app/base.yaml
-</code></pre>
-<p>Create a backup for any object that matches the app=nginx label selector:</p>
-<pre><code>velero backup create nginx-backup --selector app=nginx
-</code></pre>
-<p><img alt="Alt text" src="../image-28.png" /></p>
-<p>Run <code>velero backup describe nginx-backup</code> or <code>velero backup logs nginx-backup</code> for more details.</p>
-<p><img alt="Alt text" src="../image-29.png" /></p>
-<p>這時候去看 MiniO 的 Dashboard，會看到備份的檔案在這。</p>
-<p><img alt="Alt text" src="../image-30.png" /></p>
-<p>Simulate a disaster <code>kubectl delete namespace nginx-example</code>
-To check that the nginx deployment and service are gone, run:</p>
-<pre><code>kubectl get deployments --namespace=nginx-example
-kubectl get services --namespace=nginx-example
-kubectl get namespace/nginx-example
-</code></pre>
-<h3 id="restore">Restore</h3>
-<pre><code>velero restore create --from-backup nginx-backup
-</code></pre>
-<p>Restore request "nginx-backup-20230710100823" submitted successfully.
-Run <code>velero restore describe nginx-backup-20230710100823</code> or <code>velero restore logs nginx-backup-20230710100823</code> for more details.</p>
-<pre><code># 看進度
-velero restore get
-</code></pre>
-<p><img alt="Alt text" src="../image-31.png" /></p>
-<p>nginx-example 就回來了~</p>
-<p><img alt="Alt text" src="../image-32.png" /></p>
-<h3 id="clean-up">Clean up</h3>
-<p>velero backup delete BACKUP_NAME</p>
-<p>velero uninstall --&gt; 全部移除</p>
-<h2 id="with-pv">With PV</h2>
-<p>範例1
-    cd ~/velero-v1.11.0-linux-amd64
-    kubectl apply -f examples/nginx-app/with-pv.yaml</p>
-<pre><code>kubectl -n nginx-example annotate pod/nginx-deployment-78964c9995-cx4qs backup.velero.io/backup-volumes=nginx-logs
+<h4 id="thread_1">執行緒(Thread)相關概念</h4>
+<p><img alt="Alt text" src="../image-172.png" /></p>
+<h5 id="_1">執行緒</h5>
+<ol>
+<li>
+<p>start: 將執行緒物件，放入 Runnable，等待 Java 程序安排執行。</p>
+</li>
+<li>
+<p>join：當執行緒物件呼叫 join()方法時，表示告訴 Java 程序，需要等到所有執行緒物件(包含：主執行緒、子執行緒)皆完成後，才會繼續進行。</p>
+</li>
+<li>
+<p>sleep：當執行緒物件呼叫 sleep()方法時，表示要讓自身的執行緒進入 Blocked 狀態，並且讓出資源，給其他執行緒先行執行。</p>
+</li>
+<li>
+<p>yield：當執行緒物件呼叫 yield() 方法時，表示要讓自身的執行緒進入 Runnable 狀態，等待著 Java 程序進行分配。</p>
+</li>
+</ol>
+<h5 id="_2">物件</h5>
+<ol>
+<li>synchronized ： 分成同步方法或同步區塊。表示同一時間，只能有一個執行緒使用此方法或物件。需要等到一個執行緒執行完畢後，才能讓另一個執行緒操作此物件或方法。</li>
+</ol>
+<p>同步方法：</p>
+<pre><code>public synchronized void thunder() {
 
-velero backup create nginx-backup --include-namespaces nginx-example --default-volumes-to-fs-backup --snapshot-volumes --ttl 180h
 
-velero backup create nginx-backup --include-namespaces nginx-example --default-volumes-to-fs-backup
+}
 </code></pre>
-<p>範例2</p>
-<p>請參考 nfs 的 MySQL + NFS 建立相關環境與pod</p>
-<pre><code>kubectl exec -it mysql-5b46fb64b4-t2m4c -n kube-demo -- /bin/bash
-</code></pre>
-<p>並且建立一個新的資料庫，作為測試用
-  <img alt="Alt text" src="../image-47.png" /></p>
-<p>備份</p>
-<pre><code>velero backup create mysql-backup --include-namespaces kube-demo --default-volumes-to-restic
+<p>同步區塊：</p>
+<pre><code>synchronized( 物件 ){
 
-velero backup describe mysql-backup
-
-minio 會有備份資料
-![Alt text](image-49.png)
+} 
 </code></pre>
-<p><img alt="Alt text" src="../image-48.png" /></p>
-<p>模擬災難</p>
-<pre><code>kubectl delete namespace kube-demo
-</code></pre>
-<p>復原</p>
-<pre><code>velero restore create --from-backup mysql-backup
-
-velero restore get
-</code></pre>
-<p>檢查資料有否還原
-    kubectl exec -it mysql-5b46fb64b4-zj7n2 -n kube-demo -- /bin/bash
-  <img alt="Alt text" src="../image-50.png" /></p>
+<ol>
+<li>wait、notify、notifyAll：如果有執行緒執行到具有 synchronized 地方時，若因為某種條件被該物件呼叫了 wait() 方法，則該執行緒就會被放置 Blocked 區塊中。直到該物件呼叫了 notify()、notifyAll() 方法後，才會重新進行該執行緒。</li>
+</ol>
+<h4 id="_3">例子說明，可參考：</h4>
+<ol>
+<li>Java Gossip: wait()、notify()
+<a href="https://openhome.cc/Gossip/JavaGossip-V2/WaitNotify.htm">https://openhome.cc/Gossip/JavaGossip-V2/WaitNotify.htm</a></li>
+</ol>
 
 
 
