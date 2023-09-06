@@ -12,14 +12,14 @@
         <meta name="author" content="weizhi.zhu">
       
       
-        <link rel="canonical" href="https://aweit-zhu.github.io/nfs/">
+        <link rel="canonical" href="https://aweit-zhu.github.io/completableFuture/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.0.0b4">
     
     
       
-        <title>NFS - Aweit Docs</title>
+        <title>ExecutorService & CompletableFuture - Aweit Docs</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#use-nfs-for-persistent-volumes" class="md-skip">
+        <a href="#java-8-completablefuture" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              NFS
+              ExecutorService & CompletableFuture
             
           </span>
         </div>
@@ -183,11 +183,116 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../completableFuture/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          ExecutorService & CompletableFuture
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         ExecutorService & CompletableFuture
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#java-8-completablefuture" class="md-nav__link">
+    Java 8 CompletableFuture
+  </a>
+  
+    <nav class="md-nav" aria-label="Java 8 CompletableFuture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    建構方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blocking-and-non-blocking" class="md-nav__link">
+    Blocking (阻斷) and Non-blocking (非阻塞)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exception-handling" class="md-nav__link">
+    Exception Handling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#composible" class="md-nav__link">
+    Composible
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#demo" class="md-nav__link">
+    Demo
+  </a>
+  
+    <nav class="md-nav" aria-label="Demo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    需求：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#count" class="md-nav__link">
+    Count：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#20-thread-pool" class="md-nav__link">
+    模擬 20 個執行緒，共同對計數器進行操作。並且使用固定的Thread Pool進行管理。
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -423,96 +528,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          NFS
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../nfs/" class="md-nav__link">
         NFS
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#use-nfs-for-persistent-volumes" class="md-nav__link">
-    Use NFS for Persistent Volumes
-  </a>
-  
-    <nav class="md-nav" aria-label="Use NFS for Persistent Volumes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-setup-an-nfs-server" class="md-nav__link">
-    1. Setup an NFS server
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#1-1-nfs-client" class="md-nav__link">
-    1-1. NFS Client (可選，作為測試用)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2install-the-csi-driver-for-nfs" class="md-nav__link">
-    2.Install the CSI driver for NFS
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3create-a-storageclass-for-nfs-create-a-new-pvc" class="md-nav__link">
-    3.Create a StorageClass for NFS &amp; Create a new PVC
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-pod" class="md-nav__link">
-    4. 測試 Pod
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-mysql-nfs" class="md-nav__link">
-    5. MySQL + NFS
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -677,52 +697,72 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#use-nfs-for-persistent-volumes" class="md-nav__link">
-    Use NFS for Persistent Volumes
+  <a href="#java-8-completablefuture" class="md-nav__link">
+    Java 8 CompletableFuture
   </a>
   
-    <nav class="md-nav" aria-label="Use NFS for Persistent Volumes">
+    <nav class="md-nav" aria-label="Java 8 CompletableFuture">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-setup-an-nfs-server" class="md-nav__link">
-    1. Setup an NFS server
+  <a href="#_1" class="md-nav__link">
+    建構方法
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#1-1-nfs-client" class="md-nav__link">
-    1-1. NFS Client (可選，作為測試用)
+  <a href="#blocking-and-non-blocking" class="md-nav__link">
+    Blocking (阻斷) and Non-blocking (非阻塞)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2install-the-csi-driver-for-nfs" class="md-nav__link">
-    2.Install the CSI driver for NFS
+  <a href="#exception-handling" class="md-nav__link">
+    Exception Handling
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3create-a-storageclass-for-nfs-create-a-new-pvc" class="md-nav__link">
-    3.Create a StorageClass for NFS &amp; Create a new PVC
+  <a href="#composible" class="md-nav__link">
+    Composible
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-pod" class="md-nav__link">
-    4. 測試 Pod
+  <a href="#demo" class="md-nav__link">
+    Demo
+  </a>
+  
+    <nav class="md-nav" aria-label="Demo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    需求：
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-mysql-nfs" class="md-nav__link">
-    5. MySQL + NFS
+  <a href="#count" class="md-nav__link">
+    Count：
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#20-thread-pool" class="md-nav__link">
+    模擬 20 個執行緒，共同對計數器進行操作。並且使用固定的Thread Pool進行管理。
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -746,239 +786,220 @@
                   
 
 
-  <h1>NFS</h1>
+  <h1>ExecutorService & CompletableFuture</h1>
 
-<h2 id="use-nfs-for-persistent-volumes">Use NFS for Persistent Volumes</h2>
+<h3 id="java-8-completablefuture">Java 8 CompletableFuture</h3>
+<p>參考資料：<a href="https://medium.com/javarevisited/java-completablefuture-c47ca8c885af">https://medium.com/javarevisited/java-completablefuture-c47ca8c885af</a></p>
+<h4 id="_1">建構方法</h4>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>runAsync(Runnable runnable)</td>
+</tr>
+<tr>
+<td>runAsync(Runnable runnable, Executor executor)</td>
+</tr>
+<tr>
+<td>supplyAsync(Supplier supplier)</td>
+</tr>
+<tr>
+<td>supplyAsync(Supplier supplier, Executor executor)</td>
+</tr>
+</tbody>
+</table>
+<p><code>runAsync()</code>: 執行非同步工作，沒有回傳值。
+<code>supplyAsync()</code> 執行非同步工作，有一回傳值。
+<code>executor</code>: 自定義Thread Pool。</p>
+<pre><code>// Example using runAsync()
+CompletableFuture&lt;Void&gt; future1 = CompletableFuture.runAsync(() -&gt; {
+    // Perform some asynchronous task
+    System.out.println(&quot;Task executed asynchronously&quot;);
+});
+
+// Example using supplyAsync()
+CompletableFuture&lt;Integer&gt; future2 = CompletableFuture.supplyAsync(() -&gt; {
+    // Perform some asynchronous computation
+    return 42;
+});
+</code></pre>
+<h4 id="blocking-and-non-blocking">Blocking (阻斷) and Non-blocking (非阻塞)</h4>
+<p>阻斷</p>
+<pre><code>CompletableFuture&lt;Integer&gt; future1 = CompletableFuture.supplyAsync(() -&gt; &quot;hello!&quot;)
+        .thenApplyAsync(s -&gt; s.length());
+try {
+    Integer length = future1.get(); // 會等到 Fucure 物件處理完畢了，並且取到結果值了，才會往下執行。故，主執行緒被阻斷在這裡了。
+    System.out.println(&quot;length:&quot; + length);
+} catch (InterruptedException | ExecutionException e) {
+    // TODO Auto-generated catch block
+    e.printStackTrace();
+} 
+System.out.println(&quot;end&quot;);
+</code></pre>
+<p>非阻斷</p>
+<pre><code>CompletableFuture future2 = CompletableFuture.supplyAsync(() -&gt; &quot;hello!&quot;)
+        .thenApplyAsync(s -&gt; s.length())
+        .thenAccept(length -&gt; System.out.println(&quot;length: &quot; + length));
+
+// Non Blocking Code 
+
+future2.join(); // Wait for the future to complete
+
+// 等到 future2 執行完畢後，才會繼續執行以下。
+System.out.println(&quot;end&quot;);
+</code></pre>
+<h4 id="exception-handling">Exception Handling</h4>
+<pre><code>CompletableFuture&lt;Integer&gt; future = CompletableFuture.supplyAsync(() -&gt; {
+    int result = 10 / 0; // Causes an ArithmeticException
+    return result;
+});
+
+future.exceptionally(ex -&gt; {
+    System.out.println(&quot;Exception occurred: &quot; + ex.getMessage());
+    return 0; // Default value to return if there's an exception
+}).thenAccept(result -&gt; {
+    System.out.println(&quot;Result: &quot; + result);
+});
+
+---
+Exception occurred: java.lang.ArithmeticException: / by zero
+Result: 0
+</code></pre>
+<h4 id="composible">Composible</h4>
+<pre><code>CompletableFuture&lt;String&gt; future = CompletableFuture.supplyAsync(() -&gt; &quot;Hello&quot;);
+
+CompletableFuture&lt;Integer&gt; transformedFuture = future.thenApplyAsync(s -&gt; {
+    System.out.println(&quot;Thread: &quot; + Thread.currentThread().getName());
+    return s.length();
+});
+
+transformedFuture.thenAccept(length -&gt; {
+    System.out.println(&quot;Thread: &quot; + Thread.currentThread().getName());
+    System.out.println(&quot;Length of Hello: &quot; + length);
+});
+</code></pre>
 <ul>
-<li>https://microk8s.io/docs/nfs</li>
+<li>xxxx(function): function會用前個執行的thread去呼叫。</li>
+<li>xxxxAsync(function): function會用非同步的方式呼叫，並用預設的thread pool。</li>
+<li>xxxxAsync(function, executor): function會用非同步的方式呼叫，並用指定的thread pool。</li>
 </ul>
-<h3 id="1-setup-an-nfs-server">1. Setup an NFS server</h3>
-<p>假設在 192.168.0.16 架設 NFS server</p>
-<pre><code>sudo apt update
-sudo apt-get install nfs-kernel-server
-</code></pre>
-<p>Create a directory to be used for NFS:</p>
-<pre><code>sudo mkdir -p /srv/nfs
-sudo chown nobody:nogroup /srv/nfs
-sudo chmod 0777 /srv/nfs
-</code></pre>
-<p>Edit the /etc/exports file. Make sure that the IP addresses of all your MicroK8s nodes are able to mount this share. For example, to allow all IP addresses in the 10.0.0.0/24 subnet</p>
-<pre><code>sudo mv /etc/exports /etc/exports.bak
-echo '/srv/nfs 192.168.0.0/24(rw,sync,no_subtree_check,no_root_squash)' | sudo tee /etc/exports
-</code></pre>
-<p>重啟</p>
-<pre><code>sudo systemctl restart nfs-kernel-server.service
-</code></pre>
-<p>確認 NFS Server是否正常啟動</p>
-<pre><code>sudo systemctl status nfs-kernel-server.service
-</code></pre>
-<p><img alt="Alt text" src="../image-33.png" /></p>
-<p>或是可以使用 showmount 命令來檢查 NFS Server 開出來的目錄
-<code>showmount -e 192.168.0.16</code></p>
-<p><img alt="Alt text" src="../image-34.png" /></p>
-<h3 id="1-1-nfs-client">1-1. NFS Client (可選，作為測試用)</h3>
-<p>使用 apt 命令進行安裝 NFS Client</p>
-<pre><code>sudo apt update
-sudo apt install nfs-common
-</code></pre>
-<p>使用 showmount 命令檢查 NFS Server 可連線的目錄</p>
-<pre><code>showmount -e 192.168.0.16
----output---
-Export list for 192.168.0.16:
-/srv/nfs 192.168.0.0/24
-</code></pre>
-<p>如果出現堵塞現象(Stuck)，可能原因為 NFS Server 的防火牆導致，只要關掉防火牆即可(<code>sudo ufw disable</code>)。</p>
-<p>建立掛載用目錄，並將 NFS Server 的目錄掛載至本機目錄</p>
-<pre><code>sudo mkdir /srv/nfs
-sudo mount 192.168.0.16:/srv/nfs /srv/nfs
-</code></pre>
-<p>如果出現 <code>mount.nfs: access denied by server while mounting 192.168.0.16:/srv/nfs</code> 問題，可以先透過
-<code>sudo mount -t nfs -vvvv 192.168.0.16:/srv/nfs /srv/nfs</code> 
-查看詳細資訊。
-<img alt="Alt text" src="../image-35.png" /></p>
-<p>測試：</p>
-<p>登入 ssh vboxuser@192.168.17  # NFS Client
-登入 ssh vboxuser@192.168.16  # NFS Server
-因為 NFS Client 將本機的 /srv/nfs 資料夾，綁定在  NFS Server 的 /srv/nfs 資料夾 資料夾中，所以兩者資料夾會同步。</p>
-<p>先在 NFS Client 執行以下命令</p>
-<pre><code>touch /srv/nfs/123.txt
-ls
-</code></pre>
-<p>再去 NFS Server 執行以下命令，就會看到 123.txt 檔案了</p>
-<pre><code>cd /srv/nfs
-ls
-</code></pre>
-<p><img alt="Alt text" src="../image-36.png" /></p>
-<h3 id="2install-the-csi-driver-for-nfs">2.Install the CSI driver for NFS</h3>
-<h3 id="3create-a-storageclass-for-nfs-create-a-new-pvc">3.Create a StorageClass for NFS &amp; Create a new PVC</h3>
-<pre><code># sc-nfs.yaml
----
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: nfs-csi
-provisioner: nfs.csi.k8s.io
-parameters:
-  server: 192.168.0.16
-  share: /srv/nfs
-reclaimPolicy: Delete
-volumeBindingMode: Immediate
-mountOptions:
-  - hard
-  - nfsvers=4.1
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>thenRun()</td>
+<td>同一執行緒，執行回傳 void 的任務</td>
+</tr>
+<tr>
+<td>thenRunAsync()</td>
+<td>不同執行緒，執行回傳 void 的任務</td>
+</tr>
+<tr>
+<td>thenApply()</td>
+<td>同一執行緒，執行回傳物件的任務</td>
+</tr>
+<tr>
+<td>thenApplyAsync()</td>
+<td>不同執行緒，執行回傳物件的任務</td>
+</tr>
+</tbody>
+</table>
+<pre><code>CompletableFuture.supplyAsync(() -&gt; &quot;hello&quot;).thenApplyAsync(s -&gt; s.toUpperCase())
+        .thenApplyAsync(s -&gt; s + &quot;, world!&quot;).thenApplyAsync(s -&gt; s.toUpperCase())
+        .whenComplete((r, ex) -&gt; System.out.println(r)).join();
 
-microk8s kubectl apply -f - &lt; sc-nfs.yaml
+CompletableFuture.runAsync(() -&gt; sleep(1000)).thenRunAsync(() -&gt; sleep(100)).thenRunAsync(() -&gt; sleep(100))
+        .whenComplete((r, ex) -&gt; System.out.println(r)).join();
 </code></pre>
-<pre><code># pvc-nfs.yaml
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: my-pvc
-spec:
-  storageClassName: nfs-csi
-  accessModes: [ReadWriteOnce]
-  resources:
-    requests:
-      storage: 5Gi
+<p>Compose 兩種比較：thenApplyAsync()、thenCompose()</p>
+<pre><code>CompletableFuture&lt;Integer&gt; future = CompletableFuture.supplyAsync(() -&gt; 5).thenApplyAsync(r -&gt; r * 2);
+future.thenAccept(s -&gt; System.out.println(&quot;Final result: &quot; + s));
 
-microk8s kubectl apply -f - &lt; pvc-nfs.yaml
+
+CompletableFuture&lt;Integer&gt; future1 = CompletableFuture.supplyAsync(() -&gt; 5);
+CompletableFuture&lt;Integer&gt; future2 = future1.thenCompose(result -&gt; {
+    int doubledResult = result * 2;
+    return CompletableFuture.supplyAsync(() -&gt; doubledResult);
+});
+future2.thenAccept(result -&gt; System.out.println(&quot;Final result: &quot; + result));
 </code></pre>
-<p>microk8s kubectl describe pvc my-pvc</p>
-<h3 id="4-pod">4. 測試 Pod</h3>
-<pre><code>apiVersion: v1
-kind: Pod
-metadata:
-  name: hwchiu
-  labels:
-    app: hwchiu
-spec:
-  containers:
-  - name: busybox
-    image: hwchiu/netutils:latest
-    volumeMounts:
-      - name: nfs-volume
-        mountPath: /nfs
-  volumes:
-    - name: nfs-volume
-      persistentVolumeClaim:
-        claimName: my-pvc
+<h4 id="demo">Demo</h4>
+<h5 id="_2">需求：</h5>
+<p>有一個計數器會統計目前的數字。由於有不同執行緒會按下計數器，所以需要將計數器物件進行鎖定，讓該計數器增加一下的動作，僅能有一個執行緒進行操作，以避免計數器數字不正確。</p>
+<h5 id="count">Count：</h5>
+<pre><code>public class Count {
+ int cnt = 0;
+
+ public void addctn() {
+  synchronized (this) {
+   try {
+    Thread.sleep(100);
+   } catch (InterruptedException e) {
+    e.printStackTrace();
+   }
+   cnt++;
+  }
+ }
+
+ public int getctn() {
+  synchronized (this) {
+   return cnt;
+  }
+ }
+}
 </code></pre>
-<p>進入Pod</p>
-<pre><code>kubectl exec -it hwchiu -n nfs-demo -- /bin/bash
-ls  # 看看有沒有剛剛建立的 456.txt
-</code></pre>
-<p><img alt="Alt text" src="../image-37.png" /></p>
-<p>以下是這個 Pod 的 Volume 完整資訊</p>
-<p><img alt="Alt text" src="../image-38.png" /></p>
-<p>pvc 資訊
-<img alt="Alt text" src="../image-39.png" /></p>
-<p>pv 資訊
-<img alt="Alt text" src="../image-40.png" /></p>
-<h3 id="5-mysql-nfs">5. MySQL + NFS</h3>
-<pre><code>kubectl create namespace kube-demo
-kubectl create secret generic mysql-pass --from-literal=password=password321 -n kube-demo
-</code></pre>
-<p>PV、PVC</p>
-<pre><code>apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: mysql-pv
-  labels:
-    pv: mysql-pv
-spec:
-  storageClassName: nfs-csi
-  capacity:
-    storage: 15Gi
-  accessModes:
-    - ReadWriteMany
-  persistentVolumeReclaimPolicy: Recycle
-  nfs:
-    path: /srv/nfs/mysql-pv
-    server: 192.168.0.16
+<h5 id="20-thread-pool">模擬 20 個執行緒，共同對計數器進行操作。並且使用固定的Thread Pool進行管理。</h5>
+<pre><code> public static void main(String[] args) throws InterruptedException {
+
+  Count count = new Count();
+
+  ExecutorService executor = Executors.newFixedThreadPool(5);
+
+  for (int i = 0; i &lt; 20; i++) {
+   CompletableFuture&lt;Void&gt; future = CompletableFuture.runAsync(() -&gt; {
+    String threadName = Thread.currentThread().getName();
+    System.out.println(&quot;run &quot; + threadName + &quot; thread&quot;);
+    count.addctn();
+   }, executor);
+   future.join();
+  }
+
+  executor.shutdown();
+
+  System.out.println(&quot;計數器:&quot; + count.getctn());
+ }
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mysql-pvc
-spec:
-  storageClassName: &quot;nfs-csi&quot;
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 10Gi
-  selector:
-    matchLabels: 
-      pv: mysql-pv
+run pool-1-thread-1 thread
+run pool-1-thread-2 thread
+run pool-1-thread-3 thread
+run pool-1-thread-4 thread
+run pool-1-thread-5 thread
+run pool-1-thread-1 thread
+run pool-1-thread-2 thread
+run pool-1-thread-3 thread
+run pool-1-thread-4 thread
+run pool-1-thread-5 thread
+run pool-1-thread-1 thread
+run pool-1-thread-2 thread
+run pool-1-thread-3 thread
+run pool-1-thread-4 thread
+run pool-1-thread-5 thread
+run pool-1-thread-1 thread
+run pool-1-thread-2 thread
+run pool-1-thread-3 thread
+run pool-1-thread-4 thread
+run pool-1-thread-5 thread
+計數器:20
 </code></pre>
-<p><img alt="Alt text" src="../image-44.png" />
-<img alt="Alt text" src="../image-45.png" /></p>
-<p>Deployment</p>
-<pre><code>apiVersion: v1
-kind: Service
-metadata:
-  name: mysql
-spec:
-  selector:
-    app: mysql
-  ports:
-    - protocol: TCP
-      port: 3306
-      targetPort: 3306
-      nodePort: 31306
-  type: NodePort
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: mysql
-  labels:
-    app: mysql-test
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: mysql
-  template:
-    metadata:
-      labels:
-        app: mysql
-    spec:
-      nodeName: node
-      containers:
-      - name: mysql-test
-        image: mysql:5.7
-        env:
-          - name: MYSQL_ROOT_PASSWORD
-            valueFrom:
-              secretKeyRef:
-               name: mysql-pass
-               key: password
-        ports:
-        - containerPort: 3306
-        volumeMounts:
-        - mountPath: &quot;/var/lib/mysql&quot;
-          name: mysql-data
-      volumes:
-      - name: mysql-data
-        persistentVolumeClaim:
-          claimName: mysql-pvc
-</code></pre>
-<p><img alt="Alt text" src="../image-43.png" /></p>
-<p>P.S：
-如果一直 Pending ，甚至出現 CrashLoopBackOff 的訊息，可以執行
-<code>kubectl logs mysql-848b44f4c5-kgdzc -n kube-demo</code>
-看看哪裡出錯。</p>
-<p><img alt="Alt text" src="../image-41.png" /></p>
-<p>可參考 <a href="https://blog.csdn.net/m0_46090675/article/details/122276216">https://blog.csdn.net/m0_46090675/article/details/122276216</a> 解決此問題。</p>
-<p>最後就會成功了~~~</p>
-<p>首先檢查 NFS Server 的檔案中是否有 mysql 的相關資料</p>
-<p><img alt="Alt text" src="../image-42.png" /></p>
-<p>進入 Pod 的命令列中，查看 Mysql 相關資訊</p>
-<pre><code>kubectl exec -it mysql-5b46fb64b4-t2m4c -n kube-demo -- /bin/bash
-</code></pre>
-<p><img alt="Alt text" src="../image-46.png" /></p>
 
 
 
