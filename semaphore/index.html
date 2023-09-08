@@ -722,7 +722,9 @@
   <h1>Thread & Semaphore</h1>
 
 <h3 id="thread-semaphore">Thread &amp; Semaphore</h3>
-<p>Semaphore (訊號)： 定義有幾個執行緒，允許執行以下代碼 (permits)。Acquire a permit，代表先取得一個 permit，接著以下代碼就可以執行。如果無法取得 permit，則會 lock。需要等到有其他程序執行 Release a permit，該 lock 的執行緒，才會接著繼續進行 (解lock)。</p>
+<p>在 Java 中，Semaphore 可以用來控制多個執行緒對同一物件的存取。Semaphore 會維護一個數字，稱為 permits，代表可用的許可數量。當一個執行緒想要存取該物件時，它會先呼叫 acquire() 方法來獲取一個許可。如果 permits 大於 0，執行緒會成功獲取一個許可，並且 permits 的數量會減少。如果 permits 等於 0，執行緒會等待直到有其他執行緒釋放許可。</p>
+<p>當一個執行緒完成對該物件的存取後，它會呼叫 release() 方法來釋放許可。這會導致 permits 的數量增加，並且可能會喚醒正在等待許可的其他執行緒。</p>
+<p>Semaphore 的使用可以簡化程式碼，讓它更易讀和理解。相較於使用 synchronized、wait 和 notifyAll 來實現同樣的功能，Semaphore 提供了一種更直觀的方式來控制多個執行緒對同一物件的存取。</p>
 <blockquote>
 <p>參考：How to use a Semaphore in Java with code examples
 <a href="https://davidvlijmincx.com/posts/how-to-use-java-semaphore/">https://davidvlijmincx.com/posts/how-to-use-java-semaphore/</a></p>
