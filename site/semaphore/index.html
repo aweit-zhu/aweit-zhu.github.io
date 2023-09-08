@@ -12,14 +12,14 @@
         <meta name="author" content="weizhi.zhu">
       
       
-        <link rel="canonical" href="https://aweit-zhu.github.io/struts-props/">
+        <link rel="canonical" href="https://aweit-zhu.github.io/semaphore/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.0.0b4">
     
     
       
-        <title>Struts2 Properties Config - Aweit Docs</title>
+        <title>Thread & Semaphore - Aweit Docs</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#struts2-properties-config" class="md-skip">
+        <a href="#thread-semaphore" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Struts2 Properties Config
+              Thread & Semaphore
             
           </span>
         </div>
@@ -183,11 +183,75 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../semaphore/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Thread & Semaphore
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Thread & Semaphore
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#thread-semaphore" class="md-nav__link">
+    Thread &amp; Semaphore
+  </a>
+  
+    <nav class="md-nav" aria-label="Thread &amp; Semaphore">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    需求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#synchronizedwaitnotifyall" class="md-nav__link">
+    方法一、用 synchronized、wait、notifyAll 方法實現
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semaphore" class="md-nav__link">
+    方法二、用 Semaphore 方法實現
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -273,89 +337,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Struts2 Properties Config
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../struts-props/" class="md-nav__link">
         Struts2 Properties Config
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#struts2-properties-config" class="md-nav__link">
-    Struts2 Properties Config
-  </a>
-  
-    <nav class="md-nav" aria-label="Struts2 Properties Config">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    問題描述
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#strutsprepareandexecutefilter" class="md-nav__link">
-    利用 StrutsPrepareAndExecuteFilter 的過濾參數
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#srcmainresources-properties" class="md-nav__link">
-    於 src/main/resources 新增 Properties 檔案
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#eclipse" class="md-nav__link">
-    在執行應用的指令中加入環境變數，以下以 Eclipse 為例
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    如何讀取設定檔值？
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -685,44 +671,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#struts2-properties-config" class="md-nav__link">
-    Struts2 Properties Config
+  <a href="#thread-semaphore" class="md-nav__link">
+    Thread &amp; Semaphore
   </a>
   
-    <nav class="md-nav" aria-label="Struts2 Properties Config">
+    <nav class="md-nav" aria-label="Thread &amp; Semaphore">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    問題描述
+    需求
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#strutsprepareandexecutefilter" class="md-nav__link">
-    利用 StrutsPrepareAndExecuteFilter 的過濾參數
+  <a href="#synchronizedwaitnotifyall" class="md-nav__link">
+    方法一、用 synchronized、wait、notifyAll 方法實現
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#srcmainresources-properties" class="md-nav__link">
-    於 src/main/resources 新增 Properties 檔案
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#eclipse" class="md-nav__link">
-    在執行應用的指令中加入環境變數，以下以 Eclipse 為例
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    如何讀取設定檔值？
+  <a href="#semaphore" class="md-nav__link">
+    方法二、用 Semaphore 方法實現
   </a>
   
 </li>
@@ -747,59 +719,158 @@
                   
 
 
-  <h1>Struts2 Properties Config</h1>
+  <h1>Thread & Semaphore</h1>
 
-<h4 id="struts2-properties-config">Struts2 Properties Config</h4>
-<h5 id="_1">問題描述</h5>
-<p>有時候要依據系統變數(例如：env)，決定Application的環境，這樣才可以讀取到正確的設定值，例如：API、DB 連線。</p>
-<p>如何在 Struts2 做到呢？上網可能會發現可以使用 <code>&lt;constant name="struts.custom.i18n.resources" value="application_${env}" /&gt;</code>。但是如果版本是低於2.5的，會發現無法work。(本文是用2.3.8)</p>
-<p>那該如何解決？需滿足以下目標：</p>
-<ol>
-<li>
-<p>依照系統變數，決定Application的設定檔。例如：env=dev, 則讀取 application_dev.properties。</p>
-</li>
-<li>
-<p>如何讀取設定檔值？</p>
-</li>
-</ol>
-<h5 id="strutsprepareandexecutefilter">利用 StrutsPrepareAndExecuteFilter 的過濾參數</h5>
-<pre><code>&lt;filter&gt;
-    &lt;filter-name&gt;struts2&lt;/filter-name&gt;
-    &lt;filter-class&gt;
-        org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter&lt;/filter-class&gt;
-    &lt;init-param&gt;
-        &lt;param-name&gt;struts.custom.i18n.resources&lt;/param-name&gt;
-        &lt;param-value&gt;application_${env}&lt;/param-value&gt;
-    &lt;/init-param&gt;
-&lt;/filter&gt;
-</code></pre>
-<ol>
-<li>
-<p>測試後發現，必須要帶有_的才能。如果是 <code>application.${env}</code> 則無法work。</p>
-</li>
-<li>
-<p>且一定要寫在過濾參數中，寫在 struts.xml 會無法 work。但是如果是寫死的，struts.xml 可以 work。</p>
-</li>
-</ol>
-<h5 id="srcmainresources-properties">於 src/main/resources 新增 Properties 檔案</h5>
-<p><img alt="Alt text" src="../image-148.png" /></p>
-<p><img alt="Alt text" src="../image-149.png" /></p>
-<h5 id="eclipse">在執行應用的指令中加入環境變數，以下以 Eclipse 為例</h5>
-<p>加入以下指令(以dev為例)：</p>
-<pre><code>-Denv=dev
-</code></pre>
-<p><img alt="Alt text" src="../image-152.png" /></p>
-<h5 id="_2">如何讀取設定檔值？</h5>
-<pre><code> // 寫在 JS 中
- var apiUrl = '&lt;s:property value=&quot;%{getText('API_URL')}&quot; /&gt;';
+<h3 id="thread-semaphore">Thread &amp; Semaphore</h3>
+<p>Semaphore (訊號)： 定義有幾個執行緒，允許執行以下代碼 (permits)。Acquire a permit，代表先取得一個 permit，接著以下代碼就可以執行。如果無法取得 permit，則會 lock。需要等到有其他程序執行 Release a permit，該 lock 的執行緒，才會接著繼續進行 (解lock)。</p>
+<blockquote>
+<p>參考：How to use a Semaphore in Java with code examples
+<a href="https://davidvlijmincx.com/posts/how-to-use-java-semaphore/">https://davidvlijmincx.com/posts/how-to-use-java-semaphore/</a></p>
+</blockquote>
+<h4 id="_1">需求</h4>
+<p>如何用不同執行緒，才能每次皆能依序列印出 1、2、3。</p>
+<pre><code>class Foo {
 
- // 寫在 JSP 中
- &lt;s:property value=&quot;%{getText('API_URL')}&quot; /&gt;
+    public Foo() {
+    }
+
+    public void first() throws InterruptedException {
+        System.out.println(&quot;1&quot;);
+    }
+
+    public void second() throws InterruptedException {
+        System.out.println(&quot;2&quot;);
+    }
+
+    public void third() throws InterruptedException {
+        System.out.println(&quot;3&quot;);
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        Foo foo = new Foo();
+
+        Runnable printFirst = new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    foo.first();
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        Runnable printSecond = new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    foo.second();
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+            }
+
+        };
+
+        Runnable printThird = new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    foo.third();
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        Thread one = new Thread(printFirst);
+        Thread two = new Thread(printSecond);
+        Thread three = new Thread(printThird);
+
+        three.start();
+        two.start();
+        one.start();
+    }
+}
 </code></pre>
-<p>JS
-<img alt="Alt text" src="../image-150.png" /></p>
-<p>瀏覽器輸出
-<img alt="Alt text" src="../image-151.png" /></p>
+<h4 id="synchronizedwaitnotifyall">方法一、用 synchronized、wait、notifyAll 方法實現</h4>
+<pre><code>public class Foo {
+
+    boolean a;
+
+    boolean b;
+
+    boolean c;
+
+    public synchronized void first() throws InterruptedException {
+        System.out.println(&quot;1&quot;);
+        a = true;
+        notifyAll();
+    }
+
+    public synchronized void second() throws InterruptedException {
+        while(!a) {
+            wait();
+        }
+        System.out.println(&quot;2&quot;);
+        b = true;
+        notifyAll();
+    }
+
+    public synchronized void third() throws InterruptedException {
+        while(!b) {
+            wait();
+        }
+        System.out.println(&quot;3&quot;);
+        c = true;
+        notifyAll();
+    }
+
+    public Foo() {
+        a = false;
+        b = false;
+        c = false;
+    }
+
+    // main 方法省略
+}
+</code></pre>
+<h4 id="semaphore">方法二、用 Semaphore 方法實現</h4>
+<pre><code>public class Foo2 {
+
+    private Semaphore a = new Semaphore(1);
+
+    private Semaphore b = new Semaphore(0);
+
+    private Semaphore c = new Semaphore(0);
+
+    public Foo2() {
+    }
+
+    public void first() throws InterruptedException {
+        a.acquire(1);
+        System.out.println(&quot;1&quot;);
+        b.release(1);
+    }
+
+    public void second() throws InterruptedException {
+        b.acquire(1);
+        System.out.println(&quot;2&quot;);
+        c.release(1);
+    }
+
+    public void third() throws InterruptedException {
+        c.acquire(1);
+        System.out.println(&quot;3&quot;);
+    }
+
+    // main 方法省略
+}
+</code></pre>
 
 
 

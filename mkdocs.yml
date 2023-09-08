@@ -4,6 +4,7 @@ site_author: weizhi.zhu
 site_description: a short description of your website
 
 nav:
+  - Thread & Semaphore: semaphore.md
   - Java 8 CompletableFuture: completableFuture.md
   - Java Thread & Thread Pool : thread.md
   - Spring Boot 3 + Spring Batch 5: spring-batch.md
