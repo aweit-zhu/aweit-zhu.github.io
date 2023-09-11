@@ -185,6 +185,36 @@
   
   
     <li class="md-nav__item">
+      <a href="../forkJoinPool/" class="md-nav__link">
+        ForkJoinPool
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../volatile/" class="md-nav__link">
+        Volatile & synchronized
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../semaphore/" class="md-nav__link">
         Thread & Semaphore
       </a>
@@ -870,7 +900,12 @@
 </ol>
 <h5 id="_3">物件</h5>
 <ol>
-<li>synchronized ： 分成同步方法或同步區塊。表示同一時間，只能有一個執行緒使用此方法或物件。需要等到一個執行緒執行完畢後，才能讓另一個執行緒操作此物件或方法。</li>
+<li>
+<p>synchronized ： 分成同步方法或同步區塊。表示同一時間，只能有一個執行緒使用此方法或物件。需要等到一個執行緒執行完畢後，才能讓另一個執行緒操作此物件或方法。</p>
+</li>
+<li>
+<p>volatile：在變數前加上volatile，此變數會改為不使用各執行緒的working memory，永遠從主記憶體做存取與讀寫。(詳細有專文介紹：)</p>
+</li>
 </ol>
 <p>在Java中，有兩種類型的鎖可以用於實現線程同步 - 對象級鎖和類級鎖。</p>
 <p>同步方法：</p>

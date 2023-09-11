@@ -1,11 +1,36 @@
 ### Thread & Semaphore
 
-Semaphore (訊號)： 定義有幾個執行緒，允許執行以下代碼 (permits)。Acquire a permit，代表先取得一個 permit，接著以下代碼就可以執行。如果無法取得 permit，則會 lock。需要等到有其他程序執行 Release a permit，該 lock 的執行緒，才會接著繼續進行 (解lock)。
+在 Java 中，Semaphore 可以用來控制多個執行緒對同一物件的存取。Semaphore 會維護一個數字，稱為 permits，代表可用的許可數量。當一個執行緒想要存取該物件時，它會先呼叫 acquire() 方法來獲取一個許可。如果 permits 大於 0，執行緒會成功獲取一個許可，並且 permits 的數量會減少。如果 permits 等於 0，執行緒會等待直到有其他執行緒釋放許可。
+
+當一個執行緒完成對該物件的存取後，它會呼叫 release() 方法來釋放許可。這會導致 permits 的數量增加，並且可能會喚醒正在等待許可的其他執行緒。
+
+Semaphore 的使用可以簡化程式碼，讓它更易讀和理解。相較於使用 synchronized、wait 和 notifyAll 來實現同樣的功能，Semaphore 提供了一種更直觀的方式來控制多個執行緒對同一物件的存取。
+
+```
+public class SharedObject {
+    private Semaphore semaphore = new Semaphore(1);
+    
+    public void doSomething() {
+        try {
+            semaphore.acquire();
+            // 存取共享物件的程式碼
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            semaphore.release();
+        }
+    }
+}
+```
+在上面的範例中，我們創建了一個 Semaphore 物件，並且初始化 permits 為 1，表示只有一個許可。在 doSomething() 方法中，我們首先呼叫 acquire() 方法來獲取許可，然後進行對共享物件的存取操作。最後，我們呼叫 release() 方法來釋放許可。
+
+這樣，當多個執行緒同時存取 SharedObject 物件時，只有一個執行緒可以成功獲取許可，其他執行緒則需要等待。這樣可以確保同一時間只有一個執行緒在存取該物件，避免了錯亂的情況。
+
 
 >參考：How to use a Semaphore in Java with code examples
 <https://davidvlijmincx.com/posts/how-to-use-java-semaphore/>
 
-#### 需求
+#### 範例
 
 如何用不同執行緒，呼叫不同方法，讓其每次輸出能依序列印出 1、2、3。
 

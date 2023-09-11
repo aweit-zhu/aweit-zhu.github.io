@@ -12,14 +12,14 @@
         <meta name="author" content="weizhi.zhu">
       
       
-        <link rel="canonical" href="https://aweit-zhu.github.io/nfs/">
+        <link rel="canonical" href="https://aweit-zhu.github.io/forkJoinPool/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.0.0b4">
     
     
       
-        <title>NFS - Aweit Docs</title>
+        <title>ForkJoinPool - Aweit Docs</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#use-nfs-for-persistent-volumes" class="md-skip">
+        <a href="#forkjoinpool" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              NFS
+              ForkJoinPool
             
           </span>
         </div>
@@ -183,11 +183,102 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../forkJoinPool/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          ForkJoinPool
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         ForkJoinPool
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#forkjoinpool" class="md-nav__link">
+    ForkJoinPool
+  </a>
+  
+    <nav class="md-nav" aria-label="ForkJoinPool">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#divide-and-conquer" class="md-nav__link">
+    Divide And Conquer (分而治之)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work-stealing" class="md-nav__link">
+    Work Stealing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forkjoinpool-forkjoinpool" class="md-nav__link">
+    比較 ForkJoinPool 與 未使用 ForkJoinPool 的 效能差異
+  </a>
+  
+    <nav class="md-nav" aria-label="比較 ForkJoinPool 與 未使用 ForkJoinPool 的 效能差異">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    情境
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    實作
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    小結
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -468,96 +559,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          NFS
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../nfs/" class="md-nav__link">
         NFS
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#use-nfs-for-persistent-volumes" class="md-nav__link">
-    Use NFS for Persistent Volumes
-  </a>
-  
-    <nav class="md-nav" aria-label="Use NFS for Persistent Volumes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-setup-an-nfs-server" class="md-nav__link">
-    1. Setup an NFS server
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#1-1-nfs-client" class="md-nav__link">
-    1-1. NFS Client (可選，作為測試用)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2install-the-csi-driver-for-nfs" class="md-nav__link">
-    2.Install the CSI driver for NFS
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3create-a-storageclass-for-nfs-create-a-new-pvc" class="md-nav__link">
-    3.Create a StorageClass for NFS &amp; Create a new PVC
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-pod" class="md-nav__link">
-    4. 測試 Pod
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-mysql-nfs" class="md-nav__link">
-    5. MySQL + NFS
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -722,51 +728,57 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#use-nfs-for-persistent-volumes" class="md-nav__link">
-    Use NFS for Persistent Volumes
+  <a href="#forkjoinpool" class="md-nav__link">
+    ForkJoinPool
   </a>
   
-    <nav class="md-nav" aria-label="Use NFS for Persistent Volumes">
+    <nav class="md-nav" aria-label="ForkJoinPool">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-setup-an-nfs-server" class="md-nav__link">
-    1. Setup an NFS server
+  <a href="#divide-and-conquer" class="md-nav__link">
+    Divide And Conquer (分而治之)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#1-1-nfs-client" class="md-nav__link">
-    1-1. NFS Client (可選，作為測試用)
+  <a href="#work-stealing" class="md-nav__link">
+    Work Stealing
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2install-the-csi-driver-for-nfs" class="md-nav__link">
-    2.Install the CSI driver for NFS
+  <a href="#forkjoinpool-forkjoinpool" class="md-nav__link">
+    比較 ForkJoinPool 與 未使用 ForkJoinPool 的 效能差異
+  </a>
+  
+    <nav class="md-nav" aria-label="比較 ForkJoinPool 與 未使用 ForkJoinPool 的 效能差異">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    情境
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3create-a-storageclass-for-nfs-create-a-new-pvc" class="md-nav__link">
-    3.Create a StorageClass for NFS &amp; Create a new PVC
+  <a href="#_2" class="md-nav__link">
+    實作
   </a>
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#4-pod" class="md-nav__link">
-    4. 測試 Pod
-  </a>
+      </ul>
+    </nav>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-mysql-nfs" class="md-nav__link">
-    5. MySQL + NFS
+  <a href="#_3" class="md-nav__link">
+    小結
   </a>
   
 </li>
@@ -791,239 +803,109 @@
                   
 
 
-  <h1>NFS</h1>
+  <h1>ForkJoinPool</h1>
 
-<h2 id="use-nfs-for-persistent-volumes">Use NFS for Persistent Volumes</h2>
-<ul>
-<li>https://microk8s.io/docs/nfs</li>
-</ul>
-<h3 id="1-setup-an-nfs-server">1. Setup an NFS server</h3>
-<p>假設在 192.168.0.16 架設 NFS server</p>
-<pre><code>sudo apt update
-sudo apt-get install nfs-kernel-server
-</code></pre>
-<p>Create a directory to be used for NFS:</p>
-<pre><code>sudo mkdir -p /srv/nfs
-sudo chown nobody:nogroup /srv/nfs
-sudo chmod 0777 /srv/nfs
-</code></pre>
-<p>Edit the /etc/exports file. Make sure that the IP addresses of all your MicroK8s nodes are able to mount this share. For example, to allow all IP addresses in the 10.0.0.0/24 subnet</p>
-<pre><code>sudo mv /etc/exports /etc/exports.bak
-echo '/srv/nfs 192.168.0.0/24(rw,sync,no_subtree_check,no_root_squash)' | sudo tee /etc/exports
-</code></pre>
-<p>重啟</p>
-<pre><code>sudo systemctl restart nfs-kernel-server.service
-</code></pre>
-<p>確認 NFS Server是否正常啟動</p>
-<pre><code>sudo systemctl status nfs-kernel-server.service
-</code></pre>
-<p><img alt="Alt text" src="../image-33.png" /></p>
-<p>或是可以使用 showmount 命令來檢查 NFS Server 開出來的目錄
-<code>showmount -e 192.168.0.16</code></p>
-<p><img alt="Alt text" src="../image-34.png" /></p>
-<h3 id="1-1-nfs-client">1-1. NFS Client (可選，作為測試用)</h3>
-<p>使用 apt 命令進行安裝 NFS Client</p>
-<pre><code>sudo apt update
-sudo apt install nfs-common
-</code></pre>
-<p>使用 showmount 命令檢查 NFS Server 可連線的目錄</p>
-<pre><code>showmount -e 192.168.0.16
----output---
-Export list for 192.168.0.16:
-/srv/nfs 192.168.0.0/24
-</code></pre>
-<p>如果出現堵塞現象(Stuck)，可能原因為 NFS Server 的防火牆導致，只要關掉防火牆即可(<code>sudo ufw disable</code>)。</p>
-<p>建立掛載用目錄，並將 NFS Server 的目錄掛載至本機目錄</p>
-<pre><code>sudo mkdir /srv/nfs
-sudo mount 192.168.0.16:/srv/nfs /srv/nfs
-</code></pre>
-<p>如果出現 <code>mount.nfs: access denied by server while mounting 192.168.0.16:/srv/nfs</code> 問題，可以先透過
-<code>sudo mount -t nfs -vvvv 192.168.0.16:/srv/nfs /srv/nfs</code> 
-查看詳細資訊。
-<img alt="Alt text" src="../image-35.png" /></p>
-<p>測試：</p>
-<p>登入 ssh vboxuser@192.168.17  # NFS Client
-登入 ssh vboxuser@192.168.16  # NFS Server
-因為 NFS Client 將本機的 /srv/nfs 資料夾，綁定在  NFS Server 的 /srv/nfs 資料夾 資料夾中，所以兩者資料夾會同步。</p>
-<p>先在 NFS Client 執行以下命令</p>
-<pre><code>touch /srv/nfs/123.txt
-ls
-</code></pre>
-<p>再去 NFS Server 執行以下命令，就會看到 123.txt 檔案了</p>
-<pre><code>cd /srv/nfs
-ls
-</code></pre>
-<p><img alt="Alt text" src="../image-36.png" /></p>
-<h3 id="2install-the-csi-driver-for-nfs">2.Install the CSI driver for NFS</h3>
-<h3 id="3create-a-storageclass-for-nfs-create-a-new-pvc">3.Create a StorageClass for NFS &amp; Create a new PVC</h3>
-<pre><code># sc-nfs.yaml
----
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: nfs-csi
-provisioner: nfs.csi.k8s.io
-parameters:
-  server: 192.168.0.16
-  share: /srv/nfs
-reclaimPolicy: Delete
-volumeBindingMode: Immediate
-mountOptions:
-  - hard
-  - nfsvers=4.1
+<h3 id="forkjoinpool">ForkJoinPool</h3>
+<p>參考資料：</p>
+<ol>
+<li>
+<p>Simple Introduction to ForkJoin Framework  <a href="https://thetechstack.net/simple-introduction-to-forkjoin-framework-part1/">https://thetechstack.net/simple-introduction-to-forkjoin-framework-part1/</a></p>
+</li>
+<li>
+<p>Chat GPT</p>
+</li>
+</ol>
+<h4 id="divide-and-conquer">Divide And Conquer (分而治之)</h4>
+<blockquote>
+<p>分治法是一種問題解決方法，將一個大問題劃分為若干個小問題，遞歸地解決小問題，然後將小問題的解合併起來得到大問題的解。在ForkJoinPool中，我們可以將一個大的任務劃分為多個子任務，每個子任務負責處理一部分數據，然後將子任務的結果合併起來得到最終的結果。這種分治的策略可以提高並行計算的效率，特別是對於大規模的問題。
+<img alt="Alt text" src="../image-178.png" /></p>
+</blockquote>
+<h4 id="work-stealing">Work Stealing</h4>
+<blockquote>
+<p>工作窺取是ForkJoinPool中的一種調度策略。當一個線程完成了它自己的任務後，它可以從其他線程的工作隊列中窺取任務並執行。這樣做的好處是可以實現負載均衡，確保所有線程都能夠保持忙碌狀態，充分利用系統資源。如果一個線程的工作隊列為空，它可以從其他線程的工作隊列中窺取任務，從而避免了線程閒置的情況。
+<img alt="Alt text" src="../image-176.png" /></p>
+</blockquote>
+<h4 id="forkjoinpool-forkjoinpool">比較 ForkJoinPool 與 未使用 ForkJoinPool 的 效能差異</h4>
+<h5 id="_1">情境</h5>
+<p>請設計 從 1 加到 1_000_000_000 的程序，一個使用 Stream、一個使用 ForkJoinPool，計算並比較兩種方式的執行時間？</p>
+<h5 id="_2">實作</h5>
+<p>SumDemo.java</p>
+<pre><code>import java.util.concurrent.ForkJoinPool;
+import java.util.stream.IntStream;
 
-microk8s kubectl apply -f - &lt; sc-nfs.yaml
-</code></pre>
-<pre><code># pvc-nfs.yaml
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: my-pvc
-spec:
-  storageClassName: nfs-csi
-  accessModes: [ReadWriteOnce]
-  resources:
-    requests:
-      storage: 5Gi
+public class SumDemo {
 
-microk8s kubectl apply -f - &lt; pvc-nfs.yaml
-</code></pre>
-<p>microk8s kubectl describe pvc my-pvc</p>
-<h3 id="4-pod">4. 測試 Pod</h3>
-<pre><code>apiVersion: v1
-kind: Pod
-metadata:
-  name: hwchiu
-  labels:
-    app: hwchiu
-spec:
-  containers:
-  - name: busybox
-    image: hwchiu/netutils:latest
-    volumeMounts:
-      - name: nfs-volume
-        mountPath: /nfs
-  volumes:
-    - name: nfs-volume
-      persistentVolumeClaim:
-        claimName: my-pvc
-</code></pre>
-<p>進入Pod</p>
-<pre><code>kubectl exec -it hwchiu -n nfs-demo -- /bin/bash
-ls  # 看看有沒有剛剛建立的 456.txt
-</code></pre>
-<p><img alt="Alt text" src="../image-37.png" /></p>
-<p>以下是這個 Pod 的 Volume 完整資訊</p>
-<p><img alt="Alt text" src="../image-38.png" /></p>
-<p>pvc 資訊
-<img alt="Alt text" src="../image-39.png" /></p>
-<p>pv 資訊
-<img alt="Alt text" src="../image-40.png" /></p>
-<h3 id="5-mysql-nfs">5. MySQL + NFS</h3>
-<pre><code>kubectl create namespace kube-demo
-kubectl create secret generic mysql-pass --from-literal=password=password321 -n kube-demo
-</code></pre>
-<p>PV、PVC</p>
-<pre><code>apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: mysql-pv
-  labels:
-    pv: mysql-pv
-spec:
-  storageClassName: nfs-csi
-  capacity:
-    storage: 15Gi
-  accessModes:
-    - ReadWriteMany
-  persistentVolumeReclaimPolicy: Recycle
-  nfs:
-    path: /srv/nfs/mysql-pv
-    server: 192.168.0.16
+    private static final int RANGE = 1_000_000_000;
+
+    public static void main(String[] args) {
+
+        long startTime;
+        long elapsedTime;
+
+        // Without ForkJoinPool
+        startTime = System.currentTimeMillis();
+        int sumWithoutForkJoin = IntStream.rangeClosed(1, RANGE).sum();
+        elapsedTime = System.currentTimeMillis() - startTime;
+        System.out.println(&quot;Sum without ForkJoinPool: &quot; + sumWithoutForkJoin);
+        System.out.println(&quot;Time taken without ForkJoinPool: &quot; + elapsedTime + &quot; milliseconds&quot;);
+
+        // With ForkJoinPool
+        startTime = System.currentTimeMillis();
+        ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
+        int sumWithForkJoin = (int) forkJoinPool.invoke(new SumTask(1, RANGE));
+        elapsedTime = System.currentTimeMillis() - startTime;
+        System.out.println(&quot;Sum with ForkJoinPool: &quot; + sumWithForkJoin);
+        System.out.println(&quot;Time taken with ForkJoinPool: &quot; + elapsedTime + &quot; milliseconds&quot;);
+    }
+}
+
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mysql-pvc
-spec:
-  storageClassName: &quot;nfs-csi&quot;
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 10Gi
-  selector:
-    matchLabels: 
-      pv: mysql-pv
+Sum without ForkJoinPool: -243309312
+Time taken without ForkJoinPool: 271 milliseconds
+Sum with ForkJoinPool: -243309312
+Time taken with ForkJoinPool: 51 milliseconds
 </code></pre>
-<p><img alt="Alt text" src="../image-44.png" />
-<img alt="Alt text" src="../image-45.png" /></p>
-<p>Deployment</p>
-<pre><code>apiVersion: v1
-kind: Service
-metadata:
-  name: mysql
-spec:
-  selector:
-    app: mysql
-  ports:
-    - protocol: TCP
-      port: 3306
-      targetPort: 3306
-      nodePort: 31306
-  type: NodePort
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: mysql
-  labels:
-    app: mysql-test
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: mysql
-  template:
-    metadata:
-      labels:
-        app: mysql
-    spec:
-      nodeName: node
-      containers:
-      - name: mysql-test
-        image: mysql:5.7
-        env:
-          - name: MYSQL_ROOT_PASSWORD
-            valueFrom:
-              secretKeyRef:
-               name: mysql-pass
-               key: password
-        ports:
-        - containerPort: 3306
-        volumeMounts:
-        - mountPath: &quot;/var/lib/mysql&quot;
-          name: mysql-data
-      volumes:
-      - name: mysql-data
-        persistentVolumeClaim:
-          claimName: mysql-pvc
+<p>SumTask.java</p>
+<pre><code>import java.util.concurrent.RecursiveTask;
+import java.util.stream.IntStream;
+
+public class SumTask extends RecursiveTask&lt;Integer&gt; {
+
+    private static final long serialVersionUID = 1L;
+
+    private static final int THRESHOLD = 1_000_000;
+
+    private int start;
+    private int end;
+
+    public SumTask(int start, int end) {
+        this.start = start;
+        this.end = end;
+    }
+
+    @Override
+    protected Integer compute() {
+        if (end - start &lt;= THRESHOLD) {
+            return IntStream.rangeClosed(start, end).sum();
+        } else {
+            int mid = (start + end) / 2;
+            SumTask leftTask = new SumTask(start, mid);
+            SumTask rightTask = new SumTask(mid + 1, end);
+
+            rightTask.fork();
+            leftTask.fork();
+
+            int rightSum = rightTask.join();
+            int leftSum = leftTask.join();
+
+            return leftSum + rightSum;
+        }
+    }
+}
 </code></pre>
-<p><img alt="Alt text" src="../image-43.png" /></p>
-<p>P.S：
-如果一直 Pending ，甚至出現 CrashLoopBackOff 的訊息，可以執行
-<code>kubectl logs mysql-848b44f4c5-kgdzc -n kube-demo</code>
-看看哪裡出錯。</p>
-<p><img alt="Alt text" src="../image-41.png" /></p>
-<p>可參考 <a href="https://blog.csdn.net/m0_46090675/article/details/122276216">https://blog.csdn.net/m0_46090675/article/details/122276216</a> 解決此問題。</p>
-<p>最後就會成功了~~~</p>
-<p>首先檢查 NFS Server 的檔案中是否有 mysql 的相關資料</p>
-<p><img alt="Alt text" src="../image-42.png" /></p>
-<p>進入 Pod 的命令列中，查看 Mysql 相關資訊</p>
-<pre><code>kubectl exec -it mysql-5b46fb64b4-t2m4c -n kube-demo -- /bin/bash
-</code></pre>
-<p><img alt="Alt text" src="../image-46.png" /></p>
+<h4 id="_3">小結</h4>
+<p>通過分治法和工作窺取的策略，ForkJoinPool能夠實現高效的並行計算。它能夠自動地將任務劃分為更小的子任務，並將這些子任務分配給可用的線程執行。同時，工作窺取策略能夠確保所有線程都能夠保持忙碌，避免了線程閒置的情況，提高了系統的吞吐量和響應性能。</p>
+<p>確實，從範例中，可以看到 使用 ForkJoinPool 可以比使用 Stream 快速5倍的時間，尤其 Stream 已經是以效能出名。顯見，使用多執行緒，分而治之的概念，會優於 Stream 的方式。</p>
 
 
 

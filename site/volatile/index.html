@@ -12,14 +12,14 @@
         <meta name="author" content="weizhi.zhu">
       
       
-        <link rel="canonical" href="https://aweit-zhu.github.io/nfs/">
+        <link rel="canonical" href="https://aweit-zhu.github.io/volatile/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.0.0b4">
     
     
       
-        <title>NFS - Aweit Docs</title>
+        <title>Volatile & synchronized - Aweit Docs</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#use-nfs-for-persistent-volumes" class="md-skip">
+        <a href="#volatile-synchronized" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              NFS
+              Volatile & synchronized
             
           </span>
         </div>
@@ -198,11 +198,82 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../volatile/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Volatile & synchronized
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Volatile & synchronized
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#volatile-synchronized" class="md-nav__link">
+    Volatile &amp; synchronized
+  </a>
+  
+    <nav class="md-nav" aria-label="Volatile &amp; synchronized">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visibility" class="md-nav__link">
+    變數可視性(visibility)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#race-condition" class="md-nav__link">
+    資料競速(race condition)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volatile-synchronized_1" class="md-nav__link">
+    Volatile &amp; synchronized
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volatile" class="md-nav__link">
+    如何證明 volatile 的效果？
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -468,96 +539,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          NFS
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../nfs/" class="md-nav__link">
         NFS
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#use-nfs-for-persistent-volumes" class="md-nav__link">
-    Use NFS for Persistent Volumes
-  </a>
-  
-    <nav class="md-nav" aria-label="Use NFS for Persistent Volumes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-setup-an-nfs-server" class="md-nav__link">
-    1. Setup an NFS server
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#1-1-nfs-client" class="md-nav__link">
-    1-1. NFS Client (可選，作為測試用)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2install-the-csi-driver-for-nfs" class="md-nav__link">
-    2.Install the CSI driver for NFS
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3create-a-storageclass-for-nfs-create-a-new-pvc" class="md-nav__link">
-    3.Create a StorageClass for NFS &amp; Create a new PVC
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-pod" class="md-nav__link">
-    4. 測試 Pod
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-mysql-nfs" class="md-nav__link">
-    5. MySQL + NFS
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -722,51 +708,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#use-nfs-for-persistent-volumes" class="md-nav__link">
-    Use NFS for Persistent Volumes
+  <a href="#volatile-synchronized" class="md-nav__link">
+    Volatile &amp; synchronized
   </a>
   
-    <nav class="md-nav" aria-label="Use NFS for Persistent Volumes">
+    <nav class="md-nav" aria-label="Volatile &amp; synchronized">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-setup-an-nfs-server" class="md-nav__link">
-    1. Setup an NFS server
+  <a href="#visibility" class="md-nav__link">
+    變數可視性(visibility)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#1-1-nfs-client" class="md-nav__link">
-    1-1. NFS Client (可選，作為測試用)
+  <a href="#race-condition" class="md-nav__link">
+    資料競速(race condition)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2install-the-csi-driver-for-nfs" class="md-nav__link">
-    2.Install the CSI driver for NFS
+  <a href="#volatile-synchronized_1" class="md-nav__link">
+    Volatile &amp; synchronized
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3create-a-storageclass-for-nfs-create-a-new-pvc" class="md-nav__link">
-    3.Create a StorageClass for NFS &amp; Create a new PVC
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-pod" class="md-nav__link">
-    4. 測試 Pod
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-mysql-nfs" class="md-nav__link">
-    5. MySQL + NFS
+  <a href="#volatile" class="md-nav__link">
+    如何證明 volatile 的效果？
   </a>
   
 </li>
@@ -791,239 +763,131 @@
                   
 
 
-  <h1>NFS</h1>
+  <h1>Volatile & synchronized</h1>
 
-<h2 id="use-nfs-for-persistent-volumes">Use NFS for Persistent Volumes</h2>
-<ul>
-<li>https://microk8s.io/docs/nfs</li>
-</ul>
-<h3 id="1-setup-an-nfs-server">1. Setup an NFS server</h3>
-<p>假設在 192.168.0.16 架設 NFS server</p>
-<pre><code>sudo apt update
-sudo apt-get install nfs-kernel-server
-</code></pre>
-<p>Create a directory to be used for NFS:</p>
-<pre><code>sudo mkdir -p /srv/nfs
-sudo chown nobody:nogroup /srv/nfs
-sudo chmod 0777 /srv/nfs
-</code></pre>
-<p>Edit the /etc/exports file. Make sure that the IP addresses of all your MicroK8s nodes are able to mount this share. For example, to allow all IP addresses in the 10.0.0.0/24 subnet</p>
-<pre><code>sudo mv /etc/exports /etc/exports.bak
-echo '/srv/nfs 192.168.0.0/24(rw,sync,no_subtree_check,no_root_squash)' | sudo tee /etc/exports
-</code></pre>
-<p>重啟</p>
-<pre><code>sudo systemctl restart nfs-kernel-server.service
-</code></pre>
-<p>確認 NFS Server是否正常啟動</p>
-<pre><code>sudo systemctl status nfs-kernel-server.service
-</code></pre>
-<p><img alt="Alt text" src="../image-33.png" /></p>
-<p>或是可以使用 showmount 命令來檢查 NFS Server 開出來的目錄
-<code>showmount -e 192.168.0.16</code></p>
-<p><img alt="Alt text" src="../image-34.png" /></p>
-<h3 id="1-1-nfs-client">1-1. NFS Client (可選，作為測試用)</h3>
-<p>使用 apt 命令進行安裝 NFS Client</p>
-<pre><code>sudo apt update
-sudo apt install nfs-common
-</code></pre>
-<p>使用 showmount 命令檢查 NFS Server 可連線的目錄</p>
-<pre><code>showmount -e 192.168.0.16
----output---
-Export list for 192.168.0.16:
-/srv/nfs 192.168.0.0/24
-</code></pre>
-<p>如果出現堵塞現象(Stuck)，可能原因為 NFS Server 的防火牆導致，只要關掉防火牆即可(<code>sudo ufw disable</code>)。</p>
-<p>建立掛載用目錄，並將 NFS Server 的目錄掛載至本機目錄</p>
-<pre><code>sudo mkdir /srv/nfs
-sudo mount 192.168.0.16:/srv/nfs /srv/nfs
-</code></pre>
-<p>如果出現 <code>mount.nfs: access denied by server while mounting 192.168.0.16:/srv/nfs</code> 問題，可以先透過
-<code>sudo mount -t nfs -vvvv 192.168.0.16:/srv/nfs /srv/nfs</code> 
-查看詳細資訊。
-<img alt="Alt text" src="../image-35.png" /></p>
-<p>測試：</p>
-<p>登入 ssh vboxuser@192.168.17  # NFS Client
-登入 ssh vboxuser@192.168.16  # NFS Server
-因為 NFS Client 將本機的 /srv/nfs 資料夾，綁定在  NFS Server 的 /srv/nfs 資料夾 資料夾中，所以兩者資料夾會同步。</p>
-<p>先在 NFS Client 執行以下命令</p>
-<pre><code>touch /srv/nfs/123.txt
-ls
-</code></pre>
-<p>再去 NFS Server 執行以下命令，就會看到 123.txt 檔案了</p>
-<pre><code>cd /srv/nfs
-ls
-</code></pre>
-<p><img alt="Alt text" src="../image-36.png" /></p>
-<h3 id="2install-the-csi-driver-for-nfs">2.Install the CSI driver for NFS</h3>
-<h3 id="3create-a-storageclass-for-nfs-create-a-new-pvc">3.Create a StorageClass for NFS &amp; Create a new PVC</h3>
-<pre><code># sc-nfs.yaml
----
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: nfs-csi
-provisioner: nfs.csi.k8s.io
-parameters:
-  server: 192.168.0.16
-  share: /srv/nfs
-reclaimPolicy: Delete
-volumeBindingMode: Immediate
-mountOptions:
-  - hard
-  - nfsvers=4.1
+<h3 id="volatile-synchronized">Volatile &amp; synchronized</h3>
+<p>參考資料：</p>
+<ol>
+<li><a href="https://www.tpisoftware.com/tpu/articleDetails/1753">https://www.tpisoftware.com/tpu/articleDetails/1753</a></li>
+<li>Chat GPT</li>
+</ol>
+<h4 id="visibility">變數可視性(visibility)</h4>
+<blockquote>
+<p>可視性問題指的是當一個執行緒修改了共享變數的值時，其他執行緒能夠立即看到這個修改。</p>
+</blockquote>
+<h4 id="race-condition">資料競速(race condition)</h4>
+<blockquote>
+<p>競態條件是指多個執行緒在沒有適當同步的情況下，對共享資源進行讀寫操作時可能出現的不確定性結果。當多個執行緒同時讀取和修改共享變數時，它們的操作順序是不確定的，可能導致不一致的結果或錯誤的計算。</p>
+</blockquote>
+<h4 id="volatile-synchronized_1">Volatile &amp; synchronized</h4>
+<ol>
+<li>
+<p>synchronized： 同時解決 「變數可視性」與「資料競速」問題。</p>
+</li>
+<li>
+<p>volatile：解決「變數可視性」。(使用此修飾符的變數，不使用各執行緒的working memory，永遠從主記憶體(main memory) 做存取與讀寫)</p>
+</li>
+</ol>
+<h4 id="volatile">如何證明 volatile 的效果？</h4>
+<ol>
+<li>沒有用 volatile</li>
+</ol>
+<pre><code>public class VisibilityProblem {
 
-microk8s kubectl apply -f - &lt; sc-nfs.yaml
-</code></pre>
-<pre><code># pvc-nfs.yaml
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: my-pvc
-spec:
-  storageClassName: nfs-csi
-  accessModes: [ReadWriteOnce]
-  resources:
-    requests:
-      storage: 5Gi
+    static int num;
 
-microk8s kubectl apply -f - &lt; pvc-nfs.yaml
-</code></pre>
-<p>microk8s kubectl describe pvc my-pvc</p>
-<h3 id="4-pod">4. 測試 Pod</h3>
-<pre><code>apiVersion: v1
-kind: Pod
-metadata:
-  name: hwchiu
-  labels:
-    app: hwchiu
-spec:
-  containers:
-  - name: busybox
-    image: hwchiu/netutils:latest
-    volumeMounts:
-      - name: nfs-volume
-        mountPath: /nfs
-  volumes:
-    - name: nfs-volume
-      persistentVolumeClaim:
-        claimName: my-pvc
-</code></pre>
-<p>進入Pod</p>
-<pre><code>kubectl exec -it hwchiu -n nfs-demo -- /bin/bash
-ls  # 看看有沒有剛剛建立的 456.txt
-</code></pre>
-<p><img alt="Alt text" src="../image-37.png" /></p>
-<p>以下是這個 Pod 的 Volume 完整資訊</p>
-<p><img alt="Alt text" src="../image-38.png" /></p>
-<p>pvc 資訊
-<img alt="Alt text" src="../image-39.png" /></p>
-<p>pv 資訊
-<img alt="Alt text" src="../image-40.png" /></p>
-<h3 id="5-mysql-nfs">5. MySQL + NFS</h3>
-<pre><code>kubectl create namespace kube-demo
-kubectl create secret generic mysql-pass --from-literal=password=password321 -n kube-demo
-</code></pre>
-<p>PV、PVC</p>
-<pre><code>apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: mysql-pv
-  labels:
-    pv: mysql-pv
-spec:
-  storageClassName: nfs-csi
-  capacity:
-    storage: 15Gi
-  accessModes:
-    - ReadWriteMany
-  persistentVolumeReclaimPolicy: Recycle
-  nfs:
-    path: /srv/nfs/mysql-pv
-    server: 192.168.0.16
+    public static void main(String[] args) {
+
+        Thread readerThread = new Thread(() -&gt; {
+            int temp = 0;
+            while (true) {
+                if (temp != num) {
+                    temp = num;
+                    System.out.println(&quot;reader: value of num = &quot; + num);
+                }
+            }
+        });
+
+        Thread writerThread = new Thread(() -&gt; {
+            for (int i = 0; i &lt; 5; i++) {
+                num++;
+                System.out.println(&quot;writer: changed value to = &quot; + num);
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            // 離開程式，否則readerThread會一直等待變數int num的值改變
+            System.exit(0);
+        });
+
+        readerThread.start();
+        writerThread.start();
+    }
+}
+
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mysql-pvc
-spec:
-  storageClassName: &quot;nfs-csi&quot;
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 10Gi
-  selector:
-    matchLabels: 
-      pv: mysql-pv
+reader: value of num = 1
+writer: changed value to = 1
+writer: changed value to = 2
+writer: changed value to = 3
+writer: changed value to = 4
+writer: changed value to = 5
 </code></pre>
-<p><img alt="Alt text" src="../image-44.png" />
-<img alt="Alt text" src="../image-45.png" /></p>
-<p>Deployment</p>
-<pre><code>apiVersion: v1
-kind: Service
-metadata:
-  name: mysql
-spec:
-  selector:
-    app: mysql
-  ports:
-    - protocol: TCP
-      port: 3306
-      targetPort: 3306
-      nodePort: 31306
-  type: NodePort
+<ol>
+<li>有用 volatile：讓 num 變數，永遠從主記憶體中讀取與寫入。</li>
+</ol>
+<pre><code>public class VisibilityProblem {
+
+    static volatile int num;
+
+    public static void main(String[] args) {
+
+        Thread readerThread = new Thread(() -&gt; {
+            int temp = 0;
+            while (true) {
+                if (temp != num) {
+                    temp = num;
+                    System.out.println(&quot;reader: value of num = &quot; + num);
+                }
+            }
+        });
+
+        Thread writerThread = new Thread(() -&gt; {
+            for (int i = 0; i &lt; 5; i++) {
+                num++;
+                System.out.println(&quot;writer: changed value to = &quot; + num);
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            // 離開程式，否則readerThread會一直等待變數int num的值改變
+            System.exit(0);
+        });
+
+        readerThread.start();
+        writerThread.start();
+    }
+}
 ---
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: mysql
-  labels:
-    app: mysql-test
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: mysql
-  template:
-    metadata:
-      labels:
-        app: mysql
-    spec:
-      nodeName: node
-      containers:
-      - name: mysql-test
-        image: mysql:5.7
-        env:
-          - name: MYSQL_ROOT_PASSWORD
-            valueFrom:
-              secretKeyRef:
-               name: mysql-pass
-               key: password
-        ports:
-        - containerPort: 3306
-        volumeMounts:
-        - mountPath: &quot;/var/lib/mysql&quot;
-          name: mysql-data
-      volumes:
-      - name: mysql-data
-        persistentVolumeClaim:
-          claimName: mysql-pvc
+reader: value of num = 1
+writer: changed value to = 1
+writer: changed value to = 2
+reader: value of num = 2
+writer: changed value to = 3
+reader: value of num = 3
+reader: value of num = 4
+writer: changed value to = 4
+writer: changed value to = 5
+reader: value of num = 5
 </code></pre>
-<p><img alt="Alt text" src="../image-43.png" /></p>
-<p>P.S：
-如果一直 Pending ，甚至出現 CrashLoopBackOff 的訊息，可以執行
-<code>kubectl logs mysql-848b44f4c5-kgdzc -n kube-demo</code>
-看看哪裡出錯。</p>
-<p><img alt="Alt text" src="../image-41.png" /></p>
-<p>可參考 <a href="https://blog.csdn.net/m0_46090675/article/details/122276216">https://blog.csdn.net/m0_46090675/article/details/122276216</a> 解決此問題。</p>
-<p>最後就會成功了~~~</p>
-<p>首先檢查 NFS Server 的檔案中是否有 mysql 的相關資料</p>
-<p><img alt="Alt text" src="../image-42.png" /></p>
-<p>進入 Pod 的命令列中，查看 Mysql 相關資訊</p>
-<pre><code>kubectl exec -it mysql-5b46fb64b4-t2m4c -n kube-demo -- /bin/bash
-</code></pre>
-<p><img alt="Alt text" src="../image-46.png" /></p>
 
 
 
