@@ -12,14 +12,14 @@
         <meta name="author" content="weizhi.zhu">
       
       
-        <link rel="canonical" href="https://aweit-zhu.github.io/sonarqube/">
+        <link rel="canonical" href="https://aweit-zhu.github.io/volatile/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.0.0b4">
     
     
       
-        <title>SonarQube - Aweit Docs</title>
+        <title>Volatile - Aweit Docs</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sonarqube" class="md-skip">
+        <a href="#volatile-synchronized" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SonarQube
+              Volatile
             
           </span>
         </div>
@@ -543,48 +543,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          SonarQube
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../sonarqube/" class="md-nav__link">
         SonarQube
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#sonarqube" class="md-nav__link">
-    SonarQube
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -659,9 +622,43 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#sonarqube" class="md-nav__link">
-    SonarQube
+  <a href="#volatile-synchronized" class="md-nav__link">
+    Volatile &amp; synchronized
   </a>
+  
+    <nav class="md-nav" aria-label="Volatile &amp; synchronized">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visibility" class="md-nav__link">
+    變數可視性(visibility)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#race-condition" class="md-nav__link">
+    資料競速(race condition)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volatile-synchronized_1" class="md-nav__link">
+    Volatile &amp; synchronized
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volatile" class="md-nav__link">
+    如何證明 volatile 的效果？
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -680,66 +677,131 @@
                   
 
 
-  <h1>SonarQube</h1>
+  <h1>Volatile</h1>
 
-<h3 id="sonarqube">SonarQube</h3>
-<ul>
+<h3 id="volatile-synchronized">Volatile &amp; synchronized</h3>
+<p>參考資料：</p>
+<ol>
+<li><a href="https://www.tpisoftware.com/tpu/articleDetails/1753">https://www.tpisoftware.com/tpu/articleDetails/1753</a></li>
+<li>Chat GPT</li>
+</ol>
+<h4 id="visibility">變數可視性(visibility)</h4>
+<blockquote>
+<p>可視性問題指的是當一個執行緒修改了共享變數的值時，其他執行緒能夠立即看到這個修改。</p>
+</blockquote>
+<h4 id="race-condition">資料競速(race condition)</h4>
+<blockquote>
+<p>競態條件是指多個執行緒在沒有適當同步的情況下，對共享資源進行讀寫操作時可能出現的不確定性結果。當多個執行緒同時讀取和修改共享變數時，它們的操作順序是不確定的，可能導致不一致的結果或錯誤的計算。</p>
+</blockquote>
+<h4 id="volatile-synchronized_1">Volatile &amp; synchronized</h4>
+<ol>
 <li>
-<p>安裝</p>
-<pre><code>docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:latest
+<p>synchronized： 同時解決 「變數可視性」與「資料競速」問題。</p>
+</li>
+<li>
+<p>volatile：解決「變數可視性」。(使用此修飾符的變數，不使用各執行緒的working memory，永遠從主記憶體(main memory) 做存取與讀寫)</p>
+</li>
+</ol>
+<h4 id="volatile">如何證明 volatile 的效果？</h4>
+<ol>
+<li>沒有用 volatile</li>
+</ol>
+<pre><code>public class VisibilityProblem {
+
+    static int num;
+
+    public static void main(String[] args) {
+
+        Thread readerThread = new Thread(() -&gt; {
+            int temp = 0;
+            while (true) {
+                if (temp != num) {
+                    temp = num;
+                    System.out.println(&quot;reader: value of num = &quot; + num);
+                }
+            }
+        });
+
+        Thread writerThread = new Thread(() -&gt; {
+            for (int i = 0; i &lt; 5; i++) {
+                num++;
+                System.out.println(&quot;writer: changed value to = &quot; + num);
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            // 離開程式，否則readerThread會一直等待變數int num的值改變
+            System.exit(0);
+        });
+
+        readerThread.start();
+        writerThread.start();
+    }
+}
+
+---
+reader: value of num = 1
+writer: changed value to = 1
+writer: changed value to = 2
+writer: changed value to = 3
+writer: changed value to = 4
+writer: changed value to = 5
 </code></pre>
-</li>
-<li>
-<p>登入</p>
-<p><a href="http://localhost:9000/">http://localhost:9000/</a></p>
-<p>login: admin
-password: admin</p>
-<p><img alt="Alt text" src="/assets/image-69.png" /></p>
-</li>
-<li>
-<p>需要修改密碼</p>
-<p>password: mitacadmin</p>
-<p><img alt="Alt text" src="/assets/image-70.png" /></p>
-</li>
-<li>
-<p>兩個參數</p>
-<p>sonar_host: <a href="http://127.0.0.1:9000/">http://127.0.0.1:9000/</a>
-sonar_token: sqa_2d932888615a4ca75bf80e889a422a9bde711ec3</p>
-<p>User &gt; My Account &gt; Security
-<img alt="Alt text" src="/assets/image-71.png" /></p>
-</li>
-<li>
-<p>與 Drone 整合</p>
-</li>
-<li>
-<p>建立兩個 secret</p>
-<pre><code>sonar_host: &lt;http://127.0.0.1:9000/&gt;
-sonar_token: sqa_2d932888615a4ca75bf80e889a422a9bde711ec3
+<ol>
+<li>有用 volatile：讓 num 變數，永遠從主記憶體中讀取與寫入。</li>
+</ol>
+<pre><code>public class VisibilityProblem {
+
+    static volatile int num;
+
+    public static void main(String[] args) {
+
+        Thread readerThread = new Thread(() -&gt; {
+            int temp = 0;
+            while (true) {
+                if (temp != num) {
+                    temp = num;
+                    System.out.println(&quot;reader: value of num = &quot; + num);
+                }
+            }
+        });
+
+        Thread writerThread = new Thread(() -&gt; {
+            for (int i = 0; i &lt; 5; i++) {
+                num++;
+                System.out.println(&quot;writer: changed value to = &quot; + num);
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            // 離開程式，否則readerThread會一直等待變數int num的值改變
+            System.exit(0);
+        });
+
+        readerThread.start();
+        writerThread.start();
+    }
+}
+---
+reader: value of num = 1
+writer: changed value to = 1
+writer: changed value to = 2
+reader: value of num = 2
+writer: changed value to = 3
+reader: value of num = 3
+reader: value of num = 4
+writer: changed value to = 4
+writer: changed value to = 5
+reader: value of num = 5
 </code></pre>
-</li>
-<li>
-<p>.drone.yml 範例 (要放在 Package 後)</p>
-</li>
-<li>
-<p>name: code-analysis
-        /assets/image: aosapps/drone-sonar-plugin
-        settings:
-        sonar_host:
-            from_secret: sonar_host
-        sonar_token:
-            from_secret: sonar_token
-        commands:</p>
-<ul>
-<li>sonar-scanner -Dsonar.projectKey=docker-demo
-        -Dsonar.tests=src/test/java
-        -Dsonar.sources=src/main/java
-        -Dsonar.java.libraries=./target/classes
-        -Dsonar.java.binaries=./target/classes
-        -Dsonar.host.url=<a href="http://172.31.93.122:9000/">http://172.31.93.122:9000/</a>
-        -Dsonar.login=sqa_2d932888615a4ca75bf80e889a422a9bde711ec3</li>
-</ul>
-</li>
-</ul>
 
 
 
