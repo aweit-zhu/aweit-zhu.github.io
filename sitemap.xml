@@ -31,6 +31,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://aweit-zhu.github.io/forkJoinPool/</loc>
+         <lastmod>2023-09-11</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://aweit-zhu.github.io/microk8s/</loc>
          <lastmod>2023-09-11</lastmod>
          <changefreq>daily</changefreq>
