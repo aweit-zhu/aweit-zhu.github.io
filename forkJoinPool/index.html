@@ -237,6 +237,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    費氏數列
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#forkjoinpool-forkjoinpool" class="md-nav__link">
     比較 ForkJoinPool 與 未使用 ForkJoinPool 的 效能差異
   </a>
@@ -245,14 +252,14 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     情境
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     實作
   </a>
   
@@ -264,7 +271,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     小結
   </a>
   
@@ -750,6 +757,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    費氏數列
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#forkjoinpool-forkjoinpool" class="md-nav__link">
     比較 ForkJoinPool 與 未使用 ForkJoinPool 的 效能差異
   </a>
@@ -758,14 +772,14 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     情境
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     實作
   </a>
   
@@ -777,7 +791,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     小結
   </a>
   
@@ -825,10 +839,60 @@
 <p>工作窺取是ForkJoinPool中的一種調度策略。當一個線程完成了它自己的任務後，它可以從其他線程的工作隊列中窺取任務並執行。這樣做的好處是可以實現負載均衡，確保所有線程都能夠保持忙碌狀態，充分利用系統資源。如果一個線程的工作隊列為空，它可以從其他線程的工作隊列中窺取任務，從而避免了線程閒置的情況。
 <img alt="Alt text" src="../image-176.png" /></p>
 </blockquote>
+<h4 id="_1">費氏數列</h4>
+<p>由來：</p>
+<blockquote>
+<p>歐洲數學家 Fibonacci 在 1202 年發表的《Liber abacci》中曾經提過一個「免子算術」：「若有兔子每個月生一隻小兔子，一個月小兔子也投入生產，那麼一開始是一隻兔子，一個月後就有兩隻兔子，二個月後有三隻兔子，三個月後有五隻兔子…」</p>
+</blockquote>
+<p>公式：</p>
+<blockquote>
+<p>F₀ = 0
+F₁ = 1
+Fₙ = Fₙ₋₁ + Fₙ₋₂</p>
+</blockquote>
+<p>例如：</p>
+<blockquote>
+<p>1、1、2、3、5、8、13、21、34、55、89 ...</p>
+</blockquote>
+<p>Java代碼：</p>
+<pre><code>public class FibonacciDemo extends RecursiveTask&lt;Integer&gt; {
+
+    int n;
+
+    FibonacciDemo(int n) {
+        this.n = n;
+    }
+
+    @Override
+    protected Integer compute() {
+        if (n &lt;= 1) {
+            return n;
+        } else {
+            FibonacciDemo task1 = new FibonacciDemo(n - 1);
+            FibonacciDemo task2 = new FibonacciDemo(n - 2);
+            task1.fork();
+            return task2.compute() + task1.join();
+        }
+    }
+
+    public static void main(String[] args) {
+        int n = 7;
+
+        ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
+        FibonacciDemo task = new FibonacciDemo(n);
+        int result = forkJoinPool.invoke(task);
+
+        System.out.println(&quot;The Fibonacci number at index &quot; + n + &quot; is: &quot; + result);
+    }
+
+}
+---
+The Fibonacci number at index 7 is: 13
+</code></pre>
 <h4 id="forkjoinpool-forkjoinpool">比較 ForkJoinPool 與 未使用 ForkJoinPool 的 效能差異</h4>
-<h5 id="_1">情境</h5>
+<h5 id="_2">情境</h5>
 <p>請設計 從 1 加到 1_000_000_000 的程序，一個使用 Stream、一個使用 ForkJoinPool，計算並比較兩種方式的執行時間？</p>
-<h5 id="_2">實作</h5>
+<h5 id="_3">實作</h5>
 <p>SumDemo.java</p>
 <pre><code>import java.util.concurrent.ForkJoinPool;
 import java.util.stream.IntStream;
@@ -903,7 +967,7 @@ public class SumTask extends RecursiveTask&lt;Integer&gt; {
     }
 }
 </code></pre>
-<h4 id="_3">小結</h4>
+<h4 id="_4">小結</h4>
 <p>通過分治法和工作窺取的策略，ForkJoinPool能夠實現高效的並行計算。它能夠自動地將任務劃分為更小的子任務，並將這些子任務分配給可用的線程執行。同時，工作窺取策略能夠確保所有線程都能夠保持忙碌，避免了線程閒置的情況，提高了系統的吞吐量和響應性能。</p>
 <p>確實，從範例中，可以看到 使用 ForkJoinPool 可以比使用 Stream 快速5倍的時間，尤其 Stream 已經是以效能出名。顯見，使用多執行緒，分而治之的概念，會優於 Stream 的方式。</p>
 
