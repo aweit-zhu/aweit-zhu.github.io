@@ -12,14 +12,14 @@
         <meta name="author" content="weizhi.zhu">
       
       
-        <link rel="canonical" href="https://aweit-zhu.github.io/forkJoinPool/">
+        <link rel="canonical" href="https://aweit-zhu.github.io/binaryOperator/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.0.0b4">
     
     
       
-        <title>ForkJoinPool - Aweit Docs</title>
+        <title>Binary & Bit Shift - Aweit Docs</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#forkjoinpool" class="md-skip">
+        <a href="#binary-bit-shift" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ForkJoinPool
+              Binary & Bit Shift
             
           </span>
         </div>
@@ -183,21 +183,6 @@
 
   
   
-  
-    <li class="md-nav__item">
-      <a href="../binaryOperator/" class="md-nav__link">
-        Binary & Bit Shift
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
     
   
   
@@ -208,12 +193,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          ForkJoinPool
+          Binary & Bit Shift
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        ForkJoinPool
+        Binary & Bit Shift
       </a>
       
         
@@ -230,52 +215,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#forkjoinpool" class="md-nav__link">
-    ForkJoinPool
+  <a href="#binary-bit-shift" class="md-nav__link">
+    Binary &amp; Bit Shift
   </a>
   
-    <nav class="md-nav" aria-label="ForkJoinPool">
+    <nav class="md-nav" aria-label="Binary &amp; Bit Shift">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#divide-and-conquer" class="md-nav__link">
-    Divide And Conquer (分而治之)
+  <a href="#binarydecimal" class="md-nav__link">
+    Binary(二進位)、Decimal(十進位) 互換
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#work-stealing" class="md-nav__link">
-    Work Stealing
+  <a href="#binary-operator" class="md-nav__link">
+    Binary Operator
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    費氏數列
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#forkjoinpool-forkjoinpool" class="md-nav__link">
-    比較 ForkJoinPool 與 未使用 ForkJoinPool 的 效能差異
-  </a>
-  
-    <nav class="md-nav" aria-label="比較 ForkJoinPool 與 未使用 ForkJoinPool 的 效能差異">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    情境
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    實作
+  <a href="#bit-shift-operators" class="md-nav__link">
+    Bit Shift Operators 位移運算子
   </a>
   
 </li>
@@ -284,16 +247,11 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    小結
+      
+        <li class="md-nav__item">
+  <a href="#abc" class="md-nav__link">
+    經典題目：abc 的排列組合
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -301,6 +259,21 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../forkJoinPool/" class="md-nav__link">
+        ForkJoinPool
+      </a>
     </li>
   
 
@@ -750,52 +723,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#forkjoinpool" class="md-nav__link">
-    ForkJoinPool
+  <a href="#binary-bit-shift" class="md-nav__link">
+    Binary &amp; Bit Shift
   </a>
   
-    <nav class="md-nav" aria-label="ForkJoinPool">
+    <nav class="md-nav" aria-label="Binary &amp; Bit Shift">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#divide-and-conquer" class="md-nav__link">
-    Divide And Conquer (分而治之)
+  <a href="#binarydecimal" class="md-nav__link">
+    Binary(二進位)、Decimal(十進位) 互換
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#work-stealing" class="md-nav__link">
-    Work Stealing
+  <a href="#binary-operator" class="md-nav__link">
+    Binary Operator
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    費氏數列
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#forkjoinpool-forkjoinpool" class="md-nav__link">
-    比較 ForkJoinPool 與 未使用 ForkJoinPool 的 效能差異
-  </a>
-  
-    <nav class="md-nav" aria-label="比較 ForkJoinPool 與 未使用 ForkJoinPool 的 效能差異">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    情境
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    實作
+  <a href="#bit-shift-operators" class="md-nav__link">
+    Bit Shift Operators 位移運算子
   </a>
   
 </li>
@@ -804,16 +755,11 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    小結
+      
+        <li class="md-nav__item">
+  <a href="#abc" class="md-nav__link">
+    經典題目：abc 的排列組合
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -832,159 +778,119 @@
                   
 
 
-  <h1>ForkJoinPool</h1>
+  <h1>Binary & Bit Shift</h1>
 
-<h3 id="forkjoinpool">ForkJoinPool</h3>
-<p>參考資料：</p>
+<h3 id="binary-bit-shift">Binary &amp; Bit Shift</h3>
+<h4 id="binarydecimal">Binary(二進位)、Decimal(十進位) 互換</h4>
+<pre><code>String binaryString = Integer.toBinaryString(2);
+System.out.println(binaryString);
+String formatBinaryString = String.format(&quot;%5s&quot;, binaryString).replace(' ', '0');
+System.out.println(formatBinaryString);
+int binary = Integer.parseInt(&quot;10&quot;, 2);
+System.out.println(binary);
+---
+10
+00010
+2
+</code></pre>
+<h4 id="binary-operator">Binary Operator</h4>
+<p>|運算子|描述|範例
+|--|--|--|--|
+| &amp; |位元and運算,兩數對應位元要為1|a &amp; b
+|||位元or運算,兩數對應位元其中為1|a | b
+|^|位元xor運算,兩數對應位元互為不同|a ^ b
+|~|位元補數運算|~a</p>
+<pre><code>int a = 45;
+int b = 25;
+System.out.println(a &amp; b);
+
+---
+int a = 1; //001
+int b = 5; //101
+System.out.println(a &amp; b); //001-&gt;1
+System.out.println(a | b); //101-&gt;5
+System.out.println(a ^ b); //100-&gt;4
+
+---
+1
+5
+4
+</code></pre>
+<h4 id="bit-shift-operators">Bit Shift Operators 位移運算子</h4>
+<p>|運算子|描述|範例
+|--|--|--|--|
+|&lt;&lt;|左移運算| a &lt;&lt; b (a 向左移 b 個單位)
+|&gt;&gt;|右移運算| a &gt;&gt; b (a 向右移 b 個單位)
+|&gt;&gt;&gt;|右移運算| a &gt;&gt;&gt; b</p>
+<blockquote>
+<p>在Java中，整數以32位元表示，最高位元表示正負號，如果最高位元為1，則該數字為負數。</p>
+<p><code>&gt;&gt;</code> 是有符號右移運算符號，它將整數的二進位表示向右移動指定的位數，並在左側用符號位（即最高有效位）填充。這意味著如果原始數字是正數，則右移後左側用0填充，如果原始數字是負數，則右移後左側用1填充。</p>
+<p><code>&gt;&gt;&gt;</code> 是無符號右移運算符號，它將整數的二進位表示向右移動指定的位數，並在左側用零填充。這意味著無論原始數字是正數還是負數，右移後左側都用0填充。</p>
+</blockquote>
+<pre><code>int a = -10; // 二進位表示為 11111111111111111111111111110110
+int b = 2;
+
+int result1 = a &gt;&gt; b; // 有符號右移兩位
+int result2 = a &gt;&gt;&gt; b; // 無符號右移兩位
+
+System.out.println(result1); // 輸出結果為 -3，二進位表示為 11111111111111111111111111111101
+System.out.println(result2); // 輸出結果為 1073741821，二進位表示為 00111111111111111111111111111101
+</code></pre>
+<pre><code>String binary = &quot;11111111111111111111111111111111&quot;;
+int decimal = Integer.parseUnsignedInt(binary, 2);
+System.out.println(decimal);
+---
+-1
+</code></pre>
+<h3 id="abc">經典題目：abc 的排列組合</h3>
 <ol>
 <li>
-<p>Simple Introduction to ForkJoin Framework  <a href="https://thetechstack.net/simple-introduction-to-forkjoin-framework-part1/">https://thetechstack.net/simple-introduction-to-forkjoin-framework-part1/</a></p>
+<p>情境： 假設字串 abc，請輸出 abc 的所有組合: a,b,c,ab,bc,ac,abc。請提供一個函數，參數為一個任意字串，輸出為一集合，該集合包含該字串所有排列可能，排列順序需要按照字串順序。</p>
 </li>
 <li>
-<p>Chat GPT</p>
+<p>概念：</p>
+<p>(1) abc 共有 (8-1) 種可能，即 2 的 3 次方 - 1。</p>
+<p>(2) 將 7 種可能 (數字 1 ~ 7)，轉換為二進位。例如： 1 -&gt; 001、7 -&gt; 111。</p>
+<p>(3) 每一二進位數字，都可以代表 abc 的排列組合。例如：001 -&gt; c、111-&gt; abc。</p>
+</li>
+<li>
+<p>解答：</p>
 </li>
 </ol>
-<h4 id="divide-and-conquer">Divide And Conquer (分而治之)</h4>
-<blockquote>
-<p>分治法是一種問題解決方法，將一個大問題劃分為若干個小問題，遞歸地解決小問題，然後將小問題的解合併起來得到大問題的解。在ForkJoinPool中，我們可以將一個大的任務劃分為多個子任務，每個子任務負責處理一部分數據，然後將子任務的結果合併起來得到最終的結果。這種分治的策略可以提高並行計算的效率，特別是對於大規模的問題。
-<img alt="Alt text" src="../image-178.png" /></p>
-</blockquote>
-<h4 id="work-stealing">Work Stealing</h4>
-<blockquote>
-<p>工作窺取是ForkJoinPool中的一種調度策略。當一個線程完成了它自己的任務後，它可以從其他線程的工作隊列中窺取任務並執行。這樣做的好處是可以實現負載均衡，確保所有線程都能夠保持忙碌狀態，充分利用系統資源。如果一個線程的工作隊列為空，它可以從其他線程的工作隊列中窺取任務，從而避免了線程閒置的情況。
-<img alt="Alt text" src="../image-176.png" /></p>
-</blockquote>
-<h4 id="_1">費氏數列</h4>
-<p>由來：</p>
-<blockquote>
-<p>歐洲數學家 Fibonacci 在 1202 年發表的《Liber abacci》中曾經提過一個「免子算術」：「若有兔子每個月生一隻小兔子，一個月小兔子也投入生產，那麼一開始是一隻兔子，一個月後就有兩隻兔子，二個月後有三隻兔子，三個月後有五隻兔子…」</p>
-</blockquote>
-<p>公式：</p>
-<blockquote>
-<p>F₀ = 0
-F₁ = 1
-Fₙ = Fₙ₋₁ + Fₙ₋₂</p>
-</blockquote>
-<p>例如：</p>
-<blockquote>
-<p>1、1、2、3、5、8、13、21、34、55、89 ...</p>
-</blockquote>
-<p>Java代碼：</p>
-<pre><code>public class FibonacciDemo extends RecursiveTask&lt;Integer&gt; {
+<pre><code>public static List&lt;String&gt; permutation(String str) {
 
-    int n;
+    // 2 的 n 次方，n = 字串長度，表示所有排列組合個數。例如：abc排列組合後為 2的3次方 = 8。
+    int subs = 1 &lt;&lt; str.length();
 
-    FibonacciDemo(int n) {
-        this.n = n;
+    // 2 的 n 次方中的每一個數字，雖然只是一個數字，但是換成二進位，就可以代表 a、b、c 的有無。例如：111=abc、101=ac 等。
+    for (int i = 1; i &lt; subs; i++) {
+        String binaryString = Integer.toBinaryString(i);
+        String sub = String.format(&quot;%3s&quot;, binaryString).replace(' ', '0');
+        System.out.println(sub);
     }
 
-    @Override
-    protected Integer compute() {
-        if (n &lt;= 1) {
-            return n;
-        } else {
-            FibonacciDemo task1 = new FibonacciDemo(n - 1);
-            FibonacciDemo task2 = new FibonacciDemo(n - 2);
-            task1.fork();
-            return task2.compute() + task1.join();
+    // 因為我們知道二進位與abc的關係，那們我可以做運算，確認每一字元是否存在於該二進位中。如果存在則放進去字串池中，並放在集合中。
+    // 關鍵代碼：(i &amp; (1 &lt;&lt; j)) &gt; 0 --&gt; 1 &lt;&lt; j，表示 1 向左 j 個位元。和 i 做 位元AND運算，如果大於0，就表示 j 是存在於 i 中的。
+    List&lt;String&gt; combines = new ArrayList&lt;String&gt;();
+    for (int i = 1; i &lt; subs; i++) {
+        StringBuilder sb = new StringBuilder();
+        for (int j = 0; j &lt; str.length(); j++) {
+            if ((i &amp; (1 &lt;&lt; j)) &gt; 0) {
+                sb.append(str.charAt(j));
+            }
         }
+        if (!sb.isEmpty())
+            combines.add(sb.toString());
     }
 
-    public static void main(String[] args) {
-        int n = 7;
-
-        ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
-        FibonacciDemo task = new FibonacciDemo(n);
-        int result = forkJoinPool.invoke(task);
-
-        System.out.println(&quot;The Fibonacci number at index &quot; + n + &quot; is: &quot; + result);
-    }
-
-}
----
-The Fibonacci number at index 7 is: 13
-</code></pre>
-<h4 id="forkjoinpool-forkjoinpool">比較 ForkJoinPool 與 未使用 ForkJoinPool 的 效能差異</h4>
-<h5 id="_2">情境</h5>
-<p>請設計 從 1 加到 1_000_000_000 的程序，一個使用 Stream、一個使用 ForkJoinPool，計算並比較兩種方式的執行時間？</p>
-<h5 id="_3">實作</h5>
-<p>SumDemo.java</p>
-<pre><code>import java.util.concurrent.ForkJoinPool;
-import java.util.stream.IntStream;
-
-public class SumDemo {
-
-    private static final int RANGE = 1_000_000_000;
-
-    public static void main(String[] args) {
-
-        long startTime;
-        long elapsedTime;
-
-        // Without ForkJoinPool
-        startTime = System.currentTimeMillis();
-        int sumWithoutForkJoin = IntStream.rangeClosed(1, RANGE).sum();
-        elapsedTime = System.currentTimeMillis() - startTime;
-        System.out.println(&quot;Sum without ForkJoinPool: &quot; + sumWithoutForkJoin);
-        System.out.println(&quot;Time taken without ForkJoinPool: &quot; + elapsedTime + &quot; milliseconds&quot;);
-
-        // With ForkJoinPool
-        startTime = System.currentTimeMillis();
-        ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
-        int sumWithForkJoin = (int) forkJoinPool.invoke(new SumTask(1, RANGE));
-        elapsedTime = System.currentTimeMillis() - startTime;
-        System.out.println(&quot;Sum with ForkJoinPool: &quot; + sumWithForkJoin);
-        System.out.println(&quot;Time taken with ForkJoinPool: &quot; + elapsedTime + &quot; milliseconds&quot;);
-    }
+    // 排序
+    return combines.stream().sorted((o1, o2) -&gt; o1.length() - o2.length()).collect(Collectors.toList());
 }
 
----
-Sum without ForkJoinPool: -243309312
-Time taken without ForkJoinPool: 271 milliseconds
-Sum with ForkJoinPool: -243309312
-Time taken with ForkJoinPool: 51 milliseconds
-</code></pre>
-<p>SumTask.java</p>
-<pre><code>import java.util.concurrent.RecursiveTask;
-import java.util.stream.IntStream;
-
-public class SumTask extends RecursiveTask&lt;Integer&gt; {
-
-    private static final long serialVersionUID = 1L;
-
-    private static final int THRESHOLD = 1_000_000;
-
-    private int start;
-    private int end;
-
-    public SumTask(int start, int end) {
-        this.start = start;
-        this.end = end;
-    }
-
-    @Override
-    protected Integer compute() {
-        if (end - start &lt;= THRESHOLD) {
-            return IntStream.rangeClosed(start, end).sum();
-        } else {
-            int mid = (start + end) / 2;
-            SumTask leftTask = new SumTask(start, mid);
-            SumTask rightTask = new SumTask(mid + 1, end);
-
-            rightTask.fork();
-            leftTask.fork();
-
-            int rightSum = rightTask.join();
-            int leftSum = leftTask.join();
-
-            return leftSum + rightSum;
-        }
-    }
+public static void main(String[] args) {
+    System.out.println(permutation(&quot;abc&quot;));
 }
 </code></pre>
-<h4 id="_4">小結</h4>
-<p>通過分治法和工作窺取的策略，ForkJoinPool能夠實現高效的並行計算。它能夠自動地將任務劃分為更小的子任務，並將這些子任務分配給可用的線程執行。同時，工作窺取策略能夠確保所有線程都能夠保持忙碌，避免了線程閒置的情況，提高了系統的吞吐量和響應性能。</p>
-<p>確實，從範例中，可以看到 使用 ForkJoinPool 可以比使用 Stream 快速5倍的時間，尤其 Stream 已經是以效能出名。顯見，使用多執行緒，分而治之的概念，會優於 Stream 的方式。</p>
 
 
 
