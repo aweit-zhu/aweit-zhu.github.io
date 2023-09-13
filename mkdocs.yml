@@ -4,6 +4,7 @@ site_author: weizhi.zhu
 site_description: a short description of your website
 
 nav:
+  - Binary & Bit Shift: binaryOperator.md
   - ForkJoinPool: forkJoinPool.md
   - Volatile & synchronized: volatile.md
   - Thread & Semaphore: semaphore.md

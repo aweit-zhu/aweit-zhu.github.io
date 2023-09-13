@@ -16,6 +16,59 @@
 > 工作窺取是ForkJoinPool中的一種調度策略。當一個線程完成了它自己的任務後，它可以從其他線程的工作隊列中窺取任務並執行。這樣做的好處是可以實現負載均衡，確保所有線程都能夠保持忙碌狀態，充分利用系統資源。如果一個線程的工作隊列為空，它可以從其他線程的工作隊列中窺取任務，從而避免了線程閒置的情況。
 ![Alt text](image-176.png)
 
+#### 費氏數列
+
+由來：
+
+> 歐洲數學家 Fibonacci 在 1202 年發表的《Liber abacci》中曾經提過一個「免子算術」：「若有兔子每個月生一隻小兔子，一個月小兔子也投入生產，那麼一開始是一隻兔子，一個月後就有兩隻兔子，二個月後有三隻兔子，三個月後有五隻兔子…」
+
+公式：
+>F₀ = 0
+>F₁ = 1
+>Fₙ = Fₙ₋₁ + Fₙ₋₂
+
+例如：
+>1、1、2、3、5、8、13、21、34、55、89 ...
+
+Java代碼：
+
+```
+public class FibonacciDemo extends RecursiveTask<Integer> {
+
+	int n;
+
+	FibonacciDemo(int n) {
+		this.n = n;
+	}
+
+	@Override
+	protected Integer compute() {
+		if (n <= 1) {
+			return n;
+		} else {
+			FibonacciDemo task1 = new FibonacciDemo(n - 1);
+			FibonacciDemo task2 = new FibonacciDemo(n - 2);
+			task1.fork();
+			return task2.compute() + task1.join();
+		}
+	}
+
+	public static void main(String[] args) {
+		int n = 7;
+
+		ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
+		FibonacciDemo task = new FibonacciDemo(n);
+		int result = forkJoinPool.invoke(task);
+
+		System.out.println("The Fibonacci number at index " + n + " is: " + result);
+	}
+
+}
+---
+The Fibonacci number at index 7 is: 13
+```
+
+
 #### 比較 ForkJoinPool 與 未使用 ForkJoinPool 的 效能差異
 
 ##### 情境
