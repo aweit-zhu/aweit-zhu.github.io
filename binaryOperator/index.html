@@ -794,12 +794,37 @@ System.out.println(binary);
 2
 </code></pre>
 <h4 id="binary-operator">Binary Operator</h4>
-<p>|運算子|描述|範例
-|--|--|--|--|
-| &amp; |位元and運算,兩數對應位元要為1|a &amp; b
-|||位元or運算,兩數對應位元其中為1|a | b
-|^|位元xor運算,兩數對應位元互為不同|a ^ b
-|~|位元補數運算|~a</p>
+<table>
+<thead>
+<tr>
+<th>運算子</th>
+<th>描述</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&amp;</td>
+<td>位元and運算,兩數對應位元要為1</td>
+<td>a &amp; b</td>
+</tr>
+<tr>
+<td>|</td>
+<td>位元or運算,兩數對應位元其中為1</td>
+<td>a | b</td>
+</tr>
+<tr>
+<td>^</td>
+<td>位元xor運算,兩數對應位元互為不同</td>
+<td>a ^ b</td>
+</tr>
+<tr>
+<td>~</td>
+<td>位元補數運算</td>
+<td>~a</td>
+</tr>
+</tbody>
+</table>
 <pre><code>int a = 45;
 int b = 25;
 System.out.println(a &amp; b);
@@ -817,11 +842,32 @@ System.out.println(a ^ b); //100-&gt;4
 4
 </code></pre>
 <h4 id="bit-shift-operators">Bit Shift Operators 位移運算子</h4>
-<p>|運算子|描述|範例
-|--|--|--|--|
-|&lt;&lt;|左移運算| a &lt;&lt; b (a 向左移 b 個單位)
-|&gt;&gt;|右移運算| a &gt;&gt; b (a 向右移 b 個單位)
-|&gt;&gt;&gt;|右移運算| a &gt;&gt;&gt; b</p>
+<table>
+<thead>
+<tr>
+<th>運算子</th>
+<th>描述</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;&lt;</td>
+<td>左移運算</td>
+<td>a &lt;&lt; b (a 向左移 b 個單位)</td>
+</tr>
+<tr>
+<td>&gt;&gt;</td>
+<td>右移運算</td>
+<td>a &gt;&gt; b (a 向右移 b 個單位)</td>
+</tr>
+<tr>
+<td>&gt;&gt;&gt;</td>
+<td>右移運算</td>
+<td>a &gt;&gt;&gt; b</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
 <p>在Java中，整數以32位元表示，最高位元表示正負號，如果最高位元為1，則該數字為負數。</p>
 <p><code>&gt;&gt;</code> 是有符號右移運算符號，它將整數的二進位表示向右移動指定的位數，並在左側用符號位（即最高有效位）填充。這意味著如果原始數字是正數，則右移後左側用0填充，如果原始數字是負數，則右移後左側用1填充。</p>
