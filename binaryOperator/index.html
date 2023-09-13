@@ -845,16 +845,16 @@ System.out.println(decimal);
 <h3 id="abc">經典題目：abc 的排列組合</h3>
 <ol>
 <li>
-<p>情境： 假設字串 abc，請輸出 abc 的所有組合: a,b,c,ab,bc,ac,abc。請提供一個函數，參數為一個任意字串，輸出為一集合，該集合包含該字串所有排列可能，排列順序需要按照字串順序。</p>
+<p><strong>情境</strong>： 假設字串 abc，請輸出 abc 的所有組合: a,b,c,ab,bc,ac,abc。請提供一個函數，參數為一個任意字串，輸出為一集合，該集合包含該字串所有排列可能，排列順序需要按照字串順序。</p>
 </li>
 <li>
-<p>概念：</p>
+<p><strong>概念</strong>：</p>
 <p>(1) abc 共有 (8-1) 種可能，即 2 的 3 次方 - 1。</p>
 <p>(2) 將 7 種可能 (數字 1 ~ 7)，轉換為二進位。例如： 1 -&gt; 001、7 -&gt; 111。</p>
 <p>(3) 每一二進位數字，都可以代表 abc 的排列組合。例如：001 -&gt; c、111-&gt; abc。</p>
 </li>
 <li>
-<p>解答：</p>
+<p><strong>解答</strong>：</p>
 </li>
 </ol>
 <pre><code>public static List&lt;String&gt; permutation(String str) {
