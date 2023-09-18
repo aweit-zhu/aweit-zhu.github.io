@@ -245,14 +245,14 @@
         
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    最長迴文子序列(按照順序即可，不一定要連續性的字串)
+    最長回文子序列(按照順序即可，不一定要連續性的字串)
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    最長迴文子字串(連續性的字串)
+    最長回文子字串(連續性的字串)
   </a>
   
 </li>
@@ -840,14 +840,14 @@
         
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    最長迴文子序列(按照順序即可，不一定要連續性的字串)
+    最長回文子序列(按照順序即可，不一定要連續性的字串)
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    最長迴文子字串(連續性的字串)
+    最長回文子字串(連續性的字串)
   </a>
   
 </li>
@@ -1031,7 +1031,7 @@
     return res;
 }
 </code></pre>
-<h4 id="_3">最長迴文子序列(按照順序即可，不一定要連續性的字串)</h4>
+<h4 id="_3">最長回文子序列(按照順序即可，不一定要連續性的字串)</h4>
 <pre><code>public static int longestPalindrome(String s) {
 
     int[][] dp = new int[s.length()][s.length()];
@@ -1065,7 +1065,7 @@
     return res;
 }
 </code></pre>
-<h4 id="_4">最長迴文子字串(連續性的字串)</h4>
+<h4 id="_4">最長回文子字串(連續性的字串)</h4>
 <pre><code>public static String longestPalindrome(String s) {
     int n = s.length();
     boolean[][] f = new boolean[n][n];
