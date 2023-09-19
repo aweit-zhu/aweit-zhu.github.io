@@ -12,14 +12,14 @@
         <meta name="author" content="weizhi.zhu">
       
       
-        <link rel="canonical" href="https://aweit-zhu.github.io/forkJoinPool/">
+        <link rel="canonical" href="https://aweit-zhu.github.io/lru/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.0.0b4">
     
     
       
-        <title>ForkJoinPool - Aweit Docs</title>
+        <title>Algorithm - LRU 快取 - Aweit Docs</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#forkjoinpool" class="md-skip">
+        <a href="#lru" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ForkJoinPool
+              Algorithm - LRU 快取
             
           </span>
         </div>
@@ -183,11 +183,96 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../lru/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Algorithm - LRU 快取
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Algorithm - LRU 快取
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lru" class="md-nav__link">
+    LRU 演算法
+  </a>
+  
+    <nav class="md-nav" aria-label="LRU 演算法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    定義
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    應用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linkedhashmap" class="md-nav__link">
+    雜湊鏈結串列(LinkedHashMap)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linkedhashmap_1" class="md-nav__link">
+    自己實作 LinkedHashMap
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#java-linkedhashmap" class="md-nav__link">
+    利用 Java 原有的 LinkedHashMap
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    結論
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -258,109 +343,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          ForkJoinPool
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../forkJoinPool/" class="md-nav__link">
         ForkJoinPool
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#forkjoinpool" class="md-nav__link">
-    ForkJoinPool
-  </a>
-  
-    <nav class="md-nav" aria-label="ForkJoinPool">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#divide-and-conquer" class="md-nav__link">
-    Divide And Conquer (分而治之)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#work-stealing" class="md-nav__link">
-    Work Stealing
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    費氏數列
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#forkjoinpool-forkjoinpool" class="md-nav__link">
-    比較 ForkJoinPool 與 未使用 ForkJoinPool 的 效能差異
-  </a>
-  
-    <nav class="md-nav" aria-label="比較 ForkJoinPool 與 未使用 ForkJoinPool 的 效能差異">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    情境
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    實作
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    小結
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -810,64 +797,51 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#forkjoinpool" class="md-nav__link">
-    ForkJoinPool
+  <a href="#lru" class="md-nav__link">
+    LRU 演算法
   </a>
   
-    <nav class="md-nav" aria-label="ForkJoinPool">
+    <nav class="md-nav" aria-label="LRU 演算法">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#divide-and-conquer" class="md-nav__link">
-    Divide And Conquer (分而治之)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#work-stealing" class="md-nav__link">
-    Work Stealing
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    費氏數列
+    定義
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#forkjoinpool-forkjoinpool" class="md-nav__link">
-    比較 ForkJoinPool 與 未使用 ForkJoinPool 的 效能差異
+  <a href="#_2" class="md-nav__link">
+    應用
   </a>
   
-    <nav class="md-nav" aria-label="比較 ForkJoinPool 與 未使用 ForkJoinPool 的 效能差異">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    情境
+  <a href="#linkedhashmap" class="md-nav__link">
+    雜湊鏈結串列(LinkedHashMap)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linkedhashmap_1" class="md-nav__link">
+    自己實作 LinkedHashMap
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#java-linkedhashmap" class="md-nav__link">
+    利用 Java 原有的 LinkedHashMap
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    實作
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    小結
+    結論
   </a>
   
 </li>
@@ -892,159 +866,259 @@
                   
 
 
-  <h1>ForkJoinPool</h1>
+  <h1>Algorithm - LRU 快取</h1>
 
-<h3 id="forkjoinpool">ForkJoinPool</h3>
-<p>參考資料：</p>
-<ol>
-<li>
-<p>Simple Introduction to ForkJoin Framework  <a href="https://thetechstack.net/simple-introduction-to-forkjoin-framework-part1/">https://thetechstack.net/simple-introduction-to-forkjoin-framework-part1/</a></p>
-</li>
-<li>
-<p>Chat GPT</p>
-</li>
-</ol>
-<h4 id="divide-and-conquer">Divide And Conquer (分而治之)</h4>
+<h3 id="lru">LRU 演算法</h3>
+<h4 id="_1">定義</h4>
 <blockquote>
-<p>分治法是一種問題解決方法，將一個大問題劃分為若干個小問題，遞歸地解決小問題，然後將小問題的解合併起來得到大問題的解。在ForkJoinPool中，我們可以將一個大的任務劃分為多個子任務，每個子任務負責處理一部分數據，然後將子任務的結果合併起來得到最終的結果。這種分治的策略可以提高並行計算的效率，特別是對於大規模的問題。
-<img alt="Alt text" src="../image-178.png" /></p>
+<p>LRU (Least Recently Used) 快取是一種快取替換算法，用於在有限的快取空間中管理和替換數據。它的基本原則是，當需要替換一個數據時，選擇最近最少使用的數據進行替換。</p>
 </blockquote>
-<h4 id="work-stealing">Work Stealing</h4>
+<h4 id="_2">應用</h4>
+<p>文件系統快取</p>
 <blockquote>
-<p>工作窺取是ForkJoinPool中的一種調度策略。當一個線程完成了它自己的任務後，它可以從其他線程的工作隊列中窺取任務並執行。這樣做的好處是可以實現負載均衡，確保所有線程都能夠保持忙碌狀態，充分利用系統資源。如果一個線程的工作隊列為空，它可以從其他線程的工作隊列中窺取任務，從而避免了線程閒置的情況。
-<img alt="Alt text" src="../image-176.png" /></p>
+<p>文件系統快取：操作系統使用LRU 快取來加速文件系統的訪問。當需要訪問一個文件時，如果該文件已經在快取中，則可以迅速從快取中讀取。如果快取已經滿了，則可以替換掉最久未使用的文件。</p>
 </blockquote>
-<h4 id="_1">費氏數列</h4>
-<p>由來：</p>
+<p>資料庫查詢結果快取</p>
 <blockquote>
-<p>歐洲數學家 Fibonacci 在 1202 年發表的《Liber abacci》中曾經提過一個「免子算術」：「若有兔子每個月生一隻小兔子，一個月小兔子也投入生產，那麼一開始是一隻兔子，一個月後就有兩隻兔子，二個月後有三隻兔子，三個月後有五隻兔子…」</p>
+<p>查詢結果快取：當用戶發起一個查詢時，資料庫可以將查詢結果存儲在LRU 快取中。如果同樣的查詢再次發生，則可以直接從快取中返回結果，而不需要重新執行查詢。這樣可以大大減少查詢的執行時間，提高系統的性能。</p>
 </blockquote>
-<p>公式：</p>
+<p>資料庫索引快取</p>
 <blockquote>
-<p>F₀ = 0
-F₁ = 1
-Fₙ = Fₙ₋₁ + Fₙ₋₂</p>
+<p>索引快取：索引是資料庫中用於加速查詢的重要結構。資料庫可以使用LRU 快取來存儲最常用的索引頁面。當一個查詢需要使用某個索引時，DBMS可以先檢查快取中是否已經存在對應的索引頁面，如果有則可以快速從快取中讀取，否則需要從磁盤中讀取。通過使用LRU 快取，資料庫可以減少磁盤IO，提高查詢的執行效率。</p>
 </blockquote>
-<p>例如：</p>
-<blockquote>
-<p>1、1、2、3、5、8、13、21、34、55、89 ...</p>
-</blockquote>
-<p>Java代碼：</p>
-<pre><code>public class FibonacciDemo extends RecursiveTask&lt;Integer&gt; {
+<h4 id="linkedhashmap">雜湊鏈結串列(LinkedHashMap)</h4>
+<p>LinkedHahMap
+<img alt="Alt text" src="../image-190.png" /></p>
+<p>Node + DoubleList
+<img alt="Alt text" src="../image-192.png" /></p>
+<h4 id="linkedhashmap_1">自己實作 LinkedHashMap</h4>
+<pre><code>import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
-    int n;
+class Node {
 
-    FibonacciDemo(int n) {
-        this.n = n;
+    public int key, val;
+
+    public Node next, prev;
+
+    public Node(int k, int v) {
+        this.key = k;
+        this.val = v;
+    }
+}
+
+class DoubleList {
+
+    private Node head, tail;
+
+    private int size;
+
+    public DoubleList() {
+        head = new Node(0, 0);
+        tail = new Node(0, 0);
+        head.next = tail;
+        tail.prev = head;
+        size = 0;
     }
 
-    @Override
-    protected Integer compute() {
-        if (n &lt;= 1) {
-            return n;
+    public void addLast(Node node) {
+        tail.prev.next = node;
+        node.prev = tail.prev;
+        node.next = tail;
+        tail.prev = node;
+        size++;
+    }
+
+    public void remove(Node node) {
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+        size--;
+    }
+
+    public Node removeFirst() {
+        if (head.next == tail)
+            return null;
+
+        Node first = head.next;
+        remove(first);
+        return first;
+    }
+
+    public int size() {
+        return size;
+    }
+
+}
+
+class LRUCache {
+
+    private int cap;
+
+    private HashMap&lt;Integer, Node&gt; map;
+
+    private DoubleList cache;
+
+    public LRUCache(int capacity) {
+        this.cap = capacity;
+        map = new HashMap&lt;&gt;();
+        cache = new DoubleList();
+    }
+
+    public void put(int key, int val) {
+
+        if (map.containsKey(key)) {
+            deleteKey(key);
+            addRecently(key, val);
+            return;
+        }
+
+        if (cache.size() == cap) {
+            removeLeastRecently();
+        }
+        addRecently(key, val);
+    }
+
+    public int get(int key) {
+        if (!map.containsKey(key)) {
+            return -1;
+        }
+        makeRecently(key);
+        return map.get(key).val;
+    }
+
+    public List&lt;Integer&gt; getAll() {
+        return map.values().stream().map(node-&gt; Integer.valueOf(node.val)).collect(Collectors.toList());
+    }
+
+    private void makeRecently(int key) {
+        Node node = map.get(key);
+        cache.remove(node);
+        cache.addLast(node);
+    }
+
+    private void addRecently(int key, int val) {
+        Node node = new Node(key, val);
+        cache.addLast(node);
+        map.put(key, node);
+    }
+
+    private void deleteKey(int key) {
+        Node node = map.get(key);
+        cache.remove(node);
+        map.remove(key);
+    }
+
+    private void removeLeastRecently() {
+        Node node = cache.removeFirst();
+        int key = node.key;
+        map.remove(key);
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        LRUCache cache = new LRUCache(2);
+
+        cache.put(1, 1);
+        cache.put(2, 2);
+        System.out.println(cache.getAll());
+
+        cache.get(1);
+        cache.put(3, 3);
+        cache.get(2);
+        System.out.println(cache.getAll());     
+
+        cache.get(1);
+        cache.put(4, 4);
+        System.out.println(cache.getAll());
+    }
+}
+
+---
+[1, 2]
+[1, 3]
+[1, 4]
+</code></pre>
+<h4 id="java-linkedhashmap">利用 Java 原有的 LinkedHashMap</h4>
+<pre><code>class LRUCache {
+
+    int cap;
+
+    LinkedHashMap&lt;Integer, Integer&gt; cache;
+
+    LRUCache2(int capacity) {
+        this.cap = capacity;
+        this.cache = new LinkedHashMap&lt;&gt;();
+    }
+
+    public void put(int key, int val) {
+
+        if(cache.containsKey(key)) {
+            makeRecently(key,val);
+            return;
+        }
+
+        if(cache.size() &gt;= cap) {
+            int oldKey = cache.keySet().iterator().next();
+            cache.remove(oldKey);
+            makeRecently(key,val);
         } else {
-            FibonacciDemo task1 = new FibonacciDemo(n - 1);
-            FibonacciDemo task2 = new FibonacciDemo(n - 2);
-            task1.fork();
-            return task2.compute() + task1.join();
+            makeRecently(key,val);
         }
     }
 
-    public static void main(String[] args) {
-        int n = 7;
+    public int get(int key) {
+        if(!cache.containsKey(key))
+            return -1;
 
-        ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
-        FibonacciDemo task = new FibonacciDemo(n);
-        int result = forkJoinPool.invoke(task);
+        makeRecently(key,cache.get(key));
 
-        System.out.println(&quot;The Fibonacci number at index &quot; + n + &quot; is: &quot; + result);
+        return cache.get(key);
+    }
+
+    public void makeRecently(int key,int val) {
+        cache.remove(key);
+        cache.put(key, val);
+    }
+
+    public List&lt;Integer&gt; getAll(){
+        return cache.values().stream().collect(Collectors.toList());
     }
 
 }
----
-The Fibonacci number at index 7 is: 13
-</code></pre>
-<h4 id="forkjoinpool-forkjoinpool">比較 ForkJoinPool 與 未使用 ForkJoinPool 的 效能差異</h4>
-<h5 id="_2">情境</h5>
-<p>請設計 從 1 加到 1_000_000_000 的程序，一個使用 Stream、一個使用 ForkJoinPool，計算並比較兩種方式的執行時間？</p>
-<h5 id="_3">實作</h5>
-<p>SumDemo.java</p>
-<pre><code>import java.util.concurrent.ForkJoinPool;
-import java.util.stream.IntStream;
 
-public class SumDemo {
-
-    private static final int RANGE = 1_000_000_000;
+public class LRUDemo {
 
     public static void main(String[] args) {
 
-        long startTime;
-        long elapsedTime;
+        LRUCache cache = new LRUCache(2);
 
-        // Without ForkJoinPool
-        startTime = System.currentTimeMillis();
-        int sumWithoutForkJoin = IntStream.rangeClosed(1, RANGE).sum();
-        elapsedTime = System.currentTimeMillis() - startTime;
-        System.out.println(&quot;Sum without ForkJoinPool: &quot; + sumWithoutForkJoin);
-        System.out.println(&quot;Time taken without ForkJoinPool: &quot; + elapsedTime + &quot; milliseconds&quot;);
+        cache.put(1, 1);
+        cache.put(2, 2);
+        System.out.println(cache.getAll());
 
-        // With ForkJoinPool
-        startTime = System.currentTimeMillis();
-        ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
-        int sumWithForkJoin = (int) forkJoinPool.invoke(new SumTask(1, RANGE));
-        elapsedTime = System.currentTimeMillis() - startTime;
-        System.out.println(&quot;Sum with ForkJoinPool: &quot; + sumWithForkJoin);
-        System.out.println(&quot;Time taken with ForkJoinPool: &quot; + elapsedTime + &quot; milliseconds&quot;);
+        cache.get(1);
+        cache.put(3, 3);
+        cache.get(2);
+        System.out.println(cache.getAll());     
+
+        cache.get(1);
+        cache.put(4, 4);
+        System.out.println(cache.getAll());
     }
 }
-
 ---
-Sum without ForkJoinPool: -243309312
-Time taken without ForkJoinPool: 271 milliseconds
-Sum with ForkJoinPool: -243309312
-Time taken with ForkJoinPool: 51 milliseconds
+[1, 2]
+[1, 3]
+[1, 4]
 </code></pre>
-<p>SumTask.java</p>
-<pre><code>import java.util.concurrent.RecursiveTask;
-import java.util.stream.IntStream;
-
-public class SumTask extends RecursiveTask&lt;Integer&gt; {
-
-    private static final long serialVersionUID = 1L;
-
-    private static final int THRESHOLD = 1_000_000;
-
-    private int start;
-    private int end;
-
-    public SumTask(int start, int end) {
-        this.start = start;
-        this.end = end;
-    }
-
-    @Override
-    protected Integer compute() {
-        if (end - start &lt;= THRESHOLD) {
-            return IntStream.rangeClosed(start, end).sum();
-        } else {
-            int mid = (start + end) / 2;
-            SumTask leftTask = new SumTask(start, mid);
-            SumTask rightTask = new SumTask(mid + 1, end);
-
-            rightTask.fork();
-            leftTask.fork();
-
-            int rightSum = rightTask.join();
-            int leftSum = leftTask.join();
-
-            return leftSum + rightSum;
-        }
-    }
-}
-</code></pre>
-<h4 id="_4">小結</h4>
-<p>通過分治法和工作窺取的策略，ForkJoinPool能夠實現高效的並行計算。它能夠自動地將任務劃分為更小的子任務，並將這些子任務分配給可用的線程執行。同時，工作窺取策略能夠確保所有線程都能夠保持忙碌，避免了線程閒置的情況，提高了系統的吞吐量和響應性能。</p>
-<p>確實，從範例中，可以看到 使用 ForkJoinPool 可以比使用 Stream 快速5倍的時間，尤其 Stream 已經是以效能出名。顯見，使用多執行緒，分而治之的概念，會優於 Stream 的方式。</p>
+<h4 id="_3">結論</h4>
+<p>使用自定義的 DoubleList 和 Node 來實現 LRU Cache 是一種更底層的實現方式，它可以讓你更深入地理解和掌握 LRU Cache 的內部機制。這樣的實現方式在某些情況下可能會更靈活和高效，特別是當你對於如何管理鏈表和節點有特定的需求時。</p>
+<p>然而，使用 Java 內建的 LinkedHashMap 來實現 LRU Cache 是一種更簡單和方便的方式。LinkedHashMap 提供了內建的 LRU 快取機制，並且已經經過了許多優化和測試。它的使用方式非常直觀，只需創建一個 LinkedHashMap 對象，然後使用 put 和 get 方法即可。這樣的實現方式更適合那些不需要對 LRU Cache 的內部實現細節進行定制的場景。</p>
+<p>總結來說，使用自定義的 DoubleList 和 Node 可以讓你更深入地理解和掌握 LRU Cache 的實現細節，並且在某些情況下可能具有更好的靈活性和性能。然而，如果你只是需要一個簡單且方便的 LRU Cache 實現，使用 Java 內建的 LinkedHashMap 是一個更合適的選擇。</p>
 
 
 
