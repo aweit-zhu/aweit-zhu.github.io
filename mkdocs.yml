@@ -4,6 +4,7 @@ site_author: weizhi.zhu
 site_description: a short description of your website
 
 nav:
+  - Algorithm - LRU 快取: lru.md
   - Algorithm - Dynamic Programming : dp.md
   - Java Regular Expression: regex.md
   - JVM - Stack & Heap: stackheap.md

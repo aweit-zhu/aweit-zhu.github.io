@@ -46,6 +46,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://aweit-zhu.github.io/lru/</loc>
+         <lastmod>2023-09-19</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://aweit-zhu.github.io/microk8s/</loc>
          <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
