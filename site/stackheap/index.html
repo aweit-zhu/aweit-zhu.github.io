@@ -12,14 +12,14 @@
         <meta name="author" content="weizhi.zhu">
       
       
-        <link rel="canonical" href="https://aweit-zhu.github.io/spring-cloud-feign/">
+        <link rel="canonical" href="https://aweit-zhu.github.io/stackheap/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.0.0b4">
     
     
       
-        <title>Spring Cloud - OpenFeign Client - Aweit Docs</title>
+        <title>JVM - Stack & Heap - Aweit Docs</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#spring-cloud-with-openfiegn-client" class="md-skip">
+        <a href="#jvm-stack-heap" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Spring Cloud - OpenFeign Client
+              JVM - Stack & Heap
             
           </span>
         </div>
@@ -213,11 +213,82 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../stackheap/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          JVM - Stack & Heap
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         JVM - Stack & Heap
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#jvm-stack-heap" class="md-nav__link">
+    JVM - Stack &amp; Heap
+  </a>
+  
+    <nav class="md-nav" aria-label="JVM - Stack &amp; Heap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    問題意識
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stack-heap" class="md-nav__link">
+    Stack(棧) &amp;  Heap (堆)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string-pool" class="md-nav__link">
+    String Pool (字串池)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    解決問題：
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -408,96 +479,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Spring Cloud - OpenFeign Client
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../spring-cloud-feign/" class="md-nav__link">
         Spring Cloud - OpenFeign Client
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#spring-cloud-with-openfiegn-client" class="md-nav__link">
-    Spring Cloud with OpenFiegn Client
-  </a>
-  
-    <nav class="md-nav" aria-label="Spring Cloud with OpenFiegn Client">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    情境
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    程式碼：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#openfiegn" class="md-nav__link">
-    OpenFiegn
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#openfiegn-with-spring-security" class="md-nav__link">
-    OpenFiegn with spring security
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#eureka-client-with-spring-security" class="md-nav__link">
-    Eureka Client with spring security
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#test" class="md-nav__link">
-    Test
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -782,51 +768,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#spring-cloud-with-openfiegn-client" class="md-nav__link">
-    Spring Cloud with OpenFiegn Client
+  <a href="#jvm-stack-heap" class="md-nav__link">
+    JVM - Stack &amp; Heap
   </a>
   
-    <nav class="md-nav" aria-label="Spring Cloud with OpenFiegn Client">
+    <nav class="md-nav" aria-label="JVM - Stack &amp; Heap">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    情境
+    問題意識
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stack-heap" class="md-nav__link">
+    Stack(棧) &amp;  Heap (堆)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string-pool" class="md-nav__link">
+    String Pool (字串池)
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    程式碼：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#openfiegn" class="md-nav__link">
-    OpenFiegn
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#openfiegn-with-spring-security" class="md-nav__link">
-    OpenFiegn with spring security
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#eureka-client-with-spring-security" class="md-nav__link">
-    Eureka Client with spring security
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#test" class="md-nav__link">
-    Test
+    解決問題：
   </a>
   
 </li>
@@ -851,303 +823,56 @@
                   
 
 
-  <h1>Spring Cloud - OpenFeign Client</h1>
+  <h1>JVM - Stack & Heap</h1>
 
-<h3 id="spring-cloud-with-openfiegn-client">Spring Cloud with OpenFiegn Client</h3>
-<h4 id="_1">情境</h4>
-<ol>
-<li>
-<p>Eureka Client：建立Controller，並將 /api/** 的 Controller 透過 Spring Security 來保護，這邊使用簡單的 In memory authencate. 所以註冊上去的服務也需要透過 http base 來登入。</p>
-</li>
-<li>
-<p>透過 OpenFiegn 的 Client 呼叫註冊在 Eureka Server 上的服務，也需要將每一請求加上 authorization token。也需要實作 Spring security。</p>
-</li>
-<li>
-<p>雙方的 Spring Security 的 User 來源皆要同源，才有辦法直接登
-入。(user/password 作為簡單的帳密認證)</p>
-</li>
-</ol>
-<h4 id="_2">程式碼：</h4>
-<ol>
-<li>
-<p>FeignClient：<a href="https://github.com/aweit-zhu/SpringCloudFeignClient">https://github.com/aweit-zhu/SpringCloudFeignClient</a></p>
-</li>
-<li>
-<p>Eureka Client：<a href="https://github.com/aweit-zhu/SpringCloudEurekaClient">https://github.com/aweit-zhu/SpringCloudEurekaClient</a></p>
-</li>
-</ol>
-<h4 id="openfiegn">OpenFiegn</h4>
-<p>它封裝了呼叫遠端服務的套件，讓您可以透過定義服務接口，免去了實作 @RestTemplete (不用去理會 Http Request 和 Http Response)。</p>
-<p><img alt="Alt text" src="../image-135.png" />
-圖片來源：<a href="https://www.javaguides.net/2022/10/spring-boot-microservices-communication-using-spring-cloud-open-feign.html">https://www.javaguides.net/2022/10/spring-boot-microservices-communication-using-spring-cloud-open-feign.html</a></p>
-<p><img alt="Alt text" src="../image-136.png" /></p>
-<p>我們可以透過上述代碼，看看 ChatGPT 如何解釋？</p>
-<p>Certainly! Let's go through your code step by step:</p>
-<pre><code>java
-@FeignClient(name = &quot;eureka-client-demo&quot;)
-public interface RemoteServiceClient {
+<h3 id="jvm-stack-heap">JVM - Stack &amp; Heap</h3>
+<h4 id="_1">問題意識</h4>
+<pre><code>String str1 = &quot;aaa&quot;;
+String str2 = &quot;aaa&quot;;
+String str3 = new String(&quot;aaa&quot;); 
 
-    @GetMapping(&quot;/api/hello&quot;)
-    String getHelloMessage();
-
-    @PostMapping(&quot;/api/post&quot;)
-    String getPostMessage();
-}
+System.out.println(str1 == str2); // true
+System.out.println(str1 == str3); // false
 </code></pre>
-<ol>
-<li>
-<p><code>@FeignClient(name = "eureka-client-demo")</code>: This annotation is used to indicate that this interface is a Feign client and specifies the name of the Eureka client that you want to communicate with. In this case, the Eureka client is named "eureka-client-demo".</p>
-</li>
-<li>
-<p><code>@GetMapping("/api/hello")</code>: This annotation is used to map the <code>getHelloMessage()</code> method to the HTTP GET request with the endpoint path "/api/hello". It indicates that this method will be used to retrieve a hello message from the specified endpoint.</p>
-</li>
-<li>
-<p><code>String getHelloMessage()</code>: This method signature defines the contract for the Feign client. It specifies that the method will return a String, which represents the hello message retrieved from the endpoint.</p>
-</li>
-<li>
-<p><code>@PostMapping("/api/post")</code>: This annotation is used to map the <code>getPostMessage()</code> method to the HTTP POST request with the endpoint path "/api/post". It indicates that this method will be used to send a post message to the specified endpoint.</p>
-</li>
-<li>
-<p><code>String getPostMessage()</code>: This method signature defines the contract for the Feign client. It specifies that the method will return a String, which represents the response message received from the endpoint after sending the post request.</p>
-</li>
-</ol>
-<p>Overall, this code defines a Feign client interface <code>RemoteServiceClient</code> that communicates with the "eureka-client-demo" Eureka client. It provides two methods, <code>getHelloMessage()</code> and <code>getPostMessage()</code>, which correspond to GET and POST requests, respectively, and are mapped to specific endpoint paths ("/api/hello" and "/api/post").</p>
-<h4 id="openfiegn-with-spring-security">OpenFiegn with spring security</h4>
-<ol>
-<li>pom.xml</li>
-</ol>
-<pre><code>&lt;dependencies&gt;
-    &lt;!-- Spring Cloud OpenFeign --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;
-    &lt;/dependency&gt;
+<h4 id="stack-heap">Stack(棧) &amp;  Heap (堆)</h4>
+<p>圖片來源：<a href="https://blog.marklee.tw/java-interview-jvm-stack-heap/">https://blog.marklee.tw/java-interview-jvm-stack-heap/</a>
+<img alt="Alt text" src="../image-180.png" /></p>
+<ul>
+<li>Stack：</li>
+</ul>
+<p>(1) 儲存基本型別( <strong>int 、 short 、 long 、 byte 、 float 、 double 、 boolean 、 char</strong>) 的值，以及儲存<strong>參考位置(Reference Type) 的位址</strong>。  (<strong>沒有 String</strong>)</p>
+<p>(2) 在宣告時，就分配內存。且超過作用域就會釋放。</p>
+<ul>
+<li>Heap：</li>
+</ul>
+<p>(1) 儲存 Class Type (String、Integer、自己的物件) 變數值與物件位址。通常為透過 new 方式建立。</p>
+<p>(2) 在宣告時，尚不會分配資源，等到 new 時，才會分配內存。並且在沒有引用指向他們時會釋放。</p>
+<h4 id="string-pool">String Pool (字串池)</h4>
+<p><strong>1.採用字面值創建String</strong>：</p>
+<p>字串池實際上是堆(Heap)中的一部分，而不是獨立的記憶體區域。字串池的存在是為了優化字串的存儲和共享，以提高效能和節省記憶體。</p>
+<p>當你使用字面值創建字串物件時，Java會先檢查字串池中是否已經存在相同內容的字串。如果存在，則<code>直接返回字串池中的實例，而不會在堆中創建新的物件</code>。</p>
+<p>如果字串池中不存在相同內容的字串，則會 <code>在字串池中創建一個新的實例，並在堆中創建相應的物件</code>。</p>
+<p>結論來說，<strong><code>如果用字面值創建String，回傳的是同一物件的參考位址</code></strong>。</p>
+<p><strong>2.採用 new 建立String</strong></p>
+<p>在Java中，當你使用 <code>new</code> 關鍵字創建一個字串對象時，<strong><code>都會在堆中創建一個新的字串對象</code></strong>。</p>
+<p>JVM會首先在<code>字串池（String Pool）</code>中查找是否已經存在相同內容的字串。如果字串池中已經存在相同內容的字串，則不會在字串池中再次創建該字串，而是 <code>直接在堆（Heap）中創建一個新的字串對象</code>，並將該字串對象的引用返回給你。</p>
+<p>如果字串池中不存在相同內容的字串，則會先在字串池中創建一個字串對象，然後<code>再在堆中創建一個新的字串對象</code>，並將該字串對象的引用返回給你。</p>
+<blockquote>
+<p>PS：儘管在使用<code>new</code>關鍵字創建字串對象時，字串池的檢查似乎是多餘的，但這是Java語言的設計選擇，以確保字串對象的一致性和效能。</p>
+</blockquote>
+<h4 id="_2">解決問題：</h4>
+<pre><code>String str1 = &quot;aaa&quot;; // 在字串池中創建字串對象
+String str2 = &quot;aaa&quot;; // 使用字串池中的字串對象
+String str3 = new String(&quot;aaa&quot;); // 在堆中創建一個新的字串對象
 
-    &lt;!-- Spring Cloud Starter Netflix Eureka Client (if using service
-    discovery) --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;!-- Spring Boot Starter Web --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;!-- Spring Boot DevTools (optional) --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;
-        &lt;scope&gt;runtime&lt;/scope&gt;
-        &lt;optional&gt;true&lt;/optional&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
-        &lt;artifactId&gt;lombok&lt;/artifactId&gt;
-        &lt;optional&gt;true&lt;/optional&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
-        &lt;scope&gt;test&lt;/scope&gt;
-    &lt;/dependency&gt;
-&lt;/dependencies&gt;
+System.out.println(str1 == str2); // true，兩個引用指向字串池中的同一個字串對象
+System.out.println(str1 == str3); // false，兩個引用指向不同的字串對象
 </code></pre>
+<p>補充：</p>
 <ol>
-<li>Application：@EnableDiscoveryClient、@EnableFeignClients</li>
+<li><strong>a == b</strong>：比對兩物件的參考位址是否相等。</li>
+<li><strong>a.equals(b)</strong>：比對兩物件的值是否相等。</li>
 </ol>
-<pre><code>@SpringBootApplication
-@EnableDiscoveryClient
-@EnableFeignClients
-public class SpringCloudFeignClientApplication {
-
-    public static void main(String[] args) {
-        SpringApplication.run(SpringCloudFeignClientApplication.class, args);
-    }
-
-}
-</code></pre>
-<ol>
-<li>Feign Service </li>
-</ol>
-<pre><code>@FeignClient(name = &quot;eureka-client-demo&quot;)
-public interface RemoteServiceClient {
-
-    @GetMapping(&quot;/api/hello&quot;)
-    String getHelloMessage();
-
-    @PostMapping(&quot;/api/post&quot;)
-    String getPostMessage();
-}
-</code></pre>
-<ol>
-<li>Controller</li>
-</ol>
-<pre><code>@RestController
-public class HelloController {
-
-    @Autowired
-    RemoteServiceClient remoteServiceClient;
-
-    @GetMapping(&quot;/api/hello&quot;)
-    public String getHelloMessageFromRemoteService() {
-        return remoteServiceClient.getHelloMessage();
-    }
-
-    @GetMapping(&quot;/api/post&quot;)
-    public String getPostMessageFromRemoteService() {
-        return remoteServiceClient.getPostMessage();
-    }
-}
-</code></pre>
-<ol>
-<li>Security Config</li>
-</ol>
-<pre><code>@Configuration
-@EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-            .withUser(&quot;user&quot;)
-            .password(passwordEncoder().encode(&quot;password&quot;))
-            .roles(&quot;USER&quot;);
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-            .antMatchers(&quot;/api/**&quot;).authenticated()
-            .anyRequest().permitAll()
-            .and()
-            .httpBasic()
-            .and()
-            .csrf().disable();
-    }
-}
-</code></pre>
-<ol>
-<li>Interceptor </li>
-</ol>
-<p>FeignConfiguration</p>
-<pre><code>@Configuration
-public class FeignConfiguration {
-
-    @Bean
-    public FeignClientInterceptor feignClientInterceptor() {
-        return new FeignClientInterceptor();
-    }
-
-}
-</code></pre>
-<p>FeignClientInterceptor</p>
-<pre><code>public class FeignClientInterceptor implements RequestInterceptor {
-
-    @Autowired
-    private HttpServletRequest request;
-
-    @Override
-    public void apply(RequestTemplate requestTemplate) {
-        String reqAuthInput= request.getHeader(&quot;authorization&quot;);
-        if (reqAuthInput!= null) {
-            requestTemplate.header(&quot;authorization&quot;,reqAuthInput);
-        }
-    }
-
-}
-</code></pre>
-<ol>
-<li>application.properties</li>
-</ol>
-<pre><code>server.port=8890
-spring.application.name=eureka-client-2
-eureka.client.service-url.defaultZone=http://localhost:8761/eureka
-</code></pre>
-<h4 id="eureka-client-with-spring-security">Eureka Client with spring security</h4>
-<ol>
-<li>pom.xml</li>
-</ol>
-<pre><code>&lt;!-- Spring Security --&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;
-&lt;/dependency&gt;
-</code></pre>
-<ol>
-<li>Security Config</li>
-</ol>
-<pre><code>@Configuration
-@EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-            .withUser(&quot;user&quot;)
-            .password(passwordEncoder().encode(&quot;password&quot;))
-            .roles(&quot;USER&quot;);
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-            .antMatchers(&quot;/api/**&quot;).authenticated()
-            .anyRequest().permitAll()
-            .and()
-            .httpBasic()
-            .and()
-            .csrf().disable();
-    }
-}
-</code></pre>
-<ol>
-<li>Controller</li>
-</ol>
-<pre><code>@RestController
-public class HelloController {
-    @GetMapping(&quot;/api/hello&quot;)
-    public String hello() {
-        return &quot;Hello from Eureka Client!&quot;;
-    }
-
-    @PostMapping(&quot;/api/post&quot;)
-    public String post() {
-        return &quot;Post Method Successful&quot;;
-    }
-}
-</code></pre>
-<h4 id="test">Test</h4>
-<ol>
-<li>
-<p>Feign Client Web API (POST)：<a href="http://localhost:8890/api/post">http://localhost:8890/api/post</a>
-<img alt="Alt text" src="../image-137.png" /></p>
-</li>
-<li>
-<p>Feign Client Web API (GET)：<a href="http://localhost:8890/api/hello">http://localhost:8890/api/hello</a>
-<img alt="Alt text" src="../image-138.png" /></p>
-</li>
-<li>
-<p>Eureka Server：<a href="http://localhost:8761/">http://localhost:8761/</a> 可以看到 兩個服務被註冊。</p>
-</li>
-</ol>
-<p><img alt="Alt text" src="../image-139.png" /></p>
 
 
 

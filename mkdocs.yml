@@ -4,7 +4,9 @@ site_author: weizhi.zhu
 site_description: a short description of your website
 
 nav:
-  - JVM - Stack & Heap: stackLeap.md
+  - Algorithm - Dynamic Programming : dp.md
+  - Java Regular Expression: regex.md
+  - JVM - Stack & Heap: stackheap.md
   - Binary & Bit Shift: binaryOperator.md
   - ForkJoinPool: forkJoinPool.md
   - Volatile & synchronized: volatile.md
