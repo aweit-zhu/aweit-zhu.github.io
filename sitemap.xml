@@ -26,6 +26,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://aweit-zhu.github.io/dfs/</loc>
+         <lastmod>2023-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://aweit-zhu.github.io/docker/</loc>
          <lastmod>2023-09-20</lastmod>
          <changefreq>daily</changefreq>
