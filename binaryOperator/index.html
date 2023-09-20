@@ -1029,6 +1029,34 @@ public static void main(String[] args) {
     System.out.println(permutation(&quot;abc&quot;));
 }
 </code></pre>
+<ol>
+<li>如果有學過「<strong>回溯演算法</strong>」，更簡潔：</li>
+</ol>
+<pre><code>public static List&lt;String&gt; permutation(String str) {
+    List&lt;String&gt; res = new ArrayList&lt;&gt;();
+    StringBuilder sb = new StringBuilder();
+    backTrack(str, sb, 0, res);
+    return res;
+}
+
+public static void backTrack(String str, StringBuilder sb, int start, List&lt;String&gt; res) {
+
+    res.add(sb.toString());
+
+    for (int i = start; i &lt; str.length(); i++) {
+
+        sb.append(str.charAt(i));
+
+        backTrack(str, sb, i+1, res);
+
+        sb.deleteCharAt(sb.length() - 1);
+
+    }
+}
+public static void main(String[] args) {
+    System.out.println(permutation(&quot;abc&quot;));
+}
+</code></pre>
 
 
 
