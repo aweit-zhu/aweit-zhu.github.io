@@ -12,14 +12,14 @@
         <meta name="author" content="weizhi.zhu">
       
       
-        <link rel="canonical" href="https://aweit-zhu.github.io/volatile/">
+        <link rel="canonical" href="https://aweit-zhu.github.io/bts/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.0.0b4">
     
     
       
-        <title>Volatile & synchronized - Aweit Docs</title>
+        <title>Algorithm - BTS 二元樹搜尋 - Aweit Docs</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#volatile-synchronized" class="md-skip">
+        <a href="#bts-binary-tree-search" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Volatile & synchronized
+              Algorithm - BTS 二元樹搜尋
             
           </span>
         </div>
@@ -183,11 +183,96 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../bts/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Algorithm - BTS 二元樹搜尋
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Algorithm - BTS 二元樹搜尋
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bts-binary-tree-search" class="md-nav__link">
+    BTS (Binary Tree Search)
+  </a>
+  
+    <nav class="md-nav" aria-label="BTS (Binary Tree Search)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#btsbts" class="md-nav__link">
+    何謂BTS，以及如何用程式判斷是否為BTS？
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bst" class="md-nav__link">
+    在 BST 插入一個數
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    計算二元樹總數
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bts" class="md-nav__link">
+    兩個 BTS 是否相等
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    序列化與反序列化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    回溯演算法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -288,82 +373,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Volatile & synchronized
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../volatile/" class="md-nav__link">
         Volatile & synchronized
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#volatile-synchronized" class="md-nav__link">
-    Volatile &amp; synchronized
-  </a>
-  
-    <nav class="md-nav" aria-label="Volatile &amp; synchronized">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#visibility" class="md-nav__link">
-    變數可視性(visibility)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#race-condition" class="md-nav__link">
-    資料競速(race condition)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#volatile-synchronized_1" class="md-nav__link">
-    Volatile &amp; synchronized
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#volatile" class="md-nav__link">
-    如何證明 volatile 的效果？
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -798,37 +812,51 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#volatile-synchronized" class="md-nav__link">
-    Volatile &amp; synchronized
+  <a href="#bts-binary-tree-search" class="md-nav__link">
+    BTS (Binary Tree Search)
   </a>
   
-    <nav class="md-nav" aria-label="Volatile &amp; synchronized">
+    <nav class="md-nav" aria-label="BTS (Binary Tree Search)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#visibility" class="md-nav__link">
-    變數可視性(visibility)
+  <a href="#btsbts" class="md-nav__link">
+    何謂BTS，以及如何用程式判斷是否為BTS？
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#race-condition" class="md-nav__link">
-    資料競速(race condition)
+  <a href="#bst" class="md-nav__link">
+    在 BST 插入一個數
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#volatile-synchronized_1" class="md-nav__link">
-    Volatile &amp; synchronized
+  <a href="#_1" class="md-nav__link">
+    計算二元樹總數
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#volatile" class="md-nav__link">
-    如何證明 volatile 的效果？
+  <a href="#bts" class="md-nav__link">
+    兩個 BTS 是否相等
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    序列化與反序列化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    回溯演算法
   </a>
   
 </li>
@@ -853,130 +881,267 @@
                   
 
 
-  <h1>Volatile & synchronized</h1>
+  <h1>Algorithm - BTS 二元樹搜尋</h1>
 
-<h3 id="volatile-synchronized">Volatile &amp; synchronized</h3>
-<p>參考資料：</p>
-<ol>
-<li><a href="https://www.tpisoftware.com/tpu/articleDetails/1753">https://www.tpisoftware.com/tpu/articleDetails/1753</a></li>
-<li>Chat GPT</li>
-</ol>
-<h4 id="visibility">變數可視性(visibility)</h4>
-<blockquote>
-<p>可視性問題指的是當一個執行緒修改了共享變數的值時，其他執行緒能夠立即看到這個修改。</p>
-</blockquote>
-<h4 id="race-condition">資料競速(race condition)</h4>
-<blockquote>
-<p>競態條件是指多個執行緒在沒有適當同步的情況下，對共享資源進行讀寫操作時可能出現的不確定性結果。當多個執行緒同時讀取和修改共享變數時，它們的操作順序是不確定的，可能導致不一致的結果或錯誤的計算。</p>
-</blockquote>
-<h4 id="volatile-synchronized_1">Volatile &amp; synchronized</h4>
-<ol>
-<li>
-<p>synchronized： 同時解決 「變數可視性」與「資料競速」問題。</p>
-</li>
-<li>
-<p>volatile：解決「變數可視性」。(使用此修飾符的變數，不使用各執行緒的working memory，永遠從主記憶體(main memory) 做存取與讀寫)</p>
-</li>
-</ol>
-<h4 id="volatile">如何證明 volatile 的效果？</h4>
-<ol>
-<li>沒有用 volatile</li>
-</ol>
-<pre><code>public class VisibilityProblem {
-
-    static int num;
-
-    public static void main(String[] args) {
-
-        Thread readerThread = new Thread(() -&gt; {
-            int temp = 0;
-            while (true) {
-                if (temp != num) {
-                    temp = num;
-                    System.out.println(&quot;reader: value of num = &quot; + num);
-                }
-            }
-        });
-
-        Thread writerThread = new Thread(() -&gt; {
-            for (int i = 0; i &lt; 5; i++) {
-                num++;
-                System.out.println(&quot;writer: changed value to = &quot; + num);
-
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            // 離開程式，否則readerThread會一直等待變數int num的值改變
-            System.exit(0);
-        });
-
-        readerThread.start();
-        writerThread.start();
-    }
+<h3 id="bts-binary-tree-search">BTS (Binary Tree Search)</h3>
+<h4 id="btsbts">何謂BTS，以及如何用程式判斷是否為BTS？</h4>
+<p><img alt="Alt text" src="../image-194.png" /></p>
+<pre><code>public static boolean isBST(TreeNode root) {
+    return isBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
 }
 
----
-reader: value of num = 1
-writer: changed value to = 1
-writer: changed value to = 2
-writer: changed value to = 3
-writer: changed value to = 4
-writer: changed value to = 5
+private static boolean isBST(TreeNode node, int minValue, int maxValue) {
+
+    if (node == null) {
+        return true;
+    }
+
+    System.out.printf(&quot;%d(%d,%d)\n&quot;, node.val, minValue,maxValue);
+
+    if (node.val &lt; minValue || node.val &gt; maxValue) {
+        return false;
+    }
+
+    return 
+            isBST(node.left, minValue, node.val - 1) &amp;&amp; 
+            isBST(node.right, node.val + 1, maxValue);
+}
+
+public static void main(String[] args) {
+
+    TreeNode root = new TreeNode(5);
+    TreeNode _2 = new TreeNode(2);
+    TreeNode _1 = new TreeNode(1);
+    TreeNode _4 = new TreeNode(4);
+    TreeNode _3 = new TreeNode(3);
+    TreeNode _6 = new TreeNode(6);
+    TreeNode _7 = new TreeNode(7);
+
+    root.left = _2;
+    root.right = _6;
+    _2.left = _1;
+    _2.right = _4;
+    _4.left = _3;
+    _6.right = _7;
+
+    TreeNode _8 = new TreeNode(8);
+    _4.right = _8;
+
+    System.out.println(BSTUtils.isBST(root));
+}
+
 </code></pre>
-<ol>
-<li>有用 volatile：讓 num 變數，永遠從主記憶體中讀取與寫入。</li>
-</ol>
-<pre><code>public class VisibilityProblem {
+<h4 id="bst">在 BST 插入一個數</h4>
+<p><img alt="Alt text" src="../image-195.png" /></p>
+<pre><code>public static TreeNode insrtIntoBST(TreeNode node, int val) {
 
-    static volatile int num;
+    if (node == null)
+        return new TreeNode(val);
+
+    if (node.val == val)
+        return node;
+
+    if (node.val &lt; val) {
+        node.right = insrtIntoBST(node.right, val);
+    }
+
+    if (node.val &gt; val) {
+        node.left = insrtIntoBST(node.left, val);
+    }
+
+    return node;
+}
+</code></pre>
+<h4 id="_1">計算二元樹總數</h4>
+<p><strong>普通二元樹</strong></p>
+<pre><code>public static int countNodes(TreeNode node) {
+
+    if (node == null)
+        return 0;
+
+    return 1 + countNodes(node.left) + countNodes(node.right);
+}
+</code></pre>
+<h4 id="bts">兩個 BTS 是否相等</h4>
+<pre><code>public static boolean isEqual(TreeNode n1, TreeNode n2) {
+
+    if (n1 != null &amp;&amp; n2 == null)
+        return false;
+
+    if (n1 == null || n2 == null)
+        return false;
+
+    if (n1.val != n2.val)
+        return false;
+
+    return isEqual(n1.left, n2.left) &amp;&amp; isEqual(n1.right, n2.right);
+}
+</code></pre>
+<h4 id="_2">序列化與反序列化</h4>
+<p>序列化</p>
+<pre><code>public static String serialize(TreeNode node) {
+    StringBuilder sb = new StringBuilder();
+    serialize(node,sb);
+    return sb.toString();
+}
+
+public static void serialize(TreeNode node, StringBuilder sb) {
+
+    if (node == null) {
+        sb.append(&quot;#&quot;).append(&quot;,&quot;);
+        return;
+    }
+
+    // 前序巡訪
+    sb.append(node.val).append(&quot;,&quot;);
+
+    // 巡訪
+    serialize(node.left, sb);
+    serialize(node.right, sb);
+}
+</code></pre>
+<p>反序列化</p>
+<pre><code>public static TreeNode deserialize(String data) {
+    String[] nodes = data.split(&quot;,&quot;);
+
+    List&lt;String&gt; list = new ArrayList&lt;&gt;();
+    for (String node : nodes) {
+        list.add(node);
+    }
+
+    return deserialize(list);
+}
+
+public static TreeNode deserialize(List&lt;String&gt; nodes) {
+
+    if (nodes.isEmpty())
+        return null;
+
+    // 前序巡訪
+    String first = nodes.remove(0);
+    if (first.equals(&quot;#&quot;))
+        return null;
+
+    TreeNode root = new TreeNode(Integer.parseInt(first));
+
+    // 巡訪
+    root.left = deserialize(nodes);
+    root.right = deserialize(nodes);
+
+    return root;
+}
+</code></pre>
+<p>測試</p>
+<pre><code>public static void main(String[] args) {
+
+    TreeNode root = new TreeNode(5);
+    TreeNode _2 = new TreeNode(2);
+    TreeNode _1 = new TreeNode(1);
+    TreeNode _4 = new TreeNode(4);
+    TreeNode _3 = new TreeNode(3);
+    TreeNode _6 = new TreeNode(6);
+    TreeNode _7 = new TreeNode(7);
+
+    root.left = _2;
+    root.right = _6;
+    _2.left = _1;
+    _2.right = _4;
+    _4.left = _3;
+    _6.right = _7;
+
+    String data = serialize(root);
+    TreeNode root2 = deserialize(data);
+    System.out.println(isEqual(root, root2));
+}
+</code></pre>
+<h4 id="_3">回溯演算法</h4>
+<p>全排列</p>
+<p><img alt="Alt text" src="../image-196.png" /></p>
+<pre><code>public class PermuteDemo {
+
+    static List&lt;List&lt;Integer&gt;&gt; tracks = new ArrayList&lt;List&lt;Integer&gt;&gt;();
+
+    public static void permute(int[] nums) {
+        List&lt;Integer&gt; track = new ArrayList&lt;&gt;();
+        backtrack(nums, track);
+    }
+
+    public static void backtrack(int[] nums, List&lt;Integer&gt; track) {
+
+        if(track.size() == nums.length) {
+            tracks.add(new ArrayList&lt;&gt;(track));
+            return;
+        }
+
+        for (int num : nums) {
+
+            if(track.contains(num))
+                continue;
+
+            track.add(num); // 路徑添加一個。
+
+            backtrack(nums,track); // 遞迴產生下一個組合。
+
+            track.remove(track.size() - 1); // 回溯上一個狀態，讓選擇保持初始狀態。
+        }
+
+    }
 
     public static void main(String[] args) {
-
-        Thread readerThread = new Thread(() -&gt; {
-            int temp = 0;
-            while (true) {
-                if (temp != num) {
-                    temp = num;
-                    System.out.println(&quot;reader: value of num = &quot; + num);
-                }
-            }
-        });
-
-        Thread writerThread = new Thread(() -&gt; {
-            for (int i = 0; i &lt; 5; i++) {
-                num++;
-                System.out.println(&quot;writer: changed value to = &quot; + num);
-
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            // 離開程式，否則readerThread會一直等待變數int num的值改變
-            System.exit(0);
-        });
-
-        readerThread.start();
-        writerThread.start();
+        int[] nums = new int[] { 1, 2, 3 };
+        permute(nums);
+        System.out.println(tracks);
     }
 }
----
-reader: value of num = 1
-writer: changed value to = 1
-writer: changed value to = 2
-reader: value of num = 2
-writer: changed value to = 3
-reader: value of num = 3
-reader: value of num = 4
-writer: changed value to = 4
-writer: changed value to = 5
-reader: value of num = 5
+</code></pre>
+<p>固定順序排列：</p>
+<blockquote>
+<p>input = [1, 2, 3]
+Output = [ [1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3] ]</p>
+</blockquote>
+<pre><code>public static void permute(int[] nums) {
+    int total = (1 &lt;&lt; nums.length) - 1;
+    for (int i = 1; i &lt;= total; i++) {
+        backtrack2(nums, track, i);
+    }
+}
+
+public static void backtrack2(int[] nums, List&lt;Integer&gt; track, int count) {
+    if (track.size() == count) {
+        tracks.add(new ArrayList&lt;&gt;(track));
+        return;
+    }
+
+    for (int i = 0; i &lt; nums.length; i++) {
+
+        int lastIndex = track.size() &gt; 0 ? getIndex(nums, track.get(track.size() - 1)) : i; 
+
+        int num = nums[i];
+
+        if (track.contains(num) || i &lt; lastIndex)
+            continue;
+
+        track.add(num); // 路徑添加一個。
+
+        backtrack2(nums, track, count); // 遞迴產生下一個組合。
+
+        track.remove(track.size() - 1); // 回溯上一個狀態，讓選擇保持初始狀態。
+    }
+}
+
+public static int getIndex(int[] nums, int target) {
+    for (int i = 0; i &lt; nums.length; i++) {
+        if (nums[i] == target) {
+            return i;
+        }
+    }
+    return -1;
+}
+public static void main(String[] args) {
+    int[] nums = new int[] { 1, 2, 3 };
+    permute(nums);
+    System.out.println(tracks); 
+}
 </code></pre>
 
 
