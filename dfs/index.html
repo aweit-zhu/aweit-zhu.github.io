@@ -233,25 +233,19 @@
     子集(subset)：
   </a>
   
-    <nav class="md-nav" aria-label="子集(subset)：">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#combination" class="md-nav__link">
     組合 (combination)
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#suduku" class="md-nav__link">
     數獨(suduku)
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -831,25 +825,19 @@
     子集(subset)：
   </a>
   
-    <nav class="md-nav" aria-label="子集(subset)：">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#combination" class="md-nav__link">
     組合 (combination)
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#suduku" class="md-nav__link">
     數獨(suduku)
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -990,7 +978,7 @@ public static void backTrack(String str, StringBuilder sb, int start, List&lt;St
     }
 }
 </code></pre>
-<h4 id="combination">組合 (combination)</h4>
+<h3 id="combination">組合 (combination)</h3>
 <blockquote>
 <p>輸入兩個數字 n,k，透過演算法輸出 [1..n] 中 k個數字組合。</p>
 <p>例如：n=4，k=2，代表數字 1~4，任取2個不重複的組合。共有 12,13,14,23,24,34 等 6 種組合。 </p>
@@ -1024,7 +1012,7 @@ public static void combineBackTrack(int start, int n, int k, List&lt;Integer&gt;
 
 System.out.println(combine(4, 2)); // C(4,2)，C4取2 = 6
 </code></pre>
-<h4 id="suduku">數獨(suduku)</h4>
+<h3 id="suduku">數獨(suduku)</h3>
 <p><img alt="Alt text" src="../image-197.png" /></p>
 <p>(1) 先從 (0,0)=1 開始，然後找下一個(0,1)，如果下一個回傳，代表1是正確的。</p>
 <p>(2) 如果下一個回傳 false，則回到原本的狀態(回溯) 並且重新給下一個值，即 (0,0) = 2，接著重複第一步的循環。</p>
