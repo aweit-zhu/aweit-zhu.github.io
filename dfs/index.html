@@ -237,8 +237,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    
+  <a href="#combination" class="md-nav__link">
+    組合 (combination)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#suduku" class="md-nav__link">
+    數獨(suduku)
   </a>
   
 </li>
@@ -828,8 +835,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    
+  <a href="#combination" class="md-nav__link">
+    組合 (combination)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#suduku" class="md-nav__link">
+    數獨(suduku)
   </a>
   
 </li>
@@ -976,7 +990,125 @@ public static void backTrack(String str, StringBuilder sb, int start, List&lt;St
     }
 }
 </code></pre>
-<h4 id="_2"></h4>
+<h4 id="combination">組合 (combination)</h4>
+<blockquote>
+<p>輸入兩個數字 n,k，透過演算法輸出 [1..n] 中 k個數字組合。</p>
+<p>例如：n=4，k=2，代表數字 1~4，任取2個不重複的組合。共有 12,13,14,23,24,34 等 6 種組合。 </p>
+</blockquote>
+<pre><code>public static List&lt;List&lt;Integer&gt;&gt; combine(int n, int k) {
+    List&lt;List&lt;Integer&gt;&gt; res = new ArrayList&lt;List&lt;Integer&gt;&gt;();
+    List&lt;Integer&gt; track = new ArrayList&lt;Integer&gt;();
+    combineBackTrack(1, n, k, track, res);
+    return res;
+}
+
+public static void combineBackTrack(int start, int n, int k, List&lt;Integer&gt; track, List&lt;List&lt;Integer&gt;&gt; res) {
+
+    if (track.size() == k) {
+        res.add(new ArrayList&lt;&gt;(track));
+        return;
+    }
+
+    for (int i = start; i &lt;= n; i++) {
+
+        if (track.contains(i))
+            continue;
+
+        track.add(i);
+
+        combineBackTrack(i + 1, n, k, track, res);
+
+        track.remove(track.size() - 1);
+    }
+}
+
+System.out.println(combine(4, 2)); // C(4,2)，C4取2 = 6
+</code></pre>
+<h4 id="suduku">數獨(suduku)</h4>
+<p><img alt="Alt text" src="../image-197.png" /></p>
+<p>(1) 先從 (0,0)=1 開始，然後找下一個(0,1)，如果下一個回傳，代表1是正確的。</p>
+<p>(2) 如果下一個回傳 false，則回到原本的狀態(回溯) 並且重新給下一個值，即 (0,0) = 2，接著重複第一步的循環。</p>
+<p>(3) backtrack 還有 backtrack，又還有 backtrack... 應該怎麼思考？答案是，這是電腦要思考的事情，我們只要確定電腦最終會給我一個最後的結果就好了。 如果要理解過程的話，我們可以用「數獨第一列」理解。</p>
+<p><img alt="Alt text" src="../image-198.png" /></p>
+<p><strong>(0,0) = 1 -&gt; (0,1) = 1 X</strong>
+<strong>(0,0) = 1 -&gt; (0,1) = 2</strong> -&gt; (0,2) = 1 X
+(0,0) = 1 -&gt; (0,1) = 2 -&gt; (0,2) = 2 X
+(0,0) = 1 -&gt; (0,1) = 2 -&gt; (0,2) = 3 -&gt; (0,3) = 1 (X)
+(0,0) = 1 -&gt; (0,1) = 2 -&gt; (0,2) = 3 -&gt; (0,3) = 2 (X)
+(0,0) = 1 -&gt; (0,1) = 2 -&gt; (0,2) = 3 -&gt; (0,3) = 3 (X)
+(0,0) = 1 -&gt; (0,1) = 2 -&gt; (0,2) = 3 -&gt; (0,3) = 4** 
+...</p>
+<p>PS：
+當 (0,1) = 1 X 時，代表此路不通，要回溯並賦值，也就是 (0,1) = 2。</p>
+<p><strong>完整代碼</strong>：</p>
+<pre><code>public static void solveSudoku(int[][] board) {
+    backtrackSudoku(board, 0, 0);
+}
+
+public static boolean backtrackSudoku(int[][] board, int i, int j) {
+
+    int m = 9, n = 9;
+
+    if (j == n) {
+        return backtrackSudoku(board, i + 1, 0);
+    }
+
+    if (i == m)
+        return true;
+
+    if (board[i][j] != -1) {
+        return backtrackSudoku(board, i, j + 1);
+    }
+
+    for (int num = 1; num &lt;= 9; num++) {
+
+        if (!isValid(board, i, j, num))
+            continue;
+
+        board[i][j] = num;
+
+        boolean flag = backtrackSudoku(board, i, j + 1);
+
+        if (flag) {
+            return true;
+        }
+
+        board[i][j] = -1;
+    }
+
+    return false;
+}
+
+public static boolean isValid(int[][] board, int r, int c, int target) {
+
+    for (int i = 0; i &lt; 9; i++) {
+
+        // 同一列
+        if (board[r][i] == target)
+            return false;
+
+        // 同一行
+        if (board[i][c] == target)
+            return false;
+
+        // 九宮格
+        if (board[(r / 3) * 3 + i / 3][(c / 3) * 3 + i % 3] == target)
+            return false;
+    }
+
+    return true;
+}
+
+public static void main(String[] args) {
+    int[][] board = new int[9][9];
+    for (int i = 0; i &lt; board.length; i++) {
+        Arrays.fill(board[i], -1);
+    }
+    solveSudoku(board);
+    printSudoku(board);
+}
+
+</code></pre>
 
 
 
