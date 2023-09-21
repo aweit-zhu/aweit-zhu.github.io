@@ -12,14 +12,14 @@
         <meta name="author" content="weizhi.zhu">
       
       
-        <link rel="canonical" href="https://aweit-zhu.github.io/forkJoinPool/">
+        <link rel="canonical" href="https://aweit-zhu.github.io/bfs/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.0.0b4">
     
     
       
-        <title>ForkJoinPool - Aweit Docs</title>
+        <title>Algorithm - BFS演算法 - Aweit Docs</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#forkjoinpool" class="md-skip">
+        <a href="#bfs-breath-first-search" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ForkJoinPool
+              Algorithm - BFS演算法
             
           </span>
         </div>
@@ -183,11 +183,48 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../bfs/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Algorithm - BFS演算法
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Algorithm - BFS演算法
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bfs-breath-first-search" class="md-nav__link">
+    BFS (Breath First Search)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -303,109 +340,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          ForkJoinPool
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../forkJoinPool/" class="md-nav__link">
         ForkJoinPool
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#forkjoinpool" class="md-nav__link">
-    ForkJoinPool
-  </a>
-  
-    <nav class="md-nav" aria-label="ForkJoinPool">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#divide-and-conquer" class="md-nav__link">
-    Divide And Conquer (分而治之)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#work-stealing" class="md-nav__link">
-    Work Stealing
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    費氏數列
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#forkjoinpool-forkjoinpool" class="md-nav__link">
-    比較 ForkJoinPool 與 未使用 ForkJoinPool 的 效能差異
-  </a>
-  
-    <nav class="md-nav" aria-label="比較 ForkJoinPool 與 未使用 ForkJoinPool 的 效能差異">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    情境
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    實作
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    小結
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -855,70 +794,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#forkjoinpool" class="md-nav__link">
-    ForkJoinPool
+  <a href="#bfs-breath-first-search" class="md-nav__link">
+    BFS (Breath First Search)
   </a>
-  
-    <nav class="md-nav" aria-label="ForkJoinPool">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#divide-and-conquer" class="md-nav__link">
-    Divide And Conquer (分而治之)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#work-stealing" class="md-nav__link">
-    Work Stealing
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    費氏數列
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#forkjoinpool-forkjoinpool" class="md-nav__link">
-    比較 ForkJoinPool 與 未使用 ForkJoinPool 的 效能差異
-  </a>
-  
-    <nav class="md-nav" aria-label="比較 ForkJoinPool 與 未使用 ForkJoinPool 的 效能差異">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    情境
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    實作
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    小結
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -937,159 +815,13 @@
                   
 
 
-  <h1>ForkJoinPool</h1>
+  <h1>Algorithm - BFS演算法</h1>
 
-<h3 id="forkjoinpool">ForkJoinPool</h3>
-<p>參考資料：</p>
-<ol>
-<li>
-<p>Simple Introduction to ForkJoin Framework  <a href="https://thetechstack.net/simple-introduction-to-forkjoin-framework-part1/">https://thetechstack.net/simple-introduction-to-forkjoin-framework-part1/</a></p>
-</li>
-<li>
-<p>Chat GPT</p>
-</li>
-</ol>
-<h4 id="divide-and-conquer">Divide And Conquer (分而治之)</h4>
-<blockquote>
-<p>分治法是一種問題解決方法，將一個大問題劃分為若干個小問題，遞歸地解決小問題，然後將小問題的解合併起來得到大問題的解。在ForkJoinPool中，我們可以將一個大的任務劃分為多個子任務，每個子任務負責處理一部分數據，然後將子任務的結果合併起來得到最終的結果。這種分治的策略可以提高並行計算的效率，特別是對於大規模的問題。
-<img alt="Alt text" src="../image-178.png" /></p>
-</blockquote>
-<h4 id="work-stealing">Work Stealing</h4>
-<blockquote>
-<p>工作窺取是ForkJoinPool中的一種調度策略。當一個線程完成了它自己的任務後，它可以從其他線程的工作隊列中窺取任務並執行。這樣做的好處是可以實現負載均衡，確保所有線程都能夠保持忙碌狀態，充分利用系統資源。如果一個線程的工作隊列為空，它可以從其他線程的工作隊列中窺取任務，從而避免了線程閒置的情況。
-<img alt="Alt text" src="../image-176.png" /></p>
-</blockquote>
-<h4 id="_1">費氏數列</h4>
-<p>由來：</p>
-<blockquote>
-<p>歐洲數學家 Fibonacci 在 1202 年發表的《Liber abacci》中曾經提過一個「免子算術」：「若有兔子每個月生一隻小兔子，一個月小兔子也投入生產，那麼一開始是一隻兔子，一個月後就有兩隻兔子，二個月後有三隻兔子，三個月後有五隻兔子…」</p>
-</blockquote>
-<p>公式：</p>
-<blockquote>
-<p>F₀ = 0
-F₁ = 1
-Fₙ = Fₙ₋₁ + Fₙ₋₂</p>
-</blockquote>
-<p>例如：</p>
-<blockquote>
-<p>1、1、2、3、5、8、13、21、34、55、89 ...</p>
-</blockquote>
-<p>Java代碼：</p>
-<pre><code>public class FibonacciDemo extends RecursiveTask&lt;Integer&gt; {
-
-    int n;
-
-    FibonacciDemo(int n) {
-        this.n = n;
-    }
-
-    @Override
-    protected Integer compute() {
-        if (n &lt;= 1) {
-            return n;
-        } else {
-            FibonacciDemo task1 = new FibonacciDemo(n - 1);
-            FibonacciDemo task2 = new FibonacciDemo(n - 2);
-            task1.fork();
-            return task2.compute() + task1.join();
-        }
-    }
-
-    public static void main(String[] args) {
-        int n = 7;
-
-        ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
-        FibonacciDemo task = new FibonacciDemo(n);
-        int result = forkJoinPool.invoke(task);
-
-        System.out.println(&quot;The Fibonacci number at index &quot; + n + &quot; is: &quot; + result);
-    }
-
-}
----
-The Fibonacci number at index 7 is: 13
-</code></pre>
-<h4 id="forkjoinpool-forkjoinpool">比較 ForkJoinPool 與 未使用 ForkJoinPool 的 效能差異</h4>
-<h5 id="_2">情境</h5>
-<p>請設計 從 1 加到 1_000_000_000 的程序，一個使用 Stream、一個使用 ForkJoinPool，計算並比較兩種方式的執行時間？</p>
-<h5 id="_3">實作</h5>
-<p>SumDemo.java</p>
-<pre><code>import java.util.concurrent.ForkJoinPool;
-import java.util.stream.IntStream;
-
-public class SumDemo {
-
-    private static final int RANGE = 1_000_000_000;
-
-    public static void main(String[] args) {
-
-        long startTime;
-        long elapsedTime;
-
-        // Without ForkJoinPool
-        startTime = System.currentTimeMillis();
-        int sumWithoutForkJoin = IntStream.rangeClosed(1, RANGE).sum();
-        elapsedTime = System.currentTimeMillis() - startTime;
-        System.out.println(&quot;Sum without ForkJoinPool: &quot; + sumWithoutForkJoin);
-        System.out.println(&quot;Time taken without ForkJoinPool: &quot; + elapsedTime + &quot; milliseconds&quot;);
-
-        // With ForkJoinPool
-        startTime = System.currentTimeMillis();
-        ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
-        int sumWithForkJoin = (int) forkJoinPool.invoke(new SumTask(1, RANGE));
-        elapsedTime = System.currentTimeMillis() - startTime;
-        System.out.println(&quot;Sum with ForkJoinPool: &quot; + sumWithForkJoin);
-        System.out.println(&quot;Time taken with ForkJoinPool: &quot; + elapsedTime + &quot; milliseconds&quot;);
-    }
-}
-
----
-Sum without ForkJoinPool: -243309312
-Time taken without ForkJoinPool: 271 milliseconds
-Sum with ForkJoinPool: -243309312
-Time taken with ForkJoinPool: 51 milliseconds
-</code></pre>
-<p>SumTask.java</p>
-<pre><code>import java.util.concurrent.RecursiveTask;
-import java.util.stream.IntStream;
-
-public class SumTask extends RecursiveTask&lt;Integer&gt; {
-
-    private static final long serialVersionUID = 1L;
-
-    private static final int THRESHOLD = 1_000_000;
-
-    private int start;
-    private int end;
-
-    public SumTask(int start, int end) {
-        this.start = start;
-        this.end = end;
-    }
-
-    @Override
-    protected Integer compute() {
-        if (end - start &lt;= THRESHOLD) {
-            return IntStream.rangeClosed(start, end).sum();
-        } else {
-            int mid = (start + end) / 2;
-            SumTask leftTask = new SumTask(start, mid);
-            SumTask rightTask = new SumTask(mid + 1, end);
-
-            rightTask.fork();
-            leftTask.fork();
-
-            int rightSum = rightTask.join();
-            int leftSum = leftTask.join();
-
-            return leftSum + rightSum;
-        }
-    }
-}
-</code></pre>
-<h4 id="_4">小結</h4>
-<p>通過分治法和工作窺取的策略，ForkJoinPool能夠實現高效的並行計算。它能夠自動地將任務劃分為更小的子任務，並將這些子任務分配給可用的線程執行。同時，工作窺取策略能夠確保所有線程都能夠保持忙碌，避免了線程閒置的情況，提高了系統的吞吐量和響應性能。</p>
-<p>確實，從範例中，可以看到 使用 ForkJoinPool 可以比使用 Stream 快速5倍的時間，尤其 Stream 已經是以效能出名。顯見，使用多執行緒，分而治之的概念，會優於 Stream 的方式。</p>
+<h3 id="bfs-breath-first-search">BFS (Breath First Search)</h3>
+<p>廣度優先搜索（BFS）是一種圖形搜索算法，用於在圖形或樹中尋找節點之間的最短路徑或最短距離。該算法從一個起始節點開始，然後依次探索鄰近的節點，直到找到目標節點或遍歷完整個圖形。</p>
+<p>BFS的主要特點是它以鄰近節點的廣度進行擴展，即先遍歷起始節點的所有鄰近節點，然後再遍歷這些鄰近節點的鄰近節點，以此類推。換句話說，BFS先擴展所有距離起始節點為1的節點，然後再擴展距離為2的節點，以此類推，直到找到目標節點或遍歷完整個圖形。</p>
+<p>BFS通常使用一個佇列（Queue）來記錄待處理的節點，並使用一個標記數組（或哈希表）來記錄已經訪問過的節點，以避免重複訪問。</p>
+<p>BFS在許多應用中都有廣泛的應用，例如圖形搜索、迷宮解決、最短路徑問題等。它保證可以找到最短路徑，但在圖形較大或複雜的情況下，可能需要較多的時間和空間複雜度。</p>
 
 
 
