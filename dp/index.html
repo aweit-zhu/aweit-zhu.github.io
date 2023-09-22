@@ -185,6 +185,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../sum/" class="md-nav__link">
+        Algorithm - Sum 問題
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../bfs/" class="md-nav__link">
         Algorithm - BFS演算法
       </a>
@@ -1158,26 +1173,68 @@
 }
 </code></pre>
 <h4 id="_4">最長回文子字串(連續性的字串)</h4>
+<p><img alt="Alt text" src="../image-200.png" /></p>
 <pre><code>public static String longestPalindrome(String s) {
+
     int n = s.length();
-    boolean[][] f = new boolean[n][n];
-    for (var g : f) {
-        Arrays.fill(g, true);
+
+    boolean[][] dp = new boolean[n][n]; // 字串 i ~ j 是否為回文字串
+
+    for (int i = 0; i &lt; dp.length; i++) {
+        Arrays.fill(dp[i], true);
     }
+
     int k = 0, mx = 1;
     for (int i = n - 2; i &gt;= 0; --i) {
         for (int j = i + 1; j &lt; n; ++j) {
-            f[i][j] = false;
+            dp[i][j] = false;
             if (s.charAt(i) == s.charAt(j)) {
-                f[i][j] = f[i + 1][j - 1];
-                if (f[i][j] &amp;&amp; mx &lt; j - i + 1) {
+
+                dp[i][j] = dp[i + 1][j - 1];
+
+                if (dp[i][j] &amp;&amp; mx &lt; j - i + 1) {
                     mx = j - i + 1;
                     k = i;
                 }
+
             }
         }
     }
-    return s.substring(k, k + mx);
+
+        return s.substring(k, k + mx);
+}
+</code></pre>
+<p>PS：雙指標解法</p>
+<pre><code>public static String longestPalindrome(String s) {
+
+    if (&quot;&quot;.equals(s))
+        return &quot;&quot;;
+
+    String longest = &quot;&quot;;
+
+    for (int i = 0; i &lt; s.length(); i++) {
+
+        String odd = palindrome(s, i, i);
+        String even = palindrome(s, i, i + 1);
+
+        if(odd.length()&gt; longest.length())
+            longest = odd;
+
+        if(even.length()&gt; longest.length())
+            longest = even;
+    }
+
+    return longest;
+}
+
+public static String palindrome(String s, int l, int r) {
+
+    while (l &gt;= 0 &amp;&amp; r &lt; s.length() &amp;&amp; s.charAt(l) == s.charAt(r)) {
+        l--;
+        r++;
+    }
+
+    return s.substring(l + 1, r);
 }
 </code></pre>
 <h4 id="_5">編輯距離 (求最小編輯次數)</h4>
