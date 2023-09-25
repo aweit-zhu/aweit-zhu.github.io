@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sum" class="md-skip">
+        <a href="#2sum" class="md-skip">
           Skip to content
         </a>
       
@@ -215,8 +215,42 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#sum" class="md-nav__link">
-    SUM 總和問題
+  <a href="#2sum" class="md-nav__link">
+    2SUM 總和問題
+  </a>
+  
+    <nav class="md-nav" aria-label="2SUM 總和問題">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    雜湊表
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    雙指標 (單一解)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    雙指標 (所有解)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3sum" class="md-nav__link">
+    3SUM 總和問題
   </a>
   
 </li>
@@ -809,8 +843,42 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#sum" class="md-nav__link">
-    SUM 總和問題
+  <a href="#2sum" class="md-nav__link">
+    2SUM 總和問題
+  </a>
+  
+    <nav class="md-nav" aria-label="2SUM 總和問題">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    雜湊表
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    雙指標 (單一解)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    雙指標 (所有解)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3sum" class="md-nav__link">
+    3SUM 總和問題
   </a>
   
 </li>
@@ -832,7 +900,122 @@
 
   <h1>Algorithm - Sum 問題</h1>
 
-<h3 id="sum">SUM 總和問題</h3>
+<h3 id="2sum">2SUM 總和問題</h3>
+<h4 id="_1">雜湊表</h4>
+<pre><code>public static int[] twoSum(int[] nums, int target) {
+    Map&lt;Integer, Integer&gt; index = new HashMap&lt;&gt;();
+
+    for (int i = 0; i &lt; nums.length; i++) {
+        index.put(nums[i], i);
+    }
+
+    for (int i = 0; i &lt; nums.length; i++) {
+        int other = target - nums[i];
+        if (index.containsKey(other) &amp;&amp; index.get(other) != i) {
+            return new int[] { i, index.get(other) };
+        }
+    }
+
+    return new int[] { -1, -1 };
+
+}
+</code></pre>
+<h4 id="_2">雙指標 (單一解)</h4>
+<pre><code>public static int[] twoSumI(int[] nums, int target) {
+
+    int[] sortedNums = Arrays.copyOf(nums, nums.length);
+
+    Arrays.sort(sortedNums);
+
+    int left = 0, right = sortedNums.length - 1;
+
+    while (left &lt; right) {
+        int sum = sortedNums[left] + sortedNums[right];
+
+        if (sum == target) {
+            int index1 = -1, index2 = -1;
+            for (int i = 0; i &lt; nums.length; i++) {
+                if (nums[i] == sortedNums[left] &amp;&amp; index1 == -1) {
+                    index1 = i;
+                } else if (nums[i] == sortedNums[right]) {
+                    index2 = i;
+                }
+            }
+            return new int[] { index1, index2 };
+        } else if (sum &lt; target) {
+            left++;
+        } else if (sum &gt; target) {
+            right--;
+        }
+    }
+
+    return new int[] { -1, -1 };
+}
+
+public static void main(String[] args) {
+    int target = 6;
+    int[] nums = new int[] { 3, 1, 3, 5 };
+    int[] res = twoSumI(nums, target);
+    System.out.printf(&quot;%d[%d] + %d[%d] = %d&quot;, nums[res[0]], res[0], nums[res[1]], res[1], target);
+}
+
+</code></pre>
+<h4 id="_3">雙指標 (所有解)</h4>
+<pre><code>public static List&lt;int[]&gt; twoSumII(int[] nums, int target) {
+
+    // 紀錄原始陣列的值與索引位置
+    Map&lt;Integer, Integer&gt; map = new HashMap&lt;&gt;();
+    for (int i = 0; i &lt; nums.length; i++) {
+        map.put(nums[i], i);
+    }
+
+    // 複製一份原始陣列，並且排序，以進行雙指標演算法
+    int[] sortedNums = Arrays.copyOf(nums, nums.length);
+    Arrays.sort(sortedNums);
+
+    List&lt;int[]&gt; res = new ArrayList&lt;int[]&gt;();
+
+    int left = 0, right = sortedNums.length - 1;
+
+    while (left &lt; right) {
+        int leftVal = sortedNums[left];
+        int rightVal = sortedNums[right];
+        int sum = leftVal + rightVal;
+        if (sum == target) {
+
+            int index1 = map.get(leftVal);
+            int index2 = map.get(rightVal);
+
+            res.add(new int[] { index1, index2 });
+
+            // 跳過重複的作法
+            while (left &lt; right &amp;&amp; sortedNums[left] == leftVal)
+                left++;
+            while (left &lt; right &amp;&amp; sortedNums[right] == rightVal)
+                right--;
+
+        } else if (sum &lt; target) {
+            while (left &lt; right &amp;&amp; sortedNums[left] == leftVal)
+                left++;
+        } else if (sum &gt; target) {
+            while (left &lt; right &amp;&amp; sortedNums[right] == rightVal)
+                right--;
+        }
+    }
+    return res;
+}
+
+public static void main(String[] args) {
+    int target = 4;
+    int[] nums = new int[] { 1, 1, 1, 2, 2, 3, 3 };
+    List&lt;int[]&gt; resList = twoSumII(nums, target);
+    for (int[] res : resList)
+        System.out.printf(&quot;%d[%d] + %d[%d] = %d\n&quot;, nums[res[0]], res[0], nums[res[1]], res[1], target);
+}
+
+</code></pre>
+<h3 id="3sum">3SUM 總和問題</h3>
+<p>(待續)</p>
 
 
 
