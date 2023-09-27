@@ -279,6 +279,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#n" class="md-nav__link">
+    N皇后問題
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -871,6 +878,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#n" class="md-nav__link">
+    N皇后問題
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1126,6 +1140,110 @@ public static void main(String[] args) {
     printSudoku(board);
 }
 
+</code></pre>
+<h3 id="n">N皇后問題</h3>
+<p><img alt="Alt text" src="../image-201.png" /></p>
+<pre><code>public class NQueenDemo {
+
+    static List&lt;String[][]&gt; res = new ArrayList&lt;&gt;();
+
+    public static List&lt;String[][]&gt; solveNQueens(int n) {
+
+        String[][] boarded = new String[n][n];
+        for (String[] row : boarded)
+            Arrays.fill(row, &quot;-&quot;);
+
+        backTrack(boarded, 0);
+
+        return res;
+    }
+
+    public static void backTrack(String[][] boarded, int row) {
+
+        int n = boarded.length;
+
+        if (row == n) {
+            String[][] copy = new String[n][n];
+            for (int i = 0; i &lt; n; i++) {
+                copy[i] = Arrays.copyOf(boarded[i], n);
+            }
+            res.add(copy);
+            return;
+        }
+
+        for (int i = 0; i &lt; n; i++) {
+
+            if (!isValid(boarded, row, i))
+                continue;
+
+            boarded[row][i] = &quot;Q&quot;;
+
+            backTrack(boarded, row + 1);
+
+            boarded[row][i] = &quot;-&quot;;
+        }
+
+    }
+
+    public static boolean isValid(String[][] boarded, int row, int col) {
+
+        int n = boarded.length;
+
+        // 同一列
+        for (int i = 0; i &lt; row; i++) {
+            if (boarded[row][i].equals(&quot;Q&quot;))
+                return false;
+        }
+
+        // 同一行
+        for (int i = 0; i &lt; row; i++) {
+            if (boarded[i][col].equals(&quot;Q&quot;))
+                return false;
+        }
+
+        // 左上
+        for (int i = row - 1, j = col - 1; i &gt;= 0 &amp;&amp; j &gt;= 0; i--, j--) {
+            if (boarded[i][j].equals(&quot;Q&quot;))
+                return false;
+        }
+
+        // 右上
+        for (int i = row - 1, j = col + 1; i &gt;= 0 &amp;&amp; j &lt; n; i--, j++) {
+            if (boarded[i][j].equals(&quot;Q&quot;))
+                return false;
+        }
+
+        return true;
+    }
+
+    private static void print(String[][] boarded) {
+        for (String[] r : boarded) {
+            for (String col : r) {
+                System.out.print(&quot; &quot; + col + &quot;  &quot;);
+            }
+            System.out.println(&quot;&quot;);
+        }
+        System.out.println(&quot;----------&quot;);
+    }
+
+    public static void main(String[] args) {
+        List&lt;String[][]&gt; res = solveNQueens(4);
+        res.stream().forEach(NQueenDemo::print);
+    }
+
+}
+
+輸出：
+ -   Q   -   -  
+ -   -   -   Q  
+ Q   -   -   -  
+ -   -   Q   -  
+----------
+ -   -   Q   -  
+ Q   -   -   -  
+ -   -   -   Q  
+ -   Q   -   -  
+----------
 </code></pre>
 
 
