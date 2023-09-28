@@ -1393,7 +1393,78 @@ static Node minNode(Node n1, Node n2, Node n3) { // n1=替換,n2=刪除,n3=新�
 
 </code></pre>
 <h4 id="_7">湊零錢問題</h4>
-<p>(待續)</p>
+<p><img alt="Alt text" src="../image-202.png" /></p>
+<pre><code>public class CoinChange {
+
+    public static int coinChangeI(int[] coins, int amount) {
+        HashMap&lt;Integer, Integer&gt; memo = new HashMap&lt;&gt;();
+        int ctn = dp(coins, amount, memo);
+        System.out.println(memo);
+        return ctn;
+    }
+
+    public static int dp(int[] coins, int amount, HashMap&lt;Integer, Integer&gt; memo) {
+
+        if (amount == 0)
+            return 0;
+
+        if (memo.containsKey(amount))
+            return memo.get(amount);
+
+        int res = amount + 1; // 初始值盡量大一點
+
+        for (int coin : coins) {
+            if (amount - coin &gt;= 0) {
+                res = Math.min(res, dp(coins, amount - coin, memo) + 1);
+            }
+        }
+
+        memo.put(amount, res);
+
+        return res;
+    }
+
+    public static int coinChangeII(int[] coins, int amount) {
+
+        // 定義 DP
+        int[] dp = new int[amount + 1]; // 指定金額下的，最少硬幣數量。
+
+        // 初始化 DP
+        for (int i = 0; i &lt; amount + 1; i++) {
+            dp[i] = Integer.MAX_VALUE - 1; // 表示無窮大
+        }
+
+        dp[0] = 0;
+
+        // 重新定義DP
+        for (int i = 1; i &lt; dp.length; i++) {
+            for (int coin : coins) {
+                if (i - coin &lt; 0)
+                    continue;
+
+                dp[i] = Math.min(dp[i], dp[i - coin] + 1);
+            }
+        }
+
+        for(int i=1;i&lt;dp.length;i++) {
+            System.out.printf(&quot;%d=%d,&quot;,i,dp[i]);
+        }
+
+        return dp[amount];
+    }
+
+    public static void main(String[] args) {
+        System.out.println(coinChangeI(new int[] { 1, 2, 5 }, 3));
+        System.out.println(coinChangeII(new int[] { 1, 2, 5 }, 3));
+    }
+
+}
+</code></pre>
+<blockquote>
+<p>在使用動態規劃（Dynamic Programming, DP）來解決問題時，你可以選擇使用 DP 函數加上 Memoization（備忘錄）或者使用 DP 表格或 DP 陣列。</p>
+<p><strong>DP 函數 + Memoization</strong>：這種方法通常使用遞迴函數來定義 DP 的狀態轉移方程，並使用一個備忘錄（Memo）來記錄已計算過的結果，避免重複計算。這種方法適用於較為複雜的問題，且能夠節省計算時間和空間複雜度。</p>
+<p><strong>DP 表格或 DP 陣列</strong>：這種方法通常使用一個表格或陣列來存儲中間計算的結果，並按照問題的特性進行遞推或迭代計算。這種方法適用於簡單的問題，且能夠直觀地理解問題的解決過程。</p>
+</blockquote>
 <h4 id="0-1">0-1 背包問題</h4>
 <p><img alt="Alt text" src="../image-186.png" /></p>
 <p><strong>每一樣物品只能選擇裝或不裝，背包是有容量限制，每樣物品有重量和價值定義，請問最多能裝的價值是多少？</strong></p>
