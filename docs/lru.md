@@ -24,6 +24,10 @@ Node + DoubleList
 ![Alt text](image-192.png)
 
 
+#### Put 和 Get 的流程圖
+
+![Alt text](image-193.png)
+
 ####  自己實作 LinkedHashMap
 ```
 import java.util.HashMap;

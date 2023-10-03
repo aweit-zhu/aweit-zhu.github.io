@@ -22,7 +22,7 @@ public static int lengthOfLIS(int[] nums) {
     for (int i = 0; i < nums.length; i++) {
         for (int j = 0; j < i; j++) {
             if (nums[i] > nums[j]) {
-                level = Math.max(dp[i], dp[j] + 1);
+                dp[i] = Math.max(dp[i], dp[j] + 1);
             }
         }
     }
@@ -145,29 +145,76 @@ public static int longestPalindrome(String s) {
 ```
 #### 最長回文子字串(連續性的字串)
 
+![Alt text](image-200.png)
+
 ```
 public static String longestPalindrome(String s) {
+
     int n = s.length();
-    boolean[][] f = new boolean[n][n];
-    for (var g : f) {
-        Arrays.fill(g, true);
+
+    boolean[][] dp = new boolean[n][n]; // 字串 i ~ j 是否為回文字串
+
+    for (int i = 0; i < dp.length; i++) {
+        Arrays.fill(dp[i], true);
     }
+
     int k = 0, mx = 1;
     for (int i = n - 2; i >= 0; --i) {
         for (int j = i + 1; j < n; ++j) {
-            f[i][j] = false;
+            dp[i][j] = false;
             if (s.charAt(i) == s.charAt(j)) {
-                f[i][j] = f[i + 1][j - 1];
-                if (f[i][j] && mx < j - i + 1) {
+
+                dp[i][j] = dp[i + 1][j - 1];
+
+                if (dp[i][j] && mx < j - i + 1) {
                     mx = j - i + 1;
                     k = i;
                 }
+
             }
         }
     }
-    return s.substring(k, k + mx);
+
+        return s.substring(k, k + mx);
 }
 ```
+PS：雙指標解法
+
+```
+public static String longestPalindrome(String s) {
+
+    if ("".equals(s))
+        return "";
+
+    String longest = "";
+
+    for (int i = 0; i < s.length(); i++) {
+
+        String odd = palindrome(s, i, i);
+        String even = palindrome(s, i, i + 1);
+
+        if(odd.length()> longest.length())
+            longest = odd;
+        
+        if(even.length()> longest.length())
+            longest = even;
+    }
+
+    return longest;
+}
+
+public static String palindrome(String s, int l, int r) {
+
+    while (l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)) {
+        l--;
+        r++;
+    }
+
+    return s.substring(l + 1, r);
+}
+```
+
+
 #### 編輯距離 (求最小編輯次數)
 
 > 若將 rad 換成 apple，最少需要編輯 5 次。可以新增、刪除、取代作為編輯的手段。
@@ -336,7 +383,81 @@ static Node minNode(Node n1, Node n2, Node n3) { // n1=替換,n2=刪除,n3=新�
 
 #### 湊零錢問題
 
-(待續)
+![Alt text](image-202.png)
+
+```
+public class CoinChange {
+
+	public static int coinChangeI(int[] coins, int amount) {
+		HashMap<Integer, Integer> memo = new HashMap<>();
+		int ctn = dp(coins, amount, memo);
+		System.out.println(memo);
+		return ctn;
+	}
+
+	public static int dp(int[] coins, int amount, HashMap<Integer, Integer> memo) {
+
+		if (amount == 0)
+			return 0;
+
+		if (memo.containsKey(amount))
+			return memo.get(amount);
+
+		int res = amount + 1; // 初始值盡量大一點
+
+		for (int coin : coins) {
+			if (amount - coin >= 0) {
+				res = Math.min(res, dp(coins, amount - coin, memo) + 1);
+			}
+		}
+
+		memo.put(amount, res);
+
+		return res;
+	}
+
+	public static int coinChangeII(int[] coins, int amount) {
+
+		// 定義 DP
+		int[] dp = new int[amount + 1]; // 指定金額下的，最少硬幣數量。
+
+		// 初始化 DP
+		for (int i = 0; i < amount + 1; i++) {
+			dp[i] = Integer.MAX_VALUE - 1; // 表示無窮大
+		}
+
+		dp[0] = 0;
+
+		// 重新定義DP
+		for (int i = 1; i < dp.length; i++) {
+			for (int coin : coins) {
+				if (i - coin < 0)
+					continue;
+
+				dp[i] = Math.min(dp[i], dp[i - coin] + 1);
+			}
+		}
+
+		for(int i=1;i<dp.length;i++) {
+			System.out.printf("%d=%d,",i,dp[i]);
+		}
+		
+		return dp[amount];
+	}
+
+	public static void main(String[] args) {
+		System.out.println(coinChangeI(new int[] { 1, 2, 5 }, 3));
+		System.out.println(coinChangeII(new int[] { 1, 2, 5 }, 3));
+	}
+
+}
+```
+
+> 在使用動態規劃（Dynamic Programming, DP）來解決問題時，你可以選擇使用 DP 函數加上 Memoization（備忘錄）或者使用 DP 表格或 DP 陣列。
+
+> **DP 函數 + Memoization**：這種方法通常使用遞迴函數來定義 DP 的狀態轉移方程，並使用一個備忘錄（Memo）來記錄已計算過的結果，避免重複計算。這種方法適用於較為複雜的問題，且能夠節省計算時間和空間複雜度。
+
+> **DP 表格或 DP 陣列**：這種方法通常使用一個表格或陣列來存儲中間計算的結果，並按照問題的特性進行遞推或迭代計算。這種方法適用於簡單的問題，且能夠直觀地理解問題的解決過程。
 
 #### 0-1 背包問題
 

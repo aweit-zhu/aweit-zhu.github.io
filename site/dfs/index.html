@@ -1,0 +1,1293 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="a short description of your website">
+      
+      
+        <meta name="author" content="weizhi.zhu">
+      
+      
+        <link rel="canonical" href="https://aweit-zhu.github.io/dfs/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.0.0b4">
+    
+    
+      
+        <title>Algorithm - 回溯演算法(backtrack) - Aweit Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.91872f81.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="None" data-md-color-accent="None">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Aweit Docs" class="md-header__button md-logo" aria-label="Aweit Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Aweit Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Algorithm - 回溯演算法(backtrack)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Aweit Docs" class="md-nav__button md-logo" aria-label="Aweit Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Aweit Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sum/" class="md-nav__link">
+        Algorithm - Sum 問題
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bfs/" class="md-nav__link">
+        Algorithm - BFS演算法
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Algorithm - 回溯演算法(backtrack)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Algorithm - 回溯演算法(backtrack)
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    回溯演算法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#permutaion" class="md-nav__link">
+    排列(permutaion)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subset" class="md-nav__link">
+    子集(subset)：
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combination" class="md-nav__link">
+    組合 (combination)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#suduku" class="md-nav__link">
+    數獨(suduku)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#n" class="md-nav__link">
+    N皇后問題
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bts/" class="md-nav__link">
+        Algorithm - BTS 二元樹搜尋
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lru/" class="md-nav__link">
+        Algorithm - LRU 快取
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dp/" class="md-nav__link">
+        Algorithm - DP演算法
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../regex/" class="md-nav__link">
+        Java Regular Expression
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stackheap/" class="md-nav__link">
+        JVM - Stack & Heap
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../binaryOperator/" class="md-nav__link">
+        Binary & Bit Shift
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../forkJoinPool/" class="md-nav__link">
+        ForkJoinPool
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../volatile/" class="md-nav__link">
+        Volatile & synchronized
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../semaphore/" class="md-nav__link">
+        Thread & Semaphore
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../completableFuture/" class="md-nav__link">
+        Java 8 CompletableFuture
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../thread/" class="md-nav__link">
+        Java Thread & Thread Pool
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spring-batch/" class="md-nav__link">
+        Spring Boot 3 + Spring Batch 5
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../struts-tags/" class="md-nav__link">
+        Struts2 + struts-tags
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../struts-valuestack/" class="md-nav__link">
+        Struts2 + ValueStack + Form Validate
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../struts-props/" class="md-nav__link">
+        Struts2 Properties Config
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tiles/" class="md-nav__link">
+        Struts2 + Apache Tiles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssh/" class="md-nav__link">
+        SSH (Struts2 + Spring5 + Hibernate4)
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spring-cloud-feign/" class="md-nav__link">
+        Spring Cloud - OpenFeign Client
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spring-cloud-config/" class="md-nav__link">
+        Spring Cloud - Config Server
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spring-cloud-eureka/" class="md-nav__link">
+        Spring Cloud - Eureka Server
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spring-ldap/" class="md-nav__link">
+        Spring Security & LDAP
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spring-keycloak/" class="md-nav__link">
+        Spring Boot 3 and Keycloak
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spring-data-jpa/" class="md-nav__link">
+        Spring Data JPA
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spring-security/" class="md-nav__link">
+        Spring Boot 3 and Spring Security 6 (JWT Authentication and Authorization)
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flutter/" class="md-nav__link">
+        FlutterFire
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nfs/" class="md-nav__link">
+        NFS
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../velero/" class="md-nav__link">
+        Velero
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../traefik/" class="md-nav__link">
+        Treafik
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dapr/" class="md-nav__link">
+        Dapr
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        Docker
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practicek8s/" class="md-nav__link">
+        Kubernetes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sonarqube/" class="md-nav__link">
+        SonarQube
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../drone/" class="md-nav__link">
+        Drone
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../microk8s/" class="md-nav__link">
+        Microk8s
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    回溯演算法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#permutaion" class="md-nav__link">
+    排列(permutaion)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subset" class="md-nav__link">
+    子集(subset)：
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combination" class="md-nav__link">
+    組合 (combination)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#suduku" class="md-nav__link">
+    數獨(suduku)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#n" class="md-nav__link">
+    N皇后問題
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Algorithm - 回溯演算法(backtrack)</h1>
+
+<h3 id="_1">回溯演算法</h3>
+<blockquote>
+<p>回溯演算法是一種用於解決組合問題（如排列組合、子集、圖形問題等）的常用演算法。它通常使用遞迴的方式來探索所有可能的解，並在遇到不符合條件的情況下回溯（backtrack）到前一個狀態，繼續尋找其他解。</p>
+<p>回溯演算法的基本思想是通過選擇不同的選項來構建解，並在每一步檢查該選項是否符合問題的限制條件。如果符合，則繼續遞迴地選擇下一個選項；如果不符合，則回溯到前一個狀態，選擇其他的選項。這樣不斷地遞迴和回溯，直到找到所有的解或者遍歷完所有的選項。</p>
+<p>回溯演算法的時間複雜度通常比較高，因為它需要遍歷所有的可能解。然而，回溯演算法通常可以通過一些優化來減少不必要的遞迴調用，以提高效率。</p>
+</blockquote>
+<h3 id="permutaion">排列(permutaion)</h3>
+<p><img alt="Alt text" src="../image-196.png" /></p>
+<pre><code>public class PermuteDemo {
+
+    static List&lt;List&lt;Integer&gt;&gt; tracks = new ArrayList&lt;List&lt;Integer&gt;&gt;();
+
+    public static void permute(int[] nums) {
+        List&lt;Integer&gt; track = new ArrayList&lt;&gt;();
+        backtrack(nums, track);
+    }
+
+    public static void backtrack(int[] nums, List&lt;Integer&gt; track) {
+
+        if(track.size() == nums.length) {
+            tracks.add(new ArrayList&lt;&gt;(track));
+            return;
+        }
+
+        for (int num : nums) {
+
+            if(track.contains(num))
+                continue;
+
+            track.add(num); // 路徑添加一個。
+
+            backtrack(nums,track); // 遞迴產生下一個組合。
+
+            track.remove(track.size() - 1); // 回溯上一個狀態，讓選擇保持初始狀態。
+        }
+
+    }
+
+    public static void main(String[] args) {
+        int[] nums = new int[] { 1, 2, 3 };
+        permute(nums);
+        System.out.println(tracks);
+    }
+}
+</code></pre>
+<h3 id="subset">子集(subset)：</h3>
+<blockquote>
+<p>input = [1, 2, 3]
+Output =[ [], [1], [1, 2], [1, 2, 3], [1, 3], [2], [2, 3], [3] ]</p>
+</blockquote>
+<pre><code>public static List&lt;List&lt;Integer&gt;&gt; subset(List&lt;Integer&gt; nums) {
+    List&lt;List&lt;Integer&gt;&gt; res = new ArrayList&lt;List&lt;Integer&gt;&gt;();
+    List&lt;Integer&gt; track = new ArrayList&lt;Integer&gt;();
+    backtrack(nums, track, 0, res);
+    return res;
+}
+
+public static void backtrack(List&lt;Integer&gt; nums, List&lt;Integer&gt; track, int start,List&lt;List&lt;Integer&gt;&gt; res) {
+
+    res.add(new ArrayList&lt;&gt;(track));
+
+    for (int i = start; i &lt; nums.size(); i++) {
+
+        track.add(nums.get(i));
+
+        backtrack(nums, track, i + 1, res);
+
+        track.remove(track.size() - 1);
+    }
+}
+</code></pre>
+<blockquote>
+<p>input = [a,b,c]
+Output= [ [], [a], [a, b], [a, b, c], [a, c], [b], [b, c], [c] ]</p>
+</blockquote>
+<pre><code>public static List&lt;List&lt;String&gt;&gt; subsetAlphabt(List&lt;String&gt; data) {
+    List&lt;List&lt;String&gt;&gt; res = new ArrayList&lt;List&lt;String&gt;&gt;();
+    List&lt;String&gt; track = new ArrayList&lt;String&gt;();
+    backtrack2(data, track, 0, res);
+    return res;
+}
+
+public static void backtrack2(List&lt;String&gt; data, List&lt;String&gt; track, int start, List&lt;List&lt;String&gt;&gt; res) {
+
+    res.add(new ArrayList&lt;&gt;(track));
+
+    for (int i = start; i &lt; data.size(); i++) {
+
+        track.add(data.get(i));
+
+        backtrack2(data, track, i + 1, res);
+
+        track.remove(track.size() - 1);
+
+    }
+}
+</code></pre>
+<p>字串作為參數</p>
+<pre><code>public static List&lt;String&gt; permutation(String str) {
+    List&lt;String&gt; res = new ArrayList&lt;&gt;();
+    StringBuilder sb = new StringBuilder();
+    backTrack(str, sb, 0, res);
+    return res;
+}
+
+public static void backTrack(String str, StringBuilder sb, int start, List&lt;String&gt; res) {
+
+    res.add(sb.toString());
+
+    for (int i = start; i &lt; str.length(); i++) {
+
+        sb.append(str.charAt(i));
+
+        backTrack(str, sb, i+1, res);
+
+        sb.deleteCharAt(sb.length() - 1);
+
+    }
+}
+</code></pre>
+<h3 id="combination">組合 (combination)</h3>
+<blockquote>
+<p>輸入兩個數字 n,k，透過演算法輸出 [1..n] 中 k個數字組合。</p>
+<p>例如：n=4，k=2，代表數字 1~4，任取2個不重複的組合。共有 12,13,14,23,24,34 等 6 種組合。 </p>
+</blockquote>
+<pre><code>public static List&lt;List&lt;Integer&gt;&gt; combine(int n, int k) {
+    List&lt;List&lt;Integer&gt;&gt; res = new ArrayList&lt;List&lt;Integer&gt;&gt;();
+    List&lt;Integer&gt; track = new ArrayList&lt;Integer&gt;();
+    combineBackTrack(1, n, k, track, res);
+    return res;
+}
+
+public static void combineBackTrack(int start, int n, int k, List&lt;Integer&gt; track, List&lt;List&lt;Integer&gt;&gt; res) {
+
+    if (track.size() == k) {
+        res.add(new ArrayList&lt;&gt;(track));
+        return;
+    }
+
+    for (int i = start; i &lt;= n; i++) {
+
+        if (track.contains(i))
+            continue;
+
+        track.add(i);
+
+        combineBackTrack(i + 1, n, k, track, res);
+
+        track.remove(track.size() - 1);
+    }
+}
+
+System.out.println(combine(4, 2)); // C(4,2)，C4取2 = 6
+</code></pre>
+<h3 id="suduku">數獨(suduku)</h3>
+<p><img alt="Alt text" src="../image-197.png" /></p>
+<p>(1) 先從 (0,0)=1 開始，然後找下一個(0,1)，如果下一個回傳，代表1是正確的。</p>
+<p>(2) 如果下一個回傳 false，則回到原本的狀態(回溯) 並且重新給下一個值，即 (0,0) = 2，接著重複第一步的循環。</p>
+<p>(3) backtrack 還有 backtrack，又還有 backtrack... 應該怎麼思考？答案是，這是電腦要思考的事情，我們只要確定電腦最終會給我一個最後的結果就好了。 如果要理解過程的話，我們可以用「數獨第一列」理解。</p>
+<p><img alt="Alt text" src="../image-198.png" /></p>
+<p><strong>(0,0) = 1 -&gt; (0,1) = 1 X</strong>
+<strong>(0,0) = 1 -&gt; (0,1) = 2</strong> -&gt; (0,2) = 1 X
+(0,0) = 1 -&gt; (0,1) = 2 -&gt; (0,2) = 2 X
+(0,0) = 1 -&gt; (0,1) = 2 -&gt; (0,2) = 3 -&gt; (0,3) = 1 (X)
+(0,0) = 1 -&gt; (0,1) = 2 -&gt; (0,2) = 3 -&gt; (0,3) = 2 (X)
+(0,0) = 1 -&gt; (0,1) = 2 -&gt; (0,2) = 3 -&gt; (0,3) = 3 (X)
+(0,0) = 1 -&gt; (0,1) = 2 -&gt; (0,2) = 3 -&gt; (0,3) = 4** 
+...</p>
+<p>PS：
+當 (0,1) = 1 X 時，代表此路不通，要回溯並賦值，也就是 (0,1) = 2。</p>
+<p><strong>完整代碼</strong>：</p>
+<pre><code>public static void solveSudoku(int[][] board) {
+    backtrackSudoku(board, 0, 0);
+}
+
+public static boolean backtrackSudoku(int[][] board, int i, int j) {
+
+    int m = 9, n = 9;
+
+    if (j == n) {
+        return backtrackSudoku(board, i + 1, 0);
+    }
+
+    if (i == m)
+        return true;
+
+    if (board[i][j] != -1) {
+        return backtrackSudoku(board, i, j + 1);
+    }
+
+    for (int num = 1; num &lt;= 9; num++) {
+
+        if (!isValid(board, i, j, num))
+            continue;
+
+        board[i][j] = num;
+
+        boolean flag = backtrackSudoku(board, i, j + 1);
+
+        if (flag) {
+            return true;
+        }
+
+        board[i][j] = -1;
+    }
+
+    return false;
+}
+
+public static boolean isValid(int[][] board, int r, int c, int target) {
+
+    for (int i = 0; i &lt; 9; i++) {
+
+        // 同一列
+        if (board[r][i] == target)
+            return false;
+
+        // 同一行
+        if (board[i][c] == target)
+            return false;
+
+        // 九宮格
+        if (board[(r / 3) * 3 + i / 3][(c / 3) * 3 + i % 3] == target)
+            return false;
+    }
+
+    return true;
+}
+
+public static void main(String[] args) {
+    int[][] board = new int[9][9];
+    for (int i = 0; i &lt; board.length; i++) {
+        Arrays.fill(board[i], -1);
+    }
+    solveSudoku(board);
+    printSudoku(board);
+}
+
+</code></pre>
+<h3 id="n">N皇后問題</h3>
+<p><img alt="Alt text" src="../image-201.png" /></p>
+<pre><code>public class NQueenDemo {
+
+    static List&lt;String[][]&gt; res = new ArrayList&lt;&gt;();
+
+    public static List&lt;String[][]&gt; solveNQueens(int n) {
+
+        String[][] boarded = new String[n][n];
+        for (String[] row : boarded)
+            Arrays.fill(row, &quot;-&quot;);
+
+        backTrack(boarded, 0);
+
+        return res;
+    }
+
+    public static void backTrack(String[][] boarded, int row) {
+
+        int n = boarded.length;
+
+        if (row == n) {
+            String[][] copy = new String[n][n];
+            for (int i = 0; i &lt; n; i++) {
+                copy[i] = Arrays.copyOf(boarded[i], n);
+            }
+            res.add(copy);
+            return;
+        }
+
+        for (int i = 0; i &lt; n; i++) {
+
+            if (!isValid(boarded, row, i))
+                continue;
+
+            boarded[row][i] = &quot;Q&quot;;
+
+            backTrack(boarded, row + 1);
+
+            boarded[row][i] = &quot;-&quot;;
+        }
+
+    }
+
+    public static boolean isValid(String[][] boarded, int row, int col) {
+
+        int n = boarded.length;
+
+        // 同一列
+        for (int i = 0; i &lt; row; i++) {
+            if (boarded[row][i].equals(&quot;Q&quot;))
+                return false;
+        }
+
+        // 同一行
+        for (int i = 0; i &lt; row; i++) {
+            if (boarded[i][col].equals(&quot;Q&quot;))
+                return false;
+        }
+
+        // 左上
+        for (int i = row - 1, j = col - 1; i &gt;= 0 &amp;&amp; j &gt;= 0; i--, j--) {
+            if (boarded[i][j].equals(&quot;Q&quot;))
+                return false;
+        }
+
+        // 右上
+        for (int i = row - 1, j = col + 1; i &gt;= 0 &amp;&amp; j &lt; n; i--, j++) {
+            if (boarded[i][j].equals(&quot;Q&quot;))
+                return false;
+        }
+
+        return true;
+    }
+
+    private static void print(String[][] boarded) {
+        for (String[] r : boarded) {
+            for (String col : r) {
+                System.out.print(&quot; &quot; + col + &quot;  &quot;);
+            }
+            System.out.println(&quot;&quot;);
+        }
+        System.out.println(&quot;----------&quot;);
+    }
+
+    public static void main(String[] args) {
+        List&lt;String[][]&gt; res = solveNQueens(4);
+        res.stream().forEach(NQueenDemo::print);
+    }
+
+}
+
+輸出：
+ -   Q   -   -  
+ -   -   -   Q  
+ Q   -   -   -  
+ -   -   Q   -  
+----------
+ -   -   Q   -  
+ Q   -   -   -  
+ -   -   -   Q  
+ -   Q   -   -  
+----------
+</code></pre>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.3de43c86.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ce0331ff.min.js"></script>
+      
+    
+    
+  </body>
+</html>

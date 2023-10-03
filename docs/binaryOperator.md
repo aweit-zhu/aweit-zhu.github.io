@@ -125,3 +125,31 @@ public static void main(String[] args) {
     System.out.println(permutation("abc"));
 }
 ```
+4. 如果有學過「**回溯演算法**」，更簡潔：
+
+```
+public static List<String> permutation(String str) {
+    List<String> res = new ArrayList<>();
+    StringBuilder sb = new StringBuilder();
+    backTrack(str, sb, 0, res);
+    return res;
+}
+
+public static void backTrack(String str, StringBuilder sb, int start, List<String> res) {
+
+    res.add(sb.toString());
+
+    for (int i = start; i < str.length(); i++) {
+        
+        sb.append(str.charAt(i));
+        
+        backTrack(str, sb, i+1, res);
+        
+        sb.deleteCharAt(sb.length() - 1);
+        
+    }
+}
+public static void main(String[] args) {
+    System.out.println(permutation("abc"));
+}
+```
